@@ -17,17 +17,18 @@
    4. checkout the main branch locally 
    5. Merge main branch into your local branch    
    6. Resolve merge conflicts if occurs
-   7. push/upload the changes to remote branch
-   8. Create Pull request
-   9. Add other as reviewers
-   10. Merge branch into main if everyone approve the changes 
+   7. push/upload the changes to your own remote branch (not main branch)
+   8. Create Pull request to main branch 
+   9. Add others as reviewers
+   10. Merge branch into main if everyone approve the changes
    11. ![Github Flow](GitHubFlow.PNG)
 
 
 ## Best practices
+
     1. Don’t git push straight to main. Make your own branch and work 
     2. Don’t commit code as an unrecognized author. Configure your email, username properly
-    3. Add other team memebers for faster code reviews
+    3. Add other team members for faster code reviews
     4. Don’t add secrets into source code
     5. Don’t commit dependencies into source control
     6. Don’t commit local config files into source control 

@@ -20,11 +20,12 @@
    7. push/upload the changes to remote branch
    8. Create Pull request
    9. Add other as reviewers
-   10. Merge branch into main if everyone approve the changes 
+   10. Merge branch into main if everyone approve the changes
    11. ![Github Flow](GitHubFlow.PNG)
 
 
 ## Best practices
+
     1. Don’t git push straight to main. Make your own branch and work 
     2. Don’t commit code as an unrecognized author. Configure your email, username properly
     3. Add other team memebers for faster code reviews

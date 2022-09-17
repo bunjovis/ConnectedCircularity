@@ -20,7 +20,7 @@
    7. push/upload the changes to your own remote branch (not main branch)
    8. Create Pull request to main branch 
    9. Add others as reviewers
-   10. Merge branch into main if everyone approve the changes
+   10. Merge branch into main if any two team members approve the changes
    11. ![Github Flow](GitHubFlow.PNG)
 
 
@@ -33,7 +33,7 @@
     5. Don’t commit dependencies into source control
     6. Don’t commit local config files into source control 
     7. Archive dead repositories/branches. if no repo or bracnh is more beneficial, archive it properly
-    8. Use a branch naming convention
+    8. Use below branch naming convention (feature/set-up-cc-backend , bug/<descripe-the-bug/ticket-name>, fix/<improve-someting>)
     9. Keep branches up to date with main
     10. keep pushing your code to your own branches on daily base
     11. Remove merge conflicts as soon as possible 

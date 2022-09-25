@@ -11,5 +11,5 @@ app.get("/", (req, res) => {
   res.json({ message: "Connected Circularity Backend up and running!" });
 });
 app.listen(port, () => {
-  console.log("Server listening at http://localhost:${port}");
+  console.log(`Server listening at http://localhost:${port}`);
 });

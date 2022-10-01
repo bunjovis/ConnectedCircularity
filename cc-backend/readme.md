@@ -1,2 +1,7 @@
-Use npm run dev to run the server. It builds with npx tsc and starts the server with nodemon and concurrently.
+- Clone from repo.
+- At /cc-backend/ 
+  - npm install
+  - Copy contents from .env.example to .env (create .env first)
+  - npm run build
+  - npm run dev
 

@@ -8,6 +8,7 @@ services:
    build: cc_materiaalitori_service_setup/ # use the Dockerfile for Materiaalitori_service 
    ports:
      - '8000:8000'
+<<<<<<< HEAD
   
   #purkukartoitus _service:
   
@@ -16,6 +17,9 @@ services:
   #database:
   
   
+=======
+
+>>>>>>> 9230469017f01e2398451ad69e7de6cac6209bb3
  
 
   

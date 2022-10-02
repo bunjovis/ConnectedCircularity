@@ -7,3 +7,8 @@
    - ```node dist/app.js```. Runs the created JavaScript file with Node
 
 Additional script: Run ```npm run check``` to check the file for TypeScript errors/warnings with eslint
+
+### Docker Guide 
+1. Move into the cc_materiaalitori_service_setup directory
+2. run this command to create docker image docker build . -t materailtori (you can choose any name)
+3. docker run -p 8000:8000 materailtori 

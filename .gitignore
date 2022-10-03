@@ -1,8 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 # compiled output
 /dist
-/cc_purkukartoitus_service/dist/
-/cc_purkukartoitus_service/node_modules/
+/cc-pk-service/dist/
+/cc-pk-service/node_modules/
 /tmp
 /out-tsc
 # Runtime data
@@ -61,6 +61,7 @@ jspm_packages/
 .yarn-integrity
 # dotenv environment variables file
 .env
+/cc-pk-service/.env
 # next.js build output
 .next
 # Lerna

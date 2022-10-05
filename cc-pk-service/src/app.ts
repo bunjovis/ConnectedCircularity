@@ -6,11 +6,11 @@ dotenv.config();
 
 // Variables
 const PORT = process.env.PORT;
-const username: string = process.env.username ?? '';
-const password: string = process.env.password ?? '';
-const c_id: string = process.env.clientid ?? '';
-const g_type: string = process.env.granttype ?? '';
-const path = '/' + username;
+const username: string = process.env.PK_USERNAME ?? '';
+const password: string = process.env.PK_PASSWORD ?? '';
+const c_id: string = process.env.PK_CLIENTID ?? '';
+const g_type: string = process.env.PK_GRANTTYPE ?? '';
+const path = `/${username}`;
 
 // Type template for the surveys
 interface surveyType {
@@ -49,14 +49,14 @@ async function showData() {
   const userSurveys = handleData(groupSurveys, userId);
   
   // Show all user surveys on the same path
-  const surveysPath = path + '/surveys';
+  const surveysPath = `${path}/surveys`;
   app.get(surveysPath, (req, res) => {
     res.json(userSurveys);
   })
 
   // Show user surveys on their own paths
   for (let i = 0; i < userSurveys.length; i++) {
-    const surveyPath = surveysPath + '/' + userSurveys[i].id;
+    const surveyPath = `${surveysPath}/${userSurveys[i].id}`;
     app.get(surveyPath, (req, res) => {
       res.json(userSurveys[i]);
     })
@@ -138,7 +138,7 @@ async function getData(token:string) {
 function handleData(allSurveys:surveyType[], id:string) {
   const surveys = [];
   for (let i = 0; i < allSurveys.length; i++) {
-    if (allSurveys[i].metadata.creatorId == id && allSurveys[i].status == 'DONE') surveys.push(allSurveys[i]);
+    if (allSurveys[i].metadata.creatorId === id && allSurveys[i].status === 'DONE') surveys.push(allSurveys[i]);
   }
   return surveys;
 }

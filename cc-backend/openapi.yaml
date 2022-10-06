@@ -22,28 +22,13 @@ paths:
               schema:
                 type: string
 
-  /v1/user/{host_api}/{name}:
+  /v1/user:
     post:
       operationId: afterLogin
       summary: User has logged in
       description: TODO
       tags:
         - User
-      parameters:
-        - name: host_api
-          in: path
-          description: api service provider name
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: name
-          required: true
-          in: path
-          description: username
-          schema:
-            type: string
-            format: uuid
       requestBody:
         content:
           application/json:
@@ -70,26 +55,31 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal server error
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-    
 
-  /v1/items/{username}:
+  /v1/items/{surveyId}:
     get:
       operationId: getItemsFromPK
       summary: Get all items from PK
       description: Gets all items from PK via CC-PK-service
       tags:
-        - Items
+        - Item
       parameters:
-        - name: username
+        - name: surveyId
           required: true
           in: path
-          description: username
+          description: surveyId from which to list reusable items
           schema:
             type: string
             format: uuid
@@ -288,6 +278,7 @@ components:
       bearerFormat: JWT
   
   schemas:
+
     Error:
       type: object
       description: Error object
@@ -377,7 +368,11 @@ components:
                     countryCode:
                       type: string
             attachments:
-              type: object
+              type: array
+              items:
+                type: string
+                format: uri
+                description: Image uri
       
     AdvertInfo:
       type: object
@@ -387,9 +382,25 @@ components:
 
     ItemInfo:
       type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          format: uuid
 
     Items:
       type: object
+      required:
+        - surveyId
 
-    UserInfo:
+    UserInfo:      
       type: object
+      required:
+        - api
+        - username
+      properties:
+        api:          
+          type: string        
+        username:          
+          type: string

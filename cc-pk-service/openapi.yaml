@@ -1,0 +1,164 @@
+openapi: 3.0.3
+
+info:
+  title: Purkukartoitus Service
+  description: Server for sending requests to Purkukartoitus API
+  version: "0.1"
+
+security:
+  - bearerAuth: []  
+
+paths:
+  '/v1/system/ping':
+    get:
+      operationId: ping
+      summary: Replies with pong
+      description: Replies ping with pong
+      tags:
+        - System
+      responses:
+        "200":
+          description: Pong
+          content:
+            text/plain:
+              schema:
+                type: string
+  '/v1/items/{surveyId}':
+    get:
+      operationId: surveyItems
+      summary: Get survey's reusable item
+      description: Gets all reusable items for a survey
+      tags:
+        - Items
+      parameters:
+        - name: surveyId
+          required: true
+          in: path
+          description: surveyId from which to list reusable items
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Items
+          content:
+            application/json:
+              schema:
+                type: array
+                $ref: "#/components/schemas/Item"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  '/v1/items/{itemId}':
+    get:
+      operationId: itemInfo
+      summary: Gets item info
+      description: Gets item info for Form
+      tags:
+        - Items
+      parameters:
+        - name: itemId
+          required: true
+          in: path
+          description: itemId
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Item
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Item"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Error:
+      type: object
+      description: Error object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    Item:
+      type: object
+      description: Reusable item object
+      required:
+        - reusableId
+        - componentName
+        - surveyId
+        - streetAddress
+      properties:
+        reusableId:
+          type: string
+          format: uuid
+          description: ID of the reusable item
+          readOnly: true
+        componentName:
+          type: string
+          description: Name of the building component
+        surveyId:
+          type: string
+          format: uuid
+          description: ID of the survey where the item belongs to
+          readOnly: true
+        streetAddress:
+          type: string
+          description: Street address of the building

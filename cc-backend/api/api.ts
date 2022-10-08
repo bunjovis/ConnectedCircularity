@@ -320,17 +320,17 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       }),
 
     /**
-     * @description Gets all items from PK via CC-PK-service
+     * @description Gets all items via CC-PK-service and CC-db-service
      *
      * @tags Item
      * @name GetItemsFromPk
-     * @summary Get all items from PK
-     * @request GET:/v1/items/{surveyId}
+     * @summary Get all items from PK and CC-db
+     * @request GET:/v1/items/{userId}
      * @secure
      */
-    getItemsFromPk: (surveyId: string, params: RequestParams = {}) =>
+    getItemsFromPk: (userId: string, params: RequestParams = {}) =>
       this.request<Items, Error>({
-        path: `/v1/items/${surveyId}`,
+        path: `/v1/items/${userId}`,
         method: "GET",
         secure: true,
         format: "json",
@@ -338,11 +338,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       }),
 
     /**
-     * @description Gets item info for Form from PK via CC-PK-service
+     * @description Gets item info for Form from PK via CC-PK-service and configs and drafts from CC-db-service
      *
      * @tags Item
      * @name GetItemInfoForm
-     * @summary Gets item info for form from PK
+     * @summary Gets item info for form from PK and CC-db
      * @request GET:/v1/items/{itemId}
      * @secure
      */
@@ -381,12 +381,12 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @tags Advert
      * @name PostAdvert
      * @summary Posts advert to MT
-     * @request POST:/v1/advert/{advertId}
+     * @request POST:/v1/advert
      * @secure
      */
-    postAdvert: (advertId: string, data: Advert, params: RequestParams = {}) =>
+    postAdvert: (data: Advert, params: RequestParams = {}) =>
       this.request<AdvertInfo, Error>({
-        path: `/v1/advert/${advertId}`,
+        path: `/v1/advert`,
         method: "POST",
         body: data,
         secure: true,

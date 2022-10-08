@@ -7,3 +7,8 @@
    - ```node dist/app.js```. Runs the created JavaScript file with Node
 
 Additional script: Run ```npm run check``` to check the file for TypeScript errors/warnings with eslint
+
+### Docker Guide 
+- At /cc-db-service/ 
+  - docker build . -t mt (you can choose any name instead of backend)
+  - docker run -p 8000:8000 --name MT mt 

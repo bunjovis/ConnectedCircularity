@@ -279,13 +279,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      *
      * @tags Items
      * @name SurveyItems
-     * @summary Get survey's reusable item
-     * @request GET:/v1/items/{surveyId}
+     * @summary Get user survey's reusable item
+     * @request GET:/v1/{username}/surveys/{surveyId}/items
      * @secure
      */
-    surveyItems: (surveyId: string, params: RequestParams = {}) =>
-      this.request<Item, Error>({
-        path: `/v1/items/${surveyId}`,
+    surveyItems: (surveyId: string, username: string, params: RequestParams = {}) =>
+      this.request<Item[], Error>({
+        path: `/v1/${username}/surveys/${surveyId}/items`,
         method: "GET",
         secure: true,
         format: "json",

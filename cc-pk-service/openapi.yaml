@@ -23,10 +23,10 @@ paths:
             text/plain:
               schema:
                 type: string
-  '/v1/items/{surveyId}':
+  '/v1/{username}/surveys/{surveyId}/items':
     get:
       operationId: surveyItems
-      summary: Get survey's reusable item
+      summary: Get user survey's reusable item
       description: Gets all reusable items for a survey
       tags:
         - Items
@@ -38,6 +38,12 @@ paths:
           schema:
             type: string
             format: uuid
+        - name: username
+          required: true
+          in: path
+          description: Current user's username
+          schema:
+            type: string
       responses:
         "200":
           description: Items
@@ -45,7 +51,8 @@ paths:
             application/json:
               schema:
                 type: array
-                $ref: "#/components/schemas/Item"
+                items:
+                  $ref: "#/components/schemas/Item"
         "400":
           description: Invalid request was sent to the server
           content:

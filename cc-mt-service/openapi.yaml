@@ -27,13 +27,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/v1/components/schemas/Added"
+                $ref: "#/components/schemas/Added"
         "400":
           description: adding failure
           content:
             application/json:
               schema:
-                $ref: "#/v1/components/schemas/Error"
+                $ref: "#/components/schemas/Error"
 
 
 components:
@@ -121,8 +121,19 @@ components:
                       type: string
             attachments:
               type: array
+              items:
+                type: string
             regions:
               type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  nameFi:
+                    type: string
+                  nameSv:
+                    type: string
     
     Added:
       type: object

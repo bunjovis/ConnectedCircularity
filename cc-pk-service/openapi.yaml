@@ -23,7 +23,7 @@ paths:
             text/plain:
               schema:
                 type: string
-  '/v1/{username}/surveys/{surveyId}/items':
+  '/v1/{userId}/surveys/{surveyId}/items':
     get:
       operationId: surveyItems
       summary: Get user survey's reusable item
@@ -38,12 +38,13 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: username
+        - name: userId
           required: true
           in: path
-          description: Current user's username
+          description: Current user's id
           schema:
             type: string
+            format: uuid
       responses:
         "200":
           description: Items

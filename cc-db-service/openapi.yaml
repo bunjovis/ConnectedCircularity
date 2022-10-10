@@ -30,7 +30,13 @@ paths:
         - Apis
       responses:
         '200':
-          description: Success
+          description: List Apis
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetApi'
         '404':
           description: Not found
         '500':

@@ -1,9 +1,11 @@
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import * as OpenApiValidator from 'express-openapi-validator';
+
+import { HttpResponseError } from './types';
 
 dotenv.config();
 
@@ -32,6 +34,16 @@ app.use(
     validateRequests: true,
     validateResponses: false,
   })
+);
+
+app.use(
+  (err: HttpResponseError, _: Request, res: Response, __: NextFunction) => {
+    // format error
+    res.status(err.status || 500).json({
+      message: err.message,
+      error: err.errors[0],
+    });
+  }
 );
 
 app.get('/', (_: Request, response: Response) => {

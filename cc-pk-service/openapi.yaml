@@ -23,21 +23,14 @@ paths:
             text/plain:
               schema:
                 type: string
-  '/v1/{userId}/surveys/{surveyId}/items':
+  '/v1/items/{userId}':
     get:
-      operationId: surveyItems
-      summary: Get user survey's reusable item
-      description: Gets all reusable items for a survey
+      operationId: userItems
+      summary: Get user's items
+      description: Gets all reusable items that belong to the current user
       tags:
         - Items
       parameters:
-        - name: surveyId
-          required: true
-          in: path
-          description: surveyId from which to list reusable items
-          schema:
-            type: string
-            format: uuid
         - name: userId
           required: true
           in: path

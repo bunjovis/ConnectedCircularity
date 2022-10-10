@@ -1,4 +1,4 @@
-openapi: '3.0.2'
+openapi: '3.0.3'
 info:
   title: Materiaalitori_service
   description: server for adding new adverts to Materiaalitori API

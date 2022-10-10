@@ -41,7 +41,7 @@ app.use(
     // format error
     res.status(err.status || 500).json({
       message: err.message,
-      error: err.errors[0],
+      error: err.error[0],
     });
   }
 );

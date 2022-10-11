@@ -122,7 +122,16 @@ components:
             attachments:
               type: array
               items:
-                type: string
+                type : object
+                properties:
+                  id:
+                    type: string
+                  fileName:
+                    type: string
+                  contentType:
+                    type: string
+                  length:
+                    type: integer
             regions:
               type: array
               items:

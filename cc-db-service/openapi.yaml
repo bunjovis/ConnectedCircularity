@@ -69,7 +69,7 @@ paths:
       tags:
         - Items
       parameters:
-        - name: UserId
+        - name: userId
           required: true
           in: path
           description: User id

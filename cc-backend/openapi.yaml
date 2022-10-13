@@ -3,8 +3,8 @@ info:
   version: 0.1.0
   title: CC-Backend API-spec
 
-security:
-  - bearerAuth: []
+#security:
+#  - bearerAuth: []
 
 paths:
   /v1/system/ping:
@@ -265,11 +265,11 @@ paths:
                 $ref: "#/components/schemas/Error"
 
 components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
+  #securitySchemes:
+  #  bearerAuth:
+  #    type: http
+  #    scheme: bearer
+  #    bearerFormat: JWT
   
   schemas:
 

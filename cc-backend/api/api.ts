@@ -61,7 +61,28 @@ export interface ItemInfo {
   id: string;
 }
 
-export type Items = object;
+/**
+ * Reusable item object
+ */
+export interface Item {
+  /**
+   * ID of the reusable item
+   * @format uuid
+   */
+  reusableId: string;
+
+  /** Name of the building component */
+  componentName: string;
+
+  /**
+   * ID of the survey where the item belongs to
+   * @format uuid
+   */
+  surveyId: string;
+
+  /** Street address of the building */
+  streetAddress: string;
+}
 
 export interface UserInfo {
   api: string;
@@ -329,7 +350,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @secure
      */
     getItemsFromPk: (userId: string, params: RequestParams = {}) =>
-      this.request<Items, Error>({
+      this.request<Item[], Error>({
         path: `/v1/items/${userId}`,
         method: "GET",
         secure: true,

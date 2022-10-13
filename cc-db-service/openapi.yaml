@@ -3,9 +3,6 @@ info:
   version: 1.0.0
   title: CC Database service endpoints
 
-security:
-  - bearerAuth: []
-
 paths:
   /v1/system/ping:
     get:

@@ -5,9 +5,6 @@ info:
   description: Server for sending requests to Purkukartoitus API
   version: "0.1"
 
-security:
-  - bearerAuth: []  
-
 paths:
   '/v1/system/ping':
     get:
@@ -93,7 +90,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Item"
+                $ref: "#/components/schemas/PKItem"
         "400":
           description: Invalid request was sent to the server
           content:
@@ -163,3 +160,5 @@ components:
         streetAddress:
           type: string
           description: Street address of the building
+    PKItem:
+      type: object

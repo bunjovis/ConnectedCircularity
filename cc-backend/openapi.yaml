@@ -70,6 +70,8 @@ paths:
 
   /v1/items/{userId}:
     get:
+      security:
+       - bearerAuth: []
       operationId: getItemsFromPK
       summary: Get all items from PK and CC-db
       description: Gets all items via CC-PK-service and CC-db-service
@@ -98,6 +100,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+        "401":
+          description: Access token missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"  
         "403":
           description: Attempted to make a call with unauthorized client
           content:
@@ -119,6 +127,8 @@ paths:
   
   /v1/items/{itemId}:
     get:
+      security:
+       - bearerAuth: []
       operationId: getItemInfoForm
       summary: Gets item info for form from PK and CC-db
       description: Gets item info for Form from PK via CC-PK-service and configs and drafts from CC-db-service
@@ -265,11 +275,11 @@ paths:
                 $ref: "#/components/schemas/Error"
 
 components:
-  #securitySchemes:
-  #  bearerAuth:
-  #    type: http
-  #    scheme: bearer
-  #    bearerFormat: JWT
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   
   schemas:
 

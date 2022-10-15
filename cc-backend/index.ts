@@ -1,7 +1,7 @@
 import express, { Express, Request, Response, NextFunction } from "express";
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 import axios from 'axios';
 import * as OpenApiValidator from 'express-openapi-validator';
 
@@ -24,6 +24,7 @@ app.use(
 const options = {
   customCss: '.swagger-ui .topbar { display: none }',
 };
+
 app.use(
   '/api-docs',
   swaggerUi.serve,
@@ -48,7 +49,7 @@ app.use(
   }
 );
 
-app.get("/", (_: Request, response: Response) => {
+app.get('/', (_: Request, response: Response) => {
   response.send('Connected Circularity Backend with TypeScript up and running!');
 });
 
@@ -59,6 +60,16 @@ app.get('/v1/system/ping', (_: Request, response: Response) => {
 app.get('/v1/items/:userId', (request: Request, response: Response) => {
   const resItems = getItems(request.params.userId);
   response.send(resItems);
+});
+
+app.post('/v1/user', (request: Request, response: Response) => {
+  // For testing only
+  const api_name = request.body.api; 
+  const username = request.body.username;
+  console.log(api_name);
+  console.log(username);
+  console.log(request.body);
+  response.send(request.body);
 });
 
 app.listen(port, () => {

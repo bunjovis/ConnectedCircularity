@@ -1,0 +1,398 @@
+openapi: 3.0.3
+info:
+  version: 0.1.0
+  title: CC-Backend API-spec
+
+security:
+  - bearerAuth: []
+
+paths:
+  /v1/system/ping:
+    get:
+      operationId: ping
+      summary: Replies with pong
+      description: Replies ping with pong
+      tags:
+        - System
+      responses:
+        "200":
+          description: Pong
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /v1/user:
+    post:
+      operationId: afterLogin
+      summary: User has logged in
+      description: TODO
+      tags:
+        - User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserInfo"
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Added User info
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserInfo"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/items/{userId}:
+    get:
+      operationId: getItemsFromPK
+      summary: Get all items from PK and CC-db
+      description: Gets all items via CC-PK-service and CC-db-service
+      tags:
+        - Item
+      parameters:
+        - name: userId
+          required: true
+          in: path
+          description: userId from which to list reusable items
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Items
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Items"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /v1/items/{itemId}:
+    get:
+      operationId: getItemInfoForm
+      summary: Gets item info for form from PK and CC-db
+      description: Gets item info for Form from PK via CC-PK-service and configs and drafts from CC-db-service
+      tags:
+        - Item
+      parameters:
+        - name: itemId
+          required: true
+          in: path
+          description: itemId
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Item
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ItemInfo"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /v1/config/{userId}:
+    post:
+      operationId: postConfig
+      summary: Posts configuration
+      description: TODO
+      tags:
+        - Config
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Config"
+        description: Payload
+        required: true
+      parameters:
+        - name: userId
+          required: true
+          in: path
+          description: userId
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Config
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Config"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/advert:
+    post:
+      operationId: postAdvert
+      summary: Posts advert to MT
+      description: Posts advert to MT via MT-service
+      tags:
+        - Advert
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Advert"
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Advert posted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdvertInfo"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  
+  schemas:
+
+    Error:
+      type: object
+      description: Error object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    
+    Advert:
+      type: object
+      description: Advert object
+      required:
+       - type
+       - data
+       
+      properties:
+        type:
+          type: string
+        data:
+          type: object
+          properties:
+            title:
+              type: string
+            expires:
+              type: string
+              format: date
+            contactIsPublic:
+              type: boolean
+            contact:
+              type: object
+              properties:
+                name:
+                  type: string
+                title:
+                  type: string
+                phone:
+                  type: string
+                email:
+                  type: string
+                  format: email
+            materials:
+              type: object
+              properties:
+                classification:
+                  type: string
+                industry:
+                  type: string
+                description:
+                  type: string
+                isWaste:
+                  type: boolean
+                quantity:
+                  type: object
+                  properties:
+                    amount:
+                      type: integer
+                    unitOfMeasure:
+                      type: string
+                continuity:
+                  type: string
+                amountDescription:
+                  type: string
+                locationIsPublic:
+                  type: boolean
+                location:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    address:
+                      type: string
+                    postalcode:
+                      type: string
+                    city:
+                      type: string
+                    cityId:
+                      type: string
+                    region:
+                      type: string
+                    regionId:
+                      type: string
+                    countryCode:
+                      type: string
+            attachments:
+              type: array
+              items:
+                type: string
+                format: uri
+                description: Image uri
+      
+    AdvertInfo:
+      type: object
+
+    Config:
+      type: object
+
+    ItemInfo:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          format: uuid
+
+    Items:
+      type: object
+      required:
+        - surveyId
+
+    UserInfo:      
+      type: object
+      required:
+        - api
+        - username
+      properties:
+        api:          
+          type: string        
+        username:          
+          type: string

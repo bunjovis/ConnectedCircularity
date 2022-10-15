@@ -1,0 +1,435 @@
+openapi: 3.0.3
+info:
+  version: 1.0.0
+  title: CC Database service endpoints
+
+paths:
+  /v1/system/ping:
+    get:
+      operationId: ping
+      summary: ping - pong
+      description: pong
+      tags:
+        - system
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+
+  /v1/apis:
+    get:
+      operationId: getApis
+      summary: Get API configurations
+      tags:
+        - Apis
+      responses:
+        '200':
+          description: List Apis
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetApi'
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+  /v1/user:
+    post:
+      operationId: postUser
+      summary: Create new or return existing User data from database
+      tags:
+        - User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostUser'
+        required: true
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Invalid data
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+  /v1/items/{userId}:
+    get:
+      operationId: getUserItems
+      description: Get Items belonging to a User
+      tags:
+        - Items
+      parameters:
+        - name: userId
+          required: true
+          in: path
+          description: User id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: List of User Items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetUserItem'
+        '400':
+          description: Invalid request data
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+  /v1/items/{itemId}:
+    get:
+      operationId: getItemData
+      description: Get Item data with possible configuration and draft values
+      tags:
+        - Items
+      parameters:
+        - name: itemId
+          required: true
+          in: path
+          description: Item id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Object containing type Lists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  draftValues:
+                    $ref: '#/components/schemas/GetDraft'
+                  configuration:
+                    $ref: '#/components/schemas/GetConfiguration'
+        '400':
+          description: Invalid request data
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+  /v1/items:
+    post:
+      operationId: postItemData
+      description: Create Item after succesfull Advert creation to MT
+      tags:
+        - Items
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostUserItem'
+        required: true
+      responses:
+        '200':
+          description: 'OK'
+        '400':
+          description: Invalid request data
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+  /v1/items/draft:
+    post:
+      operationId: postDraftValues
+      description: Create draft for Item and save form values
+      tags:
+        - Items
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostDraft'
+        required: true
+      responses:
+        '200':
+          description: 'OK'
+        '400':
+          description: Invalid request data
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+
+  /v1/items/draft/{draftId}:
+    put:
+      operationId: putDraftValues
+      description: Update draft for Item and save new values
+      tags:
+        - Items
+      parameters:
+        - name: draftId
+          required: true
+          in: path
+          description: Draft id
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutDraft'
+        required: true
+      responses:
+        '200':
+          description: 'OK'
+        '400':
+          description: Invalid request data
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+  /v1/configurations:
+    post:
+      operationId: postConfiguration
+      description: Create new configuration
+      tags:
+        - Configurations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostConfiguration'
+        required: true
+      responses:
+        '200':
+          description: 'OK'
+        '400':
+          description: Invalid request data
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+  /v1/configurations/{configurationId}:
+    put:
+      operationId: putConfiguration
+      description: Update configuration
+      tags:
+        - Configurations
+      parameters:
+        - name: configurationId
+          required: true
+          in: path
+          description: Configuration id
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutConfiguration'
+        description: payload
+        required: true
+      responses:
+        '200':
+          description: 'OK'
+        '400':
+          description: Invalid request data
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+components:
+  schemas:
+    GetApi:
+      type: object
+      properties:
+        apiId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        authEndpoint:
+          type: string
+    PostUser:
+      type: object
+      properties:
+        username:
+          type: string
+        api:
+          type: string
+          format: uuid
+      required:
+        - username
+        - api
+    GetUser:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        username:
+          type: string
+        api:
+          type: string
+          format: uuid
+    GetUserItem:
+      type: object
+      properties:
+        itemId:
+          type: string
+          format: uuid
+        status:
+          type: integer
+        collectionId:
+          type: string
+    PostUserItem:
+      type: object
+      required:
+        - itemId
+        - userId
+        - status
+      properties:
+        itemId:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        collectionId:
+          type: string
+        advertId:
+          type: string
+        transferTime:
+          type: string
+        status:
+          type: integer
+    GetDraft:
+      type: object
+      properties:
+        draftId:
+          type: string
+          format: uuid
+        title:
+          type: string
+        material:
+          type: string
+        industry:
+          type: string
+        materialDescription:
+          type: string
+        materialUnit:
+          type: string
+        materialInfo:
+          type: string
+        locationName:
+          type: string
+        locationZipCode:
+          type: string
+        locationMunicipality:
+          type: string
+        contactName:
+          type: string
+        contactPhone:
+          type: string
+        contactEmail:
+          type: string
+    PostDraft:
+      type: object
+      properties:
+        itemId:
+          type: string
+          format: uuid
+        title:
+          type: string
+        material:
+          type: string
+        industry:
+          type: string
+        materialDescription:
+          type: string
+        materialUnit:
+          type: string
+        materialInfo:
+          type: string
+    PutDraft:
+      type: object
+      properties:
+        title:
+          type: string
+        material:
+          type: string
+        industry:
+          type: string
+        materialDescription:
+          type: string
+        materialUnit:
+          type: string
+        materialInfo:
+          type: string
+    GetConfiguration:
+      type: object
+      properties:
+        configurationId:
+          type: string
+          format: uuid
+        expiryDate:
+          type: string
+        contactName:
+          type: string
+        contactAddress:
+          type: string
+        contactEmail:
+          type: string
+        locationZipCode:
+          type: string
+        locationAddress:
+          type: string
+        locationMunicipality:
+          type: string
+    PostConfiguration:
+      type: object
+      required:
+        - userId
+        - collectionId
+      properties:
+        userId:
+          type: string
+          format: uuid
+        collectionId:
+          type: string
+        expiryDate:
+          type: string
+        contactName:
+          type: string
+        contactAddress:
+          type: string
+        contactEmail:
+          type: string
+        locationAddress:
+          type: string
+        locationZipCode:
+          type: string
+        locationMunicipality:
+          type: string
+    PutConfiguration:
+      type: object
+      properties:
+        expiryDate:
+          type: string
+        contactName:
+          type: string
+        contactAddress:
+          type: string
+        contactEmail:
+          type: string
+        locationAddress:
+          type: string
+        locationZipCode:
+          type: string
+        locationMunicipality:
+          type: string

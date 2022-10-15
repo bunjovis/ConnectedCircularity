@@ -7,6 +7,8 @@ import * as OpenApiValidator from 'express-openapi-validator';
 
 import { Error } from './types';
 import { Item } from './types';
+import { UserInfo } from './types';
+import { userInfo } from "os";
 
 dotenv.config();
 
@@ -31,6 +33,11 @@ app.use(
   swaggerUi.setup(YAML.load('./openapi.yaml'), options)
 );
 
+// Here for testing purposes so validator does not interfere
+app.get('/', (_: Request, response: Response) => {
+  response.send('Connected Circularity Backend with TypeScript up and running!');
+});
+
 //validator middleware
 app.use(
   OpenApiValidator.middleware({
@@ -49,10 +56,6 @@ app.use(
   }
 );
 
-app.get('/', (_: Request, response: Response) => {
-  response.send('Connected Circularity Backend with TypeScript up and running!');
-});
-
 app.get('/v1/system/ping', (_: Request, response: Response) => {
   response.send('pong');
 });
@@ -63,7 +66,7 @@ app.get('/v1/items/:userId', (request: Request, response: Response) => {
 });
 
 app.post('/v1/user', (request: Request, response: Response) => {
-  // For testing only
+  // For testing
   const api_name = request.body.api; 
   const username = request.body.username;
   console.log(api_name);

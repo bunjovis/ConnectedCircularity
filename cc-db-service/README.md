@@ -16,3 +16,5 @@ Additional scripts:
 
 1. Run `npm run check` to check the file for TypeScript errors/warnings with eslint
 2. Run `npm run dev` to run nodemon
+
+Swagger documentation is served from /api-docs endpoint

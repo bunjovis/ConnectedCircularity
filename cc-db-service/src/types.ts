@@ -1,2 +1,7 @@
 // Typescript interfaces & type definitions
-// TODO
+
+export interface HttpResponseError {
+  status: number;
+  message: string;
+  error: string;
+}

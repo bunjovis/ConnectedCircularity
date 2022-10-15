@@ -45,8 +45,6 @@ export interface Advert {
   
 export type AdvertInfo = object;
   
-export type Config = object;
-  
 export interface ItemInfo {
     /** @format uuid */
     id: string;
@@ -78,4 +76,17 @@ export interface Item {
 export interface UserInfo {
    api: string;
    username: string;
+  }
+
+  export interface Config {
+    /** @format uuid */
+    userId: string;
+    collectionId: string;
+    expiryDate?: string;
+    contactName?: string;
+    contactAddress?: string;
+    contactEmail?: string;
+    locationAddress?: string;
+    locationZipCode?: string;
+    locationMunicipality?: string;
   }

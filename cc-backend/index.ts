@@ -8,7 +8,7 @@ import * as OpenApiValidator from 'express-openapi-validator';
 import { Error } from './types';
 import { Item } from './types';
 import { UserInfo } from './types';
-import { userInfo } from "os";
+import { Config } from './types';
 
 dotenv.config();
 
@@ -61,8 +61,16 @@ app.get('/v1/system/ping', (_: Request, response: Response) => {
 });
 
 app.get('/v1/items/:userId', (request: Request, response: Response) => {
-  const resItems = getItems(request.params.userId);
-  response.send(resItems);
+  const itemsPK = getItemsPK(request.params.userId);
+  const itemsDB = getItemsDB(request.params.userId);
+  response.write(itemsPK);
+  response.write(itemsDB);
+  response.send();
+});
+
+app.get('/v1/items:itemId', (request: Request, response: Response) => {
+  const item = getItemInfo(request.params.itemId);
+  response.send(item);
 });
 
 app.post('/v1/user', (request: Request, response: Response) => {
@@ -79,8 +87,17 @@ app.listen(port, () => {
   console.log(` [server]: Server listening at http://localhost:${port}`);
 });
 
+app.post('/v1/config/:userId', (request: Request, response: Response) => {
+  const status = postConfigToDB();
+  response.send(status);
+});
 
-async function getItems(userId:string) {
+app.listen(port, () => {
+  console.log(` [server]: Server listening at http://localhost:${port}`);
+});
+
+
+async function getItemsPK(userId:string) {
   try {
     const { data, status } = await axios.get<Item>(
       `http://localhost:5001/items/${userId}`,
@@ -92,6 +109,77 @@ async function getItems(userId:string) {
       );
     console.log('response status is: ', status);
     return data;
+
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.log('error message: ', error.message);
+      return error.message;
+    } else {
+      console.log('unexpected error: ', error);
+      return 'An unexpected error occurred';
+    }
+  }
+}
+
+async function getItemsDB(userId:string) {
+  try {
+    const { data, status } = await axios.get<Item>(
+      `http://localhost:4001/items/${userId}`,
+      {
+        headers: {
+          Accept: 'application/json'
+        },
+      },
+      );
+    console.log('response status is: ', status);
+    return data;
+
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.log('error message: ', error.message);
+      return error.message;
+    } else {
+      console.log('unexpected error: ', error);
+      return 'An unexpected error occurred';
+    }
+  }
+}
+
+async function getItemInfo(itemId:string) {
+  try {
+    const { data, status } = await axios.get<Item>(
+      `http://localhost:5001/items/${itemId}`,
+      {
+        headers: {
+          Accept: 'application/json'
+        },
+      },
+      );
+    console.log('response status is: ', status);
+    return data;
+
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.log('error message: ', error.message);
+      return error.message;
+    } else {
+      console.log('unexpected error: ', error);
+      return 'An unexpected error occurred';
+    }
+  }
+}
+async function postConfigToDB() {
+  try {
+    const { status } = await axios.post<Config>(
+      `http://localhost:4001/configurations`,
+      {
+        headers: {
+          Accept: 'application/json'
+        },
+      },
+      );
+    console.log('response status is: ', status);
+    return status;
 
   } catch (error) {
     if (axios.isAxiosError(error)) {

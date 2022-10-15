@@ -1,3 +1,5 @@
+#npx swagger-typescript-api -p ./openapi.yaml -o ./api -n api.ts
+
 openapi: 3.0.3
 info:
   version: 0.1.0
@@ -141,7 +143,7 @@ paths:
           description: itemId
           schema:
             type: string
-            #format: uuid
+            format: uuid
       responses:
         "200":
           description: Item
@@ -380,9 +382,32 @@ components:
       
     AdvertInfo:
       type: object
-
+             
     Config:
       type: object
+      required:
+        - userId
+        - collectionId
+      properties:
+        userId:
+          type: string
+          format: uuid
+        collectionId:
+          type: string
+        expiryDate:
+          type: string
+        contactName:
+          type: string
+        contactAddress:
+          type: string
+        contactEmail:
+          type: string
+        locationAddress:
+          type: string
+        locationZipCode:
+          type: string
+        locationMunicipality:
+          type: string
 
     ItemInfo:
       type: object

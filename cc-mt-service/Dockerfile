@@ -1,17 +1,17 @@
-# This is where you define the image for
-# Materiaalitori service setup.
+# This is where you define the image for cc-mt-service
 
 # Start by copying the server stub to this directory.
 
-
 # First line is provided for your convenience.
-# This line fetches the Node Docker image with tag "16"
+# This line fetches the latest Node Docker image 
 # from Docker Hub.
-# We use version 16 as the mongodb dependency has requirements
+
 FROM node:latest
 
 
 WORKDIR /usr/src/app
+
+RUN echo "PORT=8000" >> .env 
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied

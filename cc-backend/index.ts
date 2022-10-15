@@ -56,8 +56,8 @@ app.get('/v1/system/ping', (_: Request, response: Response) => {
   response.send('pong');
 });
 
-app.get('/v1/items/'+ 'userId', (_: Request, response: Response) => {
-  const resItems = getItems('userId');
+app.get('/v1/items/:userId', (request: Request, response: Response) => {
+  const resItems = getItems(request.params.userId);
   response.send(resItems);
 });
 
@@ -69,7 +69,7 @@ app.listen(port, () => {
 async function getItems(userId:string) {
   try {
     const { data, status } = await axios.get<Item>(
-      'https://localhost:5000/v1/items/' + userId,
+      `http://localhost:5001/items/${userId}`,
       {
         headers: {
           Accept: 'application/json'

@@ -131,7 +131,7 @@ paths:
           description: itemId
           schema:
             type: string
-            format: uuid
+            #format: uuid
       responses:
         "200":
           description: Item

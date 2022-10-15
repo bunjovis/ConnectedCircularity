@@ -8,7 +8,6 @@
 
 FROM node:latest
 
-
 WORKDIR /usr/src/app
 
 RUN echo "PORT=3000" >> .env 

@@ -9,7 +9,7 @@ import { HttpResponseError } from './types';
 
 dotenv.config();
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 4001;
 
 const app = express();
 
@@ -26,6 +26,11 @@ app.use(
   swaggerUi.serve,
   swaggerUi.setup(YAML.load('./openapi.yaml'), options)
 );
+
+// workaround for the validator
+app.get('/', (_: Request, response: Response) => {
+  response.send('CC Backend service root');
+});
 
 //validator middleware
 app.use(
@@ -45,10 +50,6 @@ app.use(
     });
   }
 );
-
-app.get('/', (_: Request, response: Response) => {
-  response.send('CC Backend service root');
-});
 
 app.get('/v1/system/ping', (_: Request, response: Response) => {
   response.send('pong');

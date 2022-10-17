@@ -1,0 +1,161 @@
+openapi: '3.0.3'
+info:
+  title: Materiaalitori_service
+  description: server for adding new adverts to Materiaalitori API
+  version: '0.1.0'
+
+security:
+  - bearerAuth: []
+
+paths:
+  "/v1/advert":
+    post:
+      operationId: newAdvert
+      summary: New advert to Materiaalitori API
+      tags:
+        - "advert"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Advert"
+        description: advert data
+        required: true
+      responses:
+        "200":
+          description: advert added
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Added"
+        "400":
+          description: adding failure
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    Advert:
+      type: object
+      description: Advert object
+      required:
+       - type
+       - data
+       
+      properties:
+        type:
+          type: string
+        data:
+          type: object
+          properties:
+            title:
+              type: string
+            expires:
+              type: string
+              format: date
+            contactIsPublic:
+              type: boolean
+            contact:
+              type: object
+              properties:
+                name:
+                  type: string
+                title:
+                  type: string
+                phone:
+                  type: string
+                email:
+                  type: string
+                  format: email
+            materials:
+              type: object
+              properties:
+                classification:
+                  type: string
+                subClassification:
+                  type: string
+                industry:
+                  type: string
+                isWaste:
+                  type: boolean
+                quantity:
+                  type: object
+                  properties:
+                    amount:
+                      type: integer
+                    unitOfMeasure:
+                      type: string
+                    continuity:
+                      type: string
+                    amountDescription:
+                      type: string
+                locationIsPublic:
+                  type: boolean
+                location:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    address:
+                      type: string
+                    postalcode:
+                      type: string
+                    city:
+                      type: string
+                    cityId:
+                      type: string
+                    region:
+                      type: string
+                    regionId:
+                      type: string
+                    countryCode:
+                      type: string
+            attachments:
+              type: array
+              items:
+                type : object
+                properties:
+                  id:
+                    type: string
+                  fileName:
+                    type: string
+                  contentType:
+                    type: string
+                  length:
+                    type: integer
+            regions:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  nameFi:
+                    type: string
+                  nameSv:
+                    type: string
+    
+    Added:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+
+    Error:
+      type: object
+      required:
+        - message
+      properties:  
+        message:
+          type: string

@@ -83,12 +83,8 @@ app.post('/v1/user', (request: Request, response: Response) => {
   response.send(request.body);
 });
 
-app.listen(port, () => {
-  console.log(` [server]: Server listening at http://localhost:${port}`);
-});
-
 app.post('/v1/config/:userId', (request: Request, response: Response) => {
-  const status = postConfigToDB();
+  const status = postConfigToDB(request.body);
   response.send(status);
 });
 
@@ -168,11 +164,12 @@ async function getItemInfo(itemId:string) {
     }
   }
 }
-async function postConfigToDB() {
+async function postConfigToDB(config:Config) {
   try {
     const { status } = await axios.post<Config>(
       `http://localhost:4001/configurations`,
       {
+        data: config,
         headers: {
           Accept: 'application/json'
         },

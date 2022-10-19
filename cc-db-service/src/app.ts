@@ -35,6 +35,7 @@ app.get('/', (_: Request, response: Response) => {
   response.send('CC Backend service root');
 });
 
+// test routes for database
 app.use('/', userRoutes);
 app.use('/', apiRoutes);
 

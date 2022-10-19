@@ -1,4 +1,7 @@
 import { Sequelize } from 'sequelize';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export const sequelize = new Sequelize(
   process.env.DB_SCHEMA || 'cc_dev',
@@ -8,11 +11,8 @@ export const sequelize = new Sequelize(
     host: process.env.DB_HOST || '127.0.0.1',
     port: parseInt(process.env.DB_PORT ? process.env.DB_PORT : '') || 5432,
     dialect: 'postgres',
-    dialectOptions: {
-      ssl: process.env.DB_SSL == 'true',
-    },
-    logging: true,
-    database: 'cc_dev',
+    logging: process.env.DB_SCHEMA == 'cc_dev' ? console.log : false,
+    database: process.env.DB_SCHEMA || 'cc_dev',
   }
 );
 

@@ -7,7 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc && node dist/app.js",
     "dev": "nodemon src/app.ts",
-    "check": "eslint . --ext .ts"
+    "check": "eslint . --ext .ts",
+    "create:database": "npx sequelize-cli db:create",
+    "migrate": "npx sequelize-cli db:migrate",
+    "seed": "npx sequelize-cli db:seed:all",
+    "init:data": "npm run migrate && npm run seed",
+    "undo:seed": "npx sequelize-cli db:seed:undo:all",
+    "undo:migrate": "npx sequelize-cli db:migrate:undo:all"
   },
   "keywords": [],
   "author": "",

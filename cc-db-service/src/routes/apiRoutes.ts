@@ -6,11 +6,9 @@ export const apiRoutes = Router();
 
 apiRoutes.get(
   '/apis',
-  async (request: Request, response: Response, next: NextFunction) => {
-    console.log('GET APIS');
+  async (_request: Request, response: Response, next: NextFunction) => {
     try {
       const apis = await getApis();
-      console.log(apis);
       response.status(200).json(apis);
     } catch (err) {
       response.status(500);

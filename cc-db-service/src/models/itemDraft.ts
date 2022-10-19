@@ -1,6 +1,5 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../db';
-import { Item } from './item';
 
 export const ItemDraft = sequelize.define(
   'ItemDraft',

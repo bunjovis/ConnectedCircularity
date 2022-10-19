@@ -5,6 +5,9 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import * as OpenApiValidator from 'express-openapi-validator';
 
+import { userRoutes } from './routes/userRoutes';
+import { apiRoutes } from './routes/apiRoutes';
+
 import { HttpResponseError } from './types';
 
 dotenv.config();
@@ -32,6 +35,9 @@ app.get('/', (_: Request, response: Response) => {
   response.send('CC Backend service root');
 });
 
+app.use('/', userRoutes);
+app.use('/', apiRoutes);
+
 //validator middleware
 app.use(
   OpenApiValidator.middleware({
@@ -44,6 +50,7 @@ app.use(
 app.use(
   (err: HttpResponseError, _: Request, res: Response, __: NextFunction) => {
     // format error
+    console.log(err);
     res.status(err.status || 500).json({
       message: err.message,
       error: err.error[0],

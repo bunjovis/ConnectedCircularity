@@ -22,7 +22,7 @@ Sequelize + Postgres database
    2. Run migrations
       npx sequelize-cli db:migrate
    3. Seed the database
-      // TODO
+      npx sequelize-cli db:seed
 
 3. Run `npm start` on command line to run the program. This will run two commands:
    - `tcp`: TypeScript compiler. Creates a JavaScript file from the app.ts -file which Node can easily run

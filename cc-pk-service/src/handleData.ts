@@ -14,6 +14,7 @@ const g_type: string = process.env.PK_GRANTTYPE ?? '';
 let userToken:string;
 export let userId:string;
 
+// Get usertoken and userid
 getUserInfo();
 
 /**

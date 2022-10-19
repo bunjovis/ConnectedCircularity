@@ -3,7 +3,7 @@ openapi: 3.0.3
 info:
   title: Purkukartoitus Service
   description: Server for sending requests to Purkukartoitus API
-  version: "0.1"
+  version: "0.2"
 
 paths:
   '/v1/system/ping':
@@ -20,7 +20,7 @@ paths:
             text/plain:
               schema:
                 type: string
-  '/v1/items/{userId}':
+  '/v1/users/{userId}/items':
     get:
       operationId: userItems
       summary: Get user's items
@@ -90,7 +90,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PKItem"
+                $ref: "#/components/schemas/ItemInfo"
         "400":
           description: Invalid request was sent to the server
           content:
@@ -160,5 +160,79 @@ components:
         streetAddress:
           type: string
           description: Street address of the building
-    PKItem:
+    ItemInfo:
       type: object
+      description: Information about PK API's item
+      required:
+        - componentName
+        - reusableMaterialId
+        - usability
+        - metadata
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: ID of the reusable item
+          readOnly: true
+        componentName:
+          type: string
+          description: Name of the item component
+        reusableMaterialId:
+          type: string
+          format: uuid
+          readOnly: true
+        usability:
+          type: string
+          enum:
+            - EXCELLENT
+            - GOOD
+            - POOR
+            - NOT_VALIDATED
+        amount:
+          type: integer
+          format: int32
+        unit:
+          type: string
+          enum:
+            - KG
+            - M2
+            - M3
+            - PCS
+            - RM
+            - TN
+        description:
+          type: string
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+        amountAsWaste:
+          type: number
+          format: double
+        metadata:
+          $ref: "#/components/schemas/Metadata"
+    Metadata:
+      type: object
+      description: Metadata object
+      properties:
+        creatorId:
+          type: string
+          format: uuid
+          description: ID of creator
+          readOnly: true
+        createdAt:
+          type: string
+          format: date-time
+          description: Created date
+          readOnly: true
+        lastModifierId:
+          type: string
+          format: uuid
+          description: Id of last modifier
+          readOnly: true
+        modifiedAt:
+          type: string
+          format: date-time
+          description: Date modified
+          readOnly: true

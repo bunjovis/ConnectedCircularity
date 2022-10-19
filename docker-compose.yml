@@ -23,3 +23,9 @@ services:
     build: cc-pk-service/ # use the Dockerfile for Materiaalitori_service 
     ports:
      - '5000:5000'
+  cc-ui:
+    build: cc-ui/ # use the Dockerfile for Materiaalitori_service 
+    ports:
+     - '5173:5173'
+
+  

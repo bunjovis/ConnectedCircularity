@@ -11,8 +11,8 @@ const password: string = process.env.PK_PASSWORD ?? '';
 const c_id: string = process.env.PK_CLIENTID ?? '';
 const g_type: string = process.env.PK_GRANTTYPE ?? '';
 
-var userToken:string = '';
-export var userId:string = '';
+let userToken:string;
+export let userId:string;
 
 getUserInfo();
 
@@ -151,7 +151,7 @@ export async function getReusables(userSurveys:Survey[]) {
   
             // Create a new item from the fetched information
             for (let j = 0; j < fetchedItems.length; j++) {
-                let item:Item = {
+                const item:Item = {
                 reusableId: fetchedItems[j].id,
                 componentName: fetchedItems[j].componentName,
                 surveyId: userSurveys[i].id,

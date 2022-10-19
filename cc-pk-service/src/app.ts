@@ -43,7 +43,7 @@ app.use(
 );
 
 app.use(
-  (err: Error, req: Request, res: Response, __:NextFunction) => {
+  (err: Error, req: Request, res: Response, _:NextFunction) => { // eslint will throw a warning because _ is unused
     // format error
     res.status(err.status || 500).json({
       message: err.message

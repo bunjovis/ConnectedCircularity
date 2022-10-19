@@ -1,6 +1,6 @@
 // PK service route module
 import { Router, Request, Response } from "express";
-import {getToken, getReusables, getSurveys, getItemInfo, getId, userId} from "../handleData";
+import {getReusables, getSurveys, getItemInfo, userId} from "../handleData";
 import { Error, ItemInfo, Survey, Item} from '../types';
 
 // Express router for accessing the defined paths

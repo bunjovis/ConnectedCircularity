@@ -1,15 +1,17 @@
-import { DataTypes, Model } from 'sequelize';
+import { DataTypes /*Model*/ } from 'sequelize';
 import { sequelize } from '../db';
 import { Item } from '../models/item';
 import { FormConfiguration } from './formConfiguration';
-import { Api } from './api';
 
+/*
+Not used yet
 export interface UserModel extends Model<UserModel> {
   id: string;
   name: string;
   api: string;
   created_at: string;
 }
+*/
 
 export const User = sequelize.define(
   'User',

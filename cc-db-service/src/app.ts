@@ -50,13 +50,14 @@ app.use(
 );
 
 app.use(
-  (err: HttpResponseError, _: Request, res: Response, __: NextFunction) => {
+  (err: HttpResponseError, _: Request, res: Response, next: NextFunction) => {
     // format error
     console.log(err);
     res.status(err.status || 500).json({
       message: err.message,
-      error: err.error[0],
+      error: err.error,
     });
+    next();
   }
 );
 

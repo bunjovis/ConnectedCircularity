@@ -13,8 +13,12 @@ export const FormLocation = sequelize.define(
     configuration_id: {
       type: DataTypes.UUID,
       allowNull: false,
+      references: {
+        model: 'form_configuration',
+        key: 'id',
+      },
     },
-    name: {
+    zip_code: {
       allowNull: true,
       type: DataTypes.STRING,
     },
@@ -22,7 +26,7 @@ export const FormLocation = sequelize.define(
       allowNull: true,
       type: DataTypes.STRING,
     },
-    email: {
+    municipality: {
       allowNull: true,
       type: DataTypes.STRING,
     },

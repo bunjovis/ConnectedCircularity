@@ -23,11 +23,8 @@ export const FormConfiguration = sequelize.define(
     },
     collection_id: {
       allowNull: false,
+      unique: true,
       type: DataTypes.STRING,
-      references: {
-        model: 'item',
-        key: 'collection_id',
-      },
     },
     expiry_date: {
       allowNull: true,
@@ -43,7 +40,7 @@ FormConfiguration.hasOne(FormLocation, {
 });
 
 FormLocation.belongsTo(FormConfiguration, {
-  foreignKey: 'configuration_id',
+  foreignKey: 'id',
 });
 
 FormConfiguration.hasOne(FormContact, {
@@ -51,6 +48,6 @@ FormConfiguration.hasOne(FormContact, {
   foreignKey: 'configuration_id',
 });
 
-FormContact.belongsTo(FormLocation, {
-  foreignKey: 'configuration_id',
+FormContact.belongsTo(FormConfiguration, {
+  foreignKey: 'id',
 });

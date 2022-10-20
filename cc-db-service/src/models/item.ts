@@ -64,9 +64,11 @@ ItemStatistic.belongsTo(Item, {
 });
 
 Item.hasOne(FormConfiguration, {
+  sourceKey: 'collection_id',
   foreignKey: 'collection_id',
 });
 
 FormConfiguration.hasMany(Item, {
+  sourceKey: 'collection_id',
   foreignKey: 'collection_id',
 });

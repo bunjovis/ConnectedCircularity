@@ -8,18 +8,19 @@ export const getItems = async () => {
   return await Item.findAll();
 };
 
+// Get item by id
+// include possible Form configurations and draft values
 export const getItemById = async (id: string) => {
-  return await Item.findByPk(id);
-};
-
-export const findDraft = async (itemId: string) => {
-  return await ItemDraft.findOne({ where: { item_id: itemId } });
-};
-
-export const findConfiguration = async (collectionId: string) => {
-  return await FormConfiguration.findAll({});
-};
-
-export const getConfigurations = async () => {
-  return await FormConfiguration.findAll({ include: { all: true } });
+  return await Item.findOne({
+    where: { id: id },
+    include: [
+      {
+        model: FormConfiguration,
+        include: [FormContact, FormLocation],
+      },
+      {
+        model: ItemDraft,
+      },
+    ],
+  });
 };

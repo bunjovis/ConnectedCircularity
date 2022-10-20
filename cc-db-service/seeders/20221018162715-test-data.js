@@ -30,7 +30,7 @@ module.exports = {
     ]);
     await queryInterface.bulkInsert('item', [
       {
-        id: uuidv4(),
+        id: '0cdb31e8-b330-48dd-aecc-b2a92cf3d037',
         item_id: 'some-item-id',
         user_id: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bad',
         status: 1,
@@ -66,6 +66,17 @@ module.exports = {
         name: 'Saku Pitkänen',
         address: 'Hämeenkatu 18',
         email: 's.pitkanen@mail.com',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ]);
+    await queryInterface.bulkInsert('item_draft', [
+      {
+        id: uuidv4(),
+        item_id: '0cdb31e8-b330-48dd-aecc-b2a92cf3d037',
+        title: 'Rakennusosa',
+        material: 'Betoni',
+        industry: 'Purkujuttuja',
         createdAt: new Date(),
         updatedAt: new Date(),
       },

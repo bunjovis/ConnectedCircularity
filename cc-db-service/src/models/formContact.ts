@@ -13,8 +13,12 @@ export const FormContact = sequelize.define(
     configuration_id: {
       type: DataTypes.UUID,
       allowNull: false,
+      references: {
+        model: 'form_configuration',
+        key: 'id',
+      },
     },
-    zip_code: {
+    name: {
       allowNull: true,
       type: DataTypes.STRING,
     },
@@ -22,7 +26,7 @@ export const FormContact = sequelize.define(
       allowNull: true,
       type: DataTypes.STRING,
     },
-    municipality: {
+    email: {
       allowNull: true,
       type: DataTypes.STRING,
     },

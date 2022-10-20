@@ -7,6 +7,7 @@ import * as OpenApiValidator from 'express-openapi-validator';
 
 import { userRoutes } from './routes/userRoutes';
 import { apiRoutes } from './routes/apiRoutes';
+import { itemRoutes } from './routes/itemRoutes';
 
 import { HttpResponseError } from './types';
 
@@ -38,7 +39,7 @@ app.get('/', (_: Request, response: Response) => {
 // test routes for database
 app.use('/', userRoutes);
 app.use('/', apiRoutes);
-
+app.use('/', itemRoutes);
 //validator middleware
 app.use(
   OpenApiValidator.middleware({

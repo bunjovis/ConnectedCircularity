@@ -24,15 +24,33 @@ export const FormConfiguration = sequelize.define(
     collection_id: {
       allowNull: false,
       type: DataTypes.STRING,
+      references: {
+        model: 'item',
+        key: 'collection_id',
+      },
+    },
+    expiry_date: {
+      allowNull: true,
+      type: DataTypes.DATE,
     },
   },
   { freezeTableName: true, tableName: 'form_configuration' }
 );
 
 FormConfiguration.hasOne(FormLocation, {
+  foreignKey: 'configuration_id',
   onDelete: 'CASCADE',
+});
+
+FormLocation.belongsTo(FormConfiguration, {
+  foreignKey: 'configuration_id',
 });
 
 FormConfiguration.hasOne(FormContact, {
   onDelete: 'CASCADE',
+  foreignKey: 'configuration_id',
+});
+
+FormContact.belongsTo(FormLocation, {
+  foreignKey: 'configuration_id',
 });

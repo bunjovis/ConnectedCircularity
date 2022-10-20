@@ -2,6 +2,7 @@ import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../db';
 import { Item } from '../models/item';
 import { FormConfiguration } from './formConfiguration';
+import { Api } from './api';
 
 export interface UserModel extends Model<UserModel> {
   id: string;
@@ -36,6 +37,12 @@ export const User = sequelize.define(
 User.hasMany(Item, {
   foreignKey: 'user_id',
 });
+
+User.hasMany(FormConfiguration, {
+  foreignKey: 'user_id',
+});
+
+FormConfiguration.belongsTo(User, { foreignKey: 'id' });
 
 Item.belongsTo(User, {
   foreignKey: 'id',

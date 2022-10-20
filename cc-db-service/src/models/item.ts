@@ -1,7 +1,8 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../db';
+import { FormConfiguration } from './formConfiguration';
 import { ItemDraft } from './itemDraft';
-import { User } from './user';
+import { ItemStatistic } from './itemStatistic';
 
 export const Item = sequelize.define(
   'Item',
@@ -52,4 +53,20 @@ Item.hasOne(ItemDraft, {
 
 ItemDraft.belongsTo(Item, {
   foreignKey: 'id',
+});
+
+Item.hasMany(ItemStatistic, {
+  foreignKey: 'item_id',
+});
+
+ItemStatistic.belongsTo(Item, {
+  foreignKey: 'id',
+});
+
+Item.hasOne(FormConfiguration, {
+  foreignKey: 'collection_id',
+});
+
+FormConfiguration.hasMany(Item, {
+  foreignKey: 'collection_id',
 });

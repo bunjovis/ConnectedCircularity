@@ -13,11 +13,6 @@ export const FormLocation = sequelize.define(
     configuration_id: {
       type: DataTypes.UUID,
       allowNull: false,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'form_configuration',
-        key: 'id',
-      },
     },
     name: {
       allowNull: true,

@@ -13,11 +13,6 @@ export const FormContact = sequelize.define(
     configuration_id: {
       type: DataTypes.UUID,
       allowNull: false,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'form_configuration',
-        key: 'id',
-      },
     },
     zip_code: {
       allowNull: true,

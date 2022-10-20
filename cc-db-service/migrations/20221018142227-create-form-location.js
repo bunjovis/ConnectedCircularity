@@ -10,7 +10,7 @@ module.exports = {
           allowNull: false,
           primaryKey: true,
           type: Sequelize.UUID,
-          defaultValue: Sequelize.UUID4,
+          defaultValue: Sequelize.UUID,
         },
         configuration_id: {
           type: Sequelize.UUID,

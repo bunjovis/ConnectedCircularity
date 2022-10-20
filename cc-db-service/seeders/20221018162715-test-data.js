@@ -84,10 +84,12 @@ module.exports = {
   },
 
   async down(queryInterface) {
+    await queryInterface.bulkDelete('api_configuration', null, {});
     await queryInterface.bulkDelete('user', null, {});
     await queryInterface.bulkDelete('item', null, {});
     await queryInterface.bulkDelete('form_configuration', null, {});
     await queryInterface.bulkDelete('form_contact', null, {});
     await queryInterface.bulkDelete('form_location', null, {});
+    await queryInterface.bulkDelete('item_draft', null, {});
   },
 };

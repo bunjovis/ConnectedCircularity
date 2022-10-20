@@ -2,8 +2,7 @@
 
 ## Description
 
-Express + TS + Sequelize server, handling dataflow to the system database
-Sequelize + Postgres database
+Express + TS + Sequelize server, handling dataflow to the systems Postgres database
 
 ## Instructions
 

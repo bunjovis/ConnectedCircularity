@@ -72,8 +72,8 @@ paths:
 
   /v1/items/{userId}:
     get:
-      security:
-       - bearerAuth: []
+      #security:
+      # - bearerAuth: []
       operationId: getItemsFromPK
       summary: Get all items from PK and CC-db
       description: Gets all items via CC-PK-service and CC-db-service
@@ -129,8 +129,8 @@ paths:
   
   /v1/items/{itemId}:
     get:
-      security:
-       - bearerAuth: []
+      #security:
+      # - bearerAuth: []
       operationId: getItemInfoForm
       summary: Gets item info for form from PK and CC-db
       description: Gets item info for Form from PK via CC-PK-service and configs and drafts from CC-db-service

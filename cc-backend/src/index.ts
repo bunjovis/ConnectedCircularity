@@ -4,7 +4,10 @@ import YAML from 'yamljs';
 import dotenv from 'dotenv';
 import axios from 'axios';
 import * as OpenApiValidator from 'express-openapi-validator';
-import router from './routes/pkService';
+import pkRouter from './routes/pkService';
+import dbRouter from './routes/dbService';
+import sysRouter from './routes/system';
+import mtRouter from './routes/mtService';
 
 import { Error } from './types';
 import { Item } from './types';
@@ -56,7 +59,7 @@ app.listen(port, () => {
   console.log(` [server]: Server listening at http://localhost:${port}`);
 });
 
-app.use(router);
+app.use(pkRouter, mtRouter, dbRouter, sysRouter);
 
 
 

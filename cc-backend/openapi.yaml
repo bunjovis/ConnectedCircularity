@@ -9,6 +9,21 @@ info:
 #  - bearerAuth: []
 
 paths:
+  /:
+    get:
+      operationId: root
+      summary: Empty root for ui
+      description: Nothing here yet
+      tags:
+        - System
+      responses:
+        "200":
+          description: Seems to work
+          content:
+            text/plain:
+              schema:
+                type: string
+
   /v1/system/ping:
     get:
       operationId: ping

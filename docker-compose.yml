@@ -1,0 +1,31 @@
+# This is the docker-compose-yml file that must be able to start all project
+
+version: "3.9"
+
+services:
+
+  cc-backend:
+   build: cc-backend/ # use the Dockerfile for Materiaalitori_service 
+   ports:
+     - '3000:3000'
+
+  cc-db-service:
+   build: cc-db-service/ # use the Dockerfile for Materiaalitori_service 
+   ports:
+     - '4001:4001'
+
+  cc-mt-service:
+   build: cc-mt-service/ # use the Dockerfile for Materiaalitori_service 
+   ports:
+     - '8000:8000'
+  
+  cc-pk-service:
+    build: cc-pk-service/ # use the Dockerfile for Materiaalitori_service 
+    ports:
+     - '5000:5000'
+  cc-ui:
+    build: cc-ui/ # use the Dockerfile for Materiaalitori_service 
+    ports:
+     - '5173:5173'
+
+  

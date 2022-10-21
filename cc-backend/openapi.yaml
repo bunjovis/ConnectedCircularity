@@ -127,7 +127,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
   
-  /v1/items/{itemId}:
+  /v1/itemInfo/{itemId}:
     get:
       #security:
       # - bearerAuth: []

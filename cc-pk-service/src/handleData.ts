@@ -70,7 +70,7 @@ export async function getToken() {
         return (await response).data.access_token;
     } catch (err) {
         console.log('Error: cannot fetch id for the current user');
-        return '';
+        return err;
     }
 }
   
@@ -89,7 +89,7 @@ export async function getId() {
       return (await response).data.id;
     } catch (err) {
       console.log('Error: cannot fetch id for the current user');
-      return '';
+      return err;
     }
 }
   
@@ -118,7 +118,7 @@ export async function getSurveys() {
         return surveys;
     } catch (err) {
         console.log('Error: cannot fetch surveys');
-        return [];
+        throw err;
     }
 }
 
@@ -129,9 +129,10 @@ export async function getSurveys() {
  * @returns Array of Item's that belong to the user
  */
 export async function getReusables(userSurveys:Survey[]) {
-    try {
-        const items:Item[] = [];
-        for (let i = 0; i < userSurveys.length; i++) {
+    const items:Item[] = [];
+    for (let i = 0; i < userSurveys.length; i++) {
+        let fetchedItems:ItemInfo[] = []
+        try {
             // Collect PK API's items that belong to the survey
             const response = axios.get<ItemInfo[]>(`https://api.purkukartoitus.fi/v1/surveys/${userSurveys[i].id}/reusables`, 
             {
@@ -139,8 +140,13 @@ export async function getReusables(userSurveys:Survey[]) {
                     'Authorization': 'Bearer ' + userToken
                 }
             });
-            const fetchedItems:ItemInfo[] = (await response).data;
-  
+            fetchedItems = (await response).data;
+        } catch (err) {
+            console.log(`Error: cannot fetch reusable items`);
+            throw err;
+        }
+
+        try {
             // Collect PK API's buildings that belong to the survey
             const responseBuilding = axios.get<Building[]>(`https://api.purkukartoitus.fi/v1/surveys/${userSurveys[i].id}/buildings`, 
             {
@@ -160,12 +166,12 @@ export async function getReusables(userSurveys:Survey[]) {
             }
             items.push(item);
             }
+        } catch (err) {
+            // Not really an error situation, this is just used to inform which survey is missing data
+            console.log(`Survey with id ${userSurveys[i].id} is missing building information`);
         }
-        return items;
-    } catch (err) {
-      console.log('Error: cannot fetch reusable items');
-      return [];
     }
+    return items;
 }
 
 /**
@@ -177,6 +183,7 @@ export async function getReusables(userSurveys:Survey[]) {
  */
 export async function getItemInfo(userSurveys:Survey[], itemId:string) {
     try {
+        let info:ItemInfo = initInfo();
         for (let i = 0; i < userSurveys.length; i++) {
             const response = axios.get<ItemInfo[]>(`https://api.purkukartoitus.fi/v1/surveys/${userSurveys[i].id}/reusables`, 
             {
@@ -188,13 +195,15 @@ export async function getItemInfo(userSurveys:Survey[], itemId:string) {
   
             // Find wanted item
             for (let j = 0; j < fetchedItems.length; j++) {
-                const info:ItemInfo = fetchedItems[j];
-                if (info.id === itemId) return info;
+                const fetchedInfo:ItemInfo = fetchedItems[j];
+                if (fetchedInfo.id === itemId) {
+                    info = fetchedInfo;
+                }
             }
         }
-        return initInfo();
+        return info;
     } catch (err) {
         console.log('Error: cannot fetch reusable items');
-        return initInfo();
+        throw err;
     }
 }

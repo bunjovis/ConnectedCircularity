@@ -34,7 +34,7 @@ pkRouter.get('/users/:userId/items', async (req:Request, res:Response) => {
 pkRouter.get('/items/:itemId', async(req:Request, res:Response) => {
   const userSurveys:Survey[] = await getSurveys();
   const info:ItemInfo = await getItemInfo(userSurveys, req.params.itemId);
-  if (req.params.itemId === info.id) res.json(info);
+  if (info.id !== '') res.json(info);
   else {
     const err:Error = {
       message:"not found",

@@ -4,15 +4,16 @@ import YAML from 'yamljs';
 import dotenv from 'dotenv';
 import axios from 'axios';
 import * as OpenApiValidator from 'express-openapi-validator';
-import pkRouter from './routes/pkService';
-import dbRouter from './routes/dbService';
-import sysRouter from './routes/system';
-import mtRouter from './routes/mtService';
+import sysRouter from './routes/systemRoutes';
+import itemRouter from "./routes/itemRoutes";
+import advertRouter from "./routes/advertRoutes";
+import userRouter from "./routes/userRoutes";
 
 import { Error } from './types';
 import { Item } from './types';
 import { UserInfo } from './types';
 import { Config } from './types';
+
 
 dotenv.config();
 
@@ -59,7 +60,7 @@ app.listen(port, () => {
   console.log(` [server]: Server listening at http://localhost:${port}`);
 });
 
-app.use(pkRouter, mtRouter, dbRouter, sysRouter);
+app.use(itemRouter, advertRouter, userRouter, sysRouter);
 
 
 

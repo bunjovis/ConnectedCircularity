@@ -1,0 +1,238 @@
+openapi: 3.0.3
+
+info:
+  title: Purkukartoitus Service
+  description: Server for sending requests to Purkukartoitus API
+  version: "0.2"
+
+paths:
+  '/v1/system/ping':
+    get:
+      operationId: ping
+      summary: Replies with pong
+      description: Replies ping with pong
+      tags:
+        - System
+      responses:
+        "200":
+          description: Pong
+          content:
+            text/plain:
+              schema:
+                type: string
+  '/v1/users/{userId}/items':
+    get:
+      operationId: userItems
+      summary: Get user's items
+      description: Gets all reusable items that belong to the current user
+      tags:
+        - Items
+      parameters:
+        - name: userId
+          required: true
+          in: path
+          description: Current user's id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Item"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  '/v1/items/{itemId}':
+    get:
+      operationId: itemInfo
+      summary: Gets item info
+      description: Gets item info for Form
+      tags:
+        - Items
+      parameters:
+        - name: itemId
+          required: true
+          in: path
+          description: itemId
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Item
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ItemInfo"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Error:
+      type: object
+      description: Error object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    Item:
+      type: object
+      description: Reusable item object
+      required:
+        - reusableId
+        - componentName
+        - surveyId
+        - streetAddress
+      properties:
+        reusableId:
+          type: string
+          format: uuid
+          description: ID of the reusable item
+          readOnly: true
+        componentName:
+          type: string
+          description: Name of the building component
+        surveyId:
+          type: string
+          format: uuid
+          description: ID of the survey where the item belongs to
+          readOnly: true
+        streetAddress:
+          type: string
+          description: Street address of the building
+    ItemInfo:
+      type: object
+      description: Information about PK API's item
+      required:
+        - componentName
+        - reusableMaterialId
+        - usability
+        - metadata
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: ID of the reusable item
+          readOnly: true
+        componentName:
+          type: string
+          description: Name of the item component
+        reusableMaterialId:
+          type: string
+          format: uuid
+          readOnly: true
+        usability:
+          type: string
+          enum:
+            - EXCELLENT
+            - GOOD
+            - POOR
+            - NOT_VALIDATED
+        amount:
+          type: integer
+          format: int32
+        unit:
+          type: string
+          enum:
+            - KG
+            - M2
+            - M3
+            - PCS
+            - RM
+            - TN
+        description:
+          type: string
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+        amountAsWaste:
+          type: number
+          format: double
+        metadata:
+          $ref: "#/components/schemas/Metadata"
+    Metadata:
+      type: object
+      description: Metadata object
+      properties:
+        creatorId:
+          type: string
+          format: uuid
+          description: ID of creator
+          readOnly: true
+        createdAt:
+          type: string
+          format: date-time
+          description: Created date
+          readOnly: true
+        lastModifierId:
+          type: string
+          format: uuid
+          description: Id of last modifier
+          readOnly: true
+        modifiedAt:
+          type: string
+          format: date-time
+          description: Date modified
+          readOnly: true

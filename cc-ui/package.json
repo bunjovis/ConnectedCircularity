@@ -1,13 +1,12 @@
 {
   "name": "cc-ui",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "0.0.0"
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview", 
-    "test":"mocha"
+    "test": "mocha"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.3.5",

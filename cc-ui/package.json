@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview", 
+    "test":"mocha"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.3.5",

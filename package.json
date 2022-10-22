@@ -1,0 +1,19 @@
+{
+  "name": "connectedcircularity",
+  "version": "1.0.0",
+  "description": "### Docker Compose  - At /ConnectedCircularity/    - docker-compose build   - docker-compose up",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bunjovis/ConnectedCircularity.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bunjovis/ConnectedCircularity/issues"
+  },
+  "homepage": "https://github.com/bunjovis/ConnectedCircularity#readme"
+}

@@ -52,7 +52,7 @@ async function getToken(client:string, secret:string, scope:string) {
     });
     var config = {
       method: 'post',
-      url: 'https://test-auth.materiaalitori.fi/connect/token?grant_type=client_credentials&scope=ym-tietoalusta-api',
+      url: 'https://test-auth.materiaalitori.fi/connect/token?grant_type=client_credentials&scope=' + scope,
       headers: { 
         'Content-Type': 'application/x-www-form-urlencoded'
       },

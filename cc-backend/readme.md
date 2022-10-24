@@ -21,3 +21,7 @@
 - nodeJS 16.14.0
 - typescript 4.8.3
 
+### Docker Guide 
+- At /cc-backend/ 
+  - docker build . -t backend (you can choose any name instead of backend)
+  - docker run -p 3000:3000 --name Backend backend 

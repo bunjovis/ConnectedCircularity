@@ -12,8 +12,8 @@ function App() {
     <div className="App">
       <Routes>
         <Route path='/' element={<Login/>} />
-        <Route path='/Home' element={<Home/>} />
-        <Route path='/New Item' element={<TransferForm/>} />
+        <Route path='/home' element={<Home/>} />
+        <Route path='/new_item' element={<TransferForm/>} />
       </Routes>
   </div>
   );

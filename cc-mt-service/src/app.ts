@@ -43,13 +43,13 @@ async function showToken(c_id:string, c_secret:string, scope:string) {
  */
 async function getToken(client:string, secret:string, scope:string) {
   try {
-    var data = qs.stringify({
+    const data = qs.stringify({
       'client_secret': secret,
       'client_id': client,
       'grant_type': 'client_credentials',
       'scope': scope
     });
-    var config = {
+    const config = {
       method: 'post',
       url: 'https://test-auth.materiaalitori.fi/connect/token?grant_type=client_credentials&scope=' + scope,
       headers: { 
@@ -57,8 +57,8 @@ async function getToken(client:string, secret:string, scope:string) {
       },
       data : data
     };
-    var response = await axios(config);
-    var responseStr = JSON.stringify(response.data.access_token);
+    const response = await axios(config);
+    const responseStr = JSON.stringify(response.data.access_token);
     return responseStr
   } catch (error) {
     console.log(error);

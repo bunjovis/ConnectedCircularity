@@ -1,6 +1,7 @@
 import express, { response } from 'express'
 import axios from 'axios'
 import dotenv from 'dotenv';
+import qs from 'qs'
 
 dotenv.config();
 
@@ -42,8 +43,6 @@ async function showToken(c_id:string, c_secret:string, scope:string) {
  */
 async function getToken(client:string, secret:string, scope:string) {
   try {
-    var axios = require('axios');
-    var qs = require('qs');
     var data = qs.stringify({
       'client_secret': secret,
       'client_id': client,

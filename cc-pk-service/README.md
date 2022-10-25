@@ -6,8 +6,7 @@
 4. Run ```npm start``` on command line to run the program. This will run two commands:
    - ```tcp```: TypeScript compiler. Creates a JavaScript file from the app.ts -file which Node can easily run
    - ```node dist/src/app.js```. Runs the created JavaScript file with Node
-5. On command line you will be asked for your Purkukartoitus username and password. These will be used for getting token and accessing the Purkukartoitus API
-6. If the given username and password are correct, the program will get user's surveys that are ready and post them on ```http://localhost:5000/{USERNAME}/surveys```
+5. You can now send e.g. a curl request with a token to PK service
 
 
 Additional scripts: 

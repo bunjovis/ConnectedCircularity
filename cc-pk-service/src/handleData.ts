@@ -5,18 +5,6 @@ import { Survey, ItemInfo, Item, Building } from './types';
 
 dotenv.config();
 
-// Variables
-const username: string = process.env.PK_USERNAME ?? '';
-const password: string = process.env.PK_PASSWORD ?? '';
-const c_id: string = process.env.PK_CLIENTID ?? '';
-const g_type: string = process.env.PK_GRANTTYPE ?? '';
-
-let userToken:string;
-export let userId:string;
-
-// Get usertoken and userid
-getUserInfo();
-
 /**
  * Initalize an empty ItemInfo -object
  * @returns An empty ItemInfo -object
@@ -41,61 +29,11 @@ function initInfo() {
     }
     return info;
 }
-
-/**
- * Collect user info at the beginning
- */
-async function getUserInfo() {
-    userToken = await getToken();
-    userId = await getId();
-    //console.log(userId); // Use this to check your usedId
-}
-
-/**
-* Get token for the current user, so accessing the Purkukartoitus API is possible
-* @param user Username
-* @param pw Password
-* @returns Token for accessing the Purkukartoitus API
-*/
-export async function getToken() {
-    try {
-        const response = axios.post(
-            'https://auth.purkukartoitus.fi/auth/realms/rapurc/protocol/openid-connect/token',
-            new URLSearchParams({
-                'client_id': c_id,
-                'grant_type': g_type,
-                'username': username,
-                'password': password
-        }));
-        return (await response).data.access_token;
-    } catch (err) {
-        console.log('Error: cannot fetch id for the current user');
-        return err;
-    }
-}
-  
-/**
-* Get user's id for filtering the list of surveys
-* @param token User's token for accessing PK API
-* @returns User's id
-*/
-export async function getId() {
-    try {
-        const response = axios.get('https://auth.purkukartoitus.fi/auth/realms/rapurc/account', {
-            headers: {
-                'Authorization': 'Bearer ' + userToken
-            }
-      });
-      return (await response).data.id;
-    } catch (err) {
-      console.log('Error: cannot fetch id for the current user');
-      return err;
-    }
-}
   
 /**
 * Get user's surveys that are marked as DONE
 * @param token User's token for accessing PK API
+* @param userId User's id
 * @returns List of user's complete surveys
 */
 export async function getUserSurveys(token:any, userId:string) {
@@ -122,6 +60,11 @@ export async function getUserSurveys(token:any, userId:string) {
     }
 }
 
+/**
+* Get all surveys
+* @param token User's token for accessing PK API
+* @returns List of user's complete surveys
+*/
 export async function getAllSurveys(token:any) {
     try {
         const response = axios.get<Survey[]>('https://api.purkukartoitus.fi/v1/surveys', {

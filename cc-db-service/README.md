@@ -18,3 +18,9 @@ Additional scripts:
 2. Run `npm run dev` to run nodemon
 
 Swagger documentation is served from /api-docs endpoint
+
+### Docker Guide 
+- At /cc-db-service/ 
+  - docker build . -t db (you can choose any name instead of backend)
+  - docker run -p 4001:4001 --name DB db 
+

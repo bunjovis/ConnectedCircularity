@@ -98,14 +98,14 @@ export async function getId() {
 * @param token User's token for accessing PK API
 * @returns List of user's complete surveys
 */
-export async function getSurveys() {
+export async function getUserSurveys(token:any, userId:string) {
     try {
         const response = axios.get<Survey[]>('https://api.purkukartoitus.fi/v1/surveys', {
             params: {
                 'maxResults': '2147483647'
             },
             headers: {
-                'Authorization': 'Bearer ' + userToken
+                'Authorization': 'Bearer ' + token
             }
         });
 
@@ -113,9 +113,29 @@ export async function getSurveys() {
         const allSurveys:Survey[] = (await response).data;
         const surveys:Survey[] = [];
         for (let i = 0; i < allSurveys.length; i++) {
-            if (allSurveys[i].metadata.creatorId === await (getId()) && allSurveys[i].status === 'DONE') surveys.push(allSurveys[i]);
+            if (allSurveys[i].metadata.creatorId === userId && allSurveys[i].status === 'DONE') surveys.push(allSurveys[i]);
         }
         return surveys;
+    } catch (err) {
+        console.log('Error: cannot fetch surveys');
+        throw err;
+    }
+}
+
+export async function getAllSurveys(token:any) {
+    try {
+        const response = axios.get<Survey[]>('https://api.purkukartoitus.fi/v1/surveys', {
+            params: {
+                'maxResults': '2147483647'
+            },
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+
+        // Find which surveys' belong to the user
+        const allSurveys:Survey[] = (await response).data;
+        return allSurveys;
     } catch (err) {
         console.log('Error: cannot fetch surveys');
         throw err;
@@ -128,7 +148,7 @@ export async function getSurveys() {
  * @param userSurveys User's surveys
  * @returns Array of Item's that belong to the user
  */
-export async function getReusables(userSurveys:Survey[]) {
+export async function getReusables(userSurveys:Survey[], token:any) {
     const items:Item[] = [];
     for (let i = 0; i < userSurveys.length; i++) {
         let fetchedItems:ItemInfo[] = []
@@ -137,7 +157,7 @@ export async function getReusables(userSurveys:Survey[]) {
             const response = axios.get<ItemInfo[]>(`https://api.purkukartoitus.fi/v1/surveys/${userSurveys[i].id}/reusables`, 
             {
                 headers: {
-                    'Authorization': 'Bearer ' + userToken
+                    'Authorization': 'Bearer ' + token
                 }
             });
             fetchedItems = (await response).data;
@@ -151,7 +171,7 @@ export async function getReusables(userSurveys:Survey[]) {
             const responseBuilding = axios.get<Building[]>(`https://api.purkukartoitus.fi/v1/surveys/${userSurveys[i].id}/buildings`, 
             {
                 headers: {
-                    'Authorization': 'Bearer ' + userToken
+                    'Authorization': 'Bearer ' + token
                 }
             });
             const fetchedBuildings:Building[] = (await responseBuilding).data;
@@ -181,14 +201,14 @@ export async function getReusables(userSurveys:Survey[]) {
  * @param itemId Id of the Item that we want information about
  * @returns ItemInfo -object that includes all the info PK API has to offer about the item
  */
-export async function getItemInfo(userSurveys:Survey[], itemId:string) {
+export async function getItemInfo(userSurveys:Survey[], token:any, itemId:string) {
     try {
         let info:ItemInfo = initInfo();
         for (let i = 0; i < userSurveys.length; i++) {
             const response = axios.get<ItemInfo[]>(`https://api.purkukartoitus.fi/v1/surveys/${userSurveys[i].id}/reusables`, 
             {
                 headers: {
-                    'Authorization': 'Bearer ' + userToken
+                    'Authorization': 'Bearer ' + token
                 }
             });
             const fetchedItems:ItemInfo[] = (await response).data;

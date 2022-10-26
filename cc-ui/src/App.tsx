@@ -3,9 +3,9 @@ import { Routes, Route, Link } from "react-router-dom"
 
 //import Header  from './components/header/Header'
 
-import Login from './components/pages/Login/Login'
-import Home from './components/pages/Home/Home'
-import TransferForm from './components/pages/TransferForm/TransferForm'
+import Login from './pages/Login'
+import Home from './pages/Home'
+import TransferForm from './pages/TransferForm'
 
 function App() {
   return (

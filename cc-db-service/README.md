@@ -33,8 +33,6 @@ Additional scripts:
 3. `npm run undo:seed` Undo seeds
 4. `npm run undo:migrate` Undo migrations
 
-Swagger documentation is served from /api-docs endpoint
-
 ### Docker Guide
 
 - At /cc-db-service/

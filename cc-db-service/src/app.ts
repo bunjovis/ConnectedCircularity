@@ -33,7 +33,7 @@ app.use(
 
 // workaround for the validator
 app.get('/', (_: Request, response: Response) => {
-  response.send('CC Backend service root');
+  response.send('CC DB service root');
 });
 
 // test routes for database

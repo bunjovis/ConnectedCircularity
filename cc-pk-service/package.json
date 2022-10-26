@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
     "start": "tsc && node dist/src/app.js",
+    "test": "mocha",
     "dev": "nodemon src/app.ts",
     "check": "eslint . --ext .ts"
   },

@@ -1,8 +1,9 @@
 import React from 'react'
 import {useState} from 'react'
-import { Route, Router } from 'react-router-dom'
+import { Navigate, Route, Router, useNavigate } from 'react-router-dom'
 
 //import app from '../../cc-pk-service/src'
+import Home from './Home'
 
 import { 
     Heading,
@@ -18,7 +19,9 @@ import {
     Flex,
     TagLeftIcon,
     useControllableProp, 
-    useControllableState
+    useControllableState,
+    useAccordionItemState,
+    useAnimationState
 } from "@chakra-ui/react"
 import "@fontsource/montserrat"; 
 
@@ -34,22 +37,21 @@ const FormLabel = chakra("text", {
     }
 })
 
-function Login() {
-    type State = {
-        username: string,
-        password: string,
-        message: string,
-        token: string
-      };
+export default function Login() {
+    const [username] = useState("");
+    const [password] = useState("");
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
     
-        console.log(event.currentTarget.elements);
-        console.log(event.currentTarget.elements[0]);
-        //token = app.getToken(username, password);
+    function validateForm() {
+        console.log(username)
 
-    };
+        return username.length > 0 && password.length > 0;
+    }
+    
+    function handleSubmit(event: { preventDefault: () => void }) {
+        event.preventDefault();
+        
+    }
 
     return (
         <Flex
@@ -62,9 +64,10 @@ function Login() {
             alignItems="center" 
             >
             <form
-                method="post"
                 name="login_credentials"
-                onSubmit={handleSubmit}>
+                onSubmit={handleSubmit}
+                method="post"
+                >
                 <Stack
                     spacing={3}
                     p="3rem"
@@ -79,14 +82,22 @@ function Login() {
                     </Select>
 
                     <FormLabel>Käyttäjänimi</FormLabel>
-                    <Input name='username' borderColor='#EE0004' type='text'/>
-
+                    <Input type='text' 
+                        name='username'
+                        borderColor='#EE0004' 
+                    />
+                     
                     <FormLabel>Salasana</FormLabel>
-                    <Input name='password' borderColor='#EE0004' type={'password'} />
+                    <Input type={'password'} 
+                        name='password' 
+                        borderColor='#EE0004' 
+                    />
+
                     <Button 
                         type="submit"
                         textTransform='uppercase'
                         colorScheme='blue'
+                        disabled={!validateForm()}
                         >
                             Kirjaudu
                     </Button>
@@ -95,6 +106,3 @@ function Login() {
         </Flex>
     )
 }
-
-export default Login
-

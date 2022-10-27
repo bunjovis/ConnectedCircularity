@@ -2,7 +2,7 @@ import React from 'react'
 import {useState} from 'react'
 import { Navigate, Route, Router, useNavigate } from 'react-router-dom'
 
-import app from '../../cc-pk-service/src/App'
+import App from '../../../cc-pk-service/src/App'
 import Home from './Home'
 
 import { 
@@ -13,9 +13,10 @@ import {
     Input,
     Button,
     Flex,
+    FormLabel
 } from "@chakra-ui/react"
  
-
+/*
 const FormLabel = chakra("text", {
     baseStyle: {
         float: 'left',
@@ -23,7 +24,7 @@ const FormLabel = chakra("text", {
         color: '#EE0004'
     }
 })
-
+*/
 export default function Login() {
     const [username] = useState("");
     const [password] = useState("");
@@ -36,6 +37,7 @@ export default function Login() {
     
     function handleSubmit(event: { preventDefault: () => void }) {
         event.preventDefault();
+        token = App.getToken(username, password)
     }
     
     return (

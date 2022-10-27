@@ -8,6 +8,7 @@ import Home from './Home'
 import { 
     Heading,
     Stack,
+    
     Link,
     ButtonGroup, 
     Select,
@@ -24,6 +25,13 @@ import {
     useAnimationState
 } from "@chakra-ui/react"
 import "@fontsource/montserrat"; 
+
+const theme = extendTheme({
+    fonts: {
+        Heading: 'Montserrat',
+        Body: 'Montserrat'
+    }
+})
 
 const FormControl = chakra("form", {
     font: 'Montserrat'
@@ -82,7 +90,7 @@ export default function Login() {
                     </Select>
 
                     <FormLabel>Käyttäjänimi</FormLabel>
-                    <Input type='text' 
+                    <Input type='string' 
                         name='username'
                         borderColor='#EE0004' 
                     />
@@ -97,7 +105,7 @@ export default function Login() {
                         type="submit"
                         textTransform='uppercase'
                         colorScheme='blue'
-                        disabled={!validateForm()}
+                        //disabled={!validateForm()}
                         >
                             Kirjaudu
                     </Button>

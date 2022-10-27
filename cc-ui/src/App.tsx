@@ -9,7 +9,6 @@ import TransferForm from './pages/TransferForm'
 function App() {
   return (
     <div className="App">
-      <h1>Welcome to Connected Circularity!</h1>
       <Routes>
         <Route path='/' element={<Login/>} />
         <Route path='/home' element={<Home/>} />

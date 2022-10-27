@@ -2,7 +2,6 @@ import React from 'react'
 import {useState} from 'react'
 import { Navigate, Route, Router, useNavigate } from 'react-router-dom'
 
-//import App from '../../../cc-pk-service/src/App'
 import Home from './Home'
 import Header from '../components/header/Header'
 
@@ -10,7 +9,6 @@ import {
     Heading,
     Stack,
     Select,
-    chakra,
     Input,
     Button,
     Flex,

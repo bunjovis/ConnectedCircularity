@@ -13,6 +13,7 @@ const Header = () => {
     <header className="header-wrapper">
       <Flex
         alignItems="center">
+        <h1>Connected Circularity</h1>
         <Spacer />
         <Link to="/">Kirjaudu</Link>
       </Flex>

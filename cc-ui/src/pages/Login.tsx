@@ -1,6 +1,6 @@
 import React from 'react'
 import {useState} from 'react'
-import { Navigate, Route, Router, useNavigate } from 'react-router-dom'
+import axios from 'axios';
 
 import Home from './Home'
 import Header from '../components/header/Header'
@@ -15,28 +15,40 @@ import {
     FormLabel
 } from "@chakra-ui/react"
  
-/*
-const FormLabel = chakra("text", {
-    baseStyle: {
-        float: 'left',
-        borderRadius: 'base',
-        color: '#EE0004'
-    }
-})
-*/
 export default function Login() {
-    const [username] = useState("");
-    const [password] = useState("");
+    //setters for authentication
+    const [authUrl, setAuthUrl] = useState("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
     
-    function validateForm() {
-        console.log(username)
+    const serviceProviders = [
+        {
+          id: 1,
+          displayValue: 'Purkukartoitus',
+          authEndpoint:
+            'https://auth.purkukartoitus.fi/auth/realms/rapurc/protocol/openid-connect/token',
+        },
+      ];
 
-        return username.length > 0 && password.length > 0;
-    }
-    
-    function handleSubmit(event: { preventDefault: () => void }) {
+    //Authentication to PK
+    async function handleSubmit(event: { preventDefault: () => void }) {
         event.preventDefault();
-        //let token = App.getToken(username, password)
+        console.log(username, password);
+
+        try {
+            const response = axios.post(
+                'https://auth.purkukartoitus.fi/auth/realms/rapurc/protocol/openid-connect/token',
+                new URLSearchParams({
+                    'client_id': 'management',
+                    'grant_type': 'password',
+                    'username': username,
+                    'password': password
+                }));
+        return (await response).data.access_token;
+        } catch (err) {
+            console.log('Error: cannot fetch id for the current user');
+            return '';
+        }
     }
     
     return (
@@ -65,27 +77,34 @@ export default function Login() {
                     <Heading>Kirjaudu palveluun</Heading>
                 
                     <FormLabel>Palveluntarjoaja</FormLabel>
-                    <Select borderColor='#EE0004' >
-                        <option>Palveluntarjoaja</option>
+                    <Select 
+                        borderColor='#EE0004'
+                        onChange={(e) => setAuthUrl(e.target.value)}>
+                            {serviceProviders.map((provider) => (
+                                <option key={provider.id} value={provider.authEndpoint}>
+                                {provider.displayValue}
+                                </option>
+                        ))}
                     </Select>
 
                     <FormLabel>Käyttäjänimi</FormLabel>
                     <Input type='string' 
                         name='username'
                         borderColor='#EE0004' 
+                        onChange={(e) => setUsername(e.target.value)}
                     />
                      
                     <FormLabel>Salasana</FormLabel>
                     <Input type={'password'} 
                         name='password' 
                         borderColor='#EE0004' 
+                        onChange={(e) => setPassword(e.target.value)}
                     />
 
                     <Button 
                         type="submit"
                         textTransform='uppercase'
                         colorScheme='blue'
-                        //disabled={!validateForm()}
                         >
                             Kirjaudu
                     </Button>

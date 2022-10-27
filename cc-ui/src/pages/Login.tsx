@@ -2,8 +2,9 @@ import React from 'react'
 import {useState} from 'react'
 import { Navigate, Route, Router, useNavigate } from 'react-router-dom'
 
-import App from '../../../cc-pk-service/src/App'
+//import App from '../../../cc-pk-service/src/App'
 import Home from './Home'
+import Header from '../components/header/Header'
 
 import { 
     Heading,
@@ -37,10 +38,12 @@ export default function Login() {
     
     function handleSubmit(event: { preventDefault: () => void }) {
         event.preventDefault();
-        token = App.getToken(username, password)
+        //let token = App.getToken(username, password)
     }
     
     return (
+        <>
+        <Header></Header>
         <Flex
             flexDirection="column"
             //TO DO: width and height to full page
@@ -91,5 +94,6 @@ export default function Login() {
                 </Stack>
             </form>
         </Flex>
+        </>
     )
 }

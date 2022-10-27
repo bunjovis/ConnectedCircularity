@@ -2,41 +2,20 @@ import React from 'react'
 import {useState} from 'react'
 import { Navigate, Route, Router, useNavigate } from 'react-router-dom'
 
-//import app from '../../cc-pk-service/src'
+import app from '../../cc-pk-service/src/App'
 import Home from './Home'
 
 import { 
     Heading,
     Stack,
-    
-    Link,
-    ButtonGroup, 
     Select,
     chakra,
     Input,
     Button,
-    ChakraProvider,
-    extendTheme,
     Flex,
-    TagLeftIcon,
-    useControllableProp, 
-    useControllableState,
-    useAccordionItemState,
-    useAnimationState
 } from "@chakra-ui/react"
-import "@fontsource/montserrat"; 
-
-const theme = extendTheme({
-    fonts: {
-        Heading: 'Montserrat',
-        Body: 'Montserrat'
-    }
-})
-
-const FormControl = chakra("form", {
-    font: 'Montserrat'
-})
  
+
 const FormLabel = chakra("text", {
     baseStyle: {
         float: 'left',
@@ -48,7 +27,6 @@ const FormLabel = chakra("text", {
 export default function Login() {
     const [username] = useState("");
     const [password] = useState("");
-
     
     function validateForm() {
         console.log(username)
@@ -58,9 +36,8 @@ export default function Login() {
     
     function handleSubmit(event: { preventDefault: () => void }) {
         event.preventDefault();
-        
     }
-
+    
     return (
         <Flex
             flexDirection="column"

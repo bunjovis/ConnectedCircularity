@@ -12,7 +12,8 @@ import {
     Input,
     Button,
     Flex,
-    FormLabel
+    FormLabel,
+    Form
 } from "@chakra-ui/react"
  
 export default function Login() {
@@ -30,6 +31,7 @@ export default function Login() {
         },
       ];
 
+    
     //Authentication to PK
     async function handleSubmit(event: { preventDefault: () => void }) {
         event.preventDefault();
@@ -47,9 +49,13 @@ export default function Login() {
         return (await response).data.access_token;
         } catch (err) {
             console.log('Error: cannot fetch id for the current user');
+            var errorMessage = document.getElementById('wrongCred');
+            errorMessage.hidden = false;
             return '';
         }
     }
+
+    
     
     return (
         <>
@@ -100,6 +106,13 @@ export default function Login() {
                         borderColor='#EE0004' 
                         onChange={(e) => setPassword(e.target.value)}
                     />
+
+                    <FormLabel 
+                        id="wrongCred" 
+                        hidden={true}
+                        color='#EE0004' 
+                        >
+                            Virheellinen käyttäjätunnus tai salasana.</FormLabel>
 
                     <Button 
                         type="submit"

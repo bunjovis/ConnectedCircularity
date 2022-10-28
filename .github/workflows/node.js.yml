@@ -29,6 +29,7 @@ jobs:
       - run: npm install --global mocha
       - run: npm  test -- cc-backend/test
       - run: npm  test -- cc-db-service/test
+      - run: npm  check -- cc-db-service/
       - run: npm  test -- cc-mt-service/test
       - run: npm  test -- cc-pk-service/test
       - run: npm  test -- cc-ui/test

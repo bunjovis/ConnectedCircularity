@@ -38,7 +38,8 @@ paths:
           description: Not found
         '500':
           description: Service error
-  /v1/user:
+
+  /v1/users:
     post:
       operationId: postUser
       summary: Create new or return existing User data from database
@@ -59,7 +60,8 @@ paths:
           description: Not found
         '500':
           description: Service error
-  /v1/items/{userId}:
+
+  /v1/users/{userId}/items:
     get:
       operationId: getUserItems
       description: Get Items belonging to a User
@@ -88,6 +90,7 @@ paths:
           description: Not found
         '500':
           description: Service error
+
   /v1/items/{itemId}:
     get:
       operationId: getItemData
@@ -120,6 +123,7 @@ paths:
           description: Not found
         '500':
           description: Service error
+
   /v1/items:
     post:
       operationId: postItemData
@@ -141,6 +145,7 @@ paths:
           description: Not found
         '500':
           description: Service error
+
   /v1/items/draft:
     post:
       operationId: postDraftValues
@@ -192,6 +197,7 @@ paths:
           description: Not found
         '500':
           description: Service error
+
   /v1/configurations:
     post:
       operationId: postConfiguration
@@ -213,6 +219,7 @@ paths:
           description: Not found
         '500':
           description: Service error
+
   /v1/configurations/{configurationId}:
     put:
       operationId: putConfiguration
@@ -243,6 +250,7 @@ paths:
           description: Not found
         '500':
           description: Service error
+          
 components:
   schemas:
     GetApi:

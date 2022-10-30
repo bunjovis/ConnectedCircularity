@@ -24,3 +24,19 @@ export const getItemById = async (id: string) => {
     ],
   });
 };
+// Get item by userid
+// include possible Form configurations and draft values
+export const getItemsByUserId = async (id: string) => {
+  return await Item.findOne({
+    where: { user_id: id },
+    include: [
+      {
+        model: FormConfiguration,
+        include: [FormContact, FormLocation],
+      },
+      {
+        model: ItemDraft,
+      },
+    ],
+  });
+};

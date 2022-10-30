@@ -8,7 +8,7 @@ export const ApiStatistic = sequelize.define(
       allowNull: false,
       primaryKey: true,
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
     },
     api: {
       allowNull: false,

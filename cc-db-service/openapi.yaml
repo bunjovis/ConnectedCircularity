@@ -184,6 +184,26 @@ paths:
           description: Not found
         '500':
           description: Service error
+    get:
+      operationId: getItems
+      description: Get Items
+      tags:
+        - Items
+      responses:
+        '200':
+          description: List of Items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetUserItem'
+        '400':
+          description: Invalid request data
+        '404':
+          description: Not found
+        '500':
+          description: Service error
 
   /v1/items/draft:
     post:

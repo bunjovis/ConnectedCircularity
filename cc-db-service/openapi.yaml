@@ -60,6 +60,24 @@ paths:
           description: Not found
         '500':
           description: Service error
+    get:
+      operationId: getUsers
+      summary: Get all users
+      tags:
+        - User
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetUser'
+        '404':
+          description: Not found
+        '500':
+          description: Service error
 
   /v1/users/{userId}/items:
     get:
@@ -250,7 +268,7 @@ paths:
           description: Not found
         '500':
           description: Service error
-          
+
 components:
   schemas:
     GetApi:

@@ -79,6 +79,27 @@ paths:
         '500':
           description: Service error
 
+  /v1/users/{userId}:
+    get:
+      operationId: getUser
+      summary: Get user
+      tags:
+        - User
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  draftValues:
+                    $ref: '#/components/schemas/GetUser'
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+
   /v1/users/{userId}/items:
     get:
       operationId: getUserItems

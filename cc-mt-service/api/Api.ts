@@ -15,25 +15,25 @@
 export interface Advert {
   type: string;
   data: {
-    title?: string;
-    expires?: string;
-    contactIsPublic?: boolean;
-    contact?: { name?: string; title?: string; phone?: string; email?: string };
-    materials?: {
-      classification?: string;
+    title: string;
+    expires: string;
+    contactIsPublic: boolean;
+    contact: { name: string; title?: string; phone?: string; email: string };
+    materials: {
+      classification: string;
       subClassification?: string;
-      industry?: string;
-      isWaste?: boolean;
-      quantity?: { amount?: number; unitOfMeasure?: string; continuity?: string; amountDescription?: string };
+      industry: string;
+      isWaste: boolean;
+      quantity: { amount: number; unitOfMeasure: string; continuity: string; amountDescription?: string };
       locationIsPublic?: boolean;
-      location?: {
+      location: {
         name?: string;
         address?: string;
         postalcode?: string;
-        city?: string;
-        cityId?: string;
-        region?: string;
-        regionId?: string;
+        city: string;
+        cityId: string;
+        region: string;
+        regionId: string;
         countryCode?: string;
       };
     };

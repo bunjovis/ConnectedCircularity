@@ -1,7 +1,6 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
 import qs from 'qs';
-import { json } from 'stream/consumers';
 import {AdvertData} from './types';
 
 dotenv.config();
@@ -42,7 +41,7 @@ async function getToken(client:string, secret:string, scope:string) {
     }
 }
 
-
+// Posts data to Materiaalitori test API
 export async function postAdvert() {
     try {
         // Valid data which can be posted to test.materiaalitori.fi
@@ -89,7 +88,7 @@ export async function postAdvert() {
                 regions: []
             }
         };
-        const adData:String = JSON.stringify(dataObject);
+        const adData:string = JSON.stringify(dataObject);
         const token = await getToken(c_id,c_secret,scope);
         const config = {
             method: 'post',
@@ -102,9 +101,7 @@ export async function postAdvert() {
             maxContentLength: 5000,
         };
         const response = await axios(config);
-        // type error: converting circular structure to JSON
-        console.log(response);
-        return response;
+        return {id: response.data.id};
     } catch (error) {
         console.log(error);
     }

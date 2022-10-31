@@ -18,3 +18,6 @@ Additional scripts:
 - At /cc-pk-service/ 
   - docker build . -t pk (you can choose any name instead of backend)
   - docker run -p 5000:5000 --name PK pk 
+
+Additional scripts:
+1. Run `npm run check` to check the file for TypeScript errors/warnings with eslint

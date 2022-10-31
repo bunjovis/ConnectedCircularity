@@ -18,7 +18,7 @@ export const ApiStatistic = sequelize.define(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    statistic_type: {
+    statisticType: {
       type: DataTypes.STRING,
       allowNull: false,
     },

@@ -13,3 +13,6 @@ Additional script: Run ```npm run check``` to check the file for TypeScript erro
 - At /cc-db-service/ 
   - docker build . -t mt (you can choose any name instead of backend)
   - docker run -p 8000:8000 --name MT mt 
+
+Additional scripts:
+1. Run `npm run check` to check the file for TypeScript errors/warnings with eslint

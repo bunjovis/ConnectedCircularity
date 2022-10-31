@@ -13,7 +13,7 @@ export const Item = sequelize.define(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUID,
     },
-    user_id: {
+    userId: {
       type: DataTypes.UUID,
       allowNull: false,
       references: {
@@ -21,7 +21,7 @@ export const Item = sequelize.define(
         key: 'id',
       },
     },
-    item_id: {
+    itemId: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
@@ -30,16 +30,16 @@ export const Item = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    adverd_id: {
+    adverdId: {
       allowNull: true,
       unique: true,
       type: DataTypes.UUID,
     },
-    transfer_time: {
+    transferTime: {
       allowNull: true,
       type: DataTypes.DATE,
     },
-    collection_id: {
+    collectionId: {
       allowNull: true,
       type: DataTypes.STRING,
     },

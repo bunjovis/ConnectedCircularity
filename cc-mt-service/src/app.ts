@@ -7,8 +7,8 @@ dotenv.config();
 
 // variables
 const PORT = process.env.PORT;
-const c_id: string = process.env.MT_CLIENTID ?? '';
-const c_secret: string = process.env.MT_CLIENTSECRET ?? '';
+const cId: string = process.env.MT_CLIENTID ?? '';
+const cSecret: string = process.env.MT_CLIENTSECRET ?? '';
 const scope: string = process.env.MT_SCOPE ?? '';
 
 
@@ -22,15 +22,15 @@ app.listen(PORT, () => {
   console.log(` [server]: Server listening at http://localhost:${PORT}`);
 });
 
-showToken(c_id,c_secret,scope);
+showToken(cId, cSecret, scope);
 /**
  * Shows Materiaalitori access token in console (just for testing)
- * @param c_id 
- * @param c_secret 
+ * @param cId 
+ * @param cSecret 
  * @param scope 
  */
-async function showToken(c_id:string, c_secret:string, scope:string) {
-  const token = await getToken(c_id, c_secret, scope);
+async function showToken(cId:string, cSecret:string, scope:string) {
+  const token = await getToken(cId, cSecret, scope);
   console.log(token);
 }
 
@@ -59,7 +59,7 @@ async function getToken(client:string, secret:string, scope:string) {
         };
         const response=await axios(config);
         const responseStr=JSON.stringify(response.data.access_token);
-        return responseStr
+        return responseStr;
     } catch (error) {
         console.log(error);
     }

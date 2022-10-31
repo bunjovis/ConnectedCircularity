@@ -8,8 +8,8 @@ dotenv.config();
 // Variables
 const username: string = process.env.PK_USERNAME ?? '';
 const password: string = process.env.PK_PASSWORD ?? '';
-const c_id: string = process.env.PK_CLIENTID ?? '';
-const g_type: string = process.env.PK_GRANTTYPE ?? '';
+const cId: string = process.env.PK_CLIENTID ?? '';
+const gType: string = process.env.PK_GRANTTYPE ?? '';
 
 let userToken:string;
 export let userId:string;
@@ -38,7 +38,7 @@ function initInfo() {
             lastModifierId:'',
             modifiedAt: ''
         }
-    }
+    };
     return info;
 }
 
@@ -62,8 +62,8 @@ export async function getToken() {
         const response = axios.post(
             'https://auth.purkukartoitus.fi/auth/realms/rapurc/protocol/openid-connect/token',
             new URLSearchParams({
-                'client_id': c_id,
-                'grant_type': g_type,
+                'client_id': cId,
+                'grant_type': gType,
                 'username': username,
                 'password': password
         }));
@@ -131,7 +131,7 @@ export async function getSurveys() {
 export async function getReusables(userSurveys:Survey[]) {
     const items:Item[] = [];
     for (let i = 0; i < userSurveys.length; i++) {
-        let fetchedItems:ItemInfo[] = []
+        let fetchedItems:ItemInfo[] = [];
         try {
             // Collect PK API's items that belong to the survey
             const response = axios.get<ItemInfo[]>(`https://api.purkukartoitus.fi/v1/surveys/${userSurveys[i].id}/reusables`, 
@@ -163,7 +163,7 @@ export async function getReusables(userSurveys:Survey[]) {
                 componentName: fetchedItems[j].componentName,
                 surveyId: userSurveys[i].id,
                 streetAddress: fetchedBuildings[0].address.streetAddress
-            }
+            };
             items.push(item);
             }
         } catch (err) {

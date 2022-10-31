@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview", 
-    "test": "mocha"
+    "test": "mocha",
+    "check": "eslint . --ext .ts"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.3.5",

@@ -15,7 +15,6 @@
   - Copy contents from .env.example to .env (create .env first)
   - npm run build
   - npm run dev
-  
 ## Versions
 
 - nodeJS 16.14.0
@@ -25,3 +24,6 @@
 - At /cc-backend/ 
   - docker build . -t backend (you can choose any name instead of backend)
   - docker run -p 3000:3000 --name Backend backend 
+
+Additional scripts:
+1. Run `npm run check` to check the file for TypeScript errors/warnings with eslint

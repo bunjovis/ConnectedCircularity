@@ -19,6 +19,7 @@ import {
 
 import { WarningIcon } from '@chakra-ui/icons';
 
+// TODO: move Datepicker to another file
 import DatePicker, { registerLocale } from 'react-datepicker';
 import fi from 'date-fns/locale/fi';
 registerLocale('fi', fi);
@@ -36,6 +37,7 @@ import {
 
 import { Advert } from '../types/Advert';
 
+// TODO: match with MT options
 const initValues: Advert = {
   title: '',
   industry: 'Rakentaminen ja purkaminen',
@@ -61,7 +63,10 @@ const initValues: Advert = {
 function TransferForm() {
   const [dateError, setDateError] = useState(false);
   // TODO: get item id from url params
+  // TODO: set initial values based on the Item fetched from backend
+  // TODO: show required fields before validations
   /*
+  maybe used later
   const renderFormFields = () => {
     for (const key in initValues) {
       console.log(`${key}: ${initValues[key as keyof Advert]}`);
@@ -93,8 +98,6 @@ function TransferForm() {
     );
   };
 
-  // TODO: set initial values based on the Item fetched from backend
-
   const setMaxDate = () => {
     const maxDate = new Date();
     maxDate.setFullYear(maxDate.getFullYear() + 2);
@@ -118,7 +121,7 @@ function TransferForm() {
               setDateError(true);
               return;
             }
-            // submit
+            // TODO: submit
             console.log(JSON.stringify(values, null, 2));
           }}
         >

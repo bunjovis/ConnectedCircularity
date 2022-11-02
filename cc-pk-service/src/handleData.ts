@@ -1,4 +1,4 @@
-
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 import { Survey, PkItem, Item, Building, ItemInfo, ReusableMaterial } from './types';
 

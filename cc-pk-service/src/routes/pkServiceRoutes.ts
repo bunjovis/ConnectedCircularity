@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars,@typescript-eslint/no-explicit-any */
 // PK service route module
 import { Router, Request, Response, NextFunction } from "express";
 import {getReusables, getUserSurveys, getAllSurveys, getItemInfo} from "../handleData";

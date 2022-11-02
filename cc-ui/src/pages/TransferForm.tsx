@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Formik, Field } from 'formik';
 import {
   Box,
@@ -66,11 +66,13 @@ const initValues: Advert = {
 
 function TransferForm() {
   const { itemId } = useParams();
-  console.log(itemId);
+
   const [dateError, setDateError] = useState(false);
-  // TODO: get item id from url params
-  // TODO: set initial values based on the Item fetched from backend
+  // TODO: check if user has authenticated to MT
+  // temp MT auth state
+  const [mtAuth, setMTAuth] = useState(false);
   // TODO: show required fields before validations
+
   /*
   maybe used later
   const renderFormFields = () => {
@@ -79,6 +81,11 @@ function TransferForm() {
     }
   };
   */
+  useEffect(() => {
+    // TODO: get item info with itemId
+    // TODO: set initial values based on the Item fetched from backend
+    console.log(itemId);
+  }, []);
 
   const cancelAction = () => {
     console.log('Clicked Cancel');
@@ -89,6 +96,11 @@ function TransferForm() {
     console.log('Save as draft');
   };
 
+  const authToMT = () => {
+    console.log('authenticate to MT');
+    setMTAuth(true);
+  };
+
   const renderFormButtons = () => {
     return (
       <Flex width='100%' alignItems='center'>
@@ -96,6 +108,7 @@ function TransferForm() {
           colorScheme='blue'
           variant='outline'
           borderRadius='0'
+          textTransform='uppercase'
           onClick={() => cancelAction()}
         >
           Peruuta
@@ -107,13 +120,30 @@ function TransferForm() {
             variant='outline'
             borderRadius='0'
             onClick={() => saveAsDraft()}
+            textTransform='uppercase'
           >
             Tallenna luonnos
           </Button>
-
-          <Button type='submit' colorScheme='blue' borderRadius='0'>
-            Lähetä
-          </Button>
+          {mtAuth && (
+            <Button
+              type='submit'
+              colorScheme='blue'
+              borderRadius='0'
+              textTransform='uppercase'
+            >
+              Lähetä
+            </Button>
+          )}
+          {!mtAuth && (
+            <Button
+              onClick={() => authToMT()}
+              colorScheme='blue'
+              borderRadius='0'
+              textTransform='uppercase'
+            >
+              Kirjaudu Materiaalitoriin
+            </Button>
+          )}
         </ButtonGroup>
       </Flex>
     );
@@ -289,7 +319,14 @@ function TransferForm() {
                   border='1px'
                   borderRadius='5px'
                 >
-                  <FormLabel htmlFor='showLocationForRegistered' width='80%'>
+                  <FormLabel
+                    htmlFor='showLocationForRegistered'
+                    width='80%'
+                    mt='auto'
+                    mb='auto'
+                    mr='0'
+                    ml='0'
+                  >
                     Näytä tarkat sijaintitiedot vain rekisteröityneille
                     käyttäjille
                   </FormLabel>
@@ -389,7 +426,11 @@ function TransferForm() {
                 >
                   <FormLabel
                     htmlFor='showOrganizationForRegistered'
-                    width='75%'
+                    width='80%'
+                    mt='auto'
+                    mb='auto'
+                    mr='0'
+                    ml='0'
                   >
                     Näytä organisaation tiedot vain Materiaalitoriin
                     kirjautuneille

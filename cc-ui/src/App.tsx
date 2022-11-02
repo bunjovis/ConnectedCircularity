@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path='*' element={<Login />} />
         <Route path='/home' element={<Home />} />
-        <Route path='/new_item/:itemdId' element={<TransferForm />} />
+        <Route path='/new_item/:itemId' element={<TransferForm />} />
       </Routes>
     </div>
   );

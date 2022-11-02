@@ -49,7 +49,14 @@ export const ConfigurationForm = () => {
               border='1px'
               borderRadius='5px'
             >
-              <FormLabel htmlFor='contactInformation' width='80%'>
+              <FormLabel
+                htmlFor='contactInformation'
+                width='80%'
+                mt='auto'
+                mb='auto'
+                mr='0'
+                ml='0'
+              >
                 Käytä näitä Yhteyshenkilön tietoja kaikissa tämän kartoituksen
                 materiaaleissa
               </FormLabel>
@@ -74,7 +81,14 @@ export const ConfigurationForm = () => {
               border='1px'
               borderRadius='5px'
             >
-              <FormLabel htmlFor='expiryDate' width='80%'>
+              <FormLabel
+                htmlFor='expiryDate'
+                width='80%'
+                mt='auto'
+                mb='auto'
+                mr='0'
+                ml='0'
+              >
                 Käytä annettua voimassaoloaikaa kaikissa tämän kartoituksen
                 materiaaleissa
               </FormLabel>
@@ -98,7 +112,14 @@ export const ConfigurationForm = () => {
               border='1px'
               borderRadius='5px'
             >
-              <FormLabel htmlFor='location' width='80%'>
+              <FormLabel
+                htmlFor='location'
+                width='80%'
+                mt='auto'
+                mb='auto'
+                mr='0'
+                ml='0'
+              >
                 Käytä annettua sijaintia kaikissa tämän kartoituksen
                 materiaaleissa
               </FormLabel>
@@ -115,7 +136,12 @@ export const ConfigurationForm = () => {
             </FormControl>
             <Flex width='100%'>
               <Spacer />
-              <Button type='submit' colorScheme='blue' borderRadius='0'>
+              <Button
+                type='submit'
+                colorScheme='blue'
+                borderRadius='0'
+                textTransform='uppercase'
+              >
                 Tallenna
               </Button>
             </Flex>

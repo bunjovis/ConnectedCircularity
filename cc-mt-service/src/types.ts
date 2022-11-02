@@ -68,5 +68,5 @@ export interface AdvertData {
 
 export interface Error {
     message: string,
-    statusCode: string
+    status: number
 }

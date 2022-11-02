@@ -49,7 +49,7 @@ export async function postAdvert() {
             type: "offeringMaterial",
             data: {
                 title: "ovia",
-                expires: "2022-11-01T22:00:00.000Z", 
+                expires: "2022-12-01T22:00:00.000Z", 
                 contactIsPublic: true,
                 contact: {
                     name: "Firstname Lastname",
@@ -102,7 +102,8 @@ export async function postAdvert() {
         };
         const response = await axios(config);
         return {id: response.data.id};
-    } catch (error) {
-        console.log(error);
+    } catch (err) {
+        console.log(err);
+        return null;
     }
 }

@@ -1,15 +1,15 @@
 import { Router, Request, Response, NextFunction } from 'express';
 
-import { getUsers, getUserById } from '../services/userService';
+import { getItems, getItemById } from '../services/itemService';
 
-export const userRoutes = Router();
+export const itemRoutes = Router();
 
-userRoutes.get(
-  '/users',
+itemRoutes.get(
+  '/items',
   async (_request: Request, response: Response, next: NextFunction) => {
     try {
-      const users = await getUsers();
-      response.status(200).json(users);
+      const apis = await getItems();
+      response.status(200).json(apis);
     } catch (err) {
       response.status(500);
       next(err);
@@ -17,12 +17,12 @@ userRoutes.get(
   }
 );
 
-userRoutes.get(
-  '/users/:id',
+itemRoutes.get(
+  '/items/:id',
   async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const user = await getUserById(request.params.id);
-      response.status(200).json(user);
+      const item = await getItemById(request.params.id);
+      response.status(200).json(item);
     } catch (err) {
       response.status(500);
       next();

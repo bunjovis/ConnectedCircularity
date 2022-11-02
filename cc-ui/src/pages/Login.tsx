@@ -1,9 +1,9 @@
 import React from 'react'
 import {useState} from 'react'
+import {Route, Routes, useNavigate} from 'react-router-dom'
 import axios from 'axios';
 
 import Home from './Home'
-import Header from '../components/header/Header'
 
 import { 
     Heading,
@@ -12,16 +12,21 @@ import {
     Input,
     Button,
     Flex,
-    FormLabel,
-    Form
+    FormLabel
 } from "@chakra-ui/react"
  
 export default function Login() {
+    const navigate = useNavigate();
+
     //setters for authentication
     const [authUrl, setAuthUrl] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+
+    //setter for error message visibility 
+    const [wrongCredState, setWrongCredState] = useState(false);
     
+    //list of all service providers and authentication end points.
     const serviceProviders = [
         {
           id: 1,
@@ -35,7 +40,6 @@ export default function Login() {
     //Authentication to PK
     async function handleSubmit(event: { preventDefault: () => void }) {
         event.preventDefault();
-        console.log(username, password);
 
         try {
             const response = axios.post(
@@ -46,23 +50,22 @@ export default function Login() {
                     'username': username,
                     'password': password
                 }));
-        return (await response).data.access_token;
+            return (await response).data.access_token;
         } catch (err) {
-            console.log('Error: cannot fetch id for the current user');
-            var errorMessage = document.getElementById('wrongCred');
-            errorMessage.hidden = false;
+            setWrongCredState(true);
             return '';
         }
     }
 
-    
-    
+    const navigateHome = () => {
+        if (wrongCredState) {
+            navigate('./home'); 
+        } 
+    }
+
     return (
-        <>
-        <Header></Header>
         <Flex
             flexDirection="column"
-            //TO DO: width and height to full page
             width='100wh'
             height='100vh'
             backgroundColor="#E5E5E5"
@@ -86,11 +89,11 @@ export default function Login() {
                     <Select 
                         borderColor='#EE0004'
                         onChange={(e) => setAuthUrl(e.target.value)}>
-                            {serviceProviders.map((provider) => (
-                                <option key={provider.id} value={provider.authEndpoint}>
-                                {provider.displayValue}
-                                </option>
-                        ))}
+                        {serviceProviders.map((provider) => (
+                            <option key={provider.id} value={provider.authEndpoint}>
+                            {provider.displayValue}
+                            </option>
+                    ))}
                     </Select>
 
                     <FormLabel>Käyttäjänimi</FormLabel>
@@ -99,7 +102,7 @@ export default function Login() {
                         borderColor='#EE0004' 
                         onChange={(e) => setUsername(e.target.value)}
                     />
-                     
+                        
                     <FormLabel>Salasana</FormLabel>
                     <Input type={'password'} 
                         name='password' 
@@ -109,21 +112,26 @@ export default function Login() {
 
                     <FormLabel 
                         id="wrongCred" 
-                        hidden={true}
-                        color='#EE0004' 
+                        color='#EE0004'
+                        hidden={!wrongCredState}
                         >
-                            Virheellinen käyttäjätunnus tai salasana.</FormLabel>
+                            Virheellinen käyttäjätunnus tai salasana.
+                    </FormLabel>
 
                     <Button 
                         type="submit"
                         textTransform='uppercase'
                         colorScheme='blue'
+                        onClick={navigateHome}
                         >
                             Kirjaudu
                     </Button>
-                </Stack>
-            </form>
-        </Flex>
-        </>
+
+                    <Routes>
+                        <Route path='/home' element={<Home />} />
+                    </Routes>
+            </Stack>
+        </form>
+    </Flex>
     )
 }

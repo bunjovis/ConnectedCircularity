@@ -15,6 +15,7 @@ import {
   ButtonGroup,
   Textarea,
   Switch,
+  Text,
 } from '@chakra-ui/react';
 
 import { WarningIcon } from '@chakra-ui/icons';
@@ -28,6 +29,7 @@ import './Datepicker.css';
 
 import { FieldWithOriginalComparison } from '../components/form/FieldWithOriginalComparison';
 import { TextInputField } from '../components/form/TextInputField';
+import { ConfigurationForm } from '../components/form/ConfigurationForm';
 
 import {
   unitOptions,
@@ -73,20 +75,34 @@ function TransferForm() {
     }
   };
   */
+
+  const cancelAction = () => {
+    console.log('Clicked Cancel');
+  };
+
+  const saveAsDraft = () => {
+    console.log('Save as draft');
+  };
+
   const renderFormButtons = () => {
     return (
       <Flex width='100%' alignItems='center'>
         <Button
-          type='submit'
           colorScheme='blue'
           variant='outline'
           borderRadius='0'
+          onClick={() => cancelAction()}
         >
           Peruuta
         </Button>
         <Spacer />
         <ButtonGroup>
-          <Button colorScheme='blue' variant='outline' borderRadius='0'>
+          <Button
+            colorScheme='blue'
+            variant='outline'
+            borderRadius='0'
+            onClick={() => saveAsDraft()}
+          >
             Tallenna luonnos
           </Button>
 
@@ -272,9 +288,9 @@ function TransferForm() {
                     Näytä tarkat sijaintitiedot vain rekisteröityneille
                     käyttäjille
                   </FormLabel>
-                  <span>
-                    <i>{values.showLocationForRegistered ? 'Kyllä' : 'Ei'}</i>
-                  </span>
+                  <Text width='10%' as='i'>
+                    {values.showLocationForRegistered ? 'Kyllä' : 'Ei'}
+                  </Text>
                   <Switch
                     isChecked={values.showLocationForRegistered}
                     id='showLocationForRegistered'
@@ -368,16 +384,14 @@ function TransferForm() {
                 >
                   <FormLabel
                     htmlFor='showOrganizationForRegistered'
-                    width='80%'
+                    width='75%'
                   >
                     Näytä organisaation tiedot vain Materiaalitoriin
                     kirjautuneille
                   </FormLabel>
-                  <span>
-                    <i>
-                      {values.showOrganizationForRegistered ? 'Kyllä' : 'Ei'}
-                    </i>
-                  </span>
+                  <Text width='10%' as='i'>
+                    {values.showOrganizationForRegistered ? 'Kyllä' : 'Ei'}
+                  </Text>
                   <Switch
                     isChecked={values.showOrganizationForRegistered}
                     id='showOrganizationForRegistered'
@@ -394,6 +408,7 @@ function TransferForm() {
             </form>
           )}
         </Formik>
+        <ConfigurationForm />
       </Box>
     </Flex>
   );

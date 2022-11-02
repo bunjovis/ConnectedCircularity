@@ -6,6 +6,9 @@ import * as OpenApiValidator from 'express-openapi-validator';
 import bodyParser from 'body-parser';
 import { Error } from './types';
 import router from './routes/pkServiceRoutes';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // Variables
 const PORT = process.env.PORT;

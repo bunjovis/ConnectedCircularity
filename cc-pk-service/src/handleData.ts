@@ -3,8 +3,6 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 import { Survey, PkItem, Item, Building, ItemInfo, ReusableMaterial } from './types';
 
-dotenv.config();
-
 /**
  * Initalize an empty ItemInfo -object
  * @returns An empty ItemInfo -object

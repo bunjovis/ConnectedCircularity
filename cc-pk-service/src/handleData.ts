@@ -1,6 +1,5 @@
 
 import axios from 'axios';
-import dotenv from 'dotenv';
 import { Survey, PkItem, Item, Building, ItemInfo, ReusableMaterial } from './types';
 
 /**

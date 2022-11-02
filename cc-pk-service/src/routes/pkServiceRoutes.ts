@@ -22,9 +22,10 @@ pkRouter.get('/users/:userId/items', async (req:Request, res:Response, next:Next
 
     const userSurveys:Survey[] = await getUserSurveys(token, userId);
     const reusableItems:Item[] = await getReusables(userSurveys, token);
+
     res.json(reusableItems);
   } catch(err:any) {
-    // Unauthorized error appears, for some reason it gets thrown in here?
+    // Unauthorized error appears, for some reason it gets thrown in here which is why try-catch -block was added here
     // AxiosError is in a different format, so the needed data is collected from err.response
     res.json({message: err.response.statusText, status: err.response.status});
   }
@@ -43,6 +44,8 @@ pkRouter.get('/items/:itemId', async(req:Request, res:Response, next:NextFunctio
 
     res.json(info);
   } catch(err:any) {
+    // Unauthorized error appears, for some reason it gets thrown in here which is why try-catch -block was added here
+    // AxiosError is in a different format, so the needed data is collected from err.response
     res.json({message: err.response.statusText, status: err.response.status});
   }
 })

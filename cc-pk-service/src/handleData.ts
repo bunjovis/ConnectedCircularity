@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 import dotenv from 'dotenv';
-import { Survey, ItemInfo, Item, Building } from './types';
+import { Survey, PkItem, Item, Building, ItemInfo, ReusableMaterial } from './types';
 
 dotenv.config();
 
@@ -9,23 +9,16 @@ dotenv.config();
  * Initalize an empty ItemInfo -object
  * @returns An empty ItemInfo -object
  */
-function initInfo() {
+function initItemInfo() {
     const info:ItemInfo = {
-        id:'',
-        componentName:'',
-        reusableMaterialId:'',
-        usability:'',
-        amount:0,
-        unit:'',
-        description:'',
-        images: '',
-        amountAsWaste:0,
-        metadata:{
-            creatorId:'',
-            createdAt:'',
-            lastModifierId:'',
-            modifiedAt: ''
-        }
+        title: '',
+        material: '',
+        unit: '',
+        amount: 0,
+        streetAddress: '',
+        zipCode: '',
+        area: '',
+        images: ''
     }
     return info;
 }
@@ -94,10 +87,10 @@ export async function getAllSurveys(token:any) {
 export async function getReusables(userSurveys:Survey[], token:any) {
     const items:Item[] = [];
     for (let i = 0; i < userSurveys.length; i++) {
-        let fetchedItems:ItemInfo[] = []
+        let fetchedItems:PkItem[] = []
         try {
             // Collect PK API's items that belong to the survey
-            const response = axios.get<ItemInfo[]>(`https://api.purkukartoitus.fi/v1/surveys/${userSurveys[i].id}/reusables`, 
+            const response = axios.get<PkItem[]>(`https://api.purkukartoitus.fi/v1/surveys/${userSurveys[i].id}/reusables`, 
             {
                 headers: {
                     'Authorization': 'Bearer ' + token
@@ -145,28 +138,66 @@ export async function getReusables(userSurveys:Survey[], token:any) {
  * @returns ItemInfo -object that includes all the info PK API has to offer about the item
  */
 export async function getItemInfo(userSurveys:Survey[], token:any, itemId:string) {
-    try {
-        let info:ItemInfo = initInfo();
-        for (let i = 0; i < userSurveys.length; i++) {
-            const response = axios.get<ItemInfo[]>(`https://api.purkukartoitus.fi/v1/surveys/${userSurveys[i].id}/reusables`, 
+    let info:ItemInfo = initItemInfo();
+    for (let i = 0; i < userSurveys.length; i++) {
+        let pkItem:PkItem;
+
+        // Get PK API's reusable item
+        try {
+            const response = axios.get<PkItem>(`https://api.purkukartoitus.fi/v1/surveys/${userSurveys[i].id}/reusables/${itemId}`, 
             {
                 headers: {
                     'Authorization': 'Bearer ' + token
                 }
             });
-            const fetchedItems:ItemInfo[] = (await response).data;
-  
-            // Find wanted item
-            for (let j = 0; j < fetchedItems.length; j++) {
-                const fetchedInfo:ItemInfo = fetchedItems[j];
-                if (fetchedInfo.id === itemId) {
-                    info = fetchedInfo;
-                }
-            }
+            pkItem = (await response).data;
+        } catch(err) {
+            if (i !== userSurveys.length - 1) continue;
+            else throw err;
         }
-        return info;
-    } catch (err) {
-        console.log('Error: cannot fetch reusable items');
-        throw err;
+
+        let fetchedBuilding:Building;
+        // Get PK API's building information
+        try {
+            const responseBuilding = axios.get<Building[]>(`https://api.purkukartoitus.fi/v1/surveys/${userSurveys[i].id}/buildings`, 
+            {
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            });
+            fetchedBuilding = (await responseBuilding).data[0];
+
+        } catch(err) {
+            if (i !== userSurveys.length - 1) continue;
+            else throw err;
+        }
+
+        // Get PK API's reusable material by its id
+        try {
+            const responseMaterial = axios.get<ReusableMaterial>(`https://api.purkukartoitus.fi/v1/reusableMaterials/${pkItem.reusableMaterialId}`, 
+            {
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            });
+            const material = (await responseMaterial).data;
+
+            // Add data to ItemInfo-object
+            info = {
+                title: pkItem.componentName,
+                material: material.name,
+                unit: pkItem.unit,
+                amount: pkItem.amount,
+                streetAddress: fetchedBuilding.address.streetAddress,
+                zipCode: fetchedBuilding.address.postCode,
+                area: fetchedBuilding.address.city,
+                images: pkItem.images
+            };
+            return info;
+        } catch(err) {
+            if (i !== userSurveys.length - 1) continue;
+            else throw err;
+        }
     }
+    return info;
 }

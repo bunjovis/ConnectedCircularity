@@ -14,23 +14,16 @@ export interface Error {
     message: string;
 }
 
-// PK API's item, object that has more information about items
+// PK service's ItemInfo object
 export interface ItemInfo {
-    id: string,
-    componentName: string,
-    reusableMaterialId: string,
-    usability: string,
+    title?: string,
+    material?: string,
+    unit?: string
     amount?: number,
-    unit?: string,
-    description?: string,
-    images?: string,
-    amountAsWaste?: number,
-    metadata: {
-        creatorId: string,
-        createdAt: string,
-        lastModifierId: string,
-        modifiedAt: string
-    }
+    streetAddress?: string,
+    zipCode?: string,
+    area?: string,
+    images?: string
 }
 
 // TYPES USED TO TYPECHECK DATA, BUT AREN'T IN OPENAPI.YAML
@@ -47,6 +40,25 @@ export interface Survey {
       createdAt: Date,
       lastModifierId: string,
       modifiedAt: Date
+    }
+}
+
+// PK API's item, object that has more information about items
+export interface PkItem {
+    id: string,
+    componentName: string,
+    reusableMaterialId: string,
+    usability: string,
+    amount?: number,
+    unit?: string,
+    description?: string,
+    images?: string,
+    amountAsWaste?: number,
+    metadata: {
+        creatorId: string,
+        createdAt: string,
+        lastModifierId: string,
+        modifiedAt: string
     }
 }
 
@@ -81,4 +93,14 @@ export interface Building {
         lastModifierId:string,
         modifiedAt:string
     }
+}
+
+// Object that is used to typecheck collected reusableMaterial data
+export interface ReusableMaterial {
+    id: string, 
+    name: string,
+    creatorId: string,
+    createdAt: string,
+    lastModified: string,
+    modifiedAt: string
 }

@@ -12,6 +12,7 @@ import {
 import { Formik } from 'formik';
 
 export const ConfigurationForm = () => {
+  // TODO: type/interface for posting configuration
   const initValues = {
     contactInformation: true,
     expiryDate: true,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Formik, Field, ErrorMessage } from 'formik';
+import { Formik, Field } from 'formik';
 import {
   Box,
   Button,
@@ -26,6 +26,8 @@ import fi from 'date-fns/locale/fi';
 registerLocale('fi', fi);
 import 'react-datepicker/dist/react-datepicker.css';
 import './Datepicker.css';
+
+import { useParams } from 'react-router-dom';
 
 import { FieldWithOriginalComparison } from '../components/form/FieldWithOriginalComparison';
 import { TextInputField } from '../components/form/TextInputField';
@@ -63,6 +65,8 @@ const initValues: Advert = {
 };
 
 function TransferForm() {
+  const { itemId } = useParams();
+  console.log(itemId);
   const [dateError, setDateError] = useState(false);
   // TODO: get item id from url params
   // TODO: set initial values based on the Item fetched from backend
@@ -81,6 +85,7 @@ function TransferForm() {
   };
 
   const saveAsDraft = () => {
+    // TODO: type/interface for posting draft values
     console.log('Save as draft');
   };
 

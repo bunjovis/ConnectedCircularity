@@ -57,7 +57,6 @@ export default function Login() {
               } else {
                 throw new Error('login failed');
               }
-            (await response).data.access_token;
         } catch (err) {
             setWrongCredState(true);
         }

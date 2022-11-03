@@ -13,7 +13,7 @@ export const FormConfiguration = sequelize.define(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
     },
-    user_id: {
+    userId: {
       type: DataTypes.UUID,
       allowNull: false,
       references: {
@@ -21,12 +21,12 @@ export const FormConfiguration = sequelize.define(
         key: 'id',
       },
     },
-    collection_id: {
+    collectionId: {
       allowNull: false,
       unique: true,
       type: DataTypes.STRING,
     },
-    expiry_date: {
+    expiryDate: {
       allowNull: true,
       type: DataTypes.DATE,
     },

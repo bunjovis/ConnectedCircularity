@@ -10,7 +10,7 @@ export const FormLocation = sequelize.define(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
     },
-    configuration_id: {
+    configurationId: {
       type: DataTypes.UUID,
       allowNull: false,
       references: {
@@ -18,7 +18,7 @@ export const FormLocation = sequelize.define(
         key: 'id',
       },
     },
-    zip_code: {
+    zipCode: {
       allowNull: true,
       type: DataTypes.STRING,
     },

@@ -7,10 +7,12 @@ const itemRouter = Router();
 itemRouter.get(
   '/v1/items/:userId',
   async (request: Request, response: Response, next: NextFunction) => {
-    request.header('Token');
+    request.header('Bearer');
+    console.log(request.header('Token'));
     try {
       const token: any = request.headers.token ?? '';
       const userId: string = request.params.userId;
+      console.log(token);
 
       const itemsPK = await getItemsPK(token, userId);
       //const itemsDB = await getItemsDB(request.params.userId);

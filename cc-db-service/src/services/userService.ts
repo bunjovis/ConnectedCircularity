@@ -12,7 +12,7 @@ export const getUserByName = async (name: string) => {
   return await User.findOne({ where: { name: name }});
 };
 
-export const createOrUpdateUser = async (username: string, api: String) => {
+export const createOrUpdateUser = async (username: string, api: string) => {
   const user = await getUserByName(username);
   if (user != null) {
     return user;

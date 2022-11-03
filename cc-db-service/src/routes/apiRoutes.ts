@@ -12,7 +12,7 @@ apiRoutes.get(
       const apis = await getApis();
       response.status(200).json(apis);
     } catch (err:any) {
-      let httpError:HttpResponseError = {
+      const httpError:HttpResponseError = {
         message: err.message,
         status: 500,
         error: err

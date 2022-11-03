@@ -12,7 +12,7 @@ itemRoutes.get(
       const apis = await getItems();
       response.status(200).json(apis);
     } catch (err:any) {
-      let httpError:HttpResponseError = {
+      const httpError:HttpResponseError = {
         message: err.message,
         status: 500,
         error: err
@@ -29,7 +29,7 @@ itemRoutes.get(
       const item = await getItemById(request.params.id);
       response.status(200).json(item);
     } catch (err:any) {
-      let httpError:HttpResponseError = {
+      const httpError:HttpResponseError = {
         message: err.message,
         status: 500,
         error: err

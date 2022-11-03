@@ -13,7 +13,7 @@ userRoutes.get(
       const users = await getUsers();
       response.status(200).json(users);
     } catch (err:any) {
-      let httpError:HttpResponseError = {
+      const httpError:HttpResponseError = {
         message: err.message,
         status: 500,
         error: err
@@ -30,7 +30,7 @@ userRoutes.get(
       const user = await getUserById(request.params.id);
       response.status(200).json(user);
     } catch (err:any) {
-      let httpError:HttpResponseError = {
+      const httpError:HttpResponseError = {
         message: err.message,
         status: 500,
         error: err
@@ -50,7 +50,7 @@ userRoutes.get(
       }
       response.status(200).json(items);
     } catch (err:any) {
-      let httpError:HttpResponseError = {
+      const httpError:HttpResponseError = {
         message: err.message,
         status: 500,
         error: err
@@ -67,7 +67,7 @@ userRoutes.post(
       const newUser = await createOrUpdateUser(request.body.username, request.body.api);
       response.status(200).json(newUser);
     } catch (err:any) {
-      let httpError:HttpResponseError = {
+      const httpError:HttpResponseError = {
         message: err.message,
         status: 500,
         error: err

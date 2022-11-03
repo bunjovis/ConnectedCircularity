@@ -3,29 +3,29 @@
 // eslint-disable-next-line no-undef
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('form_configuration', {
+    await queryInterface.createTable('formConfiguration', {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUID,
       },
-      user_id: {
+      userId: {
         type: Sequelize.UUID,
         allowNull: false,
         onDelete: 'CASCADE',
         references: {
           model: 'user',
           key: 'id',
-          as: 'user_id',
+          as: 'userId',
         },
       },
-      collection_id: {
+      collectionId: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
-      expiry_date: {
+      expiryDate: {
         type: Sequelize.DATE,
       },
       createdAt: {
@@ -39,6 +39,6 @@ module.exports = {
     });
   },
   async down(queryInterface) {
-    await queryInterface.dropTable('form_configuration');
+    await queryInterface.dropTable('formConfiguration');
   },
 };

@@ -7,12 +7,12 @@ module.exports = {
   async up(queryInterface) {
     // Add purkukartoitus info to api_configuration table
     await queryInterface.bulkInsert(
-      'api_configuration',
+      'apiConfiguration',
       [
         {
           id: uuidv4(),
           name: 'Purkukartoitus',
-          auth_endpoint:
+          authEndpoint:
             'https://auth.purkukartoitus.fi/auth/realms/rapurc/protocol/openid-connect/token',
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -23,6 +23,6 @@ module.exports = {
   },
 
   async down(queryInterface) {
-    await queryInterface.bulkDelete('api_configuration', null, {});
+    await queryInterface.bulkDelete('apiConfiguration', null, {});
   },
 };

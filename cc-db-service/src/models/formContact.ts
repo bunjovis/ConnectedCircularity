@@ -8,7 +8,7 @@ export const FormContact = sequelize.define(
       allowNull: false,
       primaryKey: true,
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
     },
     configurationId: {
       type: DataTypes.UUID,
@@ -31,5 +31,5 @@ export const FormContact = sequelize.define(
       type: DataTypes.STRING,
     },
   },
-  { freezeTableName: true, tableName: 'form_contact' }
+  { freezeTableName: true, tableName: 'formContact' }
 );

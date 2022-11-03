@@ -3,14 +3,14 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('item_draft', {
+    await queryInterface.createTable('itemDraft', {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUID,
       },
-      item_id: {
+      itemId: {
         allowNull: false,
         type: Sequelize.UUID,
         unique: true,
@@ -18,7 +18,7 @@ module.exports = {
         references: {
           model: 'item',
           key: 'id',
-          as: 'item_id',
+          as: 'itemId',
         },
       },
       title: {
@@ -33,51 +33,51 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      material_description: {
+      materialDescription: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      material_amount: {
+      materialAmount: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      material_unit: {
+      materialUnit: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      material_info: {
+      materialInfo: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      location_name: {
+      locationName: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      location_address: {
+      locationAddress: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      location_zip_code: {
+      locationZipCode: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      location_municipality: {
+      locationMunicipality: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      expiry_date: {
+      expiryDate: {
         type: Sequelize.DATE,
         allowNull: true,
       },
-      contact_name: {
+      contactName: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      contact_phone: {
+      contactPhone: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      contact_email: {
+      contactEmail: {
         type: Sequelize.STRING,
         allowNull: true,
       },
@@ -92,6 +92,6 @@ module.exports = {
     });
   },
   async down(queryInterface) {
-    await queryInterface.dropTable('item_draft');
+    await queryInterface.dropTable('itemDraft');
   },
 };

@@ -8,7 +8,7 @@ export const ItemDraft = sequelize.define(
       allowNull: false,
       primaryKey: true,
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
     },
     itemId: {
       allowNull: false,
@@ -88,5 +88,5 @@ export const ItemDraft = sequelize.define(
       type: DataTypes.DATE,
     },
   },
-  { freezeTableName: true, tableName: 'item_draft' }
+  { freezeTableName: true, tableName: 'itemDraft' }
 );

@@ -8,7 +8,7 @@ export const ItemStatistic = sequelize.define(
       allowNull: false,
       primaryKey: true,
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
     },
     itemId: {
       allowNull: false,
@@ -67,5 +67,5 @@ export const ItemStatistic = sequelize.define(
       allowNull: false,
     },
   },
-  { freezeTableName: true, tableName: 'item_statistic' }
+  { freezeTableName: true, tableName: 'itemStatistic' }
 );

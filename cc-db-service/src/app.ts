@@ -36,10 +36,7 @@ app.get('/', (_: Request, response: Response) => {
   response.send('CC DB service root');
 });
 
-// test routes for database
-app.use('/', userRoutes);
-app.use('/', apiRoutes);
-app.use('/', itemRoutes);
+
 //validator middleware
 app.use(
   OpenApiValidator.middleware({
@@ -48,7 +45,10 @@ app.use(
     validateResponses: false,
   })
 );
-
+// routes for database
+app.use('/v1/', userRoutes);
+app.use('/v1/', apiRoutes);
+app.use('/v1/', itemRoutes);
 app.use(
   (err: HttpResponseError, _: Request, res: Response, next: NextFunction) => {
     // format error

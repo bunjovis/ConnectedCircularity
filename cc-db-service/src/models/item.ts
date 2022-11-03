@@ -11,7 +11,7 @@ export const Item = sequelize.define(
       allowNull: false,
       primaryKey: true,
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
     },
     userId: {
       type: DataTypes.UUID,
@@ -48,7 +48,7 @@ export const Item = sequelize.define(
 );
 
 Item.hasOne(ItemDraft, {
-  foreignKey: 'item_id',
+  foreignKey: 'itemId',
 });
 
 ItemDraft.belongsTo(Item, {
@@ -56,7 +56,7 @@ ItemDraft.belongsTo(Item, {
 });
 
 Item.hasMany(ItemStatistic, {
-  foreignKey: 'item_id',
+  foreignKey: 'itemId',
 });
 
 ItemStatistic.belongsTo(Item, {
@@ -64,11 +64,11 @@ ItemStatistic.belongsTo(Item, {
 });
 
 Item.hasOne(FormConfiguration, {
-  sourceKey: 'collection_id',
-  foreignKey: 'collection_id',
+  sourceKey: 'collectionId',
+  foreignKey: 'collectionId',
 });
 
 FormConfiguration.hasMany(Item, {
-  sourceKey: 'collection_id',
-  foreignKey: 'collection_id',
+  sourceKey: 'collectionId',
+  foreignKey: 'collectionId',
 });

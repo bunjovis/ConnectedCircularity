@@ -40,6 +40,7 @@ export default function Login() {
     //Authentication to PK
     async function handleSubmit(event: { preventDefault: () => void }) {
         event.preventDefault();
+        setWrongCredState(false);
 
         try {
             const response = axios.post(
@@ -49,18 +50,20 @@ export default function Login() {
                     'grant_type': 'password',
                     'username': username,
                     'password': password
-                }));
+                })
+            );
+            console.log(response);
+            if ((await response).status === 200) {
+                setWrongCredState(false);
+                navigate('/home');
+              } else {
+                throw new Error('login failed');
+              }
             return (await response).data.access_token;
         } catch (err) {
             setWrongCredState(true);
             return '';
         }
-    }
-
-    const navigateHome = () => {
-        if (wrongCredState) {
-            navigate('./home'); 
-        } 
     }
 
     return (
@@ -122,14 +125,10 @@ export default function Login() {
                         type="submit"
                         textTransform='uppercase'
                         colorScheme='blue'
-                        onClick={navigateHome}
+                        //onSubmit={navigateHome}
                         >
                             Kirjaudu
                     </Button>
-
-                    <Routes>
-                        <Route path='/home' element={<Home />} />
-                    </Routes>
             </Stack>
         </form>
     </Flex>

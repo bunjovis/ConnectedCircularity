@@ -14,7 +14,7 @@ export const getUserByName = async (name: string) => {
 
 export const createOrUpdateUser = async (username: string, api: string) => {
   const user = await getUserByName(username);
-  if (user != null) {
+  if (user !== null) {
     return user;
   }
   else {

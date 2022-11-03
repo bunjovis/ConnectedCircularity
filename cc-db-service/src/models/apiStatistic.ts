@@ -27,5 +27,5 @@ export const ApiStatistic = sequelize.define(
       allowNull: false,
     },
   },
-  { freezeTableName: true, tableName: 'api_statistic' }
+  { freezeTableName: true, tableName: 'apiStatistic' }
 );

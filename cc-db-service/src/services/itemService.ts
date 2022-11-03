@@ -28,7 +28,7 @@ export const getItemById = async (id: string) => {
 // include possible Form configurations and draft values
 export const getItemsByUserId = async (id: string) => {
   return await Item.findAll({
-    where: { user_id: id },
+    where: { userId: id },
     include: [
       {
         model: FormConfiguration,

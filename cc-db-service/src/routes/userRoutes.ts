@@ -17,7 +17,7 @@ userRoutes.get(
         message: err.message,
         status: 500,
         error: err
-      }
+      };
       next(httpError);
     }
   }
@@ -34,7 +34,7 @@ userRoutes.get(
         message: err.message,
         status: 500,
         error: err
-      }
+      };
       next(httpError);
     }
   }
@@ -54,7 +54,7 @@ userRoutes.get(
         message: err.message,
         status: 500,
         error: err
-      }
+      };
       next(httpError);
     }
   }
@@ -71,8 +71,8 @@ userRoutes.post(
         message: err.message,
         status: 500,
         error: err
-      }
-      if (err.message == "Validation error") {
+      };
+      if (err.message === "Validation error") {
         httpError.status = 400;
       }
       next(httpError);

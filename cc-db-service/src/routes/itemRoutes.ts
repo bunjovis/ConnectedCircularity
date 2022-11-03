@@ -16,7 +16,7 @@ itemRoutes.get(
         message: err.message,
         status: 500,
         error: err
-      }
+      };
       next(httpError);
     }
   }
@@ -33,7 +33,7 @@ itemRoutes.get(
         message: err.message,
         status: 500,
         error: err
-      }
+      };
       next(httpError);
     }
   }

@@ -88,5 +88,5 @@ export const ItemDraft = sequelize.define(
       type: DataTypes.DATE,
     },
   },
-  { freezeTableName: true, tableName: 'item_draft' }
+  { freezeTableName: true, tableName: 'itemDraft' }
 );

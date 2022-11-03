@@ -16,7 +16,7 @@ apiRoutes.get(
         message: err.message,
         status: 500,
         error: err
-      }
+      };
       next(httpError);
     }
   }

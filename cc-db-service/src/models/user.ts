@@ -37,11 +37,11 @@ export const User = sequelize.define(
 );
 
 User.hasMany(Item, {
-  foreignKey: 'user_id',
+  foreignKey: 'userId',
 });
 
 User.hasMany(FormConfiguration, {
-  foreignKey: 'user_id',
+  foreignKey: 'userId',
 });
 
 FormConfiguration.belongsTo(User, { foreignKey: 'id' });
@@ -51,7 +51,7 @@ Item.belongsTo(User, {
 });
 
 User.hasMany(FormConfiguration, {
-  foreignKey: 'user_id',
+  foreignKey: 'userId',
 });
 
 FormConfiguration.belongsTo(User, {

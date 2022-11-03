@@ -22,7 +22,7 @@ export const Api = sequelize.define(
       allowNull: false,
     },
   },
-  { freezeTableName: true, tableName: 'api_configuration' }
+  { freezeTableName: true, tableName: 'apiConfiguration' }
 );
 
 Api.hasMany(User, {

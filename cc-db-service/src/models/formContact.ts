@@ -31,5 +31,5 @@ export const FormContact = sequelize.define(
       type: DataTypes.STRING,
     },
   },
-  { freezeTableName: true, tableName: 'form_contact' }
+  { freezeTableName: true, tableName: 'formContact' }
 );

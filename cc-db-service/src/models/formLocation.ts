@@ -14,7 +14,7 @@ export const FormLocation = sequelize.define(
       type: DataTypes.UUID,
       allowNull: false,
       references: {
-        model: 'form_configuration',
+        model: 'formConfiguration',
         key: 'id',
       },
     },
@@ -31,5 +31,5 @@ export const FormLocation = sequelize.define(
       type: DataTypes.STRING,
     },
   },
-  { freezeTableName: true, tableName: 'form_location' }
+  { freezeTableName: true, tableName: 'formLocation' }
 );

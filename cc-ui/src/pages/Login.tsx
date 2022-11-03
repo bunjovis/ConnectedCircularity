@@ -57,10 +57,9 @@ export default function Login() {
               } else {
                 throw new Error('login failed');
               }
-            return (await response).data.access_token;
+            (await response).data.access_token;
         } catch (err) {
             setWrongCredState(true);
-            return '';
         }
     }
 
@@ -123,7 +122,6 @@ export default function Login() {
                         type="submit"
                         textTransform='uppercase'
                         colorScheme='blue'
-                        //onSubmit={navigateHome}
                         >
                             Kirjaudu
                     </Button>

@@ -1,17 +1,23 @@
-import { Router, Request, Response } from "express";
-import { getItemsPK, getItemsDB, getItemInfo, postConfigToDB } from "../utils";
+import { Router, Request, Response, NextFunction } from "express";
+import {
+  getItemsPK,
+  getItemsDB,
+  getItemInfo,
+  postConfigToDB,
+  getToken,
+} from "../utils";
 import { Error, ItemInfo, Item } from "../types";
 
 const itemRouter = Router();
 
 itemRouter.get(
   "/v1/items/:userId",
-  async (request: Request, response: Response) => {
+  async (request: Request, response: Response, next: NextFunction) => {
+    request.header("Token");
     try {
-      const itemsPK = await getItemsPK(
-        request.headers.token,
-        request.params.userId
-      );
+      const token: any = request.headers.token ?? "";
+      const userId: string = request.params.userId;
+      const itemsPK = await getItemsPK(token, userId);
       //const itemsDB = await getItemsDB(request.params.userId);
       response.json(itemsPK);
       //response.write(itemsDB);

@@ -21,7 +21,7 @@ getUserInfo();
  */
 async function getUserInfo() {
   userToken = await getToken();
-  //console.log(userToken);
+  console.log(userToken);
   userId = await getId();
   console.log(userId); // Use this to check your usedId
 }

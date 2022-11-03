@@ -2,7 +2,7 @@ import express, { Express, Request, Response, NextFunction } from "express";
 import swaggerUi from "swagger-ui-express";
 import YAML from "yamljs";
 import dotenv from "dotenv";
-import axios from "axios";
+import cors from "cors";
 import * as OpenApiValidator from "express-openapi-validator";
 import sysRouter from "./routes/systemRoutes";
 import itemRouter from "./routes/itemRoutes";
@@ -10,9 +10,6 @@ import advertRouter from "./routes/advertRoutes";
 import userRouter from "./routes/userRoutes";
 
 import { Error } from "./types";
-import { Item } from "./types";
-import { UserInfo } from "./types";
-import { Config } from "./types";
 
 dotenv.config();
 
@@ -25,6 +22,11 @@ app.use(
     extended: true,
   })
 );
+app.use(cors());
+
+app.listen(port, () => {
+  console.log(` [server]: Server listening at http://localhost:${port}`);
+});
 
 // serve swagger documentation at endpoint http://localhost:3000/api-docs/
 const options = {
@@ -46,15 +48,11 @@ app.use(
   })
 );
 
-app.use((err: Error, _: Request, res: Response, __: NextFunction) => {
+app.use((err: Error, req: Request, res: Response, _: NextFunction) => {
   // format error
   res.status(err.code || 500).json({
     message: err.message,
   });
-});
-
-app.listen(port, () => {
-  console.log(` [server]: Server listening at http://localhost:${port}`);
 });
 
 app.use(itemRouter, advertRouter, userRouter, sysRouter);

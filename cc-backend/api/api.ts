@@ -54,14 +54,46 @@ export interface Advert {
 
 export type AdvertInfo = object;
 
-export type Config = object;
+export interface Config {
+  /** @format uuid */
+  userId: string;
+  collectionId: string;
+  expiryDate?: string;
+  contactName?: string;
+  contactAddress?: string;
+  contactEmail?: string;
+  locationAddress?: string;
+  locationZipCode?: string;
+  locationMunicipality?: string;
+}
 
 export interface ItemInfo {
   /** @format uuid */
   id: string;
 }
 
-export type Items = object;
+/**
+ * Reusable item object
+ */
+export interface Item {
+  /**
+   * ID of the reusable item
+   * @format uuid
+   */
+  reusableId: string;
+
+  /** Name of the building component */
+  componentName: string;
+
+  /**
+   * ID of the survey where the item belongs to
+   * @format uuid
+   */
+  surveyId: string;
+
+  /** Street address of the building */
+  streetAddress: string;
+}
 
 export interface UserInfo {
   api: string;
@@ -289,13 +321,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @name Ping
      * @summary Replies with pong
      * @request GET:/v1/system/ping
-     * @secure
      */
     ping: (params: RequestParams = {}) =>
       this.request<string, any>({
         path: `/v1/system/ping`,
         method: "GET",
-        secure: true,
         ...params,
       }),
 
@@ -306,14 +336,12 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @name AfterLogin
      * @summary User has logged in
      * @request POST:/v1/user
-     * @secure
      */
     afterLogin: (data: UserInfo, params: RequestParams = {}) =>
       this.request<UserInfo, Error>({
         path: `/v1/user`,
         method: "POST",
         body: data,
-        secure: true,
         type: ContentType.Json,
         format: "json",
         ...params,
@@ -329,7 +357,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @secure
      */
     getItemsFromPk: (userId: string, params: RequestParams = {}) =>
-      this.request<Items, Error>({
+      this.request<Item[], Error>({
         path: `/v1/items/${userId}`,
         method: "GET",
         secure: true,
@@ -362,14 +390,12 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @name PostConfig
      * @summary Posts configuration
      * @request POST:/v1/config/{userId}
-     * @secure
      */
     postConfig: (userId: string, data: Config, params: RequestParams = {}) =>
       this.request<Config, Error>({
         path: `/v1/config/${userId}`,
         method: "POST",
         body: data,
-        secure: true,
         type: ContentType.Json,
         format: "json",
         ...params,
@@ -382,14 +408,12 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @name PostAdvert
      * @summary Posts advert to MT
      * @request POST:/v1/advert
-     * @secure
      */
     postAdvert: (data: Advert, params: RequestParams = {}) =>
       this.request<AdvertInfo, Error>({
         path: `/v1/advert`,
         method: "POST",
         body: data,
-        secure: true,
         type: ContentType.Json,
         format: "json",
         ...params,

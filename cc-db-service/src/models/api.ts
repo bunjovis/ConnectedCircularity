@@ -17,7 +17,7 @@ export const Api = sequelize.define(
       allowNull: false,
       unique: true,
     },
-    auth_endpoint: {
+    authEndpoint: {
       type: DataTypes.STRING,
       allowNull: false,
     },

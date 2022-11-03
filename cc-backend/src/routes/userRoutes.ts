@@ -14,9 +14,9 @@ userRouter.post(
 
 userRouter.post("/v1/user", (request: Request, response: Response) => {
   // For testing
-  const api_name = request.body.api;
+  const apiName = request.body.api;
   const username = request.body.username;
-  console.log(api_name);
+  console.log(apiName);
   console.log(username);
   console.log(request.body);
   response.send(request.body);

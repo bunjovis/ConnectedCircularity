@@ -10,7 +10,7 @@ export const FormContact = sequelize.define(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUID,
     },
-    configuration_id: {
+    configurationId: {
       type: DataTypes.UUID,
       allowNull: false,
       references: {

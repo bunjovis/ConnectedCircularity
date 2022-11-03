@@ -14,3 +14,6 @@ Vite + React + TypeScript, user interface of the system
 - At /cc-ui/ 
   - docker build . -t ui (you can choose any name instead of backend)
   - docker run -p 5173:5173 --name UI ui 
+
+Additional scripts:
+1. Run `npm run check` to check the file for TypeScript errors/warnings with eslint

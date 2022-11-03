@@ -7,8 +7,8 @@ dotenv.config();
 // Variables
 const username: string = process.env.PK_USERNAME ?? "";
 const password: string = process.env.PK_PASSWORD ?? "";
-const c_id: string = process.env.PK_CLIENTID ?? "";
-const g_type: string = process.env.PK_GRANTTYPE ?? "";
+const cId: string = process.env.PK_CLIENTID ?? "";
+const gType: string = process.env.PK_GRANTTYPE ?? "";
 
 let userToken: string;
 export let userId: string;
@@ -37,8 +37,8 @@ export async function getToken() {
     const response = axios.post(
       "https://auth.purkukartoitus.fi/auth/realms/rapurc/protocol/openid-connect/token",
       new URLSearchParams({
-        client_id: c_id,
-        grant_type: g_type,
+        clientId: cId,
+        grantType: gType,
         username: username,
         password: password,
       })

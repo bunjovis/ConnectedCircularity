@@ -1,8 +1,5 @@
 import axios from 'axios';
-import dotenv from 'dotenv';
 import { Error, ItemInfo, Item, Config } from './types';
-
-dotenv.config();
 
 export async function getItemsPK(token: any, userId: string) {
   try {

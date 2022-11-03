@@ -11,6 +11,7 @@ itemRouter.get(
     try {
       const token: any = request.headers.token ?? '';
       const userId: string = request.params.userId;
+
       const itemsPK = await getItemsPK(token, userId);
       //const itemsDB = await getItemsDB(request.params.userId);
       response.json(itemsPK);

@@ -87,8 +87,6 @@ paths:
 
   /v1/items/{userId}:
     get:
-      #security:
-      # - bearerAuth: []
       operationId: getItemsFromPK
       summary: Get all items from PK and CC-db
       description: Gets all items via CC-PK-service and CC-db-service

@@ -4,6 +4,7 @@ import YAML from 'yamljs';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import * as OpenApiValidator from 'express-openapi-validator';
+import bodyParser from 'body-parser';
 import sysRouter from './routes/systemRoutes';
 import itemRouter from './routes/itemRoutes';
 import advertRouter from './routes/advertRoutes';
@@ -17,6 +18,7 @@ const app: Express = express();
 const port = process.env.PORT;
 
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(
   express.urlencoded({
     extended: true

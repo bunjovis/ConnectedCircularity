@@ -7,8 +7,7 @@ const itemRouter = Router();
 itemRouter.get(
   '/v1/items/:userId',
   async (request: Request, response: Response, next: NextFunction) => {
-    request.header('Bearer');
-    console.log(request.header('Token'));
+    request.header('Token');
     try {
       const token: any = request.headers.token ?? '';
       const userId: string = request.params.userId;

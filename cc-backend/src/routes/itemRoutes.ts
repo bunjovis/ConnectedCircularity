@@ -7,19 +7,39 @@ const itemRouter = Router();
 itemRouter.get(
   "/v1/items/:userId",
   async (request: Request, response: Response) => {
-    const itemsPK = await getItemsPK(request.params.userId);
-    //const itemsDB = await getItemsDB(request.params.userId);
-    response.json(itemsPK);
-    //response.write(itemsDB);
-    //response.send();
+    try {
+      const itemsPK = await getItemsPK(
+        request.headers.token,
+        request.params.userId
+      );
+      //const itemsDB = await getItemsDB(request.params.userId);
+      response.json(itemsPK);
+      //response.write(itemsDB);
+      //response.send();
+    } catch (error: any) {
+      response.json({
+        message: error.response.statusText,
+        status: error.response.status,
+      });
+    }
   }
 );
 
 itemRouter.get(
   "/v1/itemInfo/:itemId",
   async (request: Request, response: Response) => {
-    const item = await getItemInfo(request.params.itemId);
-    response.send(item);
+    try {
+      const item = await getItemInfo(
+        request.headers.token,
+        request.params.itemId
+      );
+      response.json(item);
+    } catch (error: any) {
+      response.json({
+        message: error.response.statusText,
+        status: error.response.status,
+      });
+    }
   }
 );
 

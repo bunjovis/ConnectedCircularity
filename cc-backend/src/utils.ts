@@ -72,13 +72,13 @@ export async function getId() {
   }
 }
 
-export async function getItemsPK(userId: string) {
+export async function getItemsPK(token: any, userId: string) {
   try {
     const response = axios.get<Item[]>(
       `http://localhost:5123/v1/users/${userId}/items`,
       {
         headers: {
-          Authorization: "Bearer " + userToken,
+          Authorization: "Bearer " + token,
         },
       }
     );
@@ -120,13 +120,13 @@ export async function getItemsDB(userId: string) {
   }
 }
 
-export async function getItemInfo(itemId: string) {
+export async function getItemInfo(token: any, itemId: string) {
   try {
     const { data, status } = await axios.get<Item>(
       `http://localhost:5123/v1/items/${itemId}`,
       {
         headers: {
-          Authorization: "Bearer " + userToken,
+          Authorization: "Bearer " + token,
         },
       }
     );

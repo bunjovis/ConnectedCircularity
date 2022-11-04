@@ -1,7 +1,6 @@
 import { WarningIcon } from '@chakra-ui/icons';
 import { FormControl, FormLabel, HStack } from '@chakra-ui/react';
 
-// TODO: move Datepicker to another file
 import DatePicker, { registerLocale } from 'react-datepicker';
 import fi from 'date-fns/locale/fi';
 registerLocale('fi', fi);

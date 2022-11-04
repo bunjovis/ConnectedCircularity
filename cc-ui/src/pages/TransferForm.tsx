@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import React, { useState, useEffect } from 'react';
 import type { ReactElement } from 'react';
 import { Form, Formik, Field } from 'formik';
@@ -62,7 +63,6 @@ const initValues: Advert = {
 const TransferForm: React.FC<{}> = () => {
   const { itemId } = useParams();
 
-  const [dateError, setDateError] = useState(false);
   // TODO: check if user has authenticated to MT
   // temp MT auth state
   const [mtAuth, setMTAuth] = useState(false);
@@ -157,7 +157,6 @@ const TransferForm: React.FC<{}> = () => {
           onSubmit={(values: Advert) => {
             console.log('onsubmit');
             if (!values.expiryDate) {
-              setDateError(true);
               return;
             }
             // TODO: submit

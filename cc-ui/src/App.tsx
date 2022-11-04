@@ -7,7 +7,7 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import TransferForm from './pages/TransferForm';
 
-function App() {
+const App: React.FC<{}> = () => {
   return (
     <div className='App'>
       <Header></Header>
@@ -18,6 +18,6 @@ function App() {
       </Routes>
     </div>
   );
-}
+};
 
 export default App;

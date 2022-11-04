@@ -424,12 +424,40 @@ components:
 
     ItemInfo:
       type: object
+      description: Information about PK API's item
       required:
-        - id
+        - componentName
+        - reusableMaterialId
+        - usability
+        - metadata
       properties:
-        id:
+        title:
           type: string
-          format: uuid
+          description: Initial title for the form
+        material:
+          type: string
+          description: What type of material the item is
+        unit:
+          type: string
+          description: Unit enum
+        amount:
+          type: integer
+          format: int32
+          description: Amount of reusable material
+        streetAddress:
+          type: string
+          description: Address of the building
+        zipCode:
+          type: string
+          description: Zip code of the building
+        area:
+          type: string
+          description: Area of the building
+        images:
+          type: array
+          items: 
+            type: string
+          description: Attachment images for the reusable item
 
     Item:
        type: object

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars,@typescript-eslint/no-explicit-any */
 // PK service route module
 import { Router, Request, Response, NextFunction } from "express";
 import {getReusables, getUserSurveys, getAllSurveys, getItemInfo} from "../handleData";
@@ -29,14 +28,14 @@ pkRouter.get('/users/:userId/items', async (req:Request, res:Response, next:Next
     // AxiosError is in a different format, so the needed data is collected from err.response
     res.json({message: err.response.statusText, status: err.response.status});
   }
-})
+});
 
 // Route which returns information about a specific item
 // http://localhost:5123/v1/items/:itemId
 pkRouter.get('/items/:itemId', async(req:Request, res:Response, next:NextFunction) => {
   try {
     const token:any = req.headers.authorization ?? '';
-    const itemId:string = req.params.itemId
+    const itemId:string = req.params.itemId;
 
     const surveys:Survey[] = await getAllSurveys(token);
     const info:ItemInfo = await getItemInfo(surveys, token, itemId);
@@ -47,6 +46,6 @@ pkRouter.get('/items/:itemId', async(req:Request, res:Response, next:NextFunctio
     // AxiosError is in a different format, so the needed data is collected from err.response
     res.json({message: err.response.statusText, status: err.response.status});
   }
-})
+});
 
 export default pkRouter;

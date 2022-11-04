@@ -27,6 +27,7 @@ jobs:
       - run: npm install
       - run: npm run build --if-present
       - run: npm install --global mocha
+      - run: npm run check
       - run: npm  test -- cc-backend/test
       - run: npm  test -- cc-db-service/test
       - run: npm  test -- cc-mt-service/test

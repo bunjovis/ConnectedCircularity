@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import express, {NextFunction, Request, Response} from 'express';
 import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
@@ -47,7 +46,7 @@ app.use(
 );
 
 app.use(
-  (err: Error, req: Request, res: Response, _:NextFunction) => { // eslint will throw a warning because _ is unused
+  (err: Error, req: Request, res: Response, next:NextFunction) => {
     // format error
     res.status(err.status || 500).json({
       message: err.message,

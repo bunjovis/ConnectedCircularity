@@ -8,7 +8,7 @@ export const ApiStatistic = sequelize.define(
       allowNull: false,
       primaryKey: true,
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
     },
     api: {
       allowNull: false,
@@ -18,7 +18,7 @@ export const ApiStatistic = sequelize.define(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    statistic_type: {
+    statisticType: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -27,5 +27,5 @@ export const ApiStatistic = sequelize.define(
       allowNull: false,
     },
   },
-  { freezeTableName: true, tableName: 'api_statistic' }
+  { freezeTableName: true, tableName: 'apiStatistic' }
 );

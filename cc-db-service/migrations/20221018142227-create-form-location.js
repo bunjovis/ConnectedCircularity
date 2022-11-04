@@ -4,7 +4,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(
-      'form_location',
+      'formLocation',
       {
         id: {
           allowNull: false,
@@ -12,17 +12,17 @@ module.exports = {
           type: Sequelize.UUID,
           defaultValue: Sequelize.UUID,
         },
-        configuration_id: {
+        configurationId: {
           type: Sequelize.UUID,
           allowNull: false,
           onDelete: 'CASCADE',
           references: {
-            model: 'form_configuration',
+            model: 'formConfiguration',
             key: 'id',
-            as: 'configuration_id',
+            as: 'configurationId',
           },
         },
-        zip_code: {
+        zipCode: {
           type: Sequelize.STRING,
         },
         address: {
@@ -40,10 +40,10 @@ module.exports = {
           type: Sequelize.DATE,
         },
       },
-      { freezeTablename: true, tableName: 'form_location' }
+      { freezeTablename: true, tableName: 'formLocation' }
     );
   },
   async down(queryInterface) {
-    await queryInterface.dropTable('form_location');
+    await queryInterface.dropTable('formLocation');
   },
 };

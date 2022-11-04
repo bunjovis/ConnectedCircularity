@@ -20,7 +20,7 @@ module.exports = {
         allowNull: false,
         onDelete: 'CASCADE',
         references: {
-          model: 'api_configuration',
+          model: 'apiConfiguration',
           key: 'id',
           as: 'api',
         },

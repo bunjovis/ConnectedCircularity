@@ -1,4 +1,3 @@
-/* eslint-disable  @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 import { Survey, PkItem, Item, Building, ItemInfo, ReusableMaterial } from './types';
 
@@ -16,7 +15,7 @@ function initItemInfo() {
         zipCode: '',
         area: '',
         images: ''
-    }
+    };
     return info;
 }
   
@@ -84,7 +83,7 @@ export async function getAllSurveys(token:any) {
 export async function getReusables(userSurveys:Survey[], token:any) {
     const items:Item[] = [];
     for (let i = 0; i < userSurveys.length; i++) {
-        let fetchedItems:PkItem[] = []
+        let fetchedItems:PkItem[] = [];
         try {
             // Collect PK API's items that belong to the survey
             const response = axios.get<PkItem[]>(`https://api.purkukartoitus.fi/v1/surveys/${userSurveys[i].id}/reusables`, 
@@ -116,7 +115,7 @@ export async function getReusables(userSurveys:Survey[], token:any) {
                 componentName: fetchedItems[j].componentName,
                 surveyId: userSurveys[i].id,
                 streetAddress: fetchedBuildings[0].address.streetAddress
-            }
+            };
             items.push(item);
             }
         } catch (err) {
@@ -138,15 +137,10 @@ export async function getItemInfo(userSurveys:Survey[], token:any, itemId:string
     let info:ItemInfo = initItemInfo();
     for (let i = 0; i < userSurveys.length; i++) {
         let pkItem:PkItem;
-
         // Get PK API's reusable item
         try {
             const response = axios.get<PkItem>(`https://api.purkukartoitus.fi/v1/surveys/${userSurveys[i].id}/reusables/${itemId}`, 
-            {
-                headers: {
-                    'Authorization': token
-                }
-            });
+            { headers: { 'Authorization': token }});
             pkItem = (await response).data;
         } catch(err) {
             if (i !== userSurveys.length - 1) continue;
@@ -157,13 +151,8 @@ export async function getItemInfo(userSurveys:Survey[], token:any, itemId:string
         // Get PK API's building information
         try {
             const responseBuilding = axios.get<Building[]>(`https://api.purkukartoitus.fi/v1/surveys/${userSurveys[i].id}/buildings`, 
-            {
-                headers: {
-                    'Authorization': token
-                }
-            });
+            { headers: { 'Authorization': token }});
             fetchedBuilding = (await responseBuilding).data[0];
-
         } catch(err) {
             if (i !== userSurveys.length - 1) continue;
             else throw err;
@@ -172,11 +161,7 @@ export async function getItemInfo(userSurveys:Survey[], token:any, itemId:string
         // Get PK API's reusable material by its id
         try {
             const responseMaterial = axios.get<ReusableMaterial>(`https://api.purkukartoitus.fi/v1/reusableMaterials/${pkItem.reusableMaterialId}`, 
-            {
-                headers: {
-                    'Authorization': token
-                }
-            });
+            { headers: { 'Authorization': token }});
             const material = (await responseMaterial).data;
 
             // Add data to ItemInfo-object

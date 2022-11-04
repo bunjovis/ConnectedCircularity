@@ -10,34 +10,34 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUID,
       },
-      item_id: {
+      itemId: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
-      user_id: {
+      userId: {
         type: Sequelize.UUID,
         allowNull: false,
         onDelete: 'CASCADE',
         references: {
           model: 'user',
           key: 'id',
-          as: 'user_id',
+          as: 'userId',
         },
       },
       status: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      adverd_id: {
+      adverdId: {
         type: Sequelize.UUID,
         allowNull: true,
       },
-      transfer_time: {
+      transferTime: {
         type: Sequelize.DATE,
         allowNull: true,
       },
-      collection_id: {
+      collectionId: {
         type: Sequelize.STRING,
         allowNull: true,
       },

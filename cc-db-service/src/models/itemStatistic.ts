@@ -8,9 +8,9 @@ export const ItemStatistic = sequelize.define(
       allowNull: false,
       primaryKey: true,
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
     },
-    item_id: {
+    itemId: {
       allowNull: false,
       type: DataTypes.UUID,
       references: {
@@ -30,27 +30,27 @@ export const ItemStatistic = sequelize.define(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    material_description: {
+    materialDescription: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    material_amount: {
+    materialAmount: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    amount_unit: {
+    amountUnit: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    amount_info: {
+    amountInfo: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    location_name: {
+    locationName: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    zip_code: {
+    zipCode: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
@@ -58,14 +58,14 @@ export const ItemStatistic = sequelize.define(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    contact_role: {
+    contactRole: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    contact_phone: {
+    contactPhone: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
   },
-  { freezeTableName: true, tableName: 'item_statistic' }
+  { freezeTableName: true, tableName: 'itemStatistic' }
 );

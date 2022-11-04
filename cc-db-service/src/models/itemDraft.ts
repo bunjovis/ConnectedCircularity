@@ -8,9 +8,9 @@ export const ItemDraft = sequelize.define(
       allowNull: false,
       primaryKey: true,
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
     },
-    item_id: {
+    itemId: {
       allowNull: false,
       type: DataTypes.UUID,
       unique: true,
@@ -31,51 +31,51 @@ export const ItemDraft = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    material_description: {
+    materialDescription: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    material_amount: {
+    materialAmount: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    material_unit: {
+    materialUnit: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    material_info: {
+    materialInfo: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    location_name: {
+    locationName: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    location_address: {
+    locationAddress: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    location_zip_code: {
+    locationZipCode: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    location_municipality: {
+    locationMunicipality: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    expiry_date: {
+    expiryDate: {
       type: DataTypes.DATE,
       allowNull: true,
     },
-    contact_name: {
+    contactName: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    contact_phone: {
+    contactPhone: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    contact_email: {
+    contactEmail: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -88,5 +88,5 @@ export const ItemDraft = sequelize.define(
       type: DataTypes.DATE,
     },
   },
-  { freezeTableName: true, tableName: 'item_draft' }
+  { freezeTableName: true, tableName: 'itemDraft' }
 );

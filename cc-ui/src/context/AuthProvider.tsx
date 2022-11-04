@@ -1,8 +1,10 @@
 /* eslint-disable camelcase */
-import { createContext, useContext, useMemo, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+// TODO:
+// auth states as bools, save tokens to sessions storage
 interface AuthContextInterface {
   user?: string;
   loading: boolean;
@@ -29,11 +31,22 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    console.log('onload');
+    const token = sessionStorage.getItem('spToken');
+    console.log(token);
+    if (token) {
+      setUser('test');
+    }
+  }, []);
+
   const login = async (data: any) => {
     setLoading(true);
+    setError(false);
     console.log('login');
     console.log(data);
     console.log('...........');
+    sessionStorage.setItem('spToken', 'serasdfa2309trja');
     try {
       const response = await axios.post(
         data.authUrl,
@@ -61,10 +74,13 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
     }
   };
 
-  const mtLogin = () => {};
+  const mtLogin = () => {
+    sessionStorage.setItem('mtToken', 'aqwdsöfawoipfj');
+  };
 
   const logout = () => {
     console.log('logout');
+    sessionStorage.clear();
     setUser('');
     setToken('');
     setMtToken('');

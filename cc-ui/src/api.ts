@@ -1,3 +1,6 @@
+// TODO:
+// construct headers
+// read tokens from session storage
 const serviceProviders = [
   {
     id: 1,
@@ -9,6 +12,10 @@ const serviceProviders = [
 
 export const getServiceProviders = () => {
   try {
+    const token = sessionStorage.getItem('mtToken');
+    console.log(token);
+    const spToken = sessionStorage.getItem('spToken');
+    console.log(spToken);
     return { status: 200, providers: serviceProviders };
   } catch (err) {
     console.log(err);

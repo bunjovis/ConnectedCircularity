@@ -10,16 +10,16 @@ const Header: React.FC<{}> = () => {
   const { user, logout, mtLogin } = useAuth();
   return (
     <header className='header-wrapper'>
-      <Flex alignItems='center' height='50px'>
-        <h1>Connected Circularity</h1>
+      <Flex alignItems='center' height='50px' p='5'>
+        <Box>CC</Box>
         <Spacer />
         {!user && <Link to='/'>Kirjaudu</Link>}
-        {!user && (
+        {user && (
           <>
-            <Box onClick={() => logout()}>
+            <Box onClick={() => mtLogin()}>
               <Button>MT Login</Button>
             </Box>
-            <Box onClick={() => mtLogin()}>
+            <Box onClick={() => logout()}>
               <Button>Logout</Button>
             </Box>
           </>

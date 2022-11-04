@@ -26,7 +26,7 @@ const App: React.FC<{}> = () => {
           path='/new_item/:itemId'
           element={
             <ProtectedRoute>
-              <TransferForm />{' '}
+              <TransferForm />
             </ProtectedRoute>
           }
         />

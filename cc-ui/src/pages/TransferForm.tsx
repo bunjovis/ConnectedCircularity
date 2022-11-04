@@ -144,7 +144,12 @@ const TransferForm: React.FC<{}> = () => {
   };
 
   return (
-    <Flex flexDirection='column' backgroundColor='#D1D1D1' align='center'>
+    <Flex
+      flexDirection='column'
+      backgroundColor='#D1D1D1'
+      align='center'
+      minW={'900px'}
+    >
       <Box backgroundColor='#F6F6F6' maxWidth='80%' minWidth='400px' p='5'>
         <Heading textAlign='left' as='h2' p='2'>
           Tee ilmoitus Materiaalitoriin

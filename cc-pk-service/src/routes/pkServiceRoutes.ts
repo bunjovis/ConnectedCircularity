@@ -27,7 +27,7 @@ pkRouter.get('/users/:userId/items', async (req:Request, res:Response) => {
     };
     res.json(err);
   }
-})
+});
 
 // Route which returns information about a specific item
 // http://localhost:5123/v1/items/:itemId
@@ -42,6 +42,6 @@ pkRouter.get('/items/:itemId', async(req:Request, res:Response) => {
     };
     res.json(err);
   }
-})
+});
 
 export default pkRouter;

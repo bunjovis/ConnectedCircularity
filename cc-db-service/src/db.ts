@@ -11,7 +11,7 @@ export const sequelize = new Sequelize(
     host: process.env.DB_HOST || '127.0.0.1',
     port: parseInt(process.env.DB_PORT ? process.env.DB_PORT : '') || 5432,
     dialect: 'postgres',
-    logging: process.env.DB_SCHEMA == 'cc_dev' ? console.log : false,
+    logging: process.env.DB_SCHEMA === 'cc_dev' ? console.log : false,
     database: process.env.DB_SCHEMA || 'cc_dev',
   }
 );

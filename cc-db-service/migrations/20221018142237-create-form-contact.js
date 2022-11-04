@@ -4,7 +4,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(
-      'form_contact',
+      'formContact',
       {
         id: {
           allowNull: false,
@@ -12,14 +12,14 @@ module.exports = {
           type: Sequelize.UUID,
           defaultValue: Sequelize.UUID,
         },
-        configuration_id: {
+        configurationId: {
           type: Sequelize.UUID,
           allowNull: false,
           onDelete: 'CASCADE',
           references: {
-            model: 'form_configuration',
+            model: 'formConfiguration',
             key: 'id',
-            as: 'configuration_id',
+            as: 'configurationId',
           },
         },
         name: {
@@ -40,10 +40,10 @@ module.exports = {
           type: Sequelize.DATE,
         },
       },
-      { freezeTablename: true, tableName: 'form_contact' }
+      { freezeTablename: true, tableName: 'formContact' }
     );
   },
   async down(queryInterface) {
-    await queryInterface.dropTable('form_contact');
+    await queryInterface.dropTable('formContact');
   },
 };

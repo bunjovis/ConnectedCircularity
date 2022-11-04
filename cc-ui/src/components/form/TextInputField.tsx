@@ -1,6 +1,6 @@
 import { FormControl, FormLabel, Input, HStack } from '@chakra-ui/react';
 import { WarningIcon } from '@chakra-ui/icons';
-import { Field, ErrorMessage } from 'formik';
+import { Field } from 'formik';
 
 export const TextInputField = ({
   label,
@@ -37,12 +37,8 @@ export const TextInputField = ({
               : ''
           }
         />
-        {isRequired && (
-          <ErrorMessage
-            name='title'
-            render={() => <WarningIcon color='#EE0004' />}
-          />
-        )}
+
+        {isRequired && <WarningIcon color='#EE0004' />}
       </HStack>
     </FormControl>
   );

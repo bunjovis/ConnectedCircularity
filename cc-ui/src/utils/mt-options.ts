@@ -1,4 +1,6 @@
+// MT options copied straight from the MT
 // TODO: format?
+
 export const materialOptions = [
   {
     id: 'puu',

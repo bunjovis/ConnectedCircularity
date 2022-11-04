@@ -1,15 +1,22 @@
-import { FormControl, FormLabel, Input, HStack } from '@chakra-ui/react';
+import {
+  FormControl,
+  FormLabel,
+  Input,
+  HStack,
+  Select,
+} from '@chakra-ui/react';
 import { WarningIcon } from '@chakra-ui/icons';
 
 import { Field } from 'formik';
 
-export const FieldWithOriginalComparison = ({
+export const SelectWithOriginalComparison = ({
   label,
   valueKey,
   ogValueKey,
   isRequired,
   touched,
   errors,
+  options,
 }: {
   label: string;
   valueKey: string;
@@ -17,6 +24,7 @@ export const FieldWithOriginalComparison = ({
   isRequired: boolean;
   touched?: boolean;
   errors?: string;
+  options: any[];
 }) => {
   return (
     <HStack width='100%'>
@@ -24,11 +32,12 @@ export const FieldWithOriginalComparison = ({
         <FormLabel>{label}</FormLabel>
         <HStack>
           <Field
-            as={Input}
+            as={Select}
             id={valueKey}
             name={valueKey}
             backgroundColor='#fff'
             width='90%'
+            placeholder='Valitse'
             validate={
               isRequired
                 ? (value: string) => {
@@ -40,7 +49,13 @@ export const FieldWithOriginalComparison = ({
                   }
                 : ''
             }
-          />
+          >
+            {options.map((op) => (
+              <option key={op.id} value={op.id}>
+                {op.id}
+              </option>
+            ))}
+          </Field>
           {isRequired && <WarningIcon color='#EE0004' />}
         </HStack>
       </FormControl>

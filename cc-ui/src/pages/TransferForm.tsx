@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Formik, Field } from 'formik';
+import type { ReactElement } from 'react';
+import { Form, Formik, Field } from 'formik';
 import {
   Box,
   Button,
   Flex,
   FormControl,
   FormLabel,
-  Input,
   VStack,
   Heading,
   HStack,
@@ -20,18 +20,13 @@ import {
 
 import { WarningIcon } from '@chakra-ui/icons';
 
-// TODO: move Datepicker to another file
-import DatePicker, { registerLocale } from 'react-datepicker';
-import fi from 'date-fns/locale/fi';
-registerLocale('fi', fi);
-import 'react-datepicker/dist/react-datepicker.css';
-import './Datepicker.css';
-
 import { useParams } from 'react-router-dom';
 
 import { FieldWithOriginalComparison } from '../components/form/FieldWithOriginalComparison';
 import { TextInputField } from '../components/form/TextInputField';
 import { ConfigurationForm } from '../components/form/ConfigurationForm';
+import { SelectWithOriginalComparison } from '../components/form/SelectWithOriginalComparison';
+import { Datepicker } from '../components/form/Datepicker';
 
 import {
   unitOptions,
@@ -64,14 +59,13 @@ const initValues: Advert = {
   showOrganizationForRegistered: true,
 };
 
-function TransferForm() {
+const TransferForm: React.FC<{}> = () => {
   const { itemId } = useParams();
 
   const [dateError, setDateError] = useState(false);
   // TODO: check if user has authenticated to MT
   // temp MT auth state
   const [mtAuth, setMTAuth] = useState(false);
-  // TODO: show required fields before validations
 
   /*
   maybe used later
@@ -149,12 +143,6 @@ function TransferForm() {
     );
   };
 
-  const setMaxDate = () => {
-    const maxDate = new Date();
-    maxDate.setFullYear(maxDate.getFullYear() + 2);
-    return maxDate;
-  };
-
   return (
     <Flex flexDirection='column' backgroundColor='#D1D1D1' align='center'>
       <Box backgroundColor='#F6F6F6' maxWidth='80%' minWidth='400px' p='5'>
@@ -166,7 +154,7 @@ function TransferForm() {
         </Heading>
         <Formik
           initialValues={initValues}
-          onSubmit={(values) => {
+          onSubmit={(values: Advert) => {
             console.log('onsubmit');
             if (!values.expiryDate) {
               setDateError(true);
@@ -177,7 +165,7 @@ function TransferForm() {
           }}
         >
           {({ handleSubmit, errors, touched, values, setFieldValue }) => (
-            <form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
               <VStack
                 spacing={4}
                 align='flex-start'
@@ -192,56 +180,47 @@ function TransferForm() {
                   touched: touched.title,
                   errors: errors.title,
                 })}
-                <FormControl m='2'>
+                <FormControl
+                  m='2'
+                  isInvalid={!!errors.industry && touched.industry}
+                >
                   <FormLabel>Toimiala</FormLabel>
-                  <Field
-                    as={Select}
-                    id='industry'
-                    name='industry'
-                    type='text'
-                    backgroundColor='#fff'
-                    width='100%'
-                  >
-                    {industryOptions.map((op) => (
-                      <option key={op.id} value={op.id}>
-                        {op.id}
-                      </option>
-                    ))}
-                  </Field>
-                </FormControl>
-                <HStack width='100%'>
-                  <FormControl>
-                    <FormLabel>Materiaali</FormLabel>
+                  <HStack>
                     <Field
                       as={Select}
-                      id='material'
-                      name='material'
+                      id='industry'
+                      name='industry'
+                      type='text'
                       backgroundColor='#fff'
                       width='100%'
                       validate={(value: string) => {
-                        console.log(value);
+                        let error;
+                        if (value.length === 0) {
+                          error = 'value cannot be empty';
+                        }
+                        return error;
                       }}
                     >
-                      {materialOptions.map((op) => (
-                        <option key={op.id} value={op.id}>
-                          {op.id}
-                        </option>
-                      ))}
+                      {industryOptions.map(
+                        (op: any): ReactElement => (
+                          <option key={op.id} value={op.id}>
+                            {op.id}
+                          </option>
+                        )
+                      )}
                     </Field>
-                  </FormControl>
-                  <FormControl m='2'>
-                    <FormLabel>Annettu arvo</FormLabel>
-                    <Field
-                      as={Input}
-                      id='ogMaterial'
-                      name='ogMaterial'
-                      backgroundColor='#fff'
-                      width='100%'
-                      disabled={true}
-                      value='alkuperäinen arvo'
-                    />
-                  </FormControl>
-                </HStack>
+                    <WarningIcon color='#EE0004' />
+                  </HStack>
+                </FormControl>
+                {SelectWithOriginalComparison({
+                  label: 'Materiaali',
+                  valueKey: 'material',
+                  ogValueKey: 'ogMaterial',
+                  isRequired: true,
+                  touched: touched.material,
+                  errors: errors.material,
+                  options: materialOptions,
+                })}
                 <FormControl>
                   <FormLabel htmlFor='materialDescription'>
                     Materiaalin kuvaus
@@ -259,41 +238,19 @@ function TransferForm() {
                   label: 'Arvio materiaalin määrästä',
                   valueKey: 'amount',
                   ogValueKey: 'ogAmount',
-                  inputType: 'input',
+                  isRequired: true,
+                  touched: touched.amount,
+                  errors: errors.amount,
                 })}
-                <HStack width='100%'>
-                  <FormControl>
-                    <FormLabel>Määrän yksikkö</FormLabel>
-                    <Field
-                      as={Select}
-                      id='amountUnit'
-                      name='amountUnit'
-                      backgroundColor='#fff'
-                      width='100%'
-                      validate={(value: string) => {
-                        console.log(value);
-                      }}
-                    >
-                      {unitOptions.map((op) => (
-                        <option key={op.id} value={op.id}>
-                          {op.id}
-                        </option>
-                      ))}
-                    </Field>
-                  </FormControl>
-                  <FormControl m='2'>
-                    <FormLabel>Annettu arvo</FormLabel>
-                    <Field
-                      as={Input}
-                      id='ogAmountUnit'
-                      name='ogAmountUnit'
-                      backgroundColor='#fff'
-                      width='100%'
-                      disabled={true}
-                      value='alkuperäinen arvo'
-                    />
-                  </FormControl>
-                </HStack>
+                {SelectWithOriginalComparison({
+                  label: 'Määrän yksikkö',
+                  valueKey: 'amountUnit',
+                  ogValueKey: 'ogAmountUnit',
+                  isRequired: true,
+                  touched: touched.amountUnit,
+                  errors: errors.amountUnit,
+                  options: unitOptions,
+                })}
                 <FormControl>
                   <FormLabel htmlFor='amountInformation'>
                     Lisätietoja määrästä
@@ -353,13 +310,13 @@ function TransferForm() {
                   label: 'Katuosoite',
                   valueKey: 'streetAddress',
                   ogValueKey: 'ogAddress',
-                  inputType: 'input',
+                  isRequired: false,
                 })}
                 {FieldWithOriginalComparison({
                   label: 'Postinumero',
                   valueKey: 'zipCode',
                   ogValueKey: 'ogZipcode',
-                  inputType: 'input',
+                  isRequired: false,
                 })}
                 {TextInputField({
                   label: 'Kunta',
@@ -368,25 +325,12 @@ function TransferForm() {
                   touched: touched.municipality,
                   errors: errors.municipality,
                 })}
-                <FormControl>
-                  <FormLabel htmlFor='expiryDate'>
-                    Ilmoituksen voimassaoloaika
-                    {dateError && <WarningIcon color='#EE0004' />}
-                  </FormLabel>
-                  <DatePicker
-                    selected={values.expiryDate}
-                    locale={'fi'}
-                    dateFormat='dd.MM.yyyy'
-                    minDate={new Date()}
-                    maxDate={setMaxDate()}
-                    name='expiryDate'
-                    className={dateError ? 'date-error' : 'date-input'}
-                    onChange={(date: Date) => {
-                      setFieldValue('expiryDate', date);
-                      setDateError(false);
-                    }}
-                  />
-                </FormControl>
+                {Datepicker({
+                  label: 'Ilmoituksen voimassaoloaika',
+                  value: values.expiryDate,
+                  name: 'expiryDate',
+                  valueSetter: setFieldValue,
+                })}
                 {/**TODO: liitteet ja kuvat */}
                 <Heading as='h5' size='sm'>
                   Yhteyshenkilön tiedot
@@ -451,13 +395,13 @@ function TransferForm() {
                 </FormControl>
                 {renderFormButtons()}
               </VStack>
-            </form>
+            </Form>
           )}
         </Formik>
         <ConfigurationForm />
       </Box>
     </Flex>
   );
-}
+};
 
 export default TransferForm;

@@ -17,7 +17,7 @@ export const Datepicker = ({
   value?: Date;
   label: string;
   name: string;
-  valueSetter: (name: string, value: Date) => void;
+  valueSetter: (fieldName: string, newValue: Date) => void;
 }) => {
   const [dateError, setDateError] = useState(false);
   const setMaxDate = () => {

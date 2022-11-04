@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
-import React from 'react';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthProvider';
+import { getServiceProviders } from '../api';
 
 import {
   Heading,
@@ -16,57 +16,43 @@ import {
 
 // eslint-disable-next-line max-lines-per-function
 const Login: React.FC<{}> = () => {
-  const navigate = useNavigate();
+  const { user, login, error, loading } = useAuth();
 
   //setters for authentication
+  const [serviceProviders, setServiceProviders] = useState<[]>([]);
   const [authUrl, setAuthUrl] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  //setter for error message visibility
-  const [wrongCredState, setWrongCredState] = useState(false);
+  const loadServiceProviders = async () => {
+    const data: any = await getServiceProviders();
+    if (data.status === 200) {
+      setServiceProviders(data.providers);
+    }
+  };
 
-  //list of all service providers and authentication end points.
-  const serviceProviders = [
-    {
-      id: 1,
-      displayValue: 'Purkukartoitus',
-      authEndpoint:
-        'https://auth.purkukartoitus.fi/auth/realms/rapurc/protocol/openid-connect/token',
-    },
-  ];
+  useEffect(() => {
+    loadServiceProviders();
+  }, []);
 
-  //Authentication to PK
   async function handleSubmit(event: { preventDefault: () => void }) {
     event.preventDefault();
-    setWrongCredState(false);
 
-    try {
-      const response = axios.post(
-        'https://auth.purkukartoitus.fi/auth/realms/rapurc/protocol/openid-connect/token',
-        new URLSearchParams({
-          client_id: 'management',
-          grant_type: 'password',
-          username: username,
-          password: password,
-        })
-      );
-      console.log(response);
-      if ((await response).status === 200) {
-        setWrongCredState(false);
-        navigate('/home');
-      } else {
-        throw new Error('login failed');
-      }
-    } catch (err) {
-      setWrongCredState(true);
-    }
+    const loginData = {
+      username,
+      password,
+      authUrl,
+    };
+    await login(loginData);
   }
 
+  if (user) {
+    return <Navigate to='/home' />;
+  }
   return (
     <Flex
       flexDirection='column'
-      width='100wh'
+      width='100%'
       height='100vh'
       backgroundColor='#E5E5E5'
       justifyContent='center'
@@ -80,8 +66,9 @@ const Login: React.FC<{}> = () => {
           <Select
             borderColor='#EE0004'
             onChange={(e) => setAuthUrl(e.target.value)}
+            placeholder='Palveluntarjoaja'
           >
-            {serviceProviders.map((provider) => (
+            {serviceProviders.map((provider: any) => (
               <option key={provider.id} value={provider.authEndpoint}>
                 {provider.displayValue}
               </option>
@@ -104,11 +91,17 @@ const Login: React.FC<{}> = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <FormLabel id='wrongCred' color='#EE0004' hidden={!wrongCredState}>
-            Virheellinen käyttäjätunnus tai salasana.
-          </FormLabel>
-
-          <Button type='submit' textTransform='uppercase' colorScheme='blue'>
+          {error && (
+            <FormLabel id='wrongCred' color='#EE0004'>
+              Virheellinen käyttäjätunnus tai salasana.
+            </FormLabel>
+          )}
+          <Button
+            type='submit'
+            textTransform='uppercase'
+            colorScheme='blue'
+            disabled={loading}
+          >
             Kirjaudu
           </Button>
         </Stack>

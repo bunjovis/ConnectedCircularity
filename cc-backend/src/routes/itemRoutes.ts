@@ -14,8 +14,8 @@ itemRouter.get(
   '/v1/items/:userId',
   async (request: Request, response: Response, next: NextFunction) => {
     try {
-      let wholeToken: any = request.headers.authorization ?? '';
-      let token = getToken(wholeToken);
+      const wholeToken: any = request.headers.authorization ?? '';
+      const token = getToken(wholeToken);
       const userId: string = request.params.userId;
       const itemsPK = await getItemsPK(token, userId);
       //const itemsDB = await getItemsDB(request.params.userId);
@@ -35,8 +35,8 @@ itemRouter.get(
   '/v1/itemInfo/:itemId',
   async (request: Request, response: Response) => {
     try {
-      let wholeToken: any = request.headers.authorization ?? '';
-      let token = getToken(wholeToken);
+      const wholeToken: any = request.headers.authorization ?? '';
+      const token = getToken(wholeToken);
       const itemId: string = request.params.itemId;
       const item: ItemInfo = await getItemInfo(token, itemId);
       response.json(item);

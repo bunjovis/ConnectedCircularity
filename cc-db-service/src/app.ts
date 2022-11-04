@@ -5,6 +5,10 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import * as OpenApiValidator from 'express-openapi-validator';
 
+import { userRoutes } from './routes/userRoutes';
+import { apiRoutes } from './routes/apiRoutes';
+import { itemRoutes } from './routes/itemRoutes';
+
 import { HttpResponseError } from './types';
 
 dotenv.config();
@@ -29,8 +33,9 @@ app.use(
 
 // workaround for the validator
 app.get('/', (_: Request, response: Response) => {
-  response.send('CC Backend service root');
+  response.send('CC DB service root');
 });
+
 
 //validator middleware
 app.use(
@@ -40,14 +45,19 @@ app.use(
     validateResponses: false,
   })
 );
-
+// routes for database
+app.use('/v1/', userRoutes);
+app.use('/v1/', apiRoutes);
+app.use('/v1/', itemRoutes);
 app.use(
-  (err: HttpResponseError, _: Request, res: Response, __: NextFunction) => {
+  (err: HttpResponseError, _: Request, res: Response, next: NextFunction) => {
     // format error
+    console.log(err);
     res.status(err.status || 500).json({
       message: err.message,
-      error: err.error[0],
+      error: err.error,
     });
+    next();
   }
 );
 

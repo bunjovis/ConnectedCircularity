@@ -14,6 +14,7 @@ interface AuthContextInterface {
   serviceProviderToken?: string;
   mtToken?: string;
   error?: boolean;
+  mtLoading: boolean;
 }
 
 const AuthContext = createContext({} as AuthContextInterface);
@@ -24,11 +25,12 @@ interface Props {
 
 // eslint-disable-next-line max-lines-per-function
 export const AuthProvider: React.FC<Props> = ({ children }) => {
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState('rvsape');
   const [serviceProviderToken, setToken] = useState('');
   const [mtToken, setMtToken] = useState('');
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [mtLoading, setMtLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -97,8 +99,9 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
       login,
       logout,
       mtLogin,
+      mtLoading,
     }),
-    [user, loading, error]
+    [user, loading, error, mtLoading]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

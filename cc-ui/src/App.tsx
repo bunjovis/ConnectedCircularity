@@ -8,7 +8,11 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import TransferForm from './pages/TransferForm';
 
+import { useAuth } from './context/AuthProvider';
+import MTLogin from './components/MTLogin/MTLogin';
+
 const App: React.FC<{}> = () => {
+  const { loading } = useAuth();
   return (
     <div className='App'>
       <Header></Header>
@@ -31,6 +35,7 @@ const App: React.FC<{}> = () => {
           }
         />
       </Routes>
+      {true && <MTLogin />}
     </div>
   );
 };

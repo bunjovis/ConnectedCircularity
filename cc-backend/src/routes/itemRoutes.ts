@@ -1,5 +1,11 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { getItemsPK, getItemsDB, getItemInfo, postConfigToDB } from '../utils';
+import {
+  getItemsPK,
+  getItemsDB,
+  getItemInfo,
+  postConfigToDB,
+  getToken
+} from '../utils';
 import { Error, ItemInfo, Item } from '../types';
 
 const itemRouter = Router();
@@ -7,11 +13,13 @@ const itemRouter = Router();
 itemRouter.get(
   '/v1/items/:userId',
   async (request: Request, response: Response, next: NextFunction) => {
-    request.header('Token');
+    //request.header('Authorization');
+    //console.log(request.headers.authorization);
     try {
-      const token: any = request.headers.token ?? '';
+      let wholeToken: any = request.headers.authorization ?? '';
+      let token = getToken(wholeToken);
       const userId: string = request.params.userId;
-      console.log(token);
+      console.log('Token: ' + token);
 
       const itemsPK = await getItemsPK(token, userId);
       //const itemsDB = await getItemsDB(request.params.userId);
@@ -31,10 +39,10 @@ itemRouter.get(
   '/v1/itemInfo/:itemId',
   async (request: Request, response: Response) => {
     try {
-      const item = await getItemInfo(
-        request.headers.token,
-        request.params.itemId
-      );
+      let wholeToken: any = request.headers.authorization ?? '';
+      let token = getToken(wholeToken);
+      const itemId: string = request.params.itemId;
+      const item = await getItemInfo(token, itemId);
       response.json(item);
     } catch (error: any) {
       response.json({

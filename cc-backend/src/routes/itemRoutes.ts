@@ -17,7 +17,6 @@ itemRouter.get(
       let wholeToken: any = request.headers.authorization ?? '';
       let token = getToken(wholeToken);
       const userId: string = request.params.userId;
-
       const itemsPK = await getItemsPK(token, userId);
       //const itemsDB = await getItemsDB(request.params.userId);
       response.json(itemsPK);

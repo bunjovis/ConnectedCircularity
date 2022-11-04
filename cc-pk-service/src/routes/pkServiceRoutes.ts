@@ -1,6 +1,6 @@
 // PK service route module
 import { Router, Request, Response } from "express";
-import {getToken, getReusables, getSurveys, getItemInfo, getId, userId} from "../handleData";
+import {getReusables, getSurveys, getItemInfo, userId} from "../handleData";
 import { Error, ItemInfo, Survey, Item} from '../types';
 
 // Express router for accessing the defined paths
@@ -27,14 +27,14 @@ pkRouter.get('/users/:userId/items', async (req:Request, res:Response) => {
     };
     res.json(err);
   }
-})
+});
 
 // Route which returns information about a specific item
 // http://localhost:5123/v1/items/:itemId
 pkRouter.get('/items/:itemId', async(req:Request, res:Response) => {
   const userSurveys:Survey[] = await getSurveys();
   const info:ItemInfo = await getItemInfo(userSurveys, req.params.itemId);
-  if (req.params.itemId === info.id) res.json(info);
+  if (info.id !== '') res.json(info);
   else {
     const err:Error = {
       message:"not found",
@@ -42,6 +42,6 @@ pkRouter.get('/items/:itemId', async(req:Request, res:Response) => {
     };
     res.json(err);
   }
-})
+});
 
 export default pkRouter;

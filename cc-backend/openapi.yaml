@@ -1,12 +1,29 @@
+#npx swagger-typescript-api -p ./openapi.yaml -o ./api -n api.ts
+
 openapi: 3.0.3
 info:
   version: 0.1.0
   title: CC-Backend API-spec
 
-security:
-  - bearerAuth: []
+#security:
+#  - bearerAuth: []
 
 paths:
+  /:
+    get:
+      operationId: root
+      summary: Empty root for ui
+      description: Nothing here yet
+      tags:
+        - System
+      responses:
+        "200":
+          description: Seems to work
+          content:
+            text/plain:
+              schema:
+                type: string
+
   /v1/system/ping:
     get:
       operationId: ping
@@ -70,6 +87,8 @@ paths:
 
   /v1/items/{userId}:
     get:
+      #security:
+      # - bearerAuth: []
       operationId: getItemsFromPK
       summary: Get all items from PK and CC-db
       description: Gets all items via CC-PK-service and CC-db-service
@@ -89,13 +108,21 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Items"
+                type: array
+                items:
+                  $ref: "#/components/schemas/Item"
         "400":
           description: Invalid request was sent to the server
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+        "401":
+          description: Access token missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"  
         "403":
           description: Attempted to make a call with unauthorized client
           content:
@@ -115,8 +142,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
   
-  /v1/items/{itemId}:
+  /v1/itemInfo/{itemId}:
     get:
+      #security:
+      # - bearerAuth: []
       operationId: getItemInfoForm
       summary: Gets item info for form from PK and CC-db
       description: Gets item info for Form from PK via CC-PK-service and configs and drafts from CC-db-service
@@ -368,9 +397,32 @@ components:
       
     AdvertInfo:
       type: object
-
+             
     Config:
       type: object
+      required:
+        - userId
+        - collectionId
+      properties:
+        userId:
+          type: string
+          format: uuid
+        collectionId:
+          type: string
+        expiryDate:
+          type: string
+        contactName:
+          type: string
+        contactAddress:
+          type: string
+        contactEmail:
+          type: string
+        locationAddress:
+          type: string
+        locationZipCode:
+          type: string
+        locationMunicipality:
+          type: string
 
     ItemInfo:
       type: object
@@ -381,10 +433,31 @@ components:
           type: string
           format: uuid
 
-    Items:
-      type: object
-      required:
-        - surveyId
+    Item:
+       type: object
+       description: Reusable item object
+       required:
+         - reusableId
+         - componentName
+         - surveyId
+         - streetAddress
+       properties:
+         reusableId:
+           type: string
+           format: uuid
+           description: ID of the reusable item
+           readOnly: true
+         componentName:
+           type: string
+           description: Name of the building component
+         surveyId:
+           type: string
+           format: uuid
+           description: ID of the survey where the item belongs to
+           readOnly: true
+         streetAddress:
+           type: string
+           description: Street address of the building
 
     UserInfo:      
       type: object

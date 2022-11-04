@@ -33,6 +33,8 @@ export interface ItemInfo {
     }
 }
 
+// TYPES USED TO TYPECHECK DATA, BUT AREN'T IN OPENAPI.YAML
+
 // Object that is used to typecheck collected survey data
 export interface Survey {
     id: string,

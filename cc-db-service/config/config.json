@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "root",
+    "database": "cc_dev",
+    "host": "cc-db",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "cc_test",
+    "host": "cc-db",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "cc_prod",
+    "host": "cc-db",
+    "dialect": "postgres"
+  }
+}

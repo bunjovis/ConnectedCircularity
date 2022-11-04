@@ -15,7 +15,7 @@ function initItemInfo() {
         zipCode: '',
         area: '',
         images: ''
-    }
+    };
     return info;
 }
   
@@ -83,7 +83,7 @@ export async function getAllSurveys(token:any) {
 export async function getReusables(userSurveys:Survey[], token:any) {
     const items:Item[] = [];
     for (let i = 0; i < userSurveys.length; i++) {
-        let fetchedItems:PkItem[] = []
+        let fetchedItems:PkItem[] = [];
         try {
             // Collect PK API's items that belong to the survey
             const response = axios.get<PkItem[]>(`https://api.purkukartoitus.fi/v1/surveys/${userSurveys[i].id}/reusables`, 

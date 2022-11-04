@@ -35,7 +35,7 @@ pkRouter.get('/users/:userId/items', async (req:Request, res:Response, next:Next
 pkRouter.get('/items/:itemId', async(req:Request, res:Response, next:NextFunction) => {
   try {
     const token:any = req.headers.authorization ?? '';
-    const itemId:string = req.params.itemId
+    const itemId:string = req.params.itemId;
 
     const surveys:Survey[] = await getAllSurveys(token);
     const info:ItemInfo = await getItemInfo(surveys, token, itemId);

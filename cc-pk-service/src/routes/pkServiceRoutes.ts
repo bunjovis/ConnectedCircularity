@@ -16,9 +16,8 @@ pkRouter.get('/system/ping', (_:Request, res:Response) => {
 // Route which returns user's items
 // http://localhost:5123/v1/users/:usedId/items
 pkRouter.get('/users/:userId/items', async (req:Request, res:Response, next:NextFunction) => {
-  req.header('Token');
   try {
-    const token:any = req.headers.token ?? '';
+    const token:any = req.headers.authorization ?? '';
     const userId:string = req.params.userId;
 
     const userSurveys:Survey[] = await getUserSurveys(token, userId);
@@ -35,9 +34,8 @@ pkRouter.get('/users/:userId/items', async (req:Request, res:Response, next:Next
 // Route which returns information about a specific item
 // http://localhost:5123/v1/items/:itemId
 pkRouter.get('/items/:itemId', async(req:Request, res:Response, next:NextFunction) => {
-  req.header('Token');
   try {
-    const token:any = req.headers.token ?? '';
+    const token:any = req.headers.authorization ?? '';
     const itemId:string = req.params.itemId
 
     const surveys:Survey[] = await getAllSurveys(token);

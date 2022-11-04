@@ -33,7 +33,7 @@ export async function getUserSurveys(token:any, userId:string) {
                 'maxResults': '2147483647'
             },
             headers: {
-                'Authorization': 'Bearer ' + token
+                'Authorization': token
             }
         });
 
@@ -62,7 +62,7 @@ export async function getAllSurveys(token:any) {
                 'maxResults': '2147483647'
             },
             headers: {
-                'Authorization': 'Bearer ' + token
+                'Authorization': token
             }
         });
 
@@ -90,7 +90,7 @@ export async function getReusables(userSurveys:Survey[], token:any) {
             const response = axios.get<PkItem[]>(`https://api.purkukartoitus.fi/v1/surveys/${userSurveys[i].id}/reusables`, 
             {
                 headers: {
-                    'Authorization': 'Bearer ' + token
+                    'Authorization': token
                 }
             });
             fetchedItems = (await response).data;
@@ -104,7 +104,7 @@ export async function getReusables(userSurveys:Survey[], token:any) {
             const responseBuilding = axios.get<Building[]>(`https://api.purkukartoitus.fi/v1/surveys/${userSurveys[i].id}/buildings`, 
             {
                 headers: {
-                    'Authorization': 'Bearer ' + token
+                    'Authorization': token
                 }
             });
             const fetchedBuildings:Building[] = (await responseBuilding).data;
@@ -144,7 +144,7 @@ export async function getItemInfo(userSurveys:Survey[], token:any, itemId:string
             const response = axios.get<PkItem>(`https://api.purkukartoitus.fi/v1/surveys/${userSurveys[i].id}/reusables/${itemId}`, 
             {
                 headers: {
-                    'Authorization': 'Bearer ' + token
+                    'Authorization': token
                 }
             });
             pkItem = (await response).data;
@@ -159,7 +159,7 @@ export async function getItemInfo(userSurveys:Survey[], token:any, itemId:string
             const responseBuilding = axios.get<Building[]>(`https://api.purkukartoitus.fi/v1/surveys/${userSurveys[i].id}/buildings`, 
             {
                 headers: {
-                    'Authorization': 'Bearer ' + token
+                    'Authorization': token
                 }
             });
             fetchedBuilding = (await responseBuilding).data[0];
@@ -174,7 +174,7 @@ export async function getItemInfo(userSurveys:Survey[], token:any, itemId:string
             const responseMaterial = axios.get<ReusableMaterial>(`https://api.purkukartoitus.fi/v1/reusableMaterials/${pkItem.reusableMaterialId}`, 
             {
                 headers: {
-                    'Authorization': 'Bearer ' + token
+                    'Authorization': token
                 }
             });
             const material = (await responseMaterial).data;

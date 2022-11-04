@@ -9,6 +9,7 @@ import { WarningIcon } from '@chakra-ui/icons';
 
 import { Field } from 'formik';
 
+// eslint-disable-next-line max-lines-per-function
 export const SelectWithOriginalComparison = ({
   label,
   valueKey,

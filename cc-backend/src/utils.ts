@@ -94,3 +94,17 @@ export async function postConfigToDB(config: Config) {
     }
   }
 }
+
+export function getToken(wholeToken: any) {
+  try {
+    let tokenParts = wholeToken.split(' ');
+    if (tokenParts[0] != 'Bearer') {
+      return 'Not a bearer token!';
+    }
+    let token = tokenParts[1];
+    return token;
+  } catch (error) {
+    console.log('unexpected error: ', error);
+    return 'An unexpected error occurred';
+  }
+}

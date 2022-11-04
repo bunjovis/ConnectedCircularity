@@ -11,9 +11,9 @@ export const Item = sequelize.define(
       allowNull: false,
       primaryKey: true,
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
     },
-    user_id: {
+    userId: {
       type: DataTypes.UUID,
       allowNull: false,
       references: {
@@ -21,7 +21,7 @@ export const Item = sequelize.define(
         key: 'id',
       },
     },
-    item_id: {
+    itemId: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
@@ -30,16 +30,16 @@ export const Item = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    adverd_id: {
+    adverdId: {
       allowNull: true,
       unique: true,
       type: DataTypes.UUID,
     },
-    transfer_time: {
+    transferTime: {
       allowNull: true,
       type: DataTypes.DATE,
     },
-    collection_id: {
+    collectionId: {
       allowNull: true,
       type: DataTypes.STRING,
     },
@@ -48,7 +48,7 @@ export const Item = sequelize.define(
 );
 
 Item.hasOne(ItemDraft, {
-  foreignKey: 'item_id',
+  foreignKey: 'itemId',
 });
 
 ItemDraft.belongsTo(Item, {
@@ -56,7 +56,7 @@ ItemDraft.belongsTo(Item, {
 });
 
 Item.hasMany(ItemStatistic, {
-  foreignKey: 'item_id',
+  foreignKey: 'itemId',
 });
 
 ItemStatistic.belongsTo(Item, {
@@ -64,11 +64,11 @@ ItemStatistic.belongsTo(Item, {
 });
 
 Item.hasOne(FormConfiguration, {
-  sourceKey: 'collection_id',
-  foreignKey: 'collection_id',
+  sourceKey: 'collectionId',
+  foreignKey: 'collectionId',
 });
 
 FormConfiguration.hasMany(Item, {
-  sourceKey: 'collection_id',
-  foreignKey: 'collection_id',
+  sourceKey: 'collectionId',
+  foreignKey: 'collectionId',
 });

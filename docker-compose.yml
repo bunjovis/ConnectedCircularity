@@ -3,29 +3,57 @@
 version: "3.9"
 
 services:
-
   cc-backend:
-   build: cc-backend/ # use the Dockerfile for Materiaalitori_service 
-   ports:
-     - '3000:3000'
+    build: cc-backend/ 
+    ports:
+      - '3000:3000'
+    networks:
+      - backend
+    depends_on:
+      - cc-db-service
+      - cc-pk-service
+      - cc-mt-service
 
   cc-db-service:
-   build: cc-db-service/ # use the Dockerfile for Materiaalitori_service 
-   ports:
-     - '4001:4001'
+    entrypoint: ["/bin/bash", "./entrypoint.sh"]
+    build: cc-db-service/ 
+    ports:
+      - '4001:4001'
+    networks:
+      - backend
+    depends_on:
+      - cc-db
 
   cc-mt-service:
-   build: cc-mt-service/ # use the Dockerfile for Materiaalitori_service 
-   ports:
-     - '8000:8000'
-  
+    build: cc-mt-service/ 
+    ports:
+      - '8000:8000'
+    networks:
+      - backend
+    
   cc-pk-service:
-    build: cc-pk-service/ # use the Dockerfile for Materiaalitori_service 
+    build: cc-pk-service/ 
     ports:
-     - '5000:5000'
-  cc-ui:
-    build: cc-ui/ # use the Dockerfile for Materiaalitori_service 
-    ports:
-     - '5173:5173'
+      - '5000:5000'
+    networks:
+      - backend
 
-  
+  cc-ui:
+    build: cc-ui/ 
+    ports:
+      - '5173:5173'
+    networks:
+      - backend
+    
+  cc-db:
+    image: postgres
+    ports:
+      - '5432:5432'
+    networks:
+      - backend
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: root
+
+networks:
+  backend:

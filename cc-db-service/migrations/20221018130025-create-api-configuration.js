@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('api_configuration', {
+    await queryInterface.createTable('apiConfiguration', {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -15,7 +15,7 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
-      auth_endpoint: {
+      authEndpoint: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -30,6 +30,6 @@ module.exports = {
     });
   },
   async down(queryInterface) {
-    await queryInterface.dropTable('api_configuration');
+    await queryInterface.dropTable('apiConfiguration');
   },
 };

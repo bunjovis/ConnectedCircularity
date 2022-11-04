@@ -10,19 +10,19 @@ export const Api = sequelize.define(
       allowNull: false,
       primaryKey: true,
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
     },
-    auth_endpoint: {
+    authEndpoint: {
       type: DataTypes.STRING,
       allowNull: false,
     },
   },
-  { freezeTableName: true, tableName: 'api_configuration' }
+  { freezeTableName: true, tableName: 'apiConfiguration' }
 );
 
 Api.hasMany(User, {

@@ -3,21 +3,21 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('item_statistic', {
+    await queryInterface.createTable('itemStatistic', {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUID,
       },
-      item_id: {
+      itemId: {
         allowNull: false,
         type: Sequelize.UUID,
         onDelete: 'CASCADE',
         references: {
           model: 'item',
           key: 'id',
-          as: 'item_id',
+          as: 'itemId',
         },
       },
       title: {
@@ -32,27 +32,27 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
-      material_description: {
+      materialDescription: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
-      material_amount: {
+      materialAmount: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
-      amount_unit: {
+      amountUnit: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
-      amount_info: {
+      amountInfo: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
-      location_name: {
+      locationName: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
-      zip_code: {
+      zipCode: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
@@ -60,11 +60,11 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
-      contact_role: {
+      contactRole: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
-      contact_phone: {
+      contactPhone: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
@@ -79,6 +79,6 @@ module.exports = {
     });
   },
   async down(queryInterface) {
-    await queryInterface.dropTable('item_statistic');
+    await queryInterface.dropTable('itemStatistic');
   },
 };

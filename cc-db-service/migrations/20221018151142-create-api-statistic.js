@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('api_statistic', {
+    await queryInterface.createTable('apiStatistic', {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -15,7 +15,7 @@ module.exports = {
         allowNull: false,
         onDelete: 'CASCADE',
         references: {
-          model: 'api_configuration',
+          model: 'apiConfiguration',
           key: 'id',
           as: 'api',
         },
@@ -24,7 +24,7 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
-      statistic_type: {
+      statisticType: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -43,6 +43,6 @@ module.exports = {
     });
   },
   async down(queryInterface) {
-    await queryInterface.dropTable('api_statistic');
+    await queryInterface.dropTable('apiStatistic');
   },
 };

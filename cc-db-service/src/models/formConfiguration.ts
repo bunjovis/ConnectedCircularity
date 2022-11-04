@@ -11,9 +11,9 @@ export const FormConfiguration = sequelize.define(
       allowNull: false,
       primaryKey: true,
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
     },
-    user_id: {
+    userId: {
       type: DataTypes.UUID,
       allowNull: false,
       references: {
@@ -21,21 +21,21 @@ export const FormConfiguration = sequelize.define(
         key: 'id',
       },
     },
-    collection_id: {
+    collectionId: {
       allowNull: false,
       unique: true,
       type: DataTypes.STRING,
     },
-    expiry_date: {
+    expiryDate: {
       allowNull: true,
       type: DataTypes.DATE,
     },
   },
-  { freezeTableName: true, tableName: 'form_configuration' }
+  { freezeTableName: true, tableName: 'formConfiguration' }
 );
 
 FormConfiguration.hasOne(FormLocation, {
-  foreignKey: 'configuration_id',
+  foreignKey: 'configurationId',
   onDelete: 'CASCADE',
 });
 
@@ -45,7 +45,7 @@ FormLocation.belongsTo(FormConfiguration, {
 
 FormConfiguration.hasOne(FormContact, {
   onDelete: 'CASCADE',
-  foreignKey: 'configuration_id',
+  foreignKey: 'configurationId',
 });
 
 FormContact.belongsTo(FormConfiguration, {

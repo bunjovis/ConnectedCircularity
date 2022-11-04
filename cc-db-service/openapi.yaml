@@ -38,7 +38,8 @@ paths:
           description: Not found
         '500':
           description: Service error
-  /v1/user:
+
+  /v1/users:
     post:
       operationId: postUser
       summary: Create new or return existing User data from database
@@ -59,7 +60,47 @@ paths:
           description: Not found
         '500':
           description: Service error
-  /v1/items/{userId}:
+    get:
+      operationId: getUsers
+      summary: Get all users
+      tags:
+        - User
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetUser'
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+
+  /v1/users/{userId}:
+    get:
+      operationId: getUser
+      summary: Get user
+      tags:
+        - User
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  draftValues:
+                    $ref: '#/components/schemas/GetUser'
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+
+  /v1/users/{userId}/items:
     get:
       operationId: getUserItems
       description: Get Items belonging to a User
@@ -88,6 +129,7 @@ paths:
           description: Not found
         '500':
           description: Service error
+
   /v1/items/{itemId}:
     get:
       operationId: getItemData
@@ -120,6 +162,7 @@ paths:
           description: Not found
         '500':
           description: Service error
+
   /v1/items:
     post:
       operationId: postItemData
@@ -141,6 +184,27 @@ paths:
           description: Not found
         '500':
           description: Service error
+    get:
+      operationId: getItems
+      description: Get Items
+      tags:
+        - Items
+      responses:
+        '200':
+          description: List of Items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetUserItem'
+        '400':
+          description: Invalid request data
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+
   /v1/items/draft:
     post:
       operationId: postDraftValues
@@ -192,6 +256,7 @@ paths:
           description: Not found
         '500':
           description: Service error
+
   /v1/configurations:
     post:
       operationId: postConfiguration
@@ -213,6 +278,7 @@ paths:
           description: Not found
         '500':
           description: Service error
+
   /v1/configurations/{configurationId}:
     put:
       operationId: putConfiguration
@@ -243,6 +309,7 @@ paths:
           description: Not found
         '500':
           description: Service error
+
 components:
   schemas:
     GetApi:

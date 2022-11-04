@@ -1,4 +1,3 @@
-/* eslint-disable  @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 import { Survey, PkItem, Item, Building, ItemInfo, ReusableMaterial } from './types';
 
@@ -116,7 +115,7 @@ export async function getReusables(userSurveys:Survey[], token:any) {
                 componentName: fetchedItems[j].componentName,
                 surveyId: userSurveys[i].id,
                 streetAddress: fetchedBuildings[0].address.streetAddress
-            }
+            };
             items.push(item);
             }
         } catch (err) {

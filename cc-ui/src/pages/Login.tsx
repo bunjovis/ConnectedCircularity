@@ -1,9 +1,7 @@
 import React from 'react'
 import {useState} from 'react'
-import {Route, Routes, useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
-
-import Home from './Home'
 
 import { 
     Heading,
@@ -40,6 +38,7 @@ export default function Login() {
     //Authentication to PK
     async function handleSubmit(event: { preventDefault: () => void }) {
         event.preventDefault();
+        setWrongCredState(false);
 
         try {
             const response = axios.post(
@@ -49,18 +48,18 @@ export default function Login() {
                     'grant_type': 'password',
                     'username': username,
                     'password': password
-                }));
-            return (await response).data.access_token;
+                })
+            );
+            console.log(response);
+            if ((await response).status === 200) {
+                setWrongCredState(false);
+                navigate('/home');
+              } else {
+                throw new Error('login failed');
+              }
         } catch (err) {
             setWrongCredState(true);
-            return '';
         }
-    }
-
-    const navigateHome = () => {
-        if (wrongCredState) {
-            navigate('./home'); 
-        } 
     }
 
     return (
@@ -122,14 +121,9 @@ export default function Login() {
                         type="submit"
                         textTransform='uppercase'
                         colorScheme='blue'
-                        onClick={navigateHome}
                         >
                             Kirjaudu
                     </Button>
-
-                    <Routes>
-                        <Route path='/home' element={<Home />} />
-                    </Routes>
             </Stack>
         </form>
     </Flex>

@@ -77,6 +77,28 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
   };
 
   const mtLogin = () => {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+    const urlencoded = new URLSearchParams();
+    urlencoded.append('client_secret', import.meta.env.VITE_CLIENT_SECRET);
+    urlencoded.append('client_id', import.meta.env.VITE_CLIENT_ID);
+    urlencoded.append('grant_type', import.meta.env.VITE_CLIENT_SECRET);
+    urlencoded.append('scope', import.meta.env.VITE_SCOPE);
+
+    const requestOptions: RequestInit = {
+      method: 'POST',
+      headers: headers,
+      body: urlencoded,
+      redirect: 'follow',
+      mode: 'cors',
+    };
+    console.log(requestOptions);
+    fetch(import.meta.env.VITE_MT_AUTH_ENDPOINT, requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log('error', error));
+
     sessionStorage.setItem('mtToken', 'aqwdsöfawoipfj');
   };
 

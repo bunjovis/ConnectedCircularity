@@ -6,9 +6,8 @@ import {AdvertData,Error} from '../types';
 const mtRouter = Router();
 
 mtRouter.post('/advert',async (req:Request, res:Response) => {
-    const data:AdvertData = req.body.data;
+    const data:AdvertData = req.body;
     // should include attributes type and data but data is undefined
-    console.log(data);
     const response = await postAdvert(data).catch(e => console.log(e));
     if (response) res.send(response);
     else {

@@ -44,6 +44,9 @@ async function getToken(client:string, secret:string, scope:string) {
 // Posts data to Materiaalitori test API
 export async function postAdvert(data:AdvertData) {
     try {
+        const dataStr = JSON.stringify(data);
+        const adData = dataStr.slice(1,(dataStr.length)).trimStart().replace(/\'/gi,'').replace(/\\/gi,'').trimEnd();
+        console.log(adData);
         const token = await getToken(c_id,c_secret,scope);
         const config = {
             method: 'post',
@@ -52,7 +55,7 @@ export async function postAdvert(data:AdvertData) {
                 content_type: 'application/json',
                 authorization: 'Bearer ' + token,
             },
-            data: data,
+            data: adData,
             maxContentLength: 5000,
         };
         // const response = await axios(config);

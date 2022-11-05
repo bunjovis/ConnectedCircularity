@@ -23,9 +23,32 @@ export const getServiceProviders = () => {
   }
 };
 
-export const getUserItems = () => {
+export const getUserItems = async () => {
   try {
     console.log('TODO: get user items');
+    const options: RequestInit = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    await fetch(
+      'http://localhost:3000/v1/items/97541e5c-847f-41c2-8120-d9d93d0a4798',
+      options
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        return data;
+      });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getUserItem = () => {
+  try {
+    console.log('TODO: get specific item');
   } catch (err) {
     console.log(err);
   }

@@ -33,5 +33,4 @@ jobs:
       - run: npm  test -- cc-mt-service/test
       - run: npm  test -- cc-pk-service/test
       - run: npm  test -- cc-ui/test
-      - run: npm run testTS -- cc-backend
 

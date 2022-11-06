@@ -169,49 +169,33 @@ components:
         - usability
         - metadata
       properties:
-        id:
+        title:
           type: string
-          format: uuid
-          description: ID of the reusable item
-          readOnly: true
-        componentName:
+          description: Initial title for the form
+        material:
           type: string
-          description: Name of the item component
-        reusableMaterialId:
+          description: What type of material the item is
+        unit:
           type: string
-          format: uuid
-          readOnly: true
-        usability:
-          type: string
-          enum:
-            - EXCELLENT
-            - GOOD
-            - POOR
-            - NOT_VALIDATED
+          description: Unit enum
         amount:
           type: integer
           format: int32
-        unit:
+          description: Amount of reusable material
+        streetAddress:
           type: string
-          enum:
-            - KG
-            - M2
-            - M3
-            - PCS
-            - RM
-            - TN
-        description:
+          description: Address of the building
+        zipCode:
           type: string
+          description: Zip code of the building
+        area:
+          type: string
+          description: Area of the building
         images:
           type: array
-          items:
+          items: 
             type: string
-            format: uri
-        amountAsWaste:
-          type: number
-          format: double
-        metadata:
-          $ref: "#/components/schemas/Metadata"
+          description: Attachment images for the reusable item
     Metadata:
       type: object
       description: Metadata object

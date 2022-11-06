@@ -1,25 +1,51 @@
-import { Router, Request, Response } from "express";
-import { getItemsPK, getItemsDB, getItemInfo, postConfigToDB } from "../utils";
-import { Error, ItemInfo, Item } from "../types";
+import { Router, Request, Response, NextFunction } from 'express';
+import {
+  getItemsPK,
+  getItemsDB,
+  getItemInfo,
+  postConfigToDB,
+  getToken
+} from '../utils';
+import { Error, ItemInfo, Item } from '../types';
 
 const itemRouter = Router();
 
 itemRouter.get(
-  "/v1/items/:userId",
-  async (request: Request, response: Response) => {
-    const itemsPK = await getItemsPK(request.params.userId);
-    //const itemsDB = await getItemsDB(request.params.userId);
-    response.json(itemsPK);
-    //response.write(itemsDB);
-    //response.send();
+  '/v1/items/:userId',
+  async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const wholeToken: any = request.headers.authorization ?? '';
+      const token = getToken(wholeToken);
+      const userId: string = request.params.userId;
+      const itemsPK = await getItemsPK(token, userId);
+      //const itemsDB = await getItemsDB(request.params.userId);
+      response.json(itemsPK);
+      //response.write(itemsDB);
+      //response.send();
+    } catch (error: any) {
+      response.json({
+        message: error.response.statusText,
+        status: error.response.status
+      });
+    }
   }
 );
 
 itemRouter.get(
-  "/v1/itemInfo/:itemId",
+  '/v1/itemInfo/:itemId',
   async (request: Request, response: Response) => {
-    const item = await getItemInfo(request.params.itemId);
-    response.send(item);
+    try {
+      const wholeToken: any = request.headers.authorization ?? '';
+      const token = getToken(wholeToken);
+      const itemId: string = request.params.itemId;
+      const item: ItemInfo = await getItemInfo(token, itemId);
+      response.json(item);
+    } catch (error: any) {
+      response.json({
+        message: error.response.statusText,
+        status: error.response.status
+      });
+    }
   }
 );
 

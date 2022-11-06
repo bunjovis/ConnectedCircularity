@@ -35,7 +35,8 @@ jobs:
       - run: npm  test -- cc-mt-service/test
       - run: npm  test -- cc-pk-service/test
       - run: npm  test -- cc-ui/test
+
       - name: Run ts-tests in backend
-        working-directory: ./cc-backend
-        run: npm install && npm run testTS
+      - working-directory: /cc-backend
+        run: npm install && npm run test
 

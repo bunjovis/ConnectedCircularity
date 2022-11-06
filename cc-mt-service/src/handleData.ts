@@ -6,8 +6,8 @@ import {AdvertData} from './types';
 dotenv.config();
 
 // variables
-const c_id: string = process.env.MT_CLIENTID ?? '';
-const c_secret: string = process.env.MT_CLIENTSECRET ?? '';
+const clientId: string = process.env.MT_CLIENTID ?? '';
+const clientSecret: string = process.env.MT_CLIENTSECRET ?? '';
 const scope: string = process.env.MT_SCOPE ?? '';
 
 /**
@@ -35,7 +35,7 @@ async function getToken(client:string, secret:string, scope:string) {
         };
         const response=await axios(config);
         const responseStr=response.data.access_token;
-        return responseStr
+        return responseStr;
     } catch (error) {
         console.log(error);
     }
@@ -44,23 +44,18 @@ async function getToken(client:string, secret:string, scope:string) {
 // Posts data to Materiaalitori test API
 export async function postAdvert(data:AdvertData) {
     try {
-        const dataStr = JSON.stringify(data);
-        const adData = dataStr.slice(1,(dataStr.length)).trimStart().replace(/\'/gi,'').replace(/\\/gi,'').trimEnd();
-        console.log(adData);
-        const token = await getToken(c_id,c_secret,scope);
+        const token = await getToken(clientId,clientSecret,scope);
         const config = {
             method: 'post',
             url: 'https://test.materiaalitori.fi/api/rfo',
             headers: {
-                content_type: 'application/json',
-                authorization: 'Bearer ' + token,
+                "Content-Type": 'application/json',
+                "Authorization": 'Bearer ' + token,
             },
-            data: adData,
-            maxContentLength: 5000,
+            data: data,
         };
-        // const response = await axios(config);
-        // return {id: response.data.id};
-        return {};
+        const response = await axios(config);
+        return { id: response.data.id };
     } catch (err) {
         console.log(err);
         return null;

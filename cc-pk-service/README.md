@@ -5,10 +5,12 @@
 3. Run ```npm install``` on command line
 4. Run ```npm start``` on command line to run the program. This will run two commands:
    - ```tcp```: TypeScript compiler. Creates a JavaScript file from the app.ts -file which Node can easily run
-   - ```node dist/app.js```. Runs the created JavaScript file with Node
-5. On command line you will be asked for your Purkukartoitus username and password. These will be used for getting token and accessing the Purkukartoitus API
-6. If the given username and password are correct, the program will collect the data
+   - ```node dist/src/app.js```. Runs the created JavaScript file with Node
+5. You can now send e.g. a curl request with a token to PK service
 
+Curl templates:
+1. curl localhost:5123/v1/users/:userId/items --header 'Authorization: Bearer {ADD YOUR TOKEN}'
+2. curl localhost:5123/v1/items/:itemId --header 'Authorization: Bearer {ADD YOUR TOKEN}'
 
 Additional scripts: 
 1. Run ```npm run check``` to check the file for TypeScript errors/warnings with eslint

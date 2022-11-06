@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "testTS": "mocha -r ts-node/register test/*.test.ts",
+    "testTS": "mocha -r ts-node/register *.test.ts",
     "check": "eslint . --ext .ts"
   },
   "repository": {

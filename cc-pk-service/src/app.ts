@@ -6,6 +6,9 @@ import * as OpenApiValidator from 'express-openapi-validator';
 import bodyParser from 'body-parser';
 import { Error } from './types';
 import router from './routes/pkServiceRoutes';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // Variables
 const PORT = process.env.PORT;
@@ -43,10 +46,11 @@ app.use(
 );
 
 app.use(
-  (err: Error, req: Request, res: Response, _:NextFunction) => { // eslint will throw a warning because _ is unused
+  (err: Error, req: Request, res: Response, next:NextFunction) => {
     // format error
     res.status(err.status || 500).json({
-      message: err.message
+      message: err.message,
+      status: err.status
     });
   }
 );

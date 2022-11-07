@@ -18,10 +18,20 @@ import { useGetUserItemsQuery } from '../dbServiceApi';
 const Home: React.FC<{}> = () => {
   const navigate = useNavigate();
   const { data, error, isLoading } = useGetUserItemsQuery();
-  console.log(data);
 
   if (error) {
-    return <>Materiaalihaku ei onnistunut</>;
+    return (
+      <Center width='100%' p='5'>
+        Materiaalihaku ei onnistunut
+      </Center>
+    );
+  }
+  if (isLoading) {
+    return (
+      <Center width='100%' p='5'>
+        <Spinner size='xl' />
+      </Center>
+    );
   }
   return (
     <Flex direction='column' gap='4' m='2' p='5' bg='#fff'>
@@ -30,11 +40,6 @@ const Home: React.FC<{}> = () => {
       </Heading>
 
       <HStack align='center' width='100%'>
-        {isLoading && (
-          <Center width='100%'>
-            <Spinner size='xl' />
-          </Center>
-        )}
         {data && !isLoading && (
           <>
             <Box width='50%' height='100%'>

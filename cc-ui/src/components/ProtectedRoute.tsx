@@ -7,10 +7,8 @@ export const ProtectedRoute: React.FC<ReactChildrenElement> = ({
   children,
 }) => {
   const { user } = useAuth();
-  console.log(user);
 
   if (!user) {
-    console.log('not auth');
     return <Navigate to='/' />;
   }
 

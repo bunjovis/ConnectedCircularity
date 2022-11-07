@@ -6,7 +6,7 @@
     "build": "npx tsc",
     "start": "node dist/src/index.js",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/src/index.js\"",
-    "test": "mocha",
+    "test": "mocha -r ts-node/register test/*.test.ts",
     "check": "eslint . --ext .ts"
   },
   "keywords": [],

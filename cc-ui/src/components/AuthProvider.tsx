@@ -1,32 +1,19 @@
 /* eslint-disable camelcase */
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useContext, useMemo, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-// TODO:
-// auth states as bools, save tokens to sessions storage
-interface AuthContextInterface {
-  user?: string;
-  loading: boolean;
-  login: (data: any) => void;
-  logout: () => void;
-  mtLogin: () => void;
-  serviceProviderToken?: string;
-  mtAuth: boolean;
-  error?: boolean;
-  mtLoading: boolean;
-}
+import { setupMTRequest } from '../utils/helpers';
+import { useLocalStorage } from '../utils/useLocalStorage';
+import { ReactChildrenNode } from '../types/Reactchildren';
+import { AuthContextInterface } from '../types/AuthContext';
 
 const AuthContext = createContext({} as AuthContextInterface);
 
-interface Props {
-  children: React.ReactNode;
-}
-
 // eslint-disable-next-line max-lines-per-function
-export const AuthProvider: React.FC<Props> = ({ children }) => {
-  const [user, setUser] = useState('');
-  const [mtAuth, setMtAuth] = useState(false);
+export const AuthProvider: React.FC<ReactChildrenNode> = ({ children }) => {
+  const [user, setUser] = useLocalStorage('user', null);
+  const [mtAuth, setMtAuth] = useLocalStorage('mtAuth', false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [mtLoading, setMtLoading] = useState(false);
@@ -49,42 +36,26 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
 
       if (response.status === 200) {
         setUser(data.username);
-        sessionStorage.setItem('spToken', response.data.access_token);
+        localStorage.setItem('spToken', response.data.access_token);
         navigate('/home');
       }
     } catch (err) {
-      console.log('error');
       console.log(err);
       setError(true);
     } finally {
-      console.log('finally');
       setLoading(false);
     }
   };
 
   const mtLogin = () => {
     setMtLoading(true);
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    headers.append('Access-Control-Allow-Origin', '*');
 
-    const urlencoded = new URLSearchParams();
-    urlencoded.append('client_secret', import.meta.env.VITE_CLIENT_SECRET);
-    urlencoded.append('client_id', import.meta.env.VITE_CLIENT_ID);
-    urlencoded.append('grant_type', 'client_credentials');
-    urlencoded.append('scope', import.meta.env.VITE_SCOPE);
-
-    const requestOptions: RequestInit = {
-      method: 'POST',
-      headers: headers,
-      body: urlencoded,
-      redirect: 'follow',
-    };
+    const requestOptions: RequestInit = setupMTRequest();
 
     fetch('/mtAuth', requestOptions)
-      .then((response) => response.text())
+      .then((response) => response.json())
       .then((result: any) => {
-        sessionStorage.setItem('mtToken', result.access_token);
+        localStorage.setItem('mtToken', result.access_token);
         setMtAuth(true);
       })
       .catch((error) => {
@@ -96,9 +67,8 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
   };
 
   const logout = () => {
-    console.log('logout');
-    sessionStorage.clear();
-    setUser('');
+    localStorage.clear();
+    setUser(null);
     setMtAuth(false);
     navigate('/', { replace: true });
   };

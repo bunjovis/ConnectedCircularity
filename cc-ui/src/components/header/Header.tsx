@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { Box, Flex, Spacer, Text } from '@chakra-ui/react';
 import { CheckCircleIcon } from '@chakra-ui/icons';
 
-import { useAuth } from '../../context/AuthProvider';
+import { useAuth } from '../AuthProvider';
 
 const Header: React.FC<{}> = () => {
   const { user, logout, mtLogin, mtAuth } = useAuth();
-  console.log(mtAuth);
+
   return (
     <Flex alignItems='center' height='50px' p='1' bg='#fff'>
       <Box

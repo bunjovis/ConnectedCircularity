@@ -36,6 +36,7 @@ import {
 } from '../utils/mt-options';
 
 import { Advert } from '../types/Advert';
+import { useAuth } from '../components/AuthProvider';
 
 // TODO: match with MT options
 const initValues: Advert = {
@@ -62,11 +63,7 @@ const initValues: Advert = {
 
 const TransferForm: React.FC<{}> = () => {
   const { itemId } = useParams();
-
-  // TODO: check if user has authenticated to MT
-  // temp MT auth state
-  const [mtAuth, setMTAuth] = useState(false);
-
+  const { mtAuth, mtLogin } = useAuth();
   /*
   maybe used later
   const renderFormFields = () => {
@@ -88,11 +85,6 @@ const TransferForm: React.FC<{}> = () => {
   const saveAsDraft = () => {
     // TODO: type/interface for posting draft values
     console.log('Save as draft');
-  };
-
-  const authToMT = () => {
-    console.log('authenticate to MT');
-    setMTAuth(true);
   };
 
   const renderFormButtons = () => {
@@ -130,7 +122,7 @@ const TransferForm: React.FC<{}> = () => {
           )}
           {!mtAuth && (
             <Button
-              onClick={() => authToMT()}
+              onClick={() => mtLogin()}
               colorScheme='blue'
               borderRadius='0'
               textTransform='uppercase'

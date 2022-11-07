@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Provider } from 'react-redux';
 
-import { AuthProvider } from './context/AuthProvider';
+import { AuthProvider } from './components/AuthProvider';
 import './index.css';
 import theme from './theme';
 import { store } from './store';

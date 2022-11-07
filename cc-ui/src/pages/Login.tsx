@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthProvider';
+import { useAuth } from '../components/AuthProvider';
 import { getServiceProviders } from '../api';
 
 import {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Box } from '@chakra-ui/react';
 
-import { useAuth } from './context/AuthProvider';
+import { useAuth } from './components/AuthProvider';
 
 import Login from './pages/Login';
 import Home from './pages/Home';

@@ -2,7 +2,7 @@ import { Heading } from '@chakra-ui/react';
 import { Spinner } from '@chakra-ui/react';
 import { Modal, ModalOverlay, ModalContent } from '@chakra-ui/react';
 
-import { useAuth } from '../../context/AuthProvider';
+import { useAuth } from '../AuthProvider';
 
 const MTLogin: React.FC<{}> = () => {
   const { mtLoading } = useAuth();

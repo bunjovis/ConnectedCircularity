@@ -1,10 +1,5 @@
-import React from "react";
-import "@fontsource/montserrat"; 
+const MTLogin: React.FC<{}> = () => {
+  return <h1>Kirjaudutaan Materiaalitoriin</h1>;
+};
 
-function MTLogin() {
-    return (
-        <h1>Kirjaudutaan Materiaalitoriin</h1>
-    )
-}
-
-export default MTLogin
+export default MTLogin;

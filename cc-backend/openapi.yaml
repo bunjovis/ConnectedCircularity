@@ -87,8 +87,6 @@ paths:
 
   /v1/items/{userId}:
     get:
-      #security:
-      # - bearerAuth: []
       operationId: getItemsFromPK
       summary: Get all items from PK and CC-db
       description: Gets all items via CC-PK-service and CC-db-service
@@ -426,12 +424,65 @@ components:
 
     ItemInfo:
       type: object
+      description: Information about PK API's item
       required:
-        - id
+        - componentName
+        - reusableMaterialId
+        - usability
+        - metadata
       properties:
-        id:
+        title:
+          type: string
+          description: Initial title for the form
+        material:
+          type: string
+          description: What type of material the item is
+        unit:
+          type: string
+          description: Unit enum
+        amount:
+          type: integer
+          format: int32
+          description: Amount of reusable material
+        streetAddress:
+          type: string
+          description: Address of the building
+        zipCode:
+          type: string
+          description: Zip code of the building
+        area:
+          type: string
+          description: Area of the building
+        images:
+          type: array
+          items: 
+            type: string
+          description: Attachment images for the reusable item
+
+    Metadata:
+      type: object
+      description: Metadata object
+      properties:
+        creatorId:
           type: string
           format: uuid
+          description: ID of creator
+          readOnly: true
+        createdAt:
+          type: string
+          format: date-time
+          description: Created date
+          readOnly: true
+        lastModifierId:
+          type: string
+          format: uuid
+          description: Id of last modifier
+          readOnly: true
+        modifiedAt:
+          type: string
+          format: date-time
+          description: Date modified
+          readOnly: true
 
     Item:
        type: object

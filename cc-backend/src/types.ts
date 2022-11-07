@@ -45,9 +45,16 @@ export interface Advert {
 
 export type AdvertInfo = object;
 
+// PK service's ItemInfo object
 export interface ItemInfo {
-  /** @format uuid */
-  id: string;
+  title?: string;
+  material?: string;
+  unit?: string;
+  amount?: number;
+  streetAddress?: string;
+  zipCode?: string;
+  area?: string;
+  images?: string;
 }
 
 /**

@@ -61,8 +61,6 @@ const Login: React.FC<{}> = () => {
       <form name='login_credentials' onSubmit={handleSubmit} method='post'>
         <Stack spacing={3} p='3rem' backgroundColor='#F6F6F6' boxShadow='md'>
           <Heading>Kirjaudu palveluun</Heading>
-
-          <FormLabel>Palveluntarjoaja</FormLabel>
           <Select
             borderColor='#EE0004'
             onChange={(e) => setAuthUrl(e.target.value)}

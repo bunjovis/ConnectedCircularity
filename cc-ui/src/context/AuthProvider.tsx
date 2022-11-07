@@ -25,7 +25,7 @@ interface Props {
 
 // eslint-disable-next-line max-lines-per-function
 export const AuthProvider: React.FC<Props> = ({ children }) => {
-  const [user, setUser] = useState('rvsape');
+  const [user, setUser] = useState('');
   const [serviceProviderToken, setToken] = useState('');
   const [mtToken, setMtToken] = useState('');
   const [error, setError] = useState(false);
@@ -45,9 +45,6 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
   const login = async (data: any) => {
     setLoading(true);
     setError(false);
-    console.log('login');
-    console.log(data);
-    console.log('...........');
     sessionStorage.setItem('spToken', 'serasdfa2309trja');
     try {
       const response = await axios.post(
@@ -83,7 +80,7 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
     const urlencoded = new URLSearchParams();
     urlencoded.append('client_secret', import.meta.env.VITE_CLIENT_SECRET);
     urlencoded.append('client_id', import.meta.env.VITE_CLIENT_ID);
-    urlencoded.append('grant_type', import.meta.env.VITE_CLIENT_SECRET);
+    urlencoded.append('grant_type', 'client_credentials');
     urlencoded.append('scope', import.meta.env.VITE_SCOPE);
 
     const requestOptions: RequestInit = {
@@ -91,7 +88,6 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
       headers: headers,
       body: urlencoded,
       redirect: 'follow',
-      mode: 'cors',
     };
     console.log(requestOptions);
     fetch(import.meta.env.VITE_MT_AUTH_ENDPOINT, requestOptions)

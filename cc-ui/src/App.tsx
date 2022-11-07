@@ -12,7 +12,7 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 import MTLogin from './components/MTLogin/MTLogin';
 
 const App: React.FC<{}> = () => {
-  const { loading } = useAuth();
+  const { mtLoading } = useAuth();
   return (
     <Box bg='#E5E5E5'>
       <Header></Header>
@@ -35,7 +35,7 @@ const App: React.FC<{}> = () => {
           }
         />
       </Routes>
-      {loading && <MTLogin />}
+      {mtLoading && <MTLogin />}
     </Box>
   );
 };

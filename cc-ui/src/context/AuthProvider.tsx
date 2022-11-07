@@ -12,7 +12,7 @@ interface AuthContextInterface {
   logout: () => void;
   mtLogin: () => void;
   serviceProviderToken?: string;
-  mtToken?: string;
+  mtAuth: boolean;
   error?: boolean;
   mtLoading: boolean;
 }
@@ -26,26 +26,16 @@ interface Props {
 // eslint-disable-next-line max-lines-per-function
 export const AuthProvider: React.FC<Props> = ({ children }) => {
   const [user, setUser] = useState('');
-  const [serviceProviderToken, setToken] = useState('');
-  const [mtToken, setMtToken] = useState('');
+  const [mtAuth, setMtAuth] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [mtLoading, setMtLoading] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log('onload');
-    const token = sessionStorage.getItem('spToken');
-    console.log(token);
-    if (token) {
-      setUser('test');
-    }
-  }, []);
-
   const login = async (data: any) => {
     setLoading(true);
     setError(false);
-    sessionStorage.setItem('spToken', 'serasdfa2309trja');
+
     try {
       const response = await axios.post(
         data.authUrl,
@@ -57,10 +47,9 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
         })
       );
 
-      console.log(response);
       if (response.status === 200) {
         setUser(data.username);
-        setToken(data.access_token);
+        sessionStorage.setItem('spToken', response.data.access_token);
         navigate('/home');
       }
     } catch (err) {
@@ -74,8 +63,10 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
   };
 
   const mtLogin = () => {
+    setMtLoading(true);
     const headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers.append('Access-Control-Allow-Origin', '*');
 
     const urlencoded = new URLSearchParams();
     urlencoded.append('client_secret', import.meta.env.VITE_CLIENT_SECRET);
@@ -89,21 +80,26 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
       body: urlencoded,
       redirect: 'follow',
     };
-    console.log(requestOptions);
-    fetch(import.meta.env.VITE_MT_AUTH_ENDPOINT, requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log('error', error));
 
-    sessionStorage.setItem('mtToken', 'aqwdsöfawoipfj');
+    fetch('/mtAuth', requestOptions)
+      .then((response) => response.text())
+      .then((result: any) => {
+        sessionStorage.setItem('mtToken', result.access_token);
+        setMtAuth(true);
+      })
+      .catch((error) => {
+        setMtAuth(false);
+      })
+      .finally(() => {
+        setMtLoading(false);
+      });
   };
 
   const logout = () => {
     console.log('logout');
     sessionStorage.clear();
     setUser('');
-    setToken('');
-    setMtToken('');
+    setMtAuth(false);
     navigate('/', { replace: true });
   };
 
@@ -112,14 +108,13 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
       user,
       loading,
       error,
-      serviceProviderToken,
-      mtToken,
+      mtAuth,
       login,
       logout,
       mtLogin,
       mtLoading,
     }),
-    [user, loading, error, mtLoading]
+    [user, loading, error, mtLoading, mtAuth]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

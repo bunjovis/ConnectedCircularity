@@ -6,9 +6,6 @@ dotenv.config();
 
 // variables
 const PORT = process.env.PORT;
-const cId: string = process.env.MT_CLIENTID ?? '';
-const cSecret: string = process.env.MT_CLIENTSECRET ?? '';
-const scope: string = process.env.MT_SCOPE ?? '';
 
 
 const app = express();

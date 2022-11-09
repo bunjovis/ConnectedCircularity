@@ -4,7 +4,7 @@ import { Error, ItemInfo, Item, Config } from './types';
 export async function getItemsPK(token: any, userId: string) {
   try {
     const response = axios.get<Item[]>(
-      `http://localhost:5123/v1/users/${userId}/items`,
+      `${process.env.CC_PK_SERVICE_URL}/v1/users/${userId}/items`,
       {
         headers: {
           Authorization: 'Bearer ' + token
@@ -29,7 +29,7 @@ export async function getItemsPK(token: any, userId: string) {
 export async function getItemsDB(userId: string) {
   try {
     const { data, status } = await axios.get<Item>(
-      `http://localhost:4001/items/${userId}`,
+      `${process.env.CC_DB_SERVICE_URL}/items/${userId}`,
       {
         headers: {
           Accept: 'application/json'
@@ -52,7 +52,7 @@ export async function getItemsDB(userId: string) {
 export async function getItemInfo(token: any, itemId: string) {
   try {
     const { data, status } = await axios.get<Item>(
-      `http://localhost:5123/v1/items/${itemId}`,
+      `${process.env.CC_PK_SERVICE_URL}/v1/items/${itemId}`,
       {
         headers: {
           Authorization: 'Bearer ' + token
@@ -74,7 +74,7 @@ export async function getItemInfo(token: any, itemId: string) {
 export async function postConfigToDB(config: Config) {
   try {
     const { status } = await axios.post<Config>(
-      `http://localhost:4001/configurations`,
+      `${process.env.CC_DB_SERVICE_URL}/configurations`,
       {
         data: config,
         headers: {

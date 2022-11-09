@@ -41,10 +41,16 @@ async function getToken(client:string, secret:string, scope:string) {
     }
 }
 
+export function parseToken(wholeToken:string) {
+    if (wholeToken.length > 0) {
+        return (wholeToken.split(' '))[1];
+    } else return '';
+}
+
 // Posts data to Materiaalitori test API
-export async function postAdvert(data:AdvertData) {
+export async function postAdvert(data:AdvertData, token:string) {
     try {
-        const token = await getToken(clientId,clientSecret,scope);
+        // const token = await getToken(clientId,clientSecret,scope);
         const config = {
             method: 'post',
             url: 'https://test.materiaalitori.fi/api/rfo',

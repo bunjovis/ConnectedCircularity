@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { Error, ItemInfo, Item, Config } from './types';
+import { Advert } from '../api/api';
+import { Error, ItemInfo, Item, Config, AdvertData } from './types';
 
 export async function getItemsPK(token: any, userId: string) {
   try {
@@ -106,5 +107,29 @@ export function getToken(wholeToken: any) {
   } catch (error) {
     console.log('unexpected error: ', error);
     return 'An unexpected error occurred';
+  }
+}
+
+export async function postAdvert(token: any, advert: AdvertData) {
+  try {
+    const { status } = await axios.post<AdvertData>(
+      `http://localhost:8000/v1/advert`,
+      {
+        headers: {
+          Authorization: 'Bearer ' + token
+        },
+        data: advert
+      }
+    );
+    console.log('response status is: ', status);
+    return status;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.log('error message: ', error.message);
+      return error.message;
+    } else {
+      console.log('unexpected error: ', error);
+      return 'An unexpected error occurred';
+    }
   }
 }

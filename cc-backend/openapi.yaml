@@ -348,9 +348,9 @@ components:
               properties:
                 classification:
                   type: string
-                industry:
+                subClassification:
                   type: string
-                description:
+                industry:
                   type: string
                 isWaste:
                   type: boolean
@@ -361,10 +361,10 @@ components:
                       type: integer
                     unitOfMeasure:
                       type: string
-                continuity:
-                  type: string
-                amountDescription:
-                  type: string
+                    continuity:
+                      type: string
+                    amountDescription:
+                      type: string
                 locationIsPublic:
                   type: boolean
                 location:
@@ -389,9 +389,27 @@ components:
             attachments:
               type: array
               items:
-                type: string
-                format: uri
-                description: Image uri
+                type : object
+                properties:
+                  id:
+                    type: string
+                  fileName:
+                    type: string
+                  contentType:
+                    type: string
+                  length:
+                    type: integer
+            regions:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  nameFi:
+                    type: string
+                  nameSv:
+                    type: string
       
     AdvertInfo:
       type: object

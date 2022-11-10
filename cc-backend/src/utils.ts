@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { Error, ItemInfo, Item, Config } from './types';
+import { Error, ItemInfo, Item, Config, ApiConfig, LoginResponse } from './types';
+import jwt, { Secret } from 'jsonwebtoken';
 
 export async function getItemsPK(token: any, userId: string) {
   try {
@@ -107,4 +108,42 @@ export function getToken(wholeToken: any) {
     console.log('unexpected error: ', error);
     return 'An unexpected error occurred';
   }
+}
+
+export async function getTokens(apiId: string, username: string, password: string) {
+  const response = await axios.get<ApiConfig>(
+    `${process.env.CC_DB_SERVICE_URL}/v1/apis/${apiId}`
+  );
+
+  if (response.data === null) {
+    return "Invalid API id";
+  }
+
+  const loginResponse = await axios.get<LoginResponse>(
+    `${response.data.authEndpoint}`, {
+      data: {
+        username: username,
+        password: password
+      }, 
+      headers: {
+        Accept: 'application/json'
+      }
+    }
+  );
+
+  if (!loginResponse.data.userId || !loginResponse.data.access_token) {
+    throw { response: {
+      statusText:"Invalid credentials",
+      status: 401
+    }};
+  }
+  
+  const jwtSecret: Secret = process.env.JWT_SECRET as string;
+  const token = jwt.sign({
+    userId: loginResponse.data.userId
+  }, jwtSecret, {
+    expiresIn: "2h"
+  });
+  
+  return { access_token: loginResponse.data.access_token, backend_token: token};
 }

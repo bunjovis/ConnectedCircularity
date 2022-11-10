@@ -97,3 +97,14 @@ export interface Config {
   locationZipCode?: string;
   locationMunicipality?: string;
 }
+
+export interface ApiConfig {
+  id: string;
+  name: string;
+  authEndpoint: string;
+}
+
+export interface LoginResponse {
+  access_token: string;
+  userId: string;
+}

@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { postConfigToDB } from "../utils";
+import { postConfigToDB, getTokens } from "../utils";
 import { Error, ItemInfo, Item } from "../types";
 
 const userRouter = Router();
@@ -9,6 +9,23 @@ userRouter.post(
   (request: Request, response: Response) => {
     const status = postConfigToDB(request.body);
     response.send(status);
+  }
+);
+
+userRouter.get(
+  "/v1/login/:apiId",
+  async (request: Request, response: Response) => {
+    try {
+      const tokens = await getTokens(request.params.apiId, request.body.username, request.body.password);
+      response.send(tokens);
+    }
+    catch (error:any) {
+      response.status(error.response.status);
+      response.json({
+        message: error.response.statusText || "Error",
+        status: error.response.status || 500
+      });
+    }
   }
 );
 

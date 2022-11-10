@@ -131,7 +131,7 @@ export async function getTokens(apiId: string, username: string, password: strin
     }
   );
 
-  if (!loginResponse.data.userId || !loginResponse.data.access_token) {
+  if (!loginResponse.data.userId || !loginResponse.data.accessToken) {
     throw { response: {
       statusText:"Invalid credentials",
       status: 401

@@ -105,6 +105,6 @@ export interface ApiConfig {
 }
 
 export interface LoginResponse {
-  access_token: string;
+  accessToken: string;
   userId: string;
 }

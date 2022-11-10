@@ -189,7 +189,9 @@ export async function login(username: string, password: string) {
       const response = await axios.post<AccessTokenResponse>(
         `https://auth.purkukartoitus.fi/auth/realms/rapurc/protocol/openid-connect/token`,
         new URLSearchParams({
+            // eslint-disable-next-line
             client_id: 'management',
+            // eslint-disable-next-line
             grant_type: 'password',
             username: username,
             password: password,
@@ -202,7 +204,7 @@ export async function login(username: string, password: string) {
             }
       });
       
-      return { access_token: response.data.access_token, userId: userIdResponse.data.id };
+      return { accessToken: response.data.access_token, userId: userIdResponse.data.id };
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.log('error message: ', error.message);

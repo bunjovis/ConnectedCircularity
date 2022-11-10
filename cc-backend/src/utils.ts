@@ -145,5 +145,5 @@ export async function getTokens(apiId: string, username: string, password: strin
     expiresIn: "2h"
   });
   
-  return { access_token: loginResponse.data.access_token, backend_token: token};
+  return { accessToken: loginResponse.data.accessToken, backendToken: token};
 }

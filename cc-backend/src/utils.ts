@@ -53,7 +53,7 @@ export async function getItemsDB(userId: string) {
 export async function getItemInfo(token: any, itemId: string) {
   try {
     const { data, status } = await axios.get<Item>(
-      `${process.env.CC_PK_SERVICE_URL}//v1/items/${itemId}`,
+      `${process.env.CC_PK_SERVICE_URL}/v1/items/${itemId}`,
       {
         headers: {
           Authorization: 'Bearer ' + token
@@ -113,7 +113,7 @@ export function getToken(wholeToken: any) {
 export async function postAdvert(token: any, advert: AdvertData) {
   try {
     const { status } = await axios.post<AdvertData>(
-      `http://localhost:8000/v1/advert`,
+      `${process.env.MT_PK_SERVICE_URL}/v1/advert`,
       {
         headers: {
           Authorization: 'Bearer ' + token

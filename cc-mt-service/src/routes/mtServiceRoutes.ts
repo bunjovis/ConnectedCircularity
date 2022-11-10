@@ -1,6 +1,5 @@
 // Mt service route module
-import e, { Router, Request, Response } from "express";
-import { json } from "stream/consumers";
+import { Router, Request, Response } from "express";
 import {postAdvert, parseToken} from '../handleData';
 import {AdvertData, Error} from '../types';
 
@@ -13,10 +12,10 @@ mtRouter.post('/advert', async (req:Request, res:Response) => {
         const wholeToken = req.headers.authorization ?? '';
         const token:string = parseToken(wholeToken);
         if (token.length === 0) {
-            let err:Error = {
+            const err:Error = {
                 message: "No valid token available",
                 status: 401
-            }
+            };
             res.json(err);
         }
         else {

@@ -1,8 +1,7 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
-import e from 'express';
 import qs from 'qs';
-import {AdvertData, Error} from './types';
+import {AdvertData} from './types';
 
 dotenv.config();
 

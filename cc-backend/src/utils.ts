@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { Advert } from '../api/api';
 import { Error, ItemInfo, Item, Config, AdvertData } from './types';
 
 export async function getItemsPK(token: any, userId: string) {
@@ -113,7 +112,7 @@ export function getToken(wholeToken: any) {
 export async function postAdvert(token: any, advert: AdvertData) {
   try {
     const { status } = await axios.post<AdvertData>(
-      `${process.env.MT_PK_SERVICE_URL}/v1/advert`,
+      `${process.env.MT_SERVICE_URL}/v1/advert`,
       {
         headers: {
           Authorization: 'Bearer ' + token

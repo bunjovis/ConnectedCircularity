@@ -1,7 +1,7 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
 import qs from 'qs';
-import {AdvertData} from './types';
+import {AdvertData, Error} from './types';
 
 dotenv.config();
 
@@ -47,9 +47,9 @@ async function getToken(client:string, secret:string, scope:string) {
  * @returns parsed token or empty string
  */
 export function parseToken(wholeToken:string) {
-    if (wholeToken.length > 0) {
-        return (wholeToken.split(' '))[1];
-    } else return '';
+    const splitted:Array<string> = wholeToken.split(' ');
+    if (splitted.length === 2) return splitted[1];
+    else return '';
 }
 
 /**

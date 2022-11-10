@@ -1,5 +1,6 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
+import e from 'express';
 import qs from 'qs';
 import {AdvertData, Error} from './types';
 
@@ -74,6 +75,6 @@ export async function postAdvert(data:AdvertData, token:string) {
         return { id: response.data.id };
     } catch (err) {
         console.log(err);
-        return null;
+        throw err;
     }
 }

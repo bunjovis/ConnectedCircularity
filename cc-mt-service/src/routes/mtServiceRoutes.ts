@@ -23,12 +23,8 @@ mtRouter.post('/advert', async (req:Request, res:Response) => {
             const response = await postAdvert(data, token);
             res.send(response);
         }
-    } catch (err) {
-        let error:Error = {
-            message: err.message,
-            status: err.status
-        }
-        res.json(err);
+    } catch (err:any) {
+        res.json({message: err.response.statusText, status: err.response.status});
     }
 }
 );

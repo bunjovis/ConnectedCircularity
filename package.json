@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha -r ts-node/register */test/*.test.ts",
-    "check": "eslint . --ext .ts",
-    "install": "npm run ./cc-backend"
+    "check": "eslint . --ext .ts"
   },
   "repository": {
     "type": "git",

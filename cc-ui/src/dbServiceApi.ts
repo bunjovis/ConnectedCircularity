@@ -12,9 +12,14 @@ export const dbServiceApi = createApi({
   }),
   endpoints: (builder) => ({
     getUserItems: builder.query<ItemInfo[], void>({
-      query: () => `items/${import.meta.env.VITE_CC_PK_USER_ID}`,
+      query: () => `/v1/items/${import.meta.env.VITE_CC_PK_USER_ID}`,
       transformResponse: (response: any, meta, arg) => {
+        console.log(response);
         if (response.status) {
+          console.log('most likely an error');
+          return [];
+        }
+        if (typeof response === 'string') {
           console.log('most likely an error');
           return [];
         }

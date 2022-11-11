@@ -47,14 +47,5 @@ jobs:
         working-directory: ./cc-pk-service
         run: npm install && npm run test
 
-      - name: Run Tests in Ui
-        working-directory: ./cc-ui
-        run: npm install && npm run test
-
-
-      
-
-        
-
       
 

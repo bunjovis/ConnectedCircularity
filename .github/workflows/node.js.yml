@@ -31,24 +31,23 @@ jobs:
       - run: npm install --global ts-node
       - run: npm run check
 
-      - name: Install dependencies of cc-backend project  
+      - name: Run Tests in Backend Service
         working-directory: ./cc-backend
         run: npm install && npm run test
       
-      
-      - name: Run js-tests in backend
+      - name: Run Tests in Db Service
         working-directory: ./cc-db-service
         run: npm install && npm run test
 
-      - name: Run js-tests in mt-service
+      - name: Run Tests in Mt Service
         working-directory: ./cc-mt-service
         run: npm install && npm run test
 
-      - name: Run js-tests in pk-service
+      - name: Run Tests in Pk Service
         working-directory: ./cc-pk-service
         run: npm install && npm run test
 
-      - name: Run js-tests in ui
+      - name: Run Tests in Ui
         working-directory: ./cc-ui
         run: npm install && npm run test
 

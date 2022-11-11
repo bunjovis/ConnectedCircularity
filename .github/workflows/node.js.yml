@@ -30,7 +30,23 @@ jobs:
       - run: npm install --global chai
       - run: npm install --global ts-node
       - run: npm run check
-      - run: npm install && npm run test 
+
+      - name: Install dependencies of cc-backend project  
+        working-directory: ./cc-backend
+        run: npm install && npm run test
+      
+      
+      - name: Run js-tests in backend
+        working-directory: ../cc-db-servcie
+        run: npm install && npm run test
+
+      - name: Run js-tests in mt-service
+        working-directory: ../cc-mt-servcie
+        run: npm install && npm run test
+
+      
+
+        
 
       
 

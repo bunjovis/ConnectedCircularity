@@ -37,15 +37,15 @@ jobs:
       
       
       - name: Run js-tests in backend
-        working-directory: ./cc-db-servcie
+        working-directory: ./cc-db-service
         run: npm install && npm run test
 
       - name: Run js-tests in mt-service
-        working-directory: ./cc-mt-servcie
+        working-directory: ./cc-mt-service
         run: npm install && npm run test
 
       - name: Run js-tests in pk-service
-        working-directory: ./cc-pk-servcie
+        working-directory: ./cc-pk-service
         run: npm install && npm run test
 
       - name: Run js-tests in ui

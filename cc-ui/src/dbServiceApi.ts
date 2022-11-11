@@ -4,7 +4,7 @@ import { ItemInfo } from './types/ItemInfo';
 export const dbServiceApi = createApi({
   reducerPath: 'dbServiceApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_CC_BACKEND ?? 'http://localhost:3000/v1/',
+    baseUrl: import.meta.env.VITE_CC_BACKEND ?? 'http://localhost:3000',
     prepareHeaders: (headers) => {
       const token = `Bearer ${localStorage.getItem('spToken')}`;
       headers.set('Authorization', token ?? '');

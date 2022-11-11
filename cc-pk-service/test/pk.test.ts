@@ -4,7 +4,7 @@ const mock = new MockAdapter(axios);
 import { getUserSurveys } from "../src/handleData";
 import { expect } from 'chai';
 import { Survey } from '../src/types';
-const { assert } = require('chai')
+import { assert } from 'chai';
 
 const survey:Survey[] = [{
   id: "string",
@@ -27,4 +27,4 @@ describe('Get User Surveys', function () {
       expect(result[0].id).to.equal(survey[0].id);  
       assert.isNotNull(result);   
     });
-})
+});

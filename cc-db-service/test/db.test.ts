@@ -1,8 +1,7 @@
-var assert = require('assert');
+import { expect } from 'chai';
 
-  describe('#Exmpåle Test ()', function () {
-    it('Test from cc-db', function () {
-      assert.equal([1, 2, 3].indexOf(4), -1);
-    });
-  
-})
+describe('Db Test ', () => {
+  it('Db Test', () => {
+    expect("db").to.equal('db');
+  });
+});

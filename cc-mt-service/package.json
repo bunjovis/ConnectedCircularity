@@ -7,7 +7,7 @@
     "start": "tsc && node dist/src/app.js",
     "check": "eslint . --ext .ts",
     "dev": "nodemon src/app.ts",
-    "test": "mocha"
+    "test": "mocha -r ts-node/register test/*.test.ts"
   },
   "keywords": [],
   "author": "",

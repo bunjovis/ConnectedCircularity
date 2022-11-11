@@ -30,7 +30,7 @@ jobs:
       - run: npm install --global chai
       - run: npm install --global ts-node
       - run: npm run check
-      - run: npm run test 
+      - run: npm install && npm run test 
 
       
 

@@ -1,3 +1,5 @@
+import { Advert } from '../types/Advert';
+
 export const setupMTRequest = () => {
   const headers = new Headers();
   headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -15,4 +17,38 @@ export const setupMTRequest = () => {
     redirect: 'follow',
   };
   return requestOptions;
+};
+
+export const advertDefaults: Advert = {
+  title: '',
+  industry: 'Rakentaminen ja purkaminen',
+  material: '',
+  materialDescription: '',
+  amount: '',
+  unit: '',
+  amountInformation: '',
+  showLocationForRegistered: true,
+  locationName: '',
+  streetAddress: '',
+  zipCode: '',
+  municipality: '',
+  area: '',
+  expiryDate: undefined,
+  contactName: '',
+  contactRole: '',
+  contactPhone: '',
+  contactEmail: '',
+  showOrganizationForRegistered: true,
+};
+
+export const setUpPrefills = (key: string, value?: string): string => {
+  if (key === 'material') {
+    switch (value) {
+      default: {
+        return 'perse';
+        break;
+      }
+    }
+  }
+  return 'nope';
 };

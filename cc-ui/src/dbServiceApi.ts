@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { Advert } from './types/Advert';
 import { ItemInfo } from './types/ItemInfo';
 
 export const dbServiceApi = createApi({
@@ -21,7 +22,18 @@ export const dbServiceApi = createApi({
         return response;
       },
     }),
+    getItem: builder.query<Advert, string>({
+      query: (itemId: string) => `itemInfo/${itemId}`,
+      transformResponse: (response: any, meta, arg) => {
+        console.log(response);
+        if (response.status) {
+          console.log('most likely an error');
+          return {};
+        }
+        return response;
+      },
+    }),
   }),
 });
 
-export const { useGetUserItemsQuery } = dbServiceApi;
+export const { useGetUserItemsQuery, useGetItemQuery } = dbServiceApi;

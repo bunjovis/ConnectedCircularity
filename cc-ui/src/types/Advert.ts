@@ -4,7 +4,7 @@ export interface Advert {
   material: string;
   materialDescription: string;
   amount: string;
-  amountUnit: string;
+  unit: string;
   amountInformation: string;
   showLocationForRegistered: boolean;
   locationName: string;

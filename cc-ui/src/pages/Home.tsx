@@ -33,6 +33,7 @@ const Home: React.FC<{}> = () => {
       </Center>
     );
   }
+  console.log(data, error, isLoading);
   return (
     <Flex direction='column' gap='4' m='2' p='5' bg='#fff'>
       <Heading as='h1' size='md'>

@@ -45,7 +45,7 @@ async function getToken(client:string, secret:string, scope:string) {
 // Posts data to Materiaalitori test API
 export async function postAdvert(data:AdvertData) {
     try {
-        const token = await getToken(clientId,clientSecret,scope);
+        const token = await getToken(clientId, clientSecret, scope);
         const config = {
             method: 'post',
             url: 'https://test.materiaalitori.fi/api/rfo',
@@ -71,7 +71,7 @@ export async function postAdvert(data:AdvertData) {
  */
 export async function postAttachment(data:any) {
     try {
-        const token = await getToken(clientId,clientSecret,scope);
+        const token = await getToken(clientId, clientSecret, scope);
 
         const formData = new FormData();
         formData.append("file", data.data, data.name);

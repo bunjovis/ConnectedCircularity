@@ -15,7 +15,7 @@ export const dbServiceApi = createApi({
     getUserItems: builder.query<ItemInfo[], void>({
       query: () => `/v1/items/${import.meta.env.VITE_CC_PK_USER_ID}`,
       transformResponse: (response: any, meta, arg) => {
-        console.log(response);
+        console.log('getUserItems response:', response);
         if (response.status) {
           console.log('most likely an error');
           return [];
@@ -30,7 +30,7 @@ export const dbServiceApi = createApi({
     getItem: builder.query<Advert, string>({
       query: (itemId: string) => `/v1/itemInfo/${itemId}`,
       transformResponse: (response: any, meta, arg) => {
-        console.log(response);
+        console.log('getItem response:', response);
         if (response.status) {
           console.log('most likely an error');
           return {};

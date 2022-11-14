@@ -17,11 +17,14 @@ import {
   Textarea,
   Switch,
   Text,
+  Image,
+  Center,
+  Spinner,
 } from '@chakra-ui/react';
 
-import { WarningIcon } from '@chakra-ui/icons';
+import { DeleteIcon, WarningIcon } from '@chakra-ui/icons';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { FieldWithOriginalComparison } from '../components/form/FieldWithOriginalComparison';
 import { TextInputField } from '../components/form/TextInputField';
@@ -45,18 +48,13 @@ const TransferForm: React.FC<{}> = () => {
   const { itemId } = useParams();
   const { mtAuth, mtLogin } = useAuth();
   const { data, error, isLoading } = useGetItemQuery(itemId);
+  const navigate = useNavigate();
+
   console.log(data, error, isLoading);
-  /*
-  maybe used later
-  const renderFormFields = () => {
-    for (const key in initValues) {
-      console.log(`${key}: ${initValues[key as keyof Advert]}`);
-    }
-  };
-  */
+  // TODO: if no data, try to refetch
 
   const cancelAction = () => {
-    console.log('Clicked Cancel');
+    navigate('/home');
   };
 
   const saveAsDraft = () => {
@@ -72,21 +70,24 @@ const TransferForm: React.FC<{}> = () => {
           variant='outline'
           borderRadius='0'
           textTransform='uppercase'
+          backgroundColor='#fff'
           onClick={() => cancelAction()}
         >
           Peruuta
         </Button>
         <Spacer />
         <ButtonGroup>
-          <Button
-            colorScheme='blue'
-            variant='outline'
-            borderRadius='0'
-            onClick={() => saveAsDraft()}
-            textTransform='uppercase'
-          >
-            Tallenna luonnos
-          </Button>
+          {false && (
+            <Button
+              colorScheme='blue'
+              variant='outline'
+              borderRadius='0'
+              onClick={() => saveAsDraft()}
+              textTransform='uppercase'
+            >
+              Tallenna luonnos
+            </Button>
+          )}
           {mtAuth && (
             <Button
               type='submit'
@@ -112,17 +113,14 @@ const TransferForm: React.FC<{}> = () => {
     );
   };
 
-  const mappedValues = ['material', 'unit', 'industry'];
+  const mappedValues = ['material', 'unit', 'area'];
 
   const setUpValues = (data: Advert) => {
-    // TODO: match with MT options
     let d = {} as Advert;
-    console.log(d);
-    type Avain = keyof typeof advertDefaults;
+    type AdKey = keyof typeof advertDefaults;
     for (const key in data) {
-      console.log(`${key}: ${data[key as Avain]}`);
-      if (data[key as Avain]) {
-        const value = data[key as Avain];
+      if (data[key as AdKey]) {
+        const value = data[key as AdKey];
         if (typeof value === 'string' && mappedValues.includes(key)) {
           const v = setUpPrefills(key, value);
           d = {
@@ -132,10 +130,67 @@ const TransferForm: React.FC<{}> = () => {
         }
       }
     }
-    console.log({ ...advertDefaults, ...data, ...d });
+    const industryPrefill = setUpPrefills('industry', 'PK');
+    d = {
+      ...d,
+      ['industry']: industryPrefill,
+    };
+    // TODO: if configurations
     return { ...advertDefaults, ...data, ...d };
   };
 
+  const removeImage = (url: string) => {};
+
+  const displayImages = (images: string[]) => {
+    return (
+      <Flex width='100%' alignContent='center' gap='1'>
+        {images &&
+          images.map((i) => {
+            return (
+              <Flex direction='column' maxW='25%' minH='200px'>
+                <Box flex={1} key={i} border='1px solid black' padding='10px'>
+                  <Image
+                    border='1px solid black'
+                    src={i}
+                    marginLeft='auto'
+                    marginRight='auto'
+                    marginTop='auto'
+                    marginBottom='auto'
+                    minH='200px'
+                    objectFit='contain'
+                    padding='10px'
+                  />
+                </Box>
+                <Button
+                  mt='5px'
+                  colorScheme='blue'
+                  variant='outline'
+                  borderRadius='0'
+                  textTransform='uppercase'
+                  backgroundColor='#fff'
+                  rightIcon={<DeleteIcon />}
+                  onClick={() => removeImage(i)}
+                >
+                  Poista
+                </Button>
+              </Flex>
+            );
+          })}
+      </Flex>
+    );
+  };
+  if (isLoading) {
+    return (
+      <Center width='100%' p='5'>
+        <Spinner size='xl' />
+      </Center>
+    );
+  }
+  if (error) {
+    <Center width='100%' p='5'>
+      Tietojen haku ei onnistunut
+    </Center>;
+  }
   return (
     <Flex
       flexDirection='column'
@@ -143,8 +198,6 @@ const TransferForm: React.FC<{}> = () => {
       align='center'
       minW={'900px'}
     >
-      {isLoading && <>Haetaan tietoja...</>}
-      {error && <>Virhe</>}
       {data && (
         <Box backgroundColor='#F6F6F6' maxWidth='80%' minWidth='400px' p='5'>
           <Heading textAlign='left' as='h2' p='2'>
@@ -206,7 +259,7 @@ const TransferForm: React.FC<{}> = () => {
                         {industryOptions.map(
                           (op: any): ReactElement => (
                             <option key={op.id} value={op.id}>
-                              {op.id}
+                              {op.displayValue}
                             </option>
                           )
                         )}
@@ -324,11 +377,12 @@ const TransferForm: React.FC<{}> = () => {
                     isRequired: false,
                   })}
                   {TextInputField({
-                    label: 'Kunta',
-                    id: 'municipality',
+                    label: 'Kunta/Alue',
+                    id: 'area',
                     isRequired: true,
-                    touched: touched.municipality,
-                    errors: errors.municipality,
+                    touched: touched.area,
+                    errors: errors.area,
+                    value: values.area,
                   })}
                   {Datepicker({
                     label: 'Ilmoituksen voimassaoloaika',
@@ -336,7 +390,10 @@ const TransferForm: React.FC<{}> = () => {
                     name: 'expiryDate',
                     valueSetter: setFieldValue,
                   })}
-                  {/**TODO: liitteet ja kuvat */}
+                  <Heading as='h5' size='sm'>
+                    Liitteet ja kuvat
+                  </Heading>
+                  {displayImages(values.images)}
                   <Heading as='h5' size='sm'>
                     Yhteyshenkilön tiedot
                   </Heading>

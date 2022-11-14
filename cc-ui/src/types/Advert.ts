@@ -18,4 +18,5 @@ export interface Advert {
   contactPhone: string;
   contactEmail: string;
   showOrganizationForRegistered: boolean;
+  images: string[];
 }

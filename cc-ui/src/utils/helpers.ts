@@ -1,5 +1,10 @@
 import { Advert } from '../types/Advert';
-import { materialOptions, unitOptions } from './mt-options';
+import {
+  industryOptions,
+  materialOptions,
+  municipalityOptions,
+  unitOptions,
+} from './mt-options';
 
 export const setupMTRequest = () => {
   const headers = new Headers();
@@ -65,7 +70,6 @@ export const mapMaterial = (ogValue: string, options: any[]): any => {
     return returnOptionWithValue('metalli', options);
   }
   if (ogValue.toLowerCase().includes('tiili')) {
-    console.log('og value includes tiili');
     return returnOptionWithValue('tiilet', options);
   }
   if (ogValue.toLowerCase().includes('kivi')) {
@@ -98,20 +102,71 @@ export const mapUnit = (ogValue: string, options: any[]): any => {
   }
 };
 
+const mapIndusty = (itemProvider: string, options: any[]): any => {
+  if (itemProvider === 'PK') {
+    return returnOptionWithValue('rakentaminen', options);
+  }
+  return '';
+};
+
+const mapArea = (
+  value: string,
+  options: {
+    regionId: string;
+    regionNameFi: string;
+    regionNameSv: string;
+    coordinatesPoint: { type: string; coordinates: number[] };
+    coordinates: { type: string; lon: number; lat: number }[];
+    municipalities: {
+      id: string;
+      nameFi: string;
+      nameSv: string;
+      type: string;
+      coordinatesPoint: { type: string; coordinates: number[] };
+      coordinates: { type: string; lon: number; lat: number }[];
+      regionId: string;
+      regionNameFi: string;
+      regionNameSv: string;
+      regionCoordinates: { type: string; lon: number; lat: number }[];
+      regionCoordinatesPoint: { type: string; coordinates: number[] };
+      configurationType: string;
+    }[];
+  }[]
+): any => {
+  let foundValue = '';
+  // TODO: refactor
+  const op = options.map((o) => {
+    o.municipalities.map((m) => {
+      //console.log(m);
+      if (m.nameFi.toLowerCase() === value.toLowerCase()) {
+        foundValue = m.nameFi;
+      }
+    });
+  });
+
+  return foundValue;
+};
+
 export const setUpPrefills = (key: string, value?: string): string => {
   if (!value) {
     return '';
   }
-  console.log('set up key', key, value);
   if (key === 'material') {
     const option = mapMaterial(value, materialOptions);
     return option.id;
   }
   if (key === 'industry') {
+    const option = mapIndusty(value, industryOptions);
+    return option.id;
   }
   if (key === 'unit') {
     const option = mapUnit(value, unitOptions);
     return option.id;
+  }
+
+  if (key === 'area') {
+    const areaValue = mapArea(value, municipalityOptions);
+    return areaValue;
   }
 
   return '';

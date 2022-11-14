@@ -28,7 +28,7 @@ export const dbServiceApi = createApi({
       },
     }),
     getItem: builder.query<Advert, string>({
-      query: (itemId: string) => `itemInfo/${itemId}`,
+      query: (itemId: string) => `/v1/itemInfo/${itemId}`,
       transformResponse: (response: any, meta, arg) => {
         console.log(response);
         if (response.status) {

@@ -112,6 +112,8 @@ const TransferForm: React.FC<{}> = () => {
     );
   };
 
+  const mappedValues = ['material', 'unit', 'industry'];
+
   const setUpValues = (data: Advert) => {
     // TODO: match with MT options
     let d = {} as Advert;
@@ -120,20 +122,17 @@ const TransferForm: React.FC<{}> = () => {
     for (const key in data) {
       console.log(`${key}: ${data[key as Avain]}`);
       if (data[key as Avain]) {
-        console.log('has value');
         const value = data[key as Avain];
-        let k = key as keyof Advert;
-        if (typeof value === 'string') {
+        if (typeof value === 'string' && mappedValues.includes(key)) {
           const v = setUpPrefills(key, value);
-          console.log(v);
           d = {
             ...d,
             [key]: v,
           };
         }
-        // d[key as keyof Advert] = data[key as keyof Advert];
       }
     }
+    console.log({ ...advertDefaults, ...data, ...d });
     return { ...advertDefaults, ...data, ...d };
   };
 
@@ -249,7 +248,7 @@ const TransferForm: React.FC<{}> = () => {
                   })}
                   {SelectWithOriginalComparison({
                     label: 'Määrän yksikkö',
-                    valueKey: 'amountUnit',
+                    valueKey: 'unit',
                     ogValue: data.unit,
                     isRequired: true,
                     touched: touched.unit,

@@ -55,7 +55,7 @@ export const SelectWithOriginalComparison = ({
           >
             {options.map((op) => (
               <option key={op.id} value={op.id}>
-                {op.id}
+                {op.displayValue}
               </option>
             ))}
           </Field>

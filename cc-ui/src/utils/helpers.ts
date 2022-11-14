@@ -1,4 +1,5 @@
 import { Advert } from '../types/Advert';
+import { materialOptions, unitOptions } from './mt-options';
 
 export const setupMTRequest = () => {
   const headers = new Headers();
@@ -21,7 +22,7 @@ export const setupMTRequest = () => {
 
 export const advertDefaults: Advert = {
   title: '',
-  industry: 'Rakentaminen ja purkaminen',
+  industry: '',
   material: '',
   materialDescription: '',
   amount: '',
@@ -41,14 +42,77 @@ export const advertDefaults: Advert = {
   showOrganizationForRegistered: true,
 };
 
-export const setUpPrefills = (key: string, value?: string): string => {
-  if (key === 'material') {
-    switch (value) {
-      default: {
-        return 'perse';
-        break;
-      }
-    }
+export const returnOptionWithValue = (value: string, options: any[]) => {
+  return options.find((o) =>
+    o.displayValue.toLowerCase().includes(value.toLowerCase())
+  );
+};
+
+export const mapMaterial = (ogValue: string, options: any[]): any => {
+  if (ogValue.toLowerCase().includes('ikkuna')) {
+    return returnOptionWithValue('lasi', options);
   }
-  return 'nope';
+  if (ogValue.toLowerCase().includes('puutavara')) {
+    return returnOptionWithValue('puu', options);
+  }
+  if (ogValue.toLowerCase().includes('betoni')) {
+    return returnOptionWithValue('betoni', options);
+  }
+  if (ogValue.toLowerCase().includes('kalusteet')) {
+    return returnOptionWithValue('käyttökelpoiset huonekalut', options);
+  }
+  if (ogValue.toLowerCase().includes('metalli')) {
+    return returnOptionWithValue('metalli', options);
+  }
+  if (ogValue.toLowerCase().includes('tiili')) {
+    console.log('og value includes tiili');
+    return returnOptionWithValue('tiilet', options);
+  }
+  if (ogValue.toLowerCase().includes('kivi')) {
+    return returnOptionWithValue('maa ainekset', options);
+  }
+  return returnOptionWithValue('rakennusosat', options);
+};
+
+export const mapUnit = (ogValue: string, options: any[]): any => {
+  if (
+    ogValue.toLowerCase().includes('pcs') ||
+    ogValue.toLowerCase().includes('kpl')
+  ) {
+    return returnOptionWithValue('kpl', options);
+  }
+  if (ogValue.toLowerCase().includes('m2')) {
+    return returnOptionWithValue('m2', options);
+  }
+  if (ogValue.toLowerCase().includes('m')) {
+    return returnOptionWithValue('m', options);
+  }
+  if (ogValue.toLowerCase().includes('m3')) {
+    return returnOptionWithValue('m3', options);
+  }
+  if (ogValue.toLowerCase().includes('tn')) {
+    return returnOptionWithValue('t', options);
+  }
+  if (ogValue.toLowerCase().includes('kg')) {
+    return returnOptionWithValue('kg', options);
+  }
+};
+
+export const setUpPrefills = (key: string, value?: string): string => {
+  if (!value) {
+    return '';
+  }
+  console.log('set up key', key, value);
+  if (key === 'material') {
+    const option = mapMaterial(value, materialOptions);
+    return option.id;
+  }
+  if (key === 'industry') {
+  }
+  if (key === 'unit') {
+    const option = mapUnit(value, unitOptions);
+    return option.id;
+  }
+
+  return '';
 };

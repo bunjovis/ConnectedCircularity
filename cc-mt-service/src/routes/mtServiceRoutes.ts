@@ -1,21 +1,22 @@
 // Mt service routes
 import { Router, Request, Response } from "express";
-import {postAdvert,postImage} from '../handleData';
+import {postAdvert,postAttachment} from '../handleData';
 import {AdvertData,Error} from '../types';
-//import multer from 'multer';
-//const upload = multer({dest: 'uploads/'});
 
 const mtRouter = Router();
 
-mtRouter.post('/image', async (req:any, res:Response) => {
-    const image = req.files.file;
-
-    //console.log(image);
-    const resp = await postImage(image).catch(e=>console.log(e));
+mtRouter.post('/attachment', async (req:any, res:Response) => {
+    const file = req.files.file;
+    const resp = await postAttachment(file).catch(e=>console.log(e));
     if (resp) res.send(resp);
-    else res.json("error");
-    //res.json("test");
-})
+    else {
+        const err:Error = {
+            message:"Cannot add attachment",
+            status: 400
+        };
+        res.json(err);
+    }
+});
 
 mtRouter.post('/advert',async (req:Request, res:Response) => {
     const data:AdvertData = req.body;
@@ -30,7 +31,6 @@ mtRouter.post('/advert',async (req:Request, res:Response) => {
         };
         res.json(err);
     }
-}
-);
+});
 
 export default mtRouter;

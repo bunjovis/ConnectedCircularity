@@ -34,7 +34,7 @@ services:
   cc-pk-service:
     build: cc-pk-service/ 
     ports:
-      - '5000:5000'
+      - '5123:5123'
     networks:
       - backend
 

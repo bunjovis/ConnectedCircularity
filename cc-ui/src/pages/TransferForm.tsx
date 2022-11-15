@@ -147,7 +147,7 @@ const TransferForm: React.FC<{}> = () => {
         {images &&
           images.map((i) => {
             return (
-              <Flex direction='column' maxW='25%' minH='200px'>
+              <Flex direction='column' maxW='25%' minH='200px' key={i}>
                 <Box flex={1} key={i} border='1px solid black' padding='10px'>
                   <Image
                     border='1px solid black'

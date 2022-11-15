@@ -25,6 +25,15 @@ export const setupMTRequest = () => {
   return requestOptions;
 };
 
+export const setupPKRequest = () => {
+  const headers = new Headers();
+  const token = `bearer ${sessionStorage.getItem('spToken')}`;
+
+  headers.append('Authorization', token);
+  headers.append('credentials', 'include');
+  return headers;
+};
+
 export const advertDefaults: Advert = {
   title: '',
   industry: '',
@@ -45,6 +54,7 @@ export const advertDefaults: Advert = {
   contactPhone: '',
   contactEmail: '',
   showOrganizationForRegistered: true,
+  images: [],
 };
 
 export const returnOptionWithValue = (value: string, options: any[]) => {

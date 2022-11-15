@@ -7,17 +7,21 @@ export const dbServiceApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_CC_BACKEND ?? 'http://localhost:3000',
     prepareHeaders: (headers) => {
-      const token = `Bearer ${localStorage.getItem('spToken')}`;
+      const token = `Bearer ${sessionStorage.getItem('spToken')}`;
       headers.set('Authorization', token ?? '');
     },
   }),
   endpoints: (builder) => ({
-    getUserItems: builder.query<ItemInfo[], void>({
-      query: () => `/v1/items/${import.meta.env.VITE_CC_PK_USER_ID}`,
+    getUserItems: builder.query<ItemInfo[], string>({
+      query: (userId) => `/v1/items/${userId}`,
       transformResponse: (response: any, meta, arg) => {
         console.log('getUserItems response:', response);
         if (response.status) {
           console.log('most likely an error');
+          if (response.status === 401) {
+            sessionStorage.clear();
+            location.reload();
+          }
           return [];
         }
         if (typeof response === 'string') {

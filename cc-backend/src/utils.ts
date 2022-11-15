@@ -7,8 +7,8 @@ export async function getItemsPK(token: any, userId: string) {
       `${process.env.CC_PK_SERVICE_URL}/v1/users/${userId}/items`,
       {
         headers: {
-          Authorization: 'Bearer ' + token
-        }
+          Authorization: 'Bearer ' + token,
+        },
       }
     );
     console.log(response);
@@ -32,8 +32,8 @@ export async function getItemsDB(userId: string) {
       `${process.env.CC_DB_SERVICE_URL}/items/${userId}`,
       {
         headers: {
-          Accept: 'application/json'
-        }
+          Accept: 'application/json',
+        },
       }
     );
     console.log('response status is: ', status);
@@ -55,8 +55,8 @@ export async function getItemInfo(token: any, itemId: string) {
       `${process.env.CC_PK_SERVICE_URL}/v1/items/${itemId}`,
       {
         headers: {
-          Authorization: 'Bearer ' + token
-        }
+          Authorization: 'Bearer ' + token,
+        },
       }
     );
     console.log('response status is: ', status);
@@ -78,8 +78,8 @@ export async function postConfigToDB(config: Config) {
       {
         data: config,
         headers: {
-          Accept: 'application/json'
-        }
+          Accept: 'application/json',
+        },
       }
     );
     console.log('response status is: ', status);

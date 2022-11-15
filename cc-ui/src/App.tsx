@@ -1,22 +1,42 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import './App.css';
+import { Box } from '@chakra-ui/react';
 
-import Header from './components/header/Header';
+import { useAuth } from './components/AuthProvider';
+
 import Login from './pages/Login';
 import Home from './pages/Home';
 import TransferForm from './pages/TransferForm';
+import Header from './components/header/Header';
+import { ProtectedRoute } from './components/ProtectedRoute';
+import MTLogin from './components/MTLogin/MTLogin';
 
 const App: React.FC<{}> = () => {
+  const { mtLoading } = useAuth();
   return (
-    <div className='App'>
+    <Box bg='#E5E5E5'>
       <Header></Header>
       <Routes>
         <Route path='*' element={<Login />} />
-        <Route path='/home' element={<Home />} />
-        <Route path='/new_item/:itemId' element={<TransferForm />} />
+        <Route
+          path='/home'
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/new_item/:itemId'
+          element={
+            <ProtectedRoute>
+              <TransferForm />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
-    </div>
+      {mtLoading && <MTLogin />}
+    </Box>
   );
 };
 

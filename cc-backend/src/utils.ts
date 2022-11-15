@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { Error, ItemInfo, Item, Config, ApiConfig, LoginResponse } from './types';
-import jwt, { Secret } from 'jsonwebtoken';
+import { Error, ItemInfo, Item, Config, ApiConfig, LoginResponse, UserInfo } from './types';
+import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
 
 export async function getItemsPK(token: any, userId: string) {
   try {
@@ -116,7 +116,10 @@ export async function getTokens(apiId: string, username: string, password: strin
   );
 
   if (response.data === null) {
-    return "Invalid API id";
+    throw { response: {
+      statusText:"Invalid API id",
+      status: 500
+    }};
   }
 
   const loginResponse = await axios.get<LoginResponse>(
@@ -146,4 +149,40 @@ export async function getTokens(apiId: string, username: string, password: strin
   });
   
   return { accessToken: loginResponse.data.accessToken, backendToken: token};
+}
+export async function saveUser(token: string, apiId: string, username: string, id: string) {
+  const response = await axios.post<UserInfo>(
+    `${process.env.CC_DB_SERVICE_URL}/v1/users`,
+    {
+      api: apiId,
+      username: username,
+      id: id
+    },
+    {
+      headers: {
+        Accept: 'application/json',
+        Authorization: 'Bearer ' + token
+      }
+    }
+  );
+
+  if (response.data === null) {
+    throw { response: {
+      statusText:"Saving user failed",
+      status: 500
+    }};
+  }
+}
+export async function getUserIdFromToken(token: string) {
+  const decodedToken = jwt.decode(token);
+  if (decodedToken === null) {
+    throw { response: {
+      statusText:"Can't decode token",
+      status: 500
+    }};
+  }
+  else {
+    return (decodedToken as JwtPayload).userId;
+  }
+  
 }

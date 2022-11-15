@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { postConfigToDB, getTokens } from "../utils";
+import { postConfigToDB, getTokens, saveUser, getUserIdFromToken } from "../utils";
 import { Error, ItemInfo, Item } from "../types";
 
 const userRouter = Router();
@@ -17,6 +17,8 @@ userRouter.get(
   async (request: Request, response: Response) => {
     try {
       const tokens = await getTokens(request.params.apiId, request.body.username, request.body.password);
+      const userId = await getUserIdFromToken(tokens.backendToken);
+      await saveUser(tokens.backendToken, request.params.apiId, request.body.username, userId);
       response.send(tokens);
     }
     catch (error:any) {

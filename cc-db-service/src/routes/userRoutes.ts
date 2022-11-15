@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
 
-import { createOrUpdateUser, getUsers, getUserById } from '../services/userService';
+import { createOrReturnUser, getUsers, getUserById } from '../services/userService';
 import { getItemsByUserId } from '../services/itemService';
 import { BackendToken, HttpResponseError } from '../types';
 import { getToken } from '../utils';
@@ -95,7 +95,7 @@ userRoutes.post(
   '/users',
   async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const newUser = await createOrUpdateUser(request.body.username, request.body.api);
+      const newUser = await createOrReturnUser(request.body.username, request.body.api, request.body.id);
       response.status(200).json(newUser);
     } catch (err:any) {
       const httpError:HttpResponseError = {

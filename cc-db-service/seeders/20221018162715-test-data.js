@@ -28,7 +28,7 @@ module.exports = {
         updatedAt: new Date(),
       },
     ]);
-    await queryInterface.bulkInsert('user', [
+    /*await queryInterface.bulkInsert('user', [
       {
         id: '82114f1c-ed8e-4ed0-ad2f-10b72bdcf349',
         api: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed',
@@ -36,7 +36,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-    ]);
+    ]);*/
     await queryInterface.bulkInsert('item', [
       {
         id: '0cdb31e8-b330-48dd-aecc-b2a92cf3d037',

@@ -83,6 +83,7 @@ export interface Item {
 export interface UserInfo {
   api: string;
   username: string;
+  apiId: string;
 }
 
 export interface Config {

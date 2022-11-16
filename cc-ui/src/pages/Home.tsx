@@ -19,13 +19,18 @@ const Home: React.FC<{}> = () => {
   const navigate = useNavigate();
   const { data, error, isLoading } = useGetUserItemsQuery();
 
+  //error: fails to fetch
+
   if (error) {
+    console.log(error);
     return (
       <Center width='100%' p='5'>
         Materiaalihaku ei onnistunut
       </Center>
     );
   }
+
+  //Users PK-service items are shown
   if (isLoading) {
     return (
       <Center width='100%' p='5'>

@@ -25,7 +25,12 @@ const Home: React.FC<{}> = () => {
     console.log(error);
     return (
       <Center width='100%' p='5'>
-        Materiaalihaku ei onnistunut
+        <Box
+          color='#EE0004'
+          fontSize='2xl'
+          textAlign='center'>
+            Materiaalihaku ei onnistunut :( <Divider /> yritä uudestaan
+        </Box>
       </Center>
     );
   }

@@ -1,21 +1,29 @@
-// Mt service routes
+// Mt service route module
 import { Router, Request, Response } from "express";
-import {postAdvert} from '../handleData';
-import {AdvertData,Error} from '../types';
+import {postAdvert, parseToken} from '../handleData';
+import {AdvertData, Error} from '../types';
 
 const mtRouter = Router();
 
-mtRouter.post('/advert',async (req:Request, res:Response) => {
-    const data:AdvertData = req.body;
-    // should include attributes type and data but data is undefined
-    const response = await postAdvert(data).catch(e => console.log(e));
-    if (response) res.send(response);
-    else {
-        const err:Error = {
-            message:"Cannot add advert",
-            status: 400
-        };
-        res.json(err);
+// Route for posting a new advert: /v1/advert
+mtRouter.post('/advert', async (req:Request, res:Response) => {
+    try {
+        const data:AdvertData = req.body;
+        const wholeToken = req.headers.authorization ?? '';
+        const token:string = parseToken(wholeToken);
+        if (token.length === 0) {
+            const err:Error = {
+                message: "No valid token available",
+                status: 401
+            };
+            res.json(err);
+        }
+        else {
+            const response = await postAdvert(data, token);
+            res.send(response);
+        }
+    } catch (err:any) {
+        res.json({message: err.response.statusText, status: err.response.status});
     }
 }
 );

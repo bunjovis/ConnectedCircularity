@@ -22,7 +22,7 @@ userRouter.get(
       response.send(tokens);
     }
     catch (error:any) {
-      response.status(error.response.status);
+      response.status(error.response.status || 500);
       response.json({
         message: error.response.statusText || "Error",
         status: error.response.status || 500

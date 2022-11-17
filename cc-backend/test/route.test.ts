@@ -2,7 +2,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { getItemsPK, getItemInfo, postAdvert } from '../src/utils';
 import { expect } from 'chai';
-import { AdvertData, Item, ItemInfo } from '../src/types';
+import { AdvertData, Item, ItemInfo, Error } from '../src/types';
 import { assert } from 'chai';
 import { v4 as uuid } from 'uuid';
 
@@ -105,6 +105,19 @@ describe('Test Routes', function () {
     mock.reset();
   });
 
+  //it('should throw error', async () => {
+  //  mock
+  //    .onGet(`${process.env.CC_PK_SERVICE_URL}/v1/users/${userId}/items`)
+  //    .reply(404);
+  //  assert.throws(
+  //    () => {
+  //      getItemsPK('Bearer ' + uuid(), 'wrongFormat');
+  //    },
+  //    Error,
+  //    'Request failed with status code 404'
+  //  );
+  //});
+  //
   it('should return item info', async () => {
     mock
       .onGet(`${process.env.CC_PK_SERVICE_URL}/v1/items/${itemId}`)

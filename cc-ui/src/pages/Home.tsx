@@ -20,38 +20,11 @@ const Home: React.FC<{}> = () => {
   const navigate = useNavigate();
   const { data, error, isLoading } = useGetUserItemsQuery();
 
-  //error: fails to fetch
+  //refreshes the page when button is pushed
   const refreshPage = () => {
     window.location.reload();
   }
 
-  //if the item fetching fails, this is shown
-  if (error) {
-    console.log(error);
-    return (
-      <Flex 
-        flexDirection='column'
-        width='100%' 
-        p='5'
-        alignItems='center'>
-        <Box
-          color='#EE0004'
-          fontSize='2xl'
-          textAlign='center'
-          p='5'>
-            Materiaalihaku ei onnistunut :(   
-        </Box>
-        <Button 
-          type="submit" 
-          colorScheme='blue'
-          width='20wh'
-          onClick={refreshPage}
-            >yritä uudestaan</Button>
-        </Flex>
-    );
-  }
-
-  //Users PK-service items are shown
   if (isLoading) {
     return (
       <Center width='100%' p='5'>
@@ -67,6 +40,31 @@ const Home: React.FC<{}> = () => {
       </Heading>
 
       <HStack align='center' width='100%'>
+        {error && (
+          <Flex
+          p='5'
+          width='90%' 
+          flexDirection='column'
+          align='center'
+          border='1px solid black'
+          >
+          <Text
+            as='b'
+            color='#EE0004'
+            fontSize='2xl'
+            textAlign='center'
+            p='5'>
+              Materiaalihaku ei onnistunut :(   
+          </Text>
+          <Button 
+            type="submit" 
+            colorScheme='blue'
+            width='20wh'
+            onClick={refreshPage}
+              >yritä uudestaan</Button>
+          </Flex>
+        )}
+
         {data && !isLoading && (
           <>
             <Box width='50%' height='100%'>

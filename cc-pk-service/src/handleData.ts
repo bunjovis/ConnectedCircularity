@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Survey, PkItem, Item, Building, ItemInfo, ReusableMaterial } from './types';
+import { Survey, PkItem, Item, Building, ItemInfo, ReusableMaterial, AccessTokenResponse } from './types';
 
 /**
  * Initalize an empty ItemInfo -object
@@ -183,3 +183,35 @@ export async function getItemInfo(userSurveys:Survey[], token:any, itemId:string
     }
     return info;
 }
+
+export async function login(username: string, password: string) {
+    try {
+      const response = await axios.post<AccessTokenResponse>(
+        `https://auth.purkukartoitus.fi/auth/realms/rapurc/protocol/openid-connect/token`,
+        new URLSearchParams({
+            // eslint-disable-next-line
+            client_id: 'management',
+            // eslint-disable-next-line
+            grant_type: 'password',
+            username: username,
+            password: password,
+        })
+      );
+
+      const userIdResponse = await axios.get('https://auth.purkukartoitus.fi/auth/realms/rapurc/account', {
+            headers: {
+                'Authorization': 'Bearer ' + response.data.access_token
+            }
+      });
+      
+      return { accessToken: response.data.access_token, userId: userIdResponse.data.id };
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log('error message: ', error.message);
+        return error.message;
+      } else {
+        console.log('unexpected error: ', error);
+        return 'An unexpected error occurred';
+      }
+    }
+  }

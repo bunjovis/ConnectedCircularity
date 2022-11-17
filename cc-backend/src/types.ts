@@ -111,6 +111,7 @@ export interface Item {
 export interface UserInfo {
   api: string;
   username: string;
+  apiId: string;
 }
 
 export interface Config {
@@ -124,4 +125,15 @@ export interface Config {
   locationAddress?: string;
   locationZipCode?: string;
   locationMunicipality?: string;
+}
+
+export interface ApiConfig {
+  id: string;
+  name: string;
+  authEndpoint: string;
+}
+
+export interface LoginResponse {
+  accessToken: string;
+  userId: string;
 }

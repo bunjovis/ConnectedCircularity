@@ -22,11 +22,21 @@ userRouter.get(
       response.send(tokens);
     }
     catch (error:any) {
-      response.status(error.response.status || 500);
-      response.json({
-        message: error.response.statusText || "Error",
-        status: error.response.status || 500
-      });
+      if (!error.response) {
+        response.status(500);
+        response.json({
+          message: "Error",
+          status: 500
+        });
+      }
+      else {
+        response.status(error.response.status || 500);
+        response.json({
+          message: error.response.statusText || "Error",
+          status: error.response.status || 500
+        });
+      }
+      
     }
   }
 );

@@ -22,6 +22,7 @@ userRouter.get(
       response.send(tokens);
     }
     catch (error:any) {
+      console.log(error);
       if (!error.response) {
         response.status(500);
         response.json({

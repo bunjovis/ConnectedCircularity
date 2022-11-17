@@ -10,6 +10,7 @@ import {
   Divider,
   Spinner,
   Center,
+  Button
 } from '@chakra-ui/react';
 
 import { ItemInfo } from '../types/ItemInfo';
@@ -20,18 +21,33 @@ const Home: React.FC<{}> = () => {
   const { data, error, isLoading } = useGetUserItemsQuery();
 
   //error: fails to fetch
+  const refreshPage = () => {
+    window.location.reload();
+  }
 
+  //if the item fetching fails, this is shown
   if (error) {
     console.log(error);
     return (
-      <Center width='100%' p='5'>
+      <Flex 
+        flexDirection='column'
+        width='100%' 
+        p='5'
+        alignItems='center'>
         <Box
           color='#EE0004'
           fontSize='2xl'
-          textAlign='center'>
-            Materiaalihaku ei onnistunut :( <Divider /> yritä uudestaan
+          textAlign='center'
+          p='5'>
+            Materiaalihaku ei onnistunut :(   
         </Box>
-      </Center>
+        <Button 
+          type="submit" 
+          colorScheme='blue'
+          width='20wh'
+          onClick={refreshPage}
+            >yritä uudestaan</Button>
+        </Flex>
     );
   }
 

@@ -5,10 +5,6 @@ import {AdvertData} from './types';
 
 dotenv.config();
 
-// variables: needed still for testing
-const clientId: string = process.env.MT_CLIENTID ?? '';
-const clientSecret: string = process.env.MT_CLIENTSECRET ?? '';
-const scope: string = process.env.MT_SCOPE ?? '';
 
 /**
  * Get token to use test.materiaalitori.fi API to make possible to add adverts

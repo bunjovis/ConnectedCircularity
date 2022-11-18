@@ -39,6 +39,32 @@ paths:
         '500':
           description: Service error
 
+  /v1/apis/{apiId}:
+    get:
+      operationId: getApi
+      summary: Get API configuration
+      parameters:
+        - name: apiId
+          required: true
+          in: path
+          description: API id
+          schema:
+            type: string
+            format: uuid
+      tags:
+        - Apis
+      responses:
+        '200':
+          description: Get API
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetApi'
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+
   /v1/users:
     post:
       operationId: postUser

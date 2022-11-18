@@ -385,7 +385,7 @@ components:
               type: string
             expires:
               type: string
-              format: date
+              format: date-time
             contactIsPublic:
               type: boolean
             contact:
@@ -401,48 +401,50 @@ components:
                   type: string
                   format: email
             materials:
-              type: object
-              properties:
-                classification:
-                  type: string
-                subClassification:
-                  type: string
-                industry:
-                  type: string
-                isWaste:
-                  type: boolean
-                quantity:
-                  type: object
-                  properties:
-                    amount:
-                      type: integer
-                    unitOfMeasure:
-                      type: string
-                    continuity:
-                      type: string
-                    amountDescription:
-                      type: string
-                locationIsPublic:
-                  type: boolean
-                location:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                    address:
-                      type: string
-                    postalcode:
-                      type: string
-                    city:
-                      type: string
-                    cityId:
-                      type: string
-                    region:
-                      type: string
-                    regionId:
-                      type: string
-                    countryCode:
-                      type: string
+              type: array
+              items:
+                type: object
+                properties:
+                  classification:
+                    type: string
+                  subClassification:
+                    type: string
+                  industry:
+                    type: string
+                  isWaste:
+                    type: boolean
+                  quantity:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                      unitOfMeasure:
+                        type: string
+                      continuity:
+                        type: string
+                      amountDescription:
+                        type: string
+                  locationIsPublic:
+                    type: boolean
+                  location:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      address:
+                        type: string
+                      postalcode:
+                        type: string
+                      city:
+                        type: string
+                      cityId:
+                        type: string
+                      region:
+                        type: string
+                      regionId:
+                        type: string
+                      countryCode:
+                        type: string
             attachments:
               type: array
               items:

@@ -139,7 +139,7 @@ describe('Test Routes', function () {
   it('should post advert', async () => {
     mock.onPost(`${process.env.MT_SERVICE_URL}/v1/advert`).reply(200);
     const status: any = await postAdvert('Bearer ' + uuid(), advert);
-    expect(status).to.equal(200);
+    expect(status.status).to.equal(200);
 
     assert.isNotNull(status);
     mock.reset();

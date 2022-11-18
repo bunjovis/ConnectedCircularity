@@ -11,6 +11,7 @@ import {
   UserInfo
 } from './types';
 import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
+import { response } from 'express';
 
 export async function getItemsPK(token: any, userId: string) {
   try {
@@ -122,17 +123,19 @@ export function getToken(wholeToken: any) {
 
 export async function postAdvert(token: any, advert: AdvertData) {
   try {
-    const { status } = await axios.post<AdvertData>(
-      `${process.env.MT_SERVICE_URL}/v1/advert`,
-      {
-        headers: {
-          Authorization: 'Bearer ' + token
-        },
-        data: advert
-      }
-    );
-    console.log('response status is: ', status);
-    return status;
+    const postConfig = {
+      method: 'post',
+      url: `${process.env.CC_MT_SERVICE_URL}/v1/advert`,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token
+      },
+      data: advert
+    };
+    const status = await axios(postConfig);
+    console.log('response status is: ', status.status || 201);
+    console.log('response id: ', status.data);
+    return { status: status.status || 201, id: status.data };
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.log('error message: ', error.message);

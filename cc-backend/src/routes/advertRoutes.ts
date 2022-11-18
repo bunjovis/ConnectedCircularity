@@ -14,10 +14,20 @@ advertRouter.post(
       const postToMT = await postAdvert(token, advert);
       response.json(postToMT);
     } catch (error: any) {
-      response.json({
-        message: error.response.statusText,
-        status: error.response.status
-      });
+      console.log(error);
+      if (!error.response) {
+        response.status(500);
+        response.json({
+          message: 'Error',
+          status: 500
+        });
+      } else {
+        response.status(error.response.status || 500);
+        response.json({
+          message: error.response.statusText || 'Error',
+          status: error.response.status || 500
+        });
+      }
     }
   }
 );

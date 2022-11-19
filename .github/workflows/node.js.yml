@@ -31,4 +31,9 @@ jobs:
       - run: npm install --global ts-node
       - run: npm run check
       - run: npm run test
-      
+      - uses: dorny/test-reporter@v1  # upload test results
+        if: success() || failure()        # run this step even if previous step failed
+        with:
+          name: test-results
+          path: reports/jest-junit.json
+          reporter: mocha-json

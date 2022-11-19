@@ -31,12 +31,10 @@ jobs:
       - run: npm install --global ts-node
       - run: npm run check
       - run: npm run test
-      - uses: actions/checkout@v2
+      - uses: actions/upload-artifact@v2  # upload test results
+        if: success() || failure()        # run this step even if previous step failed
         with:
-          fetch-depth: 0
-      - uses: testomatio/check-tests@stable
-        id: test-report                     # Set ID reference for step
-        with:
-          framework: mocha # REQUIRED - testing framework
-          tests: '*/test/*.test.ts' # REQUIRED - glob pattern to match test files
-          token: ${{ secrets.GITHUB_TOKEN }}
+          name: test-results
+          path: reports/jest-junit.xml
+          reporter: jest-junit  
+   

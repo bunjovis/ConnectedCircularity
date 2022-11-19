@@ -31,11 +31,12 @@ jobs:
       - run: npm install --global ts-node
       - run: npm run check
       - run: npm run test
-      - uses: phoenix-actions/test-reporting@v8
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: testomatio/check-tests@stable
         id: test-report                     # Set ID reference for step
         with:
-          artifact: ''            # artifact name
-          name: JEST Tests                  # Name of the check run which will be created
-          path: 'reports/jest-junit.json'                     # Path to test results (inside artifact .zip)
-          reporter: mocha-json 
-          fail-on-error: 'true'
+          framework: mocha # REQUIRED - testing framework
+          tests: '*/test/*.test.ts' # REQUIRED - glob pattern to match test files
+          

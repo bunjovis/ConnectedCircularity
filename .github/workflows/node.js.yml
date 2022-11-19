@@ -31,13 +31,11 @@ jobs:
       - run: npm install --global ts-node
       - run: npm run check
       - run: npm run test
-      - name: Test Report
-        uses: phoenix-actions/test-reporting@v8
-        if: success() || failure()    # run this step even if previous step failed
+      - uses: actions/upload-artifact@v2  # upload test results
+        if: success() || failure()        # run this step even if previous step failed
         with:
-          name: JEST Tests            # Name of the check run which will be created
-          path: reports/jest-*.xml    # Path to test results
-          reporter: jest-junit
+          name: test-results
+          path: reports/jest-junit.xml
 
       
 

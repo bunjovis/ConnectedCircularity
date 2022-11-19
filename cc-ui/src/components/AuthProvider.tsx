@@ -68,6 +68,7 @@ export const AuthProvider: React.FC<ReactChildrenNode> = ({ children }) => {
     } catch (err) {
       console.log(err);
       setError(true);
+      setId(null);
     } finally {
       setLoading(false);
     }
@@ -95,6 +96,7 @@ export const AuthProvider: React.FC<ReactChildrenNode> = ({ children }) => {
   const logout = () => {
     sessionStorage.clear();
     setUser(null);
+    setId(null);
     setMtAuth(false);
     navigate('/', { replace: true });
   };

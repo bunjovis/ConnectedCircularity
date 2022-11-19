@@ -31,20 +31,10 @@ jobs:
       - run: npm install --global ts-node
       - run: npm run check
       - run: npm run test
-<<<<<<< HEAD
-      - uses: dorny/test-reporter@v1
+      - uses: phoenix-actions/test-reporting@v8
+        id: test-report                     # Set ID reference for step
         with:
           artifact: test-results            # artifact name
           name: JEST Tests                  # Name of the check run which will be created
-          path: 'reports/*.xml'                     # Path to test results (inside artifact .zip)
+          path: '*.xml'                     # Path to test results (inside artifact .zip)
           reporter: jest-junit 
-=======
-      - uses: actions/upload-artifact@v2  # upload test results
-        if: success() || failure()        # run this step even if previous step failed
-        with:
-          name: test-results
-          path: reports/jest-junit.xml
->>>>>>> 11de61905650e15ea349c56c5b6abd039f14ca60
-
-      
-

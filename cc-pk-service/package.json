@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node dist/src/app.js",
+    "start": "tsc --project tsconfig.build.json && node dist/src/app.js",
     "test": "mocha -r ts-node/register test/*.test.ts",
     "dev": "nodemon src/app.ts",
     "check": "eslint . --ext .ts"

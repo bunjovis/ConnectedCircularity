@@ -4,7 +4,7 @@
   "description": "### Docker Compose  - At /ConnectedCircularity/    - docker-compose build   - docker-compose up",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r ts-node/register */test/*.test.ts --reporter mocha-junit-reporter",
+    "test": "mocha -r ts-node/register */test/*.test.ts --reporter-option output=reports/jest-junit.json",
     "check": "eslint . --ext .ts"
   },
   "repository": {

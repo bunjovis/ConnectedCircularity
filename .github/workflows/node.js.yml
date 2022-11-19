@@ -39,4 +39,4 @@ jobs:
         with:
           framework: mocha # REQUIRED - testing framework
           tests: '*/test/*.test.ts' # REQUIRED - glob pattern to match test files
-          
+          token: ${{ secrets.GITHUB_TOKEN }}

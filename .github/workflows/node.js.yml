@@ -36,4 +36,4 @@ jobs:
         with:
           name: test-results
           path: reports/jest-junit.xml
-          reporter: jest-junit
+          

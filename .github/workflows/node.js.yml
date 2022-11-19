@@ -31,13 +31,7 @@ jobs:
       - run: npm install --global ts-node
       - run: npm run check
       - run: npm run test
-      - name: Test Report
-        uses: phoenix-actions/test-reporting@v8
-        if: success() || failure()    # run this step even if previous step failed
-        with:
-          name: JEST Tests            # Name of the check run which will be created
-          path: reports/jest-*.xml    # Path to test results
-          reporter: mocha-junit-reporter
+     
 
       
 

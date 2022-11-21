@@ -12,6 +12,16 @@ export const dbServiceApi = createApi({
     },
   }),
   endpoints: (builder) => ({
+    loginUser: builder.query<
+      any,
+      { apiId: string; username: string; password: string }
+    >({
+      query: ({ apiId, username, password }) => `/v1/login/${apiId}`,
+      transformResponse: (response: any) => {
+        console.log(response);
+        return response;
+      },
+    }),
     getUserItems: builder.query<ItemInfo[], string>({
       query: (userId) => `/v1/items/${userId}`,
       transformResponse: (response: any, meta, arg) => {
@@ -45,4 +55,5 @@ export const dbServiceApi = createApi({
   }),
 });
 
-export const { useGetUserItemsQuery, useGetItemQuery } = dbServiceApi;
+export const { useGetUserItemsQuery, useGetItemQuery, useLoginUserQuery } =
+  dbServiceApi;

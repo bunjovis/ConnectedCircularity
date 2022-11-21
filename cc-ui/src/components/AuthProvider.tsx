@@ -47,18 +47,16 @@ export const AuthProvider: React.FC<ReactChildrenNode> = ({ children }) => {
   const login = async (data: any) => {
     setLoading(true);
     setError(false);
-
+    console.log(data);
     try {
       const response = await axios.post(
-        data.authUrl,
-        new URLSearchParams({
-          client_id: 'management',
-          grant_type: 'password',
+        `${import.meta.env.VITE_CC_BACKEND}v1/login/${data.authUrl}`,
+        {
           username: data.username,
           password: data.password,
-        })
+        }
       );
-
+      console.log(response);
       if (response.status === 200) {
         setUser(data.username);
         sessionStorage.setItem('spToken', response.data.access_token);

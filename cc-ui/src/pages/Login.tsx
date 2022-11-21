@@ -26,6 +26,7 @@ const Login: React.FC<{}> = () => {
 
   const loadServiceProviders = async () => {
     const data: any = await getServiceProviders();
+    console.log(data);
     if (data.status === 200) {
       setServiceProviders(data.providers);
     }
@@ -67,8 +68,8 @@ const Login: React.FC<{}> = () => {
             placeholder='Palveluntarjoaja'
           >
             {serviceProviders.map((provider: any) => (
-              <option key={provider.id} value={provider.authEndpoint}>
-                {provider.displayValue}
+              <option key={provider.id} value={provider.id}>
+                {provider.name}
               </option>
             ))}
           </Select>

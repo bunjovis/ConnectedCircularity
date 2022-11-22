@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 import { createContext, useContext, useMemo, useState, useEffect } from 'react';
 import axios from 'axios';
+import { decodeToken } from 'react-jwt';
 import { useNavigate } from 'react-router-dom';
 
 import { setupMTRequest, setupPKRequest } from '../utils/helpers';
@@ -14,40 +15,16 @@ const AuthContext = createContext({} as AuthContextInterface);
 export const AuthProvider: React.FC<ReactChildrenNode> = ({ children }) => {
   const [user, setUser] = useSessionStorage('user', null);
   const [mtAuth, setMtAuth] = useSessionStorage('mtAuth', false);
-  const [userId, setId] = useSessionStorage('userId', null);
+  const [beToken, setBackendToken] = useSessionStorage('beToken', null);
+  const [userId, setUserId] = useSessionStorage('userId', null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [mtLoading, setMtLoading] = useState(false);
   const navigate = useNavigate();
 
-  const getUserId = (token: string) => {
-    fetch('https://auth.purkukartoitus.fi/auth/realms/rapurc/account', {
-      credentials: 'include',
-      headers: {
-        Accept: 'application/json',
-        'Accept-Language': 'en-US,en;q=0.5',
-        Authorization: `bearer ${token}`,
-        'Sec-Fetch-Dest': 'empty',
-        'Sec-Fetch-Mode': 'cors',
-        'Sec-Fetch-Site': 'same-site',
-      },
-      referrer: 'https://purkukartoitus.fi/',
-      method: 'GET',
-      mode: 'cors',
-    })
-      .then((response) => response.json())
-      .then((result: any) => {
-        setId(result.id);
-      })
-      .catch((error) => {
-        setId(null);
-      });
-  };
-
   const login = async (data: any) => {
     setLoading(true);
     setError(false);
-    console.log(data);
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_CC_BACKEND}v1/login/${data.authUrl}`,
@@ -59,14 +36,20 @@ export const AuthProvider: React.FC<ReactChildrenNode> = ({ children }) => {
       console.log(response);
       if (response.status === 200) {
         setUser(data.username);
-        sessionStorage.setItem('spToken', response.data.access_token);
-        getUserId(response.data.access_token);
+        sessionStorage.setItem('spToken', response.data.accessToken);
+        sessionStorage.setItem('beToken', response.data.backendToken);
+
+        const getToken = decodeToken(response.data.backendToken) as any;
+        setUserId(getToken.userId);
+        setBackendToken(response.data.backendToken);
         navigate('/home');
       }
     } catch (err) {
       console.log(err);
       setError(true);
-      setId(null);
+      setBackendToken(null);
+      setUserId(null);
+      setBackendToken(null);
     } finally {
       setLoading(false);
     }
@@ -94,8 +77,9 @@ export const AuthProvider: React.FC<ReactChildrenNode> = ({ children }) => {
   const logout = () => {
     sessionStorage.clear();
     setUser(null);
-    setId(null);
+    setBackendToken(null);
     setMtAuth(false);
+    setUserId(null);
     navigate('/', { replace: true });
   };
 
@@ -103,6 +87,7 @@ export const AuthProvider: React.FC<ReactChildrenNode> = ({ children }) => {
     () => ({
       user,
       userId,
+      beToken,
       loading,
       error,
       mtAuth,
@@ -111,7 +96,7 @@ export const AuthProvider: React.FC<ReactChildrenNode> = ({ children }) => {
       mtLogin,
       mtLoading,
     }),
-    [user, userId, loading, error, mtLoading, mtAuth]
+    [user, userId, beToken, loading, error, mtLoading, mtAuth]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { decodeToken } from 'react-jwt';
 import {
   Text,
   Box,
@@ -20,6 +21,7 @@ import { skipToken } from '@reduxjs/toolkit/dist/query';
 const Home: React.FC<{}> = () => {
   const navigate = useNavigate();
   const { userId } = useAuth();
+  console.log(userId);
   const { data, error, isLoading, refetch } = useGetUserItemsQuery(
     userId ?? skipToken
   );

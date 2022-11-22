@@ -122,7 +122,7 @@ export async function getTokens(apiId: string, username: string, password: strin
     }};
   }
 
-  const loginResponse = await axios.get<LoginResponse>(
+  const loginResponse = await axios.post<LoginResponse>(
     `${response.data.authEndpoint}`, {
       data: {
         username: username,

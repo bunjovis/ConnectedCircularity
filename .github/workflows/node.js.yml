@@ -30,22 +30,10 @@ jobs:
       - run: npm install --global chai
       - run: npm install --global ts-node
       - run: npm run check
-
-      - name: Run Tests in Backend Service
-        working-directory: ./cc-backend
-        run: npm install && npm run test
-      
-      - name: Run Tests in Db Service
-        working-directory: ./cc-db-service
-        run: npm install && npm run test
-
-      - name: Run Tests in Mt Service
-        working-directory: ./cc-mt-service
-        run: npm install && npm run test
-
-      - name: Run Tests in Pk Service
-        working-directory: ./cc-pk-service
-        run: npm install && npm run test
-
-      
-
+      - run: npm run test
+      - uses: dorny/test-reporter@v1  # upload test results
+        if: success() || failure()        # run this step even if previous step failed
+        with:
+          name: test-results
+          path: UnitTestReport.json
+          reporter: mocha-json

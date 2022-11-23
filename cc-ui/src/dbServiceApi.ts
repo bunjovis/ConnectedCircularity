@@ -9,6 +9,7 @@ export const dbServiceApi = createApi({
     prepareHeaders: (headers) => {
       const token = `Bearer ${sessionStorage.getItem('spToken')}`;
       headers.set('Authorization', token ?? '');
+      headers.set('Accept', 'application/json');
     },
   }),
   endpoints: (builder) => ({
@@ -31,8 +32,9 @@ export const dbServiceApi = createApi({
           if (response.status === 401) {
             sessionStorage.clear();
             location.reload();
+          } else {
+            return [];
           }
-          return [];
         }
         if (typeof response === 'string') {
           console.log('most likely an error');
@@ -47,7 +49,12 @@ export const dbServiceApi = createApi({
         console.log('getItem response:', response);
         if (response.status) {
           console.log('most likely an error');
-          return {};
+          if (response.status === 401) {
+            sessionStorage.clear();
+            location.reload();
+          } else {
+            return {};
+          }
         }
         return response;
       },

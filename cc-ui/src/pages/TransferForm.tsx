@@ -47,7 +47,7 @@ import { skipToken } from '@reduxjs/toolkit/dist/query';
 const TransferForm: React.FC<{}> = () => {
   const { itemId } = useParams();
   const { mtAuth, mtLogin } = useAuth();
-  const { data, error, isLoading } = useGetItemQuery(itemId);
+  const { data, error, isLoading } = useGetItemQuery(itemId ?? skipToken);
   const navigate = useNavigate();
 
   console.log(data, error, isLoading);

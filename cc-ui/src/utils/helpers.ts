@@ -147,7 +147,6 @@ const mapArea = (
   // TODO: refactor
   const op = options.map((o) => {
     o.municipalities.map((m) => {
-      //console.log(m);
       if (m.nameFi.toLowerCase() === value.toLowerCase()) {
         foundValue = m.nameFi;
       }

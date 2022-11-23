@@ -33,7 +33,6 @@ export const AuthProvider: React.FC<ReactChildrenNode> = ({ children }) => {
           password: data.password,
         }
       );
-      console.log(response);
       if (response.status === 200) {
         setUser(data.username);
         sessionStorage.setItem('spToken', response.data.accessToken);

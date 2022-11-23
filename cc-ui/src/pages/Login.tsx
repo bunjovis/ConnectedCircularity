@@ -26,7 +26,6 @@ const Login: React.FC<{}> = () => {
 
   const loadServiceProviders = async () => {
     const data: any = await getServiceProviders();
-    console.log(data);
     if (data.status === 200) {
       setServiceProviders(data.providers);
     }

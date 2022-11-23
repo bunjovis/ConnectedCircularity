@@ -42,6 +42,7 @@
     "express": "^4.18.1",
     "express-openapi-validator": "^4.13.8",
     "qs": "^6.11.0",
+    "save-dev": "^0.0.1-security",
     "swagger-ui-express": "^4.6.0",
     "ts-node": "^10.9.1"
   }

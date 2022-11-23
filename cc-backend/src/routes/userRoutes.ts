@@ -12,7 +12,7 @@ userRouter.post(
   }
 );
 
-userRouter.get(
+userRouter.post(
   "/v1/login/:apiId",
   async (request: Request, response: Response) => {
     try {

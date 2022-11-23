@@ -48,11 +48,11 @@ pkRouter.get('/items/:itemId', async(req:Request, res:Response, next:NextFunctio
   }
 });
 
-pkRouter.get(
+pkRouter.post(
   "/login",
   async (request: Request, response: Response) => {
     try {
-      const token = await login(request.body.username, request.body.password);
+      const token = await login(request.body.data.username, request.body.data.password);
       response.send(token);
     }
     catch (error:any) {

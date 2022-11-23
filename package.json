@@ -32,6 +32,7 @@
   },
   "homepage": "https://github.com/bunjovis/ConnectedCircularity#readme",
   "dependencies": {
+    "@types/qs": "^6.9.7",
     "axios": "^1.1.3",
     "jsonwebtoken": "^8.5.1"
   }

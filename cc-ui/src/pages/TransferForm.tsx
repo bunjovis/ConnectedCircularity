@@ -179,6 +179,7 @@ const TransferForm: React.FC<{}> = () => {
       </Flex>
     );
   };
+  console.log(isLoading);
   if (isLoading) {
     return (
       <Center width='100%' p='5'>
@@ -186,10 +187,16 @@ const TransferForm: React.FC<{}> = () => {
       </Center>
     );
   }
+  console.log(error);
+  if (error === true || typeof error === 'object') {
+    console.log('ERROR');
+  }
   if (error) {
-    <Center width='100%' p='5'>
-      Tietojen haku ei onnistunut
-    </Center>;
+    return (
+      <Center width='100%' p='5'>
+        Tietojen haku ei onnistunut
+      </Center>
+    );
   }
   return (
     <Flex

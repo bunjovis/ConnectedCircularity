@@ -22,6 +22,7 @@
     "@types/yamljs": "^0.2.31",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
+    "chai": "^4.3.7",
     "dotenv": "^16.0.3",
     "eslint": "^8.24.0",
     "eslint-config-standard-with-typescript": "^23.0.0",

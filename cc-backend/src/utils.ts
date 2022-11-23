@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { Error, ItemInfo, Item, Config } from './types';
+import { Error, ItemInfo, Item, Config, ApiConfig, LoginResponse, UserInfo } from './types';
+import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
 
 export async function getItemsPK(token: any, userId: string) {
   try {
@@ -107,4 +108,81 @@ export function getToken(wholeToken: any) {
     console.log('unexpected error: ', error);
     return 'An unexpected error occurred';
   }
+}
+
+export async function getTokens(apiId: string, username: string, password: string) {
+  const response = await axios.get<ApiConfig>(
+    `${process.env.CC_DB_SERVICE_URL}/v1/apis/${apiId}`
+  );
+
+  if (response.data === null) {
+    throw { response: {
+      statusText:"Invalid API id",
+      status: 500
+    }};
+  }
+
+  const loginResponse = await axios.post<LoginResponse>(
+    `${response.data.authEndpoint}`, {
+      data: {
+        username: username,
+        password: password
+      }, 
+      headers: {
+        Accept: 'application/json'
+      }
+    }
+  );
+
+  if (!loginResponse.data.userId || !loginResponse.data.accessToken) {
+    throw { response: {
+      statusText:"Invalid credentials",
+      status: 401
+    }};
+  }
+  
+  const jwtSecret: Secret = process.env.JWT_SECRET as string;
+  const token = jwt.sign({
+    userId: loginResponse.data.userId
+  }, jwtSecret, {
+    expiresIn: "2h"
+  });
+  
+  return { accessToken: loginResponse.data.accessToken, backendToken: token};
+}
+export async function saveUser(token: string, apiId: string, username: string, id: string) {
+  const response = await axios.post<UserInfo>(
+    `${process.env.CC_DB_SERVICE_URL}/v1/users`,
+    {
+      api: apiId,
+      username: username,
+      id: id
+    },
+    {
+      headers: {
+        Accept: 'application/json',
+        Authorization: 'Bearer ' + token
+      }
+    }
+  );
+
+  if (response.data === null) {
+    throw { response: {
+      statusText:"Saving user failed",
+      status: 500
+    }};
+  }
+}
+export async function getUserIdFromToken(token: string) {
+  const decodedToken = jwt.decode(token);
+  if (decodedToken === null) {
+    throw { response: {
+      statusText:"Can't decode token",
+      status: 500
+    }};
+  }
+  else {
+    return (decodedToken as JwtPayload).userId;
+  }
+  
 }

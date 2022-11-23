@@ -104,3 +104,6 @@ export interface ReusableMaterial {
     lastModified: string,
     modifiedAt: string
 }
+export interface AccessTokenResponse {
+    access_token: string;
+  }

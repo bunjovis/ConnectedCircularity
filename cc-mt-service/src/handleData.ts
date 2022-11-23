@@ -5,10 +5,6 @@ import {AdvertData} from './types';
 
 dotenv.config();
 
-// variables
-const clientId: string = process.env.MT_CLIENTID ?? '';
-const clientSecret: string = process.env.MT_CLIENTSECRET ?? '';
-const scope: string = process.env.MT_SCOPE ?? '';
 
 /**
  * Get token to use test.materiaalitori.fi API to make possible to add adverts
@@ -41,10 +37,26 @@ async function getToken(client:string, secret:string, scope:string) {
     }
 }
 
-// Posts data to Materiaalitori test API
-export async function postAdvert(data:AdvertData) {
+/**
+ * Parses token, removes first part from eader
+ * @param wholeToken Whole token with text "bearer"
+ * @returns parsed token or empty string
+ */
+export function parseToken(wholeToken:string) {
+    const splitted:Array<string> = wholeToken.split(' ');
+    if (splitted.length === 2) return splitted[1];
+    else return '';
+}
+
+/**
+ * Posts data to Materiaalitori test api
+ * @param data valid data which can be posted to Materiaalitori
+ * @param token got from request header
+ * @returns id of new advert or error
+ */
+export async function postAdvert(data:AdvertData, token:string) {
     try {
-        const token = await getToken(clientId,clientSecret,scope);
+        // const token1 = await getToken(clientId,clientSecret,scope);
         const config = {
             method: 'post',
             url: 'https://test.materiaalitori.fi/api/rfo',
@@ -58,6 +70,6 @@ export async function postAdvert(data:AdvertData) {
         return { id: response.data.id };
     } catch (err) {
         console.log(err);
-        return null;
+        throw err;
     }
 }

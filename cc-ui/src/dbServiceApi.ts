@@ -13,22 +13,11 @@ export const dbServiceApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    loginUser: builder.query<
-      any,
-      { apiId: string; username: string; password: string }
-    >({
-      query: ({ apiId, username, password }) => `/v1/login/${apiId}`,
-      transformResponse: (response: any) => {
-        console.log(response);
-        return response;
-      },
-    }),
     getUserItems: builder.query<ItemInfo[], string>({
       query: (userId) => `/v1/items/${userId}`,
       transformResponse: (response: any, meta, arg) => {
         console.log('getUserItems response:', response);
         if (response.status) {
-          console.log('most likely an error');
           if (response.status === 401) {
             sessionStorage.clear();
             location.reload();
@@ -48,7 +37,6 @@ export const dbServiceApi = createApi({
       transformResponse: (response: any, meta, arg) => {
         console.log('getItem response:', response);
         if (response.status) {
-          console.log('most likely an error');
           if (response.status === 401) {
             sessionStorage.clear();
             location.reload();
@@ -62,5 +50,4 @@ export const dbServiceApi = createApi({
   }),
 });
 
-export const { useGetUserItemsQuery, useGetItemQuery, useLoginUserQuery } =
-  dbServiceApi;
+export const { useGetUserItemsQuery, useGetItemQuery } = dbServiceApi;

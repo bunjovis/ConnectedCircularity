@@ -48,7 +48,6 @@ export const AuthProvider: React.FC<ReactChildrenNode> = ({ children }) => {
       setError(true);
       setBackendToken(null);
       setUserId(null);
-      setBackendToken(null);
     } finally {
       setLoading(false);
     }

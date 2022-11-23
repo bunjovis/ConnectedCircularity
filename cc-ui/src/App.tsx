@@ -7,6 +7,8 @@ import { useAuth } from './components/AuthProvider';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import TransferForm from './pages/TransferForm';
+import Statistics from './pages/Statistics';
+import ItemStats from './pages/ItemStats';
 import Header from './components/header/Header';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import MTLogin from './components/MTLogin/MTLogin';
@@ -18,6 +20,22 @@ const App: React.FC<{}> = () => {
       <Header></Header>
       <Routes>
         <Route path='*' element={<Login />} />
+        <Route
+          path='/statistics'
+          element={
+            <ProtectedRoute>
+              <Statistics />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/item_stats'
+          element={
+            <ProtectedRoute>
+              <ItemStats />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path='/home'
           element={

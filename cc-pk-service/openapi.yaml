@@ -116,7 +116,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
   /v1/login:
-    get:
+    post:
       operationId: login
       summary: Login user
       description: Logins user to an API and returns the token from the API

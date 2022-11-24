@@ -289,7 +289,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
   /v1/login/{apiId}:
-    get:
+    post:
       operationId: login
       summary: Login user
       description: Logins user to an API and generates access token if succesful. Returns both generated token and the token from the API

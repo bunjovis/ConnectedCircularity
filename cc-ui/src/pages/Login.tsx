@@ -67,8 +67,8 @@ const Login: React.FC<{}> = () => {
             placeholder='Palveluntarjoaja'
           >
             {serviceProviders.map((provider: any) => (
-              <option key={provider.id} value={provider.authEndpoint}>
-                {provider.displayValue}
+              <option key={provider.id} value={provider.id}>
+                {provider.name}
               </option>
             ))}
           </Select>

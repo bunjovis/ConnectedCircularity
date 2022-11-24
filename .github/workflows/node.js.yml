@@ -33,6 +33,7 @@ jobs:
       - run: npm run check
       - run: npm run test
       - name: Archive UnitTestReport.json
+        if: success() || failure()
         uses: actions/upload-artifact@v3
         with:
           name: UnitTestReport.json

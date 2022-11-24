@@ -32,6 +32,11 @@ jobs:
       - run: npm install --global mocha-suppress-logs
       - run: npm run check
       - run: npm run test
+      - name: Archive UnitTestReport.json
+        uses: actions/upload-artifact@v3
+        with:
+          name: UnitTestReport.json
+          path: UnitTestReport.json
       - uses: dorny/test-reporter@v1  # upload test results
         if: success() || failure()        # run this step even if previous step failed
         with:

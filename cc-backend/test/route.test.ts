@@ -1,5 +1,7 @@
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
+// eslint-disable-next-line
+const axios = require("axios");
+// eslint-disable-next-line
+const MockAdapter = require("axios-mock-adapter");
 import { getItemsPK, getItemInfo, postAdvert } from '../src/utils';
 import { expect } from 'chai';
 import { AdvertData, Item, ItemInfo, Error } from '../src/types';

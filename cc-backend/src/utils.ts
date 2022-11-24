@@ -12,7 +12,6 @@ import {
 } from './types';
 import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
 
-
 export async function getItemsPK(token: any, userId: string) {
   try {
     const response = axios.get<Item[]>(
@@ -135,14 +134,14 @@ export async function postAdvert(token: any, advert: AdvertData) {
     const status = await axios(postConfig);
     console.log('response status is: ', status.status || 201);
     console.log('response id: ', status.data);
-    return { status: status.status || 201, id: status.data };
+    return status; //{ status: status.status || 201, id: status.data };
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.log('error message: ', error.message);
-      return error.message;
+      throw error;
     } else {
       console.log('unexpected error: ', error);
-      return 'An unexpected error occurred';
+      throw error;
     }
   }
 }
@@ -165,7 +164,8 @@ export async function getTokens(
   }
 
   const loginResponse = await axios.post<LoginResponse>(
-    `${response.data.authEndpoint}`, {
+    `${response.data.authEndpoint}`,
+    {
       data: {
         username: username,
         password: password

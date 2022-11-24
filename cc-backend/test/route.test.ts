@@ -137,7 +137,7 @@ describe('Test Routes', function () {
   });
 
   it('should post advert', async () => {
-    mock.onPost(`${process.env.MT_SERVICE_URL}/v1/advert`).reply(200);
+    mock.onPost(`${process.env.CC_MT_SERVICE_URL}/v1/advert`).reply(200);
     const status: any = await postAdvert('Bearer ' + uuid(), advert);
     expect(status.status).to.equal(200);
 

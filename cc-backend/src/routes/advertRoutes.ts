@@ -11,17 +11,30 @@ advertRouter.post(
       const advert: AdvertData = request.body;
       const wholeToken: any = request.headers.authorization ?? '';
       const token = getToken(wholeToken);
-      const postToMT = await postAdvert(token, advert);
-      response.json(postToMT);
+      if (token === 'Not a bearer token!') {
+        console.log('Invalid token');
+        response.status(498);
+        response.json({
+          message: 'Error, invalid token',
+          status: 498
+        });
+      } else {
+        const postToMT = await postAdvert(token, advert);
+        console.log(postToMT.status);
+        console.log(postToMT.data);
+        response.status(postToMT.status);
+        response.json(postToMT.data);
+      }
     } catch (error: any) {
-      console.log(error);
       if (!error.response) {
+        console.log('Unexpected error: 500');
         response.status(500);
         response.json({
           message: 'Error',
           status: 500
         });
       } else {
+        console.log(error.status);
         response.status(error.response.status || 500);
         response.json({
           message: error.response.statusText || 'Error',

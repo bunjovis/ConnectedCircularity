@@ -29,9 +29,7 @@ const App: React.FC<{}> = () => {
         <Route
           path='/item_stats'
           element={
-            <ProtectedRoute>
-              <ItemStats />
-            </ProtectedRoute>
+            <ItemStats />
           }
         />
         <Route

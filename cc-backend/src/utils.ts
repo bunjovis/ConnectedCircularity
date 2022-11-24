@@ -11,7 +11,7 @@ import {
   UserInfo
 } from './types';
 import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
-import { response } from 'express';
+
 
 export async function getItemsPK(token: any, userId: string) {
   try {

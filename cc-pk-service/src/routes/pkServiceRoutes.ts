@@ -1,6 +1,6 @@
 // PK service route module
 import { Router, Request, Response, NextFunction } from "express";
-import {getReusables, getUserSurveys, getAllSurveys, getItemInfo} from "../handleData";
+import {getReusables, getUserSurveys, getAllSurveys, getItemInfo, login} from "../handleData";
 import {ItemInfo, Survey, Item} from '../types';
 
 // Express router for accessing the defined paths
@@ -47,5 +47,21 @@ pkRouter.get('/items/:itemId', async(req:Request, res:Response, next:NextFunctio
     res.json({message: err.response.statusText, status: err.response.status});
   }
 });
+
+pkRouter.post(
+  "/login",
+  async (request: Request, response: Response) => {
+    try {
+      const token = await login(request.body.data.username, request.body.data.password);
+      response.send(token);
+    }
+    catch (error:any) {
+      response.json({
+        message: error.response.statusText,
+        status: error.response.status
+      });
+    }
+  }
+);
 
 export default pkRouter;

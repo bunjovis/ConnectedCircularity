@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "mocha"
+    "test": "mocha -r ts-node/register test/*.test.ts"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.11",

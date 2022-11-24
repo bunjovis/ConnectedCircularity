@@ -13,7 +13,7 @@ module.exports = {
           id: uuidv4(),
           name: 'Purkukartoitus',
           authEndpoint:
-            'https://auth.purkukartoitus.fi/auth/realms/rapurc/protocol/openid-connect/token',
+            'http://cc-pk-service:5123/v1/login',
           createdAt: new Date(),
           updatedAt: new Date(),
         },

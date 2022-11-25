@@ -1,5 +1,7 @@
-import axios from "axios";
-import MockAdapter from "axios-mock-adapter";
+// eslint-disable-next-line
+const axios = require("axios");
+// eslint-disable-next-line
+const MockAdapter = require("axios-mock-adapter");
 const mock = new MockAdapter(axios);
 import { getUserSurveys } from "../src/handleData";
 import { expect } from 'chai';

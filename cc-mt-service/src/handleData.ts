@@ -69,7 +69,12 @@ export async function postAdvert(data:AdvertData, token:string) {
         const response = await axios(config);
         return { id: response.data.id };
     } catch (err) {
-        console.log(err);
+    if (axios.isAxiosError(err)) {
+        console.log('error message: ', err.message);
+        throw err;
+    } else {
+        console.log('unexpected error: ', err);
         throw err;
     }
+  }
 }

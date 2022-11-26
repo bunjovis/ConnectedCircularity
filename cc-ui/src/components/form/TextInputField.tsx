@@ -8,12 +8,14 @@ export const TextInputField = ({
   isRequired,
   touched,
   errors,
+  value,
 }: {
   label: string;
   id: string;
   isRequired: boolean;
   touched?: boolean;
   errors?: string;
+  value?: string;
 }) => {
   return (
     <FormControl isInvalid={!!errors && touched}>
@@ -25,11 +27,12 @@ export const TextInputField = ({
           name={id}
           backgroundColor='#fff'
           width='100%'
+          value={value}
           validate={
             isRequired
-              ? (value: string) => {
+              ? (value?: string) => {
                   let error;
-                  if (value.length === 0) {
+                  if (value?.length === 0) {
                     error = 'value cannot be empty';
                   }
                   return error;

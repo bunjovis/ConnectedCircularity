@@ -23,10 +23,20 @@ itemRouter.get(
       //response.write(itemsDB);
       //response.send();
     } catch (error: any) {
-      response.json({
-        message: error.response.statusText,
-        status: error.response.status
-      });
+      console.log(error);
+      if (!error.response) {
+        response.status(500);
+        response.json({
+          message: 'Error',
+          status: 500
+        });
+      } else {
+        response.status(error.response.status || 500);
+        response.json({
+          message: error.response.statusText || 'Error',
+          status: error.response.status || 500
+        });
+      }
     }
   }
 );
@@ -41,10 +51,20 @@ itemRouter.get(
       const item: ItemInfo = await getItemInfo(token, itemId);
       response.json(item);
     } catch (error: any) {
-      response.json({
-        message: error.response.statusText,
-        status: error.response.status
-      });
+      console.log(error);
+      if (!error.response) {
+        response.status(500);
+        response.json({
+          message: 'Error',
+          status: 500
+        });
+      } else {
+        response.status(error.response.status || 500);
+        response.json({
+          message: error.response.statusText || 'Error',
+          status: error.response.status || 500
+        });
+      }
     }
   }
 );

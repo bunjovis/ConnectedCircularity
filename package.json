@@ -4,7 +4,7 @@
   "description": "### Docker Compose  - At /ConnectedCircularity/    - docker-compose build   - docker-compose up",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r ts-node/register */test/*.test.ts --reporter json > UnitTestReport.json",
+    "test": "mocha -r ts-node/register -r mocha-suppress-logs */test/*.test.ts --reporter json > UnitTestReport.json",
     "check": "eslint . --ext .ts"
   },
   "repository": {
@@ -22,14 +22,17 @@
     "axios-mock-adapter": "^1.21.2",
     "chai": "^4.3.7",
     "eslint": "^8.24.0",
+    "mocha-suppress-logs": "^0.3.1",
     "ts-node": "^10.9.1",
-    "typescript": "^4.8.4"
+    "typescript": "^4.8.4",
+    "uuid": "^9.0.0"
   },
   "bugs": {
     "url": "https://github.com/bunjovis/ConnectedCircularity/issues"
   },
   "homepage": "https://github.com/bunjovis/ConnectedCircularity#readme",
   "dependencies": {
+    "@types/uuid": "^8.3.4",
     "axios": "^1.1.3",
     "jsonwebtoken": "^8.5.1"
   }

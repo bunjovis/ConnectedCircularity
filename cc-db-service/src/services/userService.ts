@@ -38,10 +38,10 @@ export const getDailyUserCount = async () => {
     ],
     group: ['date'],
   });
-  const aggregates = new Array();
+  const aggregates = [];
   for (let i=0;i<counts.length;i++) {
     const count = counts[i];
-    if (typeof count == "object") {
+    if (typeof count === "object") {
       aggregates.push({ date: count.getDataValue("date"), count: count.getDataValue("count") });
     }
   }

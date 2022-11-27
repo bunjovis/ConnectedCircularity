@@ -51,7 +51,7 @@ apiRoutes.get(
         successCount: counts.successCount,
         failureCount: counts.failureCount,
         daily: apiStatistics
-      }
+      };
       response.status(200).json(statisticsResponse);
     } catch (err:any) {
       const httpError:HttpResponseError = {

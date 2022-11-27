@@ -38,16 +38,17 @@ export const getApiStatistics = async (apiName: string, statisticType: string) =
       statisticType: statisticType
     },
   });
+  // eslint-disable-next-line
   const aggregates = new Array();
   for (let i=0;i<counts.length;i++) {
     const count = counts[i];
-    if (typeof count == "object") {
+    if (typeof count === "object") {
       const date = count.getDataValue("date");
       const countValue = count.getDataValue("count");
       const success = count.getDataValue("success");
       const arrayIndex = aggregates.findIndex(agg => agg.date === date);
       if (arrayIndex === -1) {
-        if (success == false) {
+        if (success === false) {
           aggregates.push({ date: date, failureCount: parseInt(countValue), successCount: 0 });
         }
         else {
@@ -56,7 +57,7 @@ export const getApiStatistics = async (apiName: string, statisticType: string) =
       }
       else {
         const agg = aggregates[arrayIndex];
-        if (success == false) {
+        if (success === false) {
           agg.failureCount = parseInt(countValue);
           aggregates[arrayIndex] = agg;
         }

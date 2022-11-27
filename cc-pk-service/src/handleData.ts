@@ -204,7 +204,7 @@ export async function login(username: string, password: string) {
             }
       });
       
-      return { accessToken: response.data.access_token, userId: userIdResponse.data.id };
+      return { accessToken: response.data.access_token, refreshToken: response.data.refresh_token, userId: userIdResponse.data.id };
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.log('error message: ', error.message);
@@ -215,3 +215,25 @@ export async function login(username: string, password: string) {
       }
     }
   }
+
+export async function refreshLogin(refToken: string) {
+    try {
+        const response = await axios.post(
+            `https://auth.purkukartoitus.fi/auth/realms/rapurc/protocol/openid-connect/token`,
+            new URLSearchParams({
+                client_id: 'management',
+                grant_type: 'refresh_token',
+                refresh_token: refToken
+            })
+        );
+        return {accessToken: response.data.access_token, refreshToken: response.data.refresh_token};
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            console.log('error message: ', error.message);
+            return error.message;
+          } else {
+            console.log('unexpected error: ', error);
+            return 'An unexpected error occurred';
+          }
+    }
+}

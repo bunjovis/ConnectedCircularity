@@ -175,7 +175,7 @@ export async function getTokens(
       }
     }
   );
-
+  console.log(loginResponse.data);
   if (!loginResponse.data.userId || !loginResponse.data.accessToken) {
     throw {
       response: {

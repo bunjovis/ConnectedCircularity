@@ -17,3 +17,7 @@ export interface ItemType {
   transferTime: string;
   collectionId: string;
 }
+export interface PostApiStatisticsInterface {
+  id?: string;
+  success: boolean;
+}

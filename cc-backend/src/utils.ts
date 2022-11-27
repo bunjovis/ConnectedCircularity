@@ -241,3 +241,46 @@ export async function getUserIdFromToken(token: string) {
     return (decodedToken as JwtPayload).userId;
   }
 }
+export async function postPKStatistics(itemId: string, success: boolean) {
+  const requestData = {
+    id: itemId,
+    success: success,
+  };
+  try {
+    const response = await axios.post(
+      `${process.env.CC_DB_SERVICE_URL}/v1/apistatistics/Purkukartoitus/unique`,
+        requestData,
+        {
+          headers: {
+            Accept: 'application/json'
+          }
+        }
+    );
+    return response;
+  }
+  catch (err:any) {
+    return null;
+  }
+  
+}
+export async function postMTStatistics(success: boolean) {
+  const requestData = {
+    success: success,
+  };
+  try {
+    const response = await axios.post(
+      `${process.env.CC_DB_SERVICE_URL}/v1/apistatistics/Materiaalitori/adverts`,
+        requestData,
+        {
+          headers: {
+            Accept: 'application/json'
+          }
+        }
+    );
+    return response;
+  }
+  catch (err:any) {
+    return null;
+  }
+  
+}

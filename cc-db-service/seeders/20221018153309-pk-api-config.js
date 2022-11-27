@@ -17,6 +17,12 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          id: uuidv4(),
+          name: 'Materiaalitori',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );

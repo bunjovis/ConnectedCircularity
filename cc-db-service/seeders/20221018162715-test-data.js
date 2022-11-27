@@ -28,15 +28,33 @@ module.exports = {
         updatedAt: new Date(),
       },
     ]);
-    /*await queryInterface.bulkInsert('user', [
+    await queryInterface.bulkInsert('user', [
       {
-        id: '82114f1c-ed8e-4ed0-ad2f-10b72bdcf349',
+        id: '82114f1c-ed8e-4ed0-ad2f-10b72bdcf347',
         api: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed',
-        name: 'karih',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        name: 'testikari',
+        createdAt: new Date(2021, 1, 2),
+        updatedAt: new Date(2021, 1, 2),
       },
-    ]);*/
+    ]);
+    await queryInterface.bulkInsert('user', [
+      {
+        id: '82114f1c-ed8e-4ed0-ad2f-10b72bdcf341',
+        api: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed',
+        name: 'testikari2',
+        createdAt: new Date(2021, 1, 2),
+        updatedAt: new Date(2021, 1, 2),
+      },
+    ]);
+    await queryInterface.bulkInsert('user', [
+      {
+        id: '82114f1c-ed8e-4ed0-ad2f-10b72bdcf311',
+        api: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed',
+        name: 'testikari3',
+        createdAt: new Date(2021, 3, 2),
+        updatedAt: new Date(2021, 3, 2),
+      },
+    ]);
     await queryInterface.bulkInsert('item', [
       {
         id: '0cdb31e8-b330-48dd-aecc-b2a92cf3d037',
@@ -52,7 +70,7 @@ module.exports = {
       {
         id: '0cdb31e8-b330-48dd-aecc-b2a92cf3d032',
         itemId: 'some-item-id2',
-        userId: '82114f1c-ed8e-4ed0-ad2f-10b72bdcf349',
+        userId: '82114f1c-ed8e-4ed0-ad2f-10b72bdcf347',
         status: 1,
         collectionId: 'test-collection',
         createdAt: new Date(),
@@ -99,6 +117,46 @@ module.exports = {
         industry: 'Purkujuttuja',
         createdAt: new Date(),
         updatedAt: new Date(),
+      },
+    ]);
+    await queryInterface.bulkInsert('apiStatistic', [
+      {
+        id: uuidv4(),
+        api: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed',
+        success: true,
+        statisticType: 'Get Item From MT',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ]);
+    await queryInterface.bulkInsert('apiStatistic', [
+      {
+        id: uuidv4(),
+        api: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed',
+        success: true,
+        statisticType: 'Get Item From MT',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ]);
+    await queryInterface.bulkInsert('apiStatistic', [
+      {
+        id: uuidv4(),
+        api: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed',
+        success: false,
+        statisticType: 'Get Item From MT',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ]);
+    await queryInterface.bulkInsert('apiStatistic', [
+      {
+        id: uuidv4(),
+        api: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed',
+        success: true,
+        statisticType: 'Get Item From MT',
+        createdAt: new Date(2021, 1, 2),
+        updatedAt: new Date(2021, 1, 2),
       },
     ]);
   },

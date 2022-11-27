@@ -336,12 +336,25 @@ paths:
         '500':
           description: Service error
 
-  /v1/apistatistics:
+  /v1/apistatistics/{apiName}/{statisticType}:
     get:
       operationId: getApiStatistics
       summary: Get API statistics
       tags:
         - Apis
+      parameters:
+        - name: apiName
+          required: true
+          in: path
+          description: API name
+          schema:
+            type: string
+        - name: statisticType
+          required: true
+          in: path
+          description: Statistic type
+          schema:
+            type: string
       responses:
         '200':
           description: Get API statistics
@@ -358,6 +371,19 @@ paths:
     post:
       operationId: postApiStatistics
       summary: Post API statistics
+      parameters:
+        - name: apiName
+          required: true
+          in: path
+          description: API name
+          schema:
+            type: string
+        - name: statisticType
+          required: true
+          in: path
+          description: Statistic type
+          schema:
+            type: string
       requestBody:
         content:
           application/json:
@@ -585,34 +611,46 @@ components:
     GetApiStatistic:
       type: object
       properties:
-        id:
+        apiName:
           type: string
-          format: uuid
-        api:
-          type: string
-          format: uuid
-        success:
-          type: boolean
         statisticType:
           type: string
-        timeStamp:
-          type: string
+        successCount:
+          type: number
+        failureCount:
+          type: number
+        daily:
+          type: array
+          items:
+            type: object
+            properties:
+              successCount:
+                type: number
+              failureCount:
+                type: number
+              date:
+                type: string
     PostApiStatistic:
       type: object
       required:
-        - api
         - success
-        - statisticType
       properties:
-        api:
+        id:
           type: string
           format: uuid
         success:
           type: boolean
-        statisticType:
-          type: string
     GetUserCount:
       type: object
       properties:
         count:
           type: number
+        daily:
+          type: array
+          items:
+            type: object
+            properties:
+              count:
+                type: number
+              date:
+                type: string

@@ -221,8 +221,11 @@ export async function refreshLogin(refToken: string) {
         const response = await axios.post(
             `https://auth.purkukartoitus.fi/auth/realms/rapurc/protocol/openid-connect/token`,
             new URLSearchParams({
+                // eslint-disable-next-line
                 client_id: 'management',
+                // eslint-disable-next-line
                 grant_type: 'refresh_token',
+                // eslint-disable-next-line
                 refresh_token: refToken
             })
         );

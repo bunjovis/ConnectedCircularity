@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Advert } from './types/Advert';
+import { Advert, PostAdvert } from './types/Advert';
 import { ItemInfo } from './types/ItemInfo';
 
 export const dbServiceApi = createApi({
@@ -47,7 +47,16 @@ export const dbServiceApi = createApi({
         return response;
       },
     }),
+    postItem: builder.mutation<PostAdvert, Partial<PostAdvert>>({
+      query: (body) => ({
+        url: '/v1/advert',
+        method: 'POST',
+        body,
+        token: `Bearer ${sessionStorage.getItem('mtToken')}`,
+      }),
+    }),
   }),
 });
 
-export const { useGetUserItemsQuery, useGetItemQuery } = dbServiceApi;
+export const { useGetUserItemsQuery, useGetItemQuery, usePostItemMutation } =
+  dbServiceApi;

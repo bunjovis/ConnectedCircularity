@@ -39,19 +39,21 @@ import {
 } from '../utils/mt-options';
 import { advertDefaults, setUpPrefills } from '../utils/helpers';
 
-import { Advert } from '../types/Advert';
+import { Advert, PostAdvert } from '../types/Advert';
 import { useAuth } from '../components/AuthProvider';
-import { useGetItemQuery } from '../dbServiceApi';
+import { useGetItemQuery, usePostItemMutation } from '../dbServiceApi';
 import { skipToken } from '@reduxjs/toolkit/dist/query';
+import axios from 'axios';
 
 const TransferForm: React.FC<{}> = () => {
   const { itemId } = useParams();
   const { mtAuth, mtLogin } = useAuth();
   const { data, error, isLoading } = useGetItemQuery(itemId ?? skipToken);
+  const [postItem, result] = usePostItemMutation();
   const navigate = useNavigate();
 
-  console.log(data, error, isLoading);
-  // TODO: if no data, try to refetch
+  //console.log(data, error, isLoading);
+  console.log(result);
 
   const cancelAction = () => {
     navigate('/home');
@@ -179,7 +181,7 @@ const TransferForm: React.FC<{}> = () => {
       </Flex>
     );
   };
-  console.log(isLoading);
+
   if (isLoading) {
     return (
       <Center width='100%' p='5'>
@@ -187,10 +189,7 @@ const TransferForm: React.FC<{}> = () => {
       </Center>
     );
   }
-  console.log(error);
-  if (error === true || typeof error === 'object') {
-    console.log('ERROR');
-  }
+
   if (error) {
     return (
       <Center width='100%' p='5'>
@@ -221,7 +220,77 @@ const TransferForm: React.FC<{}> = () => {
                 return;
               }
               // TODO: submit
-              console.log(JSON.stringify(values, null, 2));
+              // console.log(JSON.stringify(values, null, 2));
+              console.log(values);
+              // type: "offeringMaterial",
+              // data: {
+
+              //}
+              const postData = {
+                contact: {
+                  name: values.contactName,
+                  title: values.contactRole,
+                  phone: values.contactPhone,
+                  email: values.contactEmail,
+                },
+                contactIsPublic: values.showOrganizationForRegistered,
+                expires: values.expiryDate.toISOString(),
+                materials: [
+                  {
+                    quantity: {
+                      amount: parseInt(values.amount),
+                      unitOfMeasure: values.unit,
+                    },
+                    continuity: 'onetime',
+                    amountDescription: values.amountInformation,
+                    location: {
+                      name: values.locationName,
+                      address: values.streetAddress,
+                      postalcode: values.zipCode,
+                      city: values.area,
+                      cityId: 'M_270',
+                      region: 'Pirkanmaa',
+                      regionId: 'R_5',
+                      countryCode: 'fi',
+                    },
+                    isWaste: false,
+                    description: values.materialDescription,
+                    industry: values.industry,
+                    //amountDescription: values.amountInformation,
+                    locationIsPublic: values.locationIsPublic,
+                    //continuity: 'onetime',
+                    classification: values.material,
+                    subClassification: '',
+                  },
+                ],
+                regions: [],
+                attachments: [],
+                title: values.title,
+              };
+              //const ne
+              const sendData: PostAdvert = {
+                type: 'offeringMaterial',
+                data: postData,
+              };
+              console.log(sendData);
+              //postItem(sendData);
+              const config = {
+                headers: {
+                  Authorization: `Bearer ${sessionStorage.getItem('mtToken')}`,
+                },
+              };
+              axios
+                .post(
+                  `${import.meta.env.VITE_CC_BACKEND}v1/advert`,
+                  sendData,
+                  config
+                )
+                .then((res) => {
+                  console.log(res);
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
             }}
           >
             {({ handleSubmit, errors, touched, values, setFieldValue }) => (
@@ -342,7 +411,7 @@ const TransferForm: React.FC<{}> = () => {
                     borderRadius='5px'
                   >
                     <FormLabel
-                      htmlFor='showLocationForRegistered'
+                      htmlFor='locationIsPublic'
                       width='80%'
                       mt='auto'
                       mb='auto'
@@ -353,16 +422,13 @@ const TransferForm: React.FC<{}> = () => {
                       käyttäjille
                     </FormLabel>
                     <Text width='10%' as='i'>
-                      {values.showLocationForRegistered ? 'Kyllä' : 'Ei'}
+                      {values.locationIsPublic ? 'Kyllä' : 'Ei'}
                     </Text>
                     <Switch
-                      isChecked={values.showLocationForRegistered}
-                      id='showLocationForRegistered'
+                      isChecked={values.locationIsPublic}
+                      id='locationIsPublic'
                       onChange={(e) => {
-                        setFieldValue(
-                          'showLocationForRegistered',
-                          e.target.checked
-                        );
+                        setFieldValue('locationIsPublic', e.target.checked);
                       }}
                     />
                   </FormControl>
@@ -467,7 +533,7 @@ const TransferForm: React.FC<{}> = () => {
               </Form>
             )}
           </Formik>
-          <ConfigurationForm />
+          {false && <ConfigurationForm />}
         </Box>
       )}
     </Flex>

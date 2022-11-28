@@ -8,7 +8,7 @@ import {
   AdvertData,
   ApiConfig,
   LoginResponse,
-  UserInfo
+  UserInfo,
 } from './types';
 import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
 
@@ -18,8 +18,8 @@ export async function getItemsPK(token: any, userId: string) {
       `${process.env.CC_PK_SERVICE_URL}/v1/users/${userId}/items`,
       {
         headers: {
-          Authorization: 'Bearer ' + token
-        }
+          Authorization: 'Bearer ' + token,
+        },
       }
     );
     console.log(response);
@@ -43,8 +43,8 @@ export async function getItemsDB(userId: string) {
       `${process.env.CC_DB_SERVICE_URL}/items/${userId}`,
       {
         headers: {
-          Accept: 'application/json'
-        }
+          Accept: 'application/json',
+        },
       }
     );
     console.log('response status is: ', status);
@@ -66,8 +66,8 @@ export async function getItemInfo(token: any, itemId: string) {
       `${process.env.CC_PK_SERVICE_URL}/v1/items/${itemId}`,
       {
         headers: {
-          Authorization: 'Bearer ' + token
-        }
+          Authorization: 'Bearer ' + token,
+        },
       }
     );
     console.log('response status is: ', status);
@@ -89,8 +89,8 @@ export async function postConfigToDB(config: Config) {
       {
         data: config,
         headers: {
-          Accept: 'application/json'
-        }
+          Accept: 'application/json',
+        },
       }
     );
     console.log('response status is: ', status);
@@ -113,6 +113,8 @@ export function getToken(wholeToken: any) {
       return 'Not a bearer token!';
     }
     const token = tokenParts[1];
+    console.log('Got token');
+    console.log(token);
     return token;
   } catch (error) {
     console.log('unexpected error: ', error);
@@ -127,9 +129,9 @@ export async function postAdvert(token: any, advert: AdvertData) {
       url: `${process.env.CC_MT_SERVICE_URL}/v1/advert`,
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + token
+        Authorization: 'Bearer ' + token,
       },
-      data: advert
+      data: advert,
     };
     const status = await axios(postConfig);
     console.log('response status is: ', status.status || 201);
@@ -158,8 +160,8 @@ export async function getTokens(
     throw {
       response: {
         statusText: 'Invalid API id',
-        status: 500
-      }
+        status: 500,
+      },
     };
   }
 
@@ -168,11 +170,11 @@ export async function getTokens(
     {
       data: {
         username: username,
-        password: password
+        password: password,
       },
       headers: {
-        Accept: 'application/json'
-      }
+        Accept: 'application/json',
+      },
     }
   );
 
@@ -180,19 +182,19 @@ export async function getTokens(
     throw {
       response: {
         statusText: 'Invalid credentials',
-        status: 401
-      }
+        status: 401,
+      },
     };
   }
 
   const jwtSecret: Secret = process.env.JWT_SECRET as string;
   const token = jwt.sign(
     {
-      userId: loginResponse.data.userId
+      userId: loginResponse.data.userId,
     },
     jwtSecret,
     {
-      expiresIn: '2h'
+      expiresIn: '2h',
     }
   );
 
@@ -209,13 +211,13 @@ export async function saveUser(
     {
       api: apiId,
       username: username,
-      id: id
+      id: id,
     },
     {
       headers: {
         Accept: 'application/json',
-        Authorization: 'Bearer ' + token
-      }
+        Authorization: 'Bearer ' + token,
+      },
     }
   );
 
@@ -223,8 +225,8 @@ export async function saveUser(
     throw {
       response: {
         statusText: 'Saving user failed',
-        status: 500
-      }
+        status: 500,
+      },
     };
   }
 }
@@ -234,8 +236,8 @@ export async function getUserIdFromToken(token: string) {
     throw {
       response: {
         statusText: "Can't decode token",
-        status: 500
-      }
+        status: 500,
+      },
     };
   } else {
     return (decodedToken as JwtPayload).userId;

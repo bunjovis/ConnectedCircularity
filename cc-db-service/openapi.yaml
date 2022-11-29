@@ -336,6 +336,88 @@ paths:
         '500':
           description: Service error
 
+  /v1/apistatistics/{apiName}/{statisticType}:
+    get:
+      operationId: getApiStatistics
+      summary: Get API statistics
+      tags:
+        - Apis
+      parameters:
+        - name: apiName
+          required: true
+          in: path
+          description: API name
+          schema:
+            type: string
+        - name: statisticType
+          required: true
+          in: path
+          description: Statistic type
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Get API statistics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetApiStatistic'
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+    post:
+      operationId: postApiStatistics
+      summary: Post API statistics
+      parameters:
+        - name: apiName
+          required: true
+          in: path
+          description: API name
+          schema:
+            type: string
+        - name: statisticType
+          required: true
+          in: path
+          description: Statistic type
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostApiStatistic'
+        required: true
+      tags:
+        - Apis
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+
+  /v1/users/count:
+    get:
+      operationId: getUserCount
+      summary: Get user count
+      tags:
+        - Users
+      responses:
+        '200':
+          description: Get user count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserCount'
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+
 components:
   schemas:
     GetApi:
@@ -526,3 +608,49 @@ components:
           type: string
         locationMunicipality:
           type: string
+    GetApiStatistic:
+      type: object
+      properties:
+        apiName:
+          type: string
+        statisticType:
+          type: string
+        successCount:
+          type: number
+        failureCount:
+          type: number
+        daily:
+          type: array
+          items:
+            type: object
+            properties:
+              successCount:
+                type: number
+              failureCount:
+                type: number
+              date:
+                type: string
+    PostApiStatistic:
+      type: object
+      required:
+        - success
+      properties:
+        id:
+          type: string
+          format: uuid
+        success:
+          type: boolean
+    GetUserCount:
+      type: object
+      properties:
+        count:
+          type: number
+        daily:
+          type: array
+          items:
+            type: object
+            properties:
+              count:
+                type: number
+              date:
+                type: string

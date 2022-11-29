@@ -7,17 +7,19 @@ import { Field } from 'formik';
 export const FieldWithOriginalComparison = ({
   label,
   valueKey,
-  ogValueKey,
+  ogValue,
   isRequired,
   touched,
   errors,
+  value,
 }: {
   label: string;
   valueKey: string;
-  ogValueKey: string;
+  ogValue?: string;
   isRequired: boolean;
   touched?: boolean;
   errors?: string;
+  value?: string;
 }) => {
   return (
     <HStack width='100%'>
@@ -32,9 +34,9 @@ export const FieldWithOriginalComparison = ({
             width='90%'
             validate={
               isRequired
-                ? (value: string) => {
+                ? (value?: string) => {
                     let error;
-                    if (value.length === 0) {
+                    if (value?.length === 0) {
                       error = 'value cannot be empty';
                     }
                     return error;
@@ -49,12 +51,12 @@ export const FieldWithOriginalComparison = ({
         <FormLabel>Annettu arvo</FormLabel>
         <Field
           as={Input}
-          id={ogValueKey}
-          name={ogValueKey}
+          id='original'
+          name='original'
           backgroundColor='#fff'
           width='100%'
           disabled={true}
-          value='alkuperäinen arvo'
+          value={ogValue}
         />
       </FormControl>
     </HStack>

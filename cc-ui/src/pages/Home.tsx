@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { decodeToken } from 'react-jwt';
 import {
   Text,
   Box,
@@ -14,10 +15,26 @@ import {
 
 import { ItemInfo } from '../types/ItemInfo';
 import { useGetUserItemsQuery } from '../dbServiceApi';
+import { useAuth } from '../components/AuthProvider';
+import { skipToken } from '@reduxjs/toolkit/dist/query';
 
 const Home: React.FC<{}> = () => {
   const navigate = useNavigate();
-  const { data, error, isLoading } = useGetUserItemsQuery();
+  const { userId } = useAuth();
+
+  const { data, error, isLoading, refetch } = useGetUserItemsQuery(
+    userId ?? skipToken
+  );
+
+  useEffect(() => {
+    if (userId) {
+      initRefetch();
+    }
+  }, [userId]);
+
+  const initRefetch = () => {
+    refetch();
+  };
 
   if (error) {
     return (
@@ -33,7 +50,7 @@ const Home: React.FC<{}> = () => {
       </Center>
     );
   }
-  console.log(data, error, isLoading);
+
   return (
     <Flex direction='column' gap='4' m='2' p='5' bg='#fff'>
       <Heading as='h1' size='md'>

@@ -28,10 +28,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      timeStamp: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,

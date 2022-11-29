@@ -8,4 +8,5 @@ export interface AuthContextInterface {
   mtAuth: boolean;
   error?: boolean;
   mtLoading: boolean;
+  userId?: string;
 }

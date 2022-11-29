@@ -346,6 +346,62 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+
+  /v1/apistatistics:
+    get:
+      operationId: getApiStatistics
+      summary: Get API statistics
+      tags:
+        - Apis
+      responses:
+        '200':
+          description: Get API statistics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetApiStatistic'
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+    post:
+      operationId: postApiStatistics
+      summary: Post API statistics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostApiStatistic'
+        required: true
+      tags:
+        - Apis
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+
+  /v1/users/count:
+    get:
+      operationId: getUserCount
+      summary: Get user count
+      tags:
+        - Users
+      responses:
+        '200':
+          description: Get user count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserCount'
+        '404':
+          description: Not found
+        '500':
+          description: Service error
 components:
   securitySchemes:
     bearerAuth:
@@ -385,7 +441,7 @@ components:
               type: string
             expires:
               type: string
-              format: date
+              format: date-time
             contactIsPublic:
               type: boolean
             contact:
@@ -401,54 +457,74 @@ components:
                   type: string
                   format: email
             materials:
-              type: object
-              properties:
-                classification:
-                  type: string
-                industry:
-                  type: string
-                description:
-                  type: string
-                isWaste:
-                  type: boolean
-                quantity:
-                  type: object
-                  properties:
-                    amount:
-                      type: integer
-                    unitOfMeasure:
-                      type: string
-                continuity:
-                  type: string
-                amountDescription:
-                  type: string
-                locationIsPublic:
-                  type: boolean
-                location:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                    address:
-                      type: string
-                    postalcode:
-                      type: string
-                    city:
-                      type: string
-                    cityId:
-                      type: string
-                    region:
-                      type: string
-                    regionId:
-                      type: string
-                    countryCode:
-                      type: string
+              type: array
+              items:
+                type: object
+                properties:
+                  classification:
+                    type: string
+                  subClassification:
+                    type: string
+                  industry:
+                    type: string
+                  isWaste:
+                    type: boolean
+                  quantity:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                      unitOfMeasure:
+                        type: string
+                      continuity:
+                        type: string
+                      amountDescription:
+                        type: string
+                  locationIsPublic:
+                    type: boolean
+                  location:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      address:
+                        type: string
+                      postalcode:
+                        type: string
+                      city:
+                        type: string
+                      cityId:
+                        type: string
+                      region:
+                        type: string
+                      regionId:
+                        type: string
+                      countryCode:
+                        type: string
             attachments:
               type: array
               items:
-                type: string
-                format: uri
-                description: Image uri
+                type : object
+                properties:
+                  id:
+                    type: string
+                  fileName:
+                    type: string
+                  contentType:
+                    type: string
+                  length:
+                    type: integer
+            regions:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  nameFi:
+                    type: string
+                  nameSv:
+                    type: string
       
     AdvertInfo:
       type: object
@@ -577,3 +653,38 @@ components:
           type: string        
         username:          
           type: string
+
+    GetApiStatistic:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        api:
+          type: string
+          format: uuid
+        success:
+          type: boolean
+        statisticType:
+          type: string
+        timeStamp:
+          type: string
+    PostApiStatistic:
+      type: object
+      required:
+        - api
+        - success
+        - statisticType
+      properties:
+        api:
+          type: string
+          format: uuid
+        success:
+          type: boolean
+        statisticType:
+          type: string
+    GetUserCount:
+      type: object
+      properties:
+        count:
+          type: number

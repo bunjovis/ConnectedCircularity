@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
 
-import { createOrReturnUser, getUsers, getUserById } from '../services/userService';
+import { createOrReturnUser, getUsers, getUserById, getDailyUserCount, getUserCount } from '../services/userService';
 import { getItemsByUserId } from '../services/itemService';
 import { BackendToken, HttpResponseError } from '../types';
 import { getToken } from '../utils';
@@ -15,6 +15,27 @@ userRoutes.get(
     try {
       const users = await getUsers();
       response.status(200).json(users);
+    } catch (err:any) {
+      const httpError:HttpResponseError = {
+        message: err.message,
+        status: 500,
+        error: err
+      };
+      next(httpError);
+    }
+  }
+);
+
+userRoutes.get(
+  '/users/count',
+  async (_request: Request, response: Response, next: NextFunction) => {
+    try {
+      const usercount = await getUserCount();
+      const dailyUsersAdded = await getDailyUserCount();
+      response.status(200).json({
+        count: usercount,
+        daily: dailyUsersAdded
+      });
     } catch (err:any) {
       const httpError:HttpResponseError = {
         message: err.message,

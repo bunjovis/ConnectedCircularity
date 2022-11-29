@@ -27,7 +27,7 @@ export const options = {
     plugins: {
         title: {
             display: true,
-            text: 'Purkukartoituksen uniikit materiaalit',
+            text: 'Materiaalitoriin luodut ilmoitukset',
         },
     },
 };
@@ -37,6 +37,12 @@ export const data = {
   labels,
   datasets: [
     {
+      label: 'Onnistunut luonti',
+      data: [10, 17, 13, 5, 9, 11, 7],
+      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    },
+    {
+      label: 'Epäonnistunut luonti',
       data: [10, 17, 13, 5, 9, 11, 7],
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
     }
@@ -44,9 +50,9 @@ export const data = {
 };
 
 
-const BarChart: React.FC<{}> = () => {
+const DoubleBarChart: React.FC<{}> = () => {
     return <Bar height="300px" options={options} data={data}/>;
 }
 
 
-export default BarChart;
+export default DoubleBarChart;

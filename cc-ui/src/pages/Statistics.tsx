@@ -25,6 +25,7 @@ import { Bar, Line } from 'react-chartjs-2';
 import { useNavigate } from 'react-router-dom';
 import LineChart from '../components/charts/LineChart';
 import BarChart from '../components/charts/BarChart';
+import DoubleBarChart from '../components/charts/DoubleBarChart';
 
 
 
@@ -36,8 +37,8 @@ const Statistics: React.FC<{}> = () => {
     <Flex alignItems='center' width="100%" justifyContent='center' marginTop="40px" height= "300px">
       <Center width='42%' bg="#ffffff" height="100%" borderRadius='50' marginLeft="10px" marginRight="14px">
       <VStack width='100%'>
-        <Text fontSize='2xl'>Materiaalitori: luodut</Text>
-        <Text fontSize='2xl'>ilmoitukset</Text>
+        <Text fontSize='2xl'>Purkukartoitus: kaikki</Text>
+        <Text fontSize='2xl'>uniikit materiaalit</Text>
         <Text fontSize='5xl'>103</Text>
       </VStack>
       </Center>
@@ -45,12 +46,17 @@ const Statistics: React.FC<{}> = () => {
         <BarChart></BarChart>
       </Box>
     </Flex>
-    <Flex alignItems='center' width="93%" height= "90px">
-      <Center justifyContent='space-evenly' width="100%" bg="#ffffff" height="100%" borderRadius='30'>
-        <Text fontSize='2xl'>Purkukartoitus: Haetut materiaalit</Text>
-        <Text fontSize='4xl'>77</Text>
-        <Box fontWeight="bold" bg="#b2d6d3" height="40px" width="200px" textAlign="center" borderRadius='10' as="button" onClick={() => navigate(`/item_stats`)}>Materiaalien tiedot</Box>
+    <Flex marginTop="60px" alignItems='center' width="100%" justifyContent='center'height= "300px">
+      <Center width='42%' bg="#ffffff" height="100%" borderRadius='50' marginLeft="10px" marginRight="14px">
+      <VStack width='100%'>
+        <Text fontSize='2xl'>Materiaalitori: kaikki</Text>
+        <Text fontSize='2xl'>luodut ilmoitukset</Text>
+        <Text fontSize='5xl'>73</Text>
+      </VStack>
       </Center>
+      <Box width='50%' marginRight='10px' height= "300px">
+        <DoubleBarChart></DoubleBarChart>
+      </Box>
     </Flex>
     <Flex marginTop="60px" alignItems='center' width="100%" justifyContent='center'height= "300px">
       <Center width='42%' bg="#ffffff" height="100%" borderRadius='50' marginLeft="10px" marginRight="14px">

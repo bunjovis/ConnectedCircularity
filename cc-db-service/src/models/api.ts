@@ -19,7 +19,7 @@ export const Api = sequelize.define(
     },
     authEndpoint: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
   },
   { freezeTableName: true, tableName: 'apiConfiguration' }

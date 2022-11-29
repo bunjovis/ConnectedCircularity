@@ -22,10 +22,6 @@ export const ApiStatistic = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    timeStamp: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
   },
   { freezeTableName: true, tableName: 'apiStatistic' }
 );

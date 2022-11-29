@@ -346,6 +346,62 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+
+  /v1/apistatistics:
+    get:
+      operationId: getApiStatistics
+      summary: Get API statistics
+      tags:
+        - Apis
+      responses:
+        '200':
+          description: Get API statistics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetApiStatistic'
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+    post:
+      operationId: postApiStatistics
+      summary: Post API statistics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostApiStatistic'
+        required: true
+      tags:
+        - Apis
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not found
+        '500':
+          description: Service error
+
+  /v1/users/count:
+    get:
+      operationId: getUserCount
+      summary: Get user count
+      tags:
+        - Users
+      responses:
+        '200':
+          description: Get user count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserCount'
+        '404':
+          description: Not found
+        '500':
+          description: Service error
 components:
   securitySchemes:
     bearerAuth:
@@ -597,3 +653,38 @@ components:
           type: string        
         username:          
           type: string
+
+    GetApiStatistic:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        api:
+          type: string
+          format: uuid
+        success:
+          type: boolean
+        statisticType:
+          type: string
+        timeStamp:
+          type: string
+    PostApiStatistic:
+      type: object
+      required:
+        - api
+        - success
+        - statisticType
+      properties:
+        api:
+          type: string
+          format: uuid
+        success:
+          type: boolean
+        statisticType:
+          type: string
+    GetUserCount:
+      type: object
+      properties:
+        count:
+          type: number

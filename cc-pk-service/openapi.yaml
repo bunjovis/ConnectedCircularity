@@ -147,6 +147,8 @@ paths:
                   refresh_token:
                     type: string
                     format: uuid
+                  user_id:
+                    type: string
         "400":
           description: Invalid request was sent to the server
           content:
@@ -185,7 +187,7 @@ paths:
                     format: uuid
       responses:
         "200":
-          description: Succesful login wi refresh token
+          description: Succesful login with refresh token
           content:
             application/json:
               schema:
@@ -197,6 +199,8 @@ paths:
                   refresh_token:
                     type: string
                     format: uuid
+                  user_id:
+                    type: string
         "400":
           description: Invalid request was sent to the server
           content:

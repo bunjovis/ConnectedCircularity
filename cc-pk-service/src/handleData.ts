@@ -218,7 +218,7 @@ export async function login(username: string, password: string) {
 
 export async function refreshLogin(refToken: string) {
     try {
-        const response = await axios.post(
+        const tokenResponse = await axios.post(
             `https://auth.purkukartoitus.fi/auth/realms/rapurc/protocol/openid-connect/token`,
             new URLSearchParams({
                 // eslint-disable-next-line
@@ -229,7 +229,12 @@ export async function refreshLogin(refToken: string) {
                 refresh_token: refToken
             })
         );
-        return {accessToken: response.data.access_token, refreshToken: response.data.refresh_token};
+        const userIdResponse = await axios.get('https://auth.purkukartoitus.fi/auth/realms/rapurc/account', {
+            headers: {
+                'Authorization': 'Bearer ' + tokenResponse.data.access_token
+            }
+        });
+        return {accessToken: tokenResponse.data.access_token, refreshToken: tokenResponse.data.refresh_token, userId: userIdResponse.data.id};
     } catch (error) {
         if (axios.isAxiosError(error)) {
             console.log('error message: ', error.message);

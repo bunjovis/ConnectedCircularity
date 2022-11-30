@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { postAdvert, getToken } from '../utils';
+import { postAdvert, getToken, postMTStatistics } from '../utils';
 import { Error, ItemInfo, Item, AdvertData } from '../types';
 
 const advertRouter = Router();
@@ -22,10 +22,12 @@ advertRouter.post(
         const postToMT = await postAdvert(token, advert);
         console.log(postToMT.status);
         console.log(postToMT.data);
+        postMTStatistics(true);
         response.status(postToMT.status);
         response.json(postToMT.data);
       }
-    } catch (error) {
+    } catch (error: any) {
+      postMTStatistics(false);
       if (!error.response) {
         console.log('Unexpected error: 500');
         response.status(500);

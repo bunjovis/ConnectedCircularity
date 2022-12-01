@@ -13,19 +13,21 @@ import { Field } from 'formik';
 export const SelectWithOriginalComparison = ({
   label,
   valueKey,
-  ogValueKey,
+  ogValue,
   isRequired,
   touched,
   errors,
   options,
+  value,
 }: {
   label: string;
   valueKey: string;
-  ogValueKey: string;
+  ogValue?: string;
   isRequired: boolean;
   touched?: boolean;
   errors?: string;
   options: any[];
+  value?: any;
 }) => {
   return (
     <HStack width='100%'>
@@ -41,9 +43,9 @@ export const SelectWithOriginalComparison = ({
             placeholder='Valitse'
             validate={
               isRequired
-                ? (value: string) => {
+                ? (value?: string) => {
                     let error;
-                    if (value.length === 0) {
+                    if (value?.length === 0) {
                       error = 'value cannot be empty';
                     }
                     return error;
@@ -53,7 +55,7 @@ export const SelectWithOriginalComparison = ({
           >
             {options.map((op) => (
               <option key={op.id} value={op.id}>
-                {op.id}
+                {op.displayValue}
               </option>
             ))}
           </Field>
@@ -64,12 +66,12 @@ export const SelectWithOriginalComparison = ({
         <FormLabel>Annettu arvo</FormLabel>
         <Field
           as={Input}
-          id={ogValueKey}
-          name={ogValueKey}
+          id='original'
+          name='original'
           backgroundColor='#fff'
           width='100%'
           disabled={true}
-          value='alkuperäinen arvo'
+          value={ogValue}
         />
       </FormControl>
     </HStack>

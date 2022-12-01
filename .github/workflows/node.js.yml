@@ -25,12 +25,31 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install
+      - name: Install Backend Service
+        working-directory: ./cc-backend
+        run: npm install
+      - name: Install Db Service
+        working-directory: ./cc-db-service
+        run: npm install
+      - name: Install Mt Service
+        working-directory: ./cc-mt-service
+        run: npm install
+      - name: Install Pk Service
+        working-directory: ./cc-pk-service
+        run: npm install
       - run: npm run build --if-present
       - run: npm install --global mocha
       - run: npm install --global chai
       - run: npm install --global ts-node
+      - run: npm install --global mocha-suppress-logs
       - run: npm run check
       - run: npm run test
+      - name: Archive UnitTestReport.json
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: UnitTestReport.json
+          path: UnitTestReport.json
       - uses: dorny/test-reporter@v1  # upload test results
         if: success() || failure()        # run this step even if previous step failed
         with:

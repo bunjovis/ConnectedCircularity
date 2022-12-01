@@ -1,4 +1,4 @@
-import { Advert } from '../types/Advert';
+import { Advert, ItemArea, MTAreaOption } from '../types/Advert';
 import {
   industryOptions,
   materialOptions,
@@ -42,12 +42,12 @@ export const advertDefaults: Advert = {
   amount: '',
   unit: '',
   amountInformation: '',
-  showLocationForRegistered: true,
+  locationIsPublic: true,
   locationName: '',
   streetAddress: '',
   zipCode: '',
   municipality: '',
-  area: '',
+  area: {},
   expiryDate: undefined,
   contactName: '',
   contactRole: '',
@@ -119,41 +119,26 @@ const mapIndusty = (itemProvider: string, options: any[]): any => {
   return '';
 };
 
-const mapArea = (
-  value: string,
-  options: {
-    regionId: string;
-    regionNameFi: string;
-    regionNameSv: string;
-    coordinatesPoint: { type: string; coordinates: number[] };
-    coordinates: { type: string; lon: number; lat: number }[];
-    municipalities: {
-      id: string;
-      nameFi: string;
-      nameSv: string;
-      type: string;
-      coordinatesPoint: { type: string; coordinates: number[] };
-      coordinates: { type: string; lon: number; lat: number }[];
-      regionId: string;
-      regionNameFi: string;
-      regionNameSv: string;
-      regionCoordinates: { type: string; lon: number; lat: number }[];
-      regionCoordinatesPoint: { type: string; coordinates: number[] };
-      configurationType: string;
-    }[];
-  }[]
-): any => {
-  let foundValue = '';
-  // TODO: refactor
-  const op = options.map((o) => {
-    o.municipalities.map((m) => {
+const mapArea = (value: string, options: MTAreaOption[]): any => {
+  let area: ItemArea = {
+    cityId: '',
+    region: '',
+    regionId: '',
+    countryCode: 'fi',
+    name: '',
+  };
+  options.find((o) =>
+    o.municipalities.some((m) => {
       if (m.nameFi.toLowerCase() === value.toLowerCase()) {
-        foundValue = m.nameFi;
+        area.cityId = m.id;
+        area.region = m.regionNameFi;
+        area.regionId = m.regionId;
+        area.name = value;
+        return m;
       }
-    });
-  });
-
-  return foundValue;
+    })
+  );
+  return area;
 };
 
 export const setUpPrefills = (key: string, value?: string): string => {

@@ -1,5 +1,6 @@
 /* eslint-disable max-lines-per-function */
 import React, { useState, useEffect } from 'react';
+import { municipalityOptions } from '../utils/mt-options';
 import type { ReactElement } from 'react';
 import { Form, Formik, Field } from 'formik';
 import {
@@ -142,7 +143,10 @@ const TransferForm: React.FC<{}> = () => {
   };
 
   const removeImage = (url: string) => {};
-
+  const extractedOptions = municipalityOptions
+    .map((o) => o.municipalities)
+    .flat(1);
+  console.log(extractedOptions);
   const displayImages = (images: string[]) => {
     return (
       <Flex width='100%' alignContent='center' gap='1'>
@@ -182,6 +186,50 @@ const TransferForm: React.FC<{}> = () => {
     );
   };
 
+  const select = (
+    label: string,
+    id: string,
+    name: string,
+    isRequired: boolean,
+    options: any[],
+    errors?: string,
+    touched?: boolean
+  ) => {
+    return (
+      <FormControl isInvalid={!!errors && touched}>
+        <FormLabel>{label}</FormLabel>
+        <HStack>
+          <Field
+            as={Select}
+            id={id}
+            name={name}
+            backgroundColor='#fff'
+            width='90%'
+            placeholder='Valitse'
+            validate={
+              isRequired
+                ? (value?: string) => {
+                    let error;
+                    if (value?.length === 0) {
+                      error = 'value cannot be empty';
+                    }
+                    return error;
+                  }
+                : ''
+            }
+          >
+            {options.map((op) => (
+              <option key={op.id} value={op.id}>
+                {op.nameFi}
+              </option>
+            ))}
+          </Field>
+          {isRequired && <WarningIcon color='#EE0004' />}
+        </HStack>
+      </FormControl>
+    );
+  };
+
   if (isLoading) {
     return (
       <Center width='100%' p='5'>
@@ -215,17 +263,9 @@ const TransferForm: React.FC<{}> = () => {
           <Formik
             initialValues={setUpValues(data)}
             onSubmit={(values: Advert) => {
-              console.log('onsubmit');
               if (!values.expiryDate) {
                 return;
               }
-              // TODO: submit
-              // console.log(JSON.stringify(values, null, 2));
-              console.log(values);
-              // type: "offeringMaterial",
-              // data: {
-
-              //}
               const postData = {
                 contact: {
                   name: values.contactName,
@@ -247,18 +287,13 @@ const TransferForm: React.FC<{}> = () => {
                       name: values.locationName,
                       address: values.streetAddress,
                       postalcode: values.zipCode,
-                      city: values.area,
-                      cityId: 'M_270',
-                      region: 'Pirkanmaa',
-                      regionId: 'R_5',
-                      countryCode: 'fi',
+                      city: values.area.name,
+                      ...values.area,
                     },
                     isWaste: false,
                     description: values.materialDescription,
                     industry: values.industry,
-                    //amountDescription: values.amountInformation,
                     locationIsPublic: values.locationIsPublic,
-                    //continuity: 'onetime',
                     classification: values.material,
                     subClassification: '',
                   },
@@ -267,7 +302,6 @@ const TransferForm: React.FC<{}> = () => {
                 attachments: [],
                 title: values.title,
               };
-              //const ne
               const sendData: PostAdvert = {
                 type: 'offeringMaterial',
                 data: postData,
@@ -279,6 +313,7 @@ const TransferForm: React.FC<{}> = () => {
                   Authorization: `Bearer ${sessionStorage.getItem('mtToken')}`,
                 },
               };
+              // TODO: load icon
               axios
                 .post(
                   `${import.meta.env.VITE_CC_BACKEND}v1/advert`,
@@ -286,9 +321,11 @@ const TransferForm: React.FC<{}> = () => {
                   config
                 )
                 .then((res) => {
+                  // TODO: route
                   console.log(res);
                 })
                 .catch((err) => {
+                  // TODO: display message
                   console.log(err);
                 });
             }}
@@ -453,10 +490,18 @@ const TransferForm: React.FC<{}> = () => {
                     label: 'Kunta/Alue',
                     id: 'area',
                     isRequired: true,
-                    touched: touched.area,
-                    errors: errors.area,
-                    value: values.area,
+                    touched: touched.area?.name,
+                    errors: errors.area?.name,
+                    value: values.area.name,
                   })}
+                  {false &&
+                    select(
+                      'kaupunki',
+                      'test',
+                      'kaupunki',
+                      false,
+                      extractedOptions
+                    )}
                   {Datepicker({
                     label: 'Ilmoituksen voimassaoloaika',
                     value: values.expiryDate,

@@ -1,3 +1,11 @@
+export interface ItemArea {
+  cityId?: string;
+  region?: string;
+  regionId?: string;
+  countryCode?: string;
+  name?: string;
+}
+
 export interface Advert {
   title: string;
   industry: string;
@@ -11,7 +19,7 @@ export interface Advert {
   streetAddress: string;
   zipCode: string;
   municipality: string;
-  area: string;
+  area: ItemArea;
   expiryDate?: Date;
   contactName: string;
   contactRole: string;
@@ -52,4 +60,28 @@ export interface PostAdvert {
     ];
     attachments?: string[];
   };
+}
+
+export interface Municipality {
+  id: string;
+  nameFi: string;
+  nameSv: string;
+  type: string;
+  coordinatesPoint: { type: string; coordinates: number[] };
+  coordinates: { type: string; lon: number; lat: number }[];
+  regionId: string;
+  regionNameFi: string;
+  regionNameSv: string;
+  regionCoordinates: { type: string; lon: number; lat: number }[];
+  regionCoordinatesPoint: { type: string; coordinates: number[] };
+  configurationType: string;
+}
+
+export interface MTAreaOption {
+  regionId: string;
+  regionNameFi: string;
+  regionNameSv: string;
+  coordinatesPoint: { type: string; coordinates: number[] };
+  coordinates: { type: string; lon: number; lat: number }[];
+  municipalities: Municipality[];
 }

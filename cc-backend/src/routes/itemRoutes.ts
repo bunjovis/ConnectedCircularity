@@ -4,7 +4,8 @@ import {
   getItemsDB,
   getItemInfo,
   postConfigToDB,
-  getToken
+  getToken,
+  postPKStatistics
 } from '../utils';
 import { Error, ItemInfo, Item } from '../types';
 
@@ -19,6 +20,11 @@ itemRouter.get(
       const userId: string = request.params.userId;
       const itemsPK = await getItemsPK(token, userId);
       //const itemsDB = await getItemsDB(request.params.userId);
+      for (let i=0;i<itemsPK.length;i++) {
+        const item = itemsPK[i];
+        postPKStatistics(item.reusableId, true);
+      }
+      
       response.json(itemsPK);
       //response.write(itemsDB);
       //response.send();
@@ -49,6 +55,7 @@ itemRouter.get(
       const token = getToken(wholeToken);
       const itemId: string = request.params.itemId;
       const item: ItemInfo = await getItemInfo(token, itemId);
+      postPKStatistics(request.params.itemId, true);
       response.json(item);
     } catch (error: any) {
       console.log(error);

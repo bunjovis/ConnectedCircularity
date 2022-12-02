@@ -21,30 +21,68 @@ ChartJS.register(
     Tooltip
 );
 
+const LineChart: React.FC<{count:any, dailyUsers:Array<any>}> = (countData) => {
+    let count = countData.count;
+    const dailyUsers = countData.dailyUsers;
 
-const labels = ["Marraskuu", "Joulukuu", "Tammikuu", "Helmikuu", "Maaliskuu", "Huhtikuu", "Toukokuu"];
-const data = {
-    labels,
-    datasets: [
-    {
-        data: [10, 12, 15, 15, 16, 16, 18],
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    const initialDate = new Date().toISOString().split('T')[0];
+    let labels:string[] = [initialDate];
+    for (let i = 0; i < 6; i++) {
+        const time = Date.parse(labels[i]);
+        const date = new Date(time);
+        const previous = date.setDate(date.getDate() - 1);
+        const previousDate = new Date(previous);
+        labels.push(previousDate.toISOString().split('T')[0]);
     }
-    ],
-};
 
-export const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-        title: {
-            display: true,
-            text: 'Connected Circularityyn luodut käyttäjät',
+    let countArray:any = [parseInt(count)]
+    let removed = 0;
+    let n = 0;
+    for (let i = 0; i < labels.length - 1; i++) {
+        if (i < dailyUsers.length && dailyUsers.length > 0) {
+            if (labels[i] === dailyUsers[n].date) {
+                removed += parseInt(dailyUsers[i].count);
+                countArray.push(countArray[i] - removed);
+                n++;
+                continue;
+            }
+        }
+        countArray.push(countArray[i]);
+    }
+
+    labels.sort((a:any, b:any) => a > b ? 1 : -1);
+    countArray.sort((a:any, b:any) => a > b ? 1 : -1);
+
+    const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            title: {
+                display: true,
+                text: 'Connected Circularityyn luodut käyttäjät',
+            },
+            legend: {
+                display: false
+            },
         },
-    },
-};
+        scales: {
+            yAxis: {
+              min: countArray[0] - 3,
+              max: countArray[6] + 3,
+            }
+        }
+    };
 
-const LineChart: React.FC<{}> = () => {
+    const data = {
+        labels,
+        datasets: [
+        {
+            data: countArray,
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        }
+        ]
+    };
+
     return (<Line height="300px" options={options} data={data} />)
 }
 

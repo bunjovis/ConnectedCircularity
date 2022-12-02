@@ -17,11 +17,45 @@ ChartJS.register(
     LinearScale,
     BarElement,
     Title,
-    Tooltip
+    Tooltip,
+    Legend
 );
 
+const DoubleBarChart: React.FC<{dailyRequests:Array<any>}> = (countData) => {
+  const daily = countData.dailyRequests;
 
-export const options = {
+  const initialDate = new Date().toISOString().split('T')[0];
+  let labels:string[] = [initialDate];
+  for (let i = 0; i < 6; i++) {
+    const time = Date.parse(labels[i]);
+    const date = new Date(time);
+    const previous = date.setDate(date.getDate() - 1);
+    const previousDate = new Date(previous);
+    labels.push(previousDate.toISOString().split('T')[0]);
+  }
+
+  labels.sort((a:any, b:any) => a > b ? 1 : -1);
+
+  let countArraySuccess:any = []
+  let countArrayFailure:any = []
+  let n = 0;
+  let scaleMax = 0;
+
+  for (let i = 0; i < labels.length; i++) {
+    if (daily.length > 0) {
+      if (labels[i] === daily[n].date) {
+        countArraySuccess.push(daily[n].successCount);
+        countArrayFailure.push(daily[n].failureCount);
+        if (daily[n].successCount > scaleMax) scaleMax = daily[n].successCount;
+        n++;
+        continue;
+      }
+    }
+    countArraySuccess.push(0);
+    countArrayFailure.push(0);
+  }
+
+  const options = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
@@ -29,29 +63,35 @@ export const options = {
             display: true,
             text: 'Materiaalitoriin luodut ilmoitukset',
         },
+        legend: {
+          display: false
+        }
     },
+    scales: {
+      yAxis: {
+        min: 0,
+        max: scaleMax + 2,
+      }
+    }
 };
   
-const labels = ["15.11.2022", "16.11.2022", "17.11.2022", "18.11.2022", "19.11.2022", "20.11.2022", "21.11.2022"];
-export const data = {
+const data = {
   labels,
   datasets: [
     {
       label: 'Onnistunut luonti',
-      data: [10, 17, 13, 5, 9, 11, 7],
+      data: countArraySuccess,
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
     },
     {
       label: 'Epäonnistunut luonti',
-      data: [10, 17, 13, 5, 9, 11, 7],
+      data: countArrayFailure,
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
     }
   ],
 };
 
-
-const DoubleBarChart: React.FC<{}> = () => {
-    return <Bar height="300px" options={options} data={data}/>;
+  return <Bar height="300px" options={options} data={data}/>;
 }
 
 

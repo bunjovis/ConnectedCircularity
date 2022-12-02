@@ -21,7 +21,37 @@ ChartJS.register(
 );
 
 
-export const options = {
+const BarChart: React.FC<{dailyRequests:Array<any>}> = (countData) => {
+  const daily = countData.dailyRequests;
+
+  const initialDate = new Date().toISOString().split('T')[0];
+  let labels:string[] = [initialDate];
+  for (let i = 0; i < 6; i++) {
+    const time = Date.parse(labels[i]);
+    const date = new Date(time);
+    const previous = date.setDate(date.getDate() - 1);
+    const previousDate = new Date(previous);
+    labels.push(previousDate.toISOString().split('T')[0]);
+  }
+
+  labels.sort((a:any, b:any) => a > b ? 1 : -1);
+
+  let countArray:any = []
+  let n = 0;
+  let scaleMax = 0;
+  for (let i = 0; i < labels.length; i++) {
+    if (daily.length > 0) {
+      if (labels[i] === daily[n].date) {
+        countArray.push(daily[n].successCount);
+        if (daily[n].successCount > scaleMax) scaleMax = daily[n].successCount;
+        n++;
+        continue;
+      }
+    }
+    countArray.push(0);
+  }
+
+  const options = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
@@ -29,23 +59,29 @@ export const options = {
             display: true,
             text: 'Purkukartoituksen uniikit materiaalit',
         },
+        legend: {
+          display: false
+        }
     },
-};
-  
-const labels = ["15.11.2022", "16.11.2022", "17.11.2022", "18.11.2022", "19.11.2022", "20.11.2022", "21.11.2022"];
-export const data = {
-  labels,
-  datasets: [
-    {
-      data: [10, 17, 13, 5, 9, 11, 7],
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    scales: {
+      yAxis: {
+        min: 0,
+        max: scaleMax + 2,
+      }
     }
-  ],
-};
+  };
+  
+  const data = {
+    labels,
+    datasets: [
+      {
+        data: countArray,
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      }
+    ]
+  };
 
-
-const BarChart: React.FC<{}> = () => {
-    return <Bar height="300px" options={options} data={data}/>;
+  return <Bar height="300px" options={options} data={data}/>;
 }
 
 

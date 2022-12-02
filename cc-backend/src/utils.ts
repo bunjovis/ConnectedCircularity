@@ -196,7 +196,7 @@ export async function getTokens(
     }
   );
 
-  return { accessToken: loginResponse.data.accessToken, backendToken: token };
+  return { accessToken: loginResponse.data.accessToken, refreshToken: loginResponse.data.refreshToken, backendToken: token };
 }
 export async function saveUser(
   token: string,

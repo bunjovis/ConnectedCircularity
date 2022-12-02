@@ -288,6 +288,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  
   /v1/login/{apiId}:
     post:
       operationId: login
@@ -323,6 +324,9 @@ paths:
                 type: object
                 properties:
                   access_token:
+                    type: string
+                    format: uuid
+                  refresh_token:
                     type: string
                     format: uuid
                   backend_token:

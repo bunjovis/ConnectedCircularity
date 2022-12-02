@@ -47,6 +47,7 @@ const DoubleBarChart: React.FC<{dailyRequests:Array<any>}> = (countData) => {
         countArraySuccess.push(daily[n].successCount);
         countArrayFailure.push(daily[n].failureCount);
         if (daily[n].successCount > scaleMax) scaleMax = daily[n].successCount;
+        if (daily[n].failureCount > scaleMax) scaleMax = daily[n].failureCount;
         n++;
         continue;
       }

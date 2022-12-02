@@ -17,14 +17,14 @@ import DoubleBarChart from '../components/charts/DoubleBarChart';
 import { getUserCount, getPKRequests, getMTRequests } from '../api';
 
 const Statistics: React.FC<{}> = () => {
-  const [userCount, setUserCount] = useState<-1>(-1);
+  const [userCount, setUserCount] = useState<number>(-1);
   const [userCountDaily, setUserCountDaily] = useState<[null]>([null]);
-  const [isLoading, setLoading] = useState(true);
-  const [pkSuccess, setPkSuccess] = useState<-1>(-1);
+  const [isLoading, setLoading] = useState<boolean>(true);
+  const [pkSuccess, setPkSuccess] = useState<number>(-1);
   const [pkCountDaily, setPkCountDaily] = useState<[null]>([null]);
-  const [mtSuccess, setMtSuccess] = useState<-1>(-1);
-  const [mtFailure, setMtFailure] = useState<-1>(-1);
-  const [mtCount, setMtCount] = useState<-1>(-1);
+  const [mtSuccess, setMtSuccess] = useState<number>(-1);
+  const [mtFailure, setMtFailure] = useState<number>(-1);
+  const [mtCount, setMtCount] = useState<number>(-1);
   const [mtCountDaily, setMtCountDaily] = useState<[null]>([null]);
 
   async function fetchUserData() {
@@ -52,7 +52,8 @@ const Statistics: React.FC<{}> = () => {
       if (await mtData.status === 200) {
         setMtSuccess(mtData.count.successCount);
         setMtFailure(mtData.count.failureCount);
-        setMtCount(mtData.count.failureCount + mtData.count.successCount);
+        const total:number = parseInt(mtData.count.failureCount) + parseInt(mtData.count.successCount);
+        setMtCount(total);
         let dailyArray = mtData.count.daily;
         const sortedDaily = dailyArray.sort((a:any, b:any) => a.date < b.date ? 1 : -1).slice(0, 7);
         setMtCountDaily(sortedDaily);

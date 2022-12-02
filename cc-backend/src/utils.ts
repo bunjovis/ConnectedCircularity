@@ -145,6 +145,7 @@ export async function postAdvert(token: any, advert: AdvertData) {
     }
   }
 }
+
 export async function getTokens(
   apiId: string,
   username: string,
@@ -198,6 +199,51 @@ export async function getTokens(
 
   return { accessToken: loginResponse.data.accessToken, refreshToken: loginResponse.data.refreshToken, backendToken: token };
 }
+
+export async function refreshLogin(apiId:string, refreshToken:string) {
+  const response = await axios.get<ApiConfig>(
+    `${process.env.CC_DB_SERVICE_URL}/v1/apis/${apiId}`
+  );
+  if (response.data === null) {
+    throw {
+      response: {
+        statusText: 'Invalid API id',
+        status: 500
+      }
+    };
+  }
+  const refreshResponse = await axios.post(
+    `${response.data.authRefresh}`,
+    {
+      data: {
+        refreshToken: refreshToken
+      },
+      headers: {
+        Accept: 'application/json'
+      }
+    }
+  );
+  if (!refreshResponse.data.userId || !refreshResponse.data.accessToken) {
+    throw {
+      response: {
+        statusText: 'Invalid credentials',
+        status: 401
+      }
+    };
+  }
+  const jwtSecret: Secret = process.env.JWT_SECRET as string;
+  const token = jwt.sign(
+    {
+      userId: refreshResponse.data.userId
+    },
+    jwtSecret,
+    {
+      expiresIn: '2h'
+    }
+  );
+  return { accessToken: refreshResponse.data.accessToken, refreshToken: refreshResponse.data.refreshToken, backendToken: token };
+}
+
 export async function saveUser(
   token: string,
   apiId: string,

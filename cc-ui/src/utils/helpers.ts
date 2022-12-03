@@ -120,7 +120,7 @@ const mapIndusty = (itemProvider: string, options: any[]): any => {
 };
 
 const mapArea = (value: string, options: MTAreaOption[]): any => {
-  let area: ItemArea = {
+  const area: ItemArea = {
     cityId: '',
     region: '',
     regionId: '',

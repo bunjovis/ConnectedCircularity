@@ -113,8 +113,6 @@ export function getToken(wholeToken: any) {
       return 'Not a bearer token!';
     }
     const token = tokenParts[1];
-    console.log('Got token');
-    console.log(token);
     return token;
   } catch (error) {
     console.log('unexpected error: ', error);
@@ -251,19 +249,17 @@ export async function postPKStatistics(itemId: string, success: boolean) {
   try {
     const response = await axios.post(
       `${process.env.CC_DB_SERVICE_URL}/v1/apistatistics/Purkukartoitus/unique`,
-        requestData,
-        {
-          headers: {
-            Accept: 'application/json'
-          }
-        }
+      requestData,
+      {
+        headers: {
+          Accept: 'application/json',
+        },
+      }
     );
     return response;
-  }
-  catch (err:any) {
+  } catch (err: any) {
     return null;
   }
-  
 }
 export async function postMTStatistics(success: boolean) {
   const requestData = {
@@ -272,17 +268,15 @@ export async function postMTStatistics(success: boolean) {
   try {
     const response = await axios.post(
       `${process.env.CC_DB_SERVICE_URL}/v1/apistatistics/Materiaalitori/adverts`,
-        requestData,
-        {
-          headers: {
-            Accept: 'application/json'
-          }
-        }
+      requestData,
+      {
+        headers: {
+          Accept: 'application/json',
+        },
+      }
     );
     return response;
-  }
-  catch (err:any) {
+  } catch (err: any) {
     return null;
   }
-  
 }

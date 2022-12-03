@@ -129,7 +129,7 @@ const mapArea = (value: string, options: MTAreaOption[]): any => {
   };
   options.find((o) =>
     o.municipalities.some((m) => {
-      if (m.nameFi.toLowerCase() === value.toLowerCase()) {
+      if (m.name.toLowerCase() === value.toLowerCase()) {
         area.cityId = m.id;
         area.region = m.regionNameFi;
         area.regionId = m.regionId;

@@ -1,6 +1,8 @@
 export interface ItemArea {
+  id?: string;
   cityId?: string;
   region?: string;
+  regionNameFi?: string;
   regionId?: string;
   countryCode?: string;
   name?: string;
@@ -64,7 +66,7 @@ export interface PostAdvert {
 
 export interface Municipality {
   id: string;
-  nameFi: string;
+  name: string;
   nameSv: string;
   type: string;
   coordinatesPoint: { type: string; coordinates: number[] };

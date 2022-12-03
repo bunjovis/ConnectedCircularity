@@ -47,16 +47,7 @@ export const dbServiceApi = createApi({
         return response;
       },
     }),
-    postItem: builder.mutation<PostAdvert, Partial<PostAdvert>>({
-      query: (body) => ({
-        url: '/v1/advert',
-        method: 'POST',
-        body,
-        token: `Bearer ${sessionStorage.getItem('mtToken')}`,
-      }),
-    }),
   }),
 });
 
-export const { useGetUserItemsQuery, useGetItemQuery, usePostItemMutation } =
-  dbServiceApi;
+export const { useGetUserItemsQuery, useGetItemQuery } = dbServiceApi;

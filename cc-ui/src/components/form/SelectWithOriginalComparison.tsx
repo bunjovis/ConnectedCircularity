@@ -15,6 +15,7 @@ export const SelectWithOriginalComparison = ({
   valueKey,
   ogValue,
   isRequired,
+  disabled,
   touched,
   errors,
   options,
@@ -23,6 +24,7 @@ export const SelectWithOriginalComparison = ({
   label: string;
   valueKey: string;
   ogValue?: string;
+  disabled: boolean;
   isRequired: boolean;
   touched?: boolean;
   errors?: string;
@@ -38,6 +40,7 @@ export const SelectWithOriginalComparison = ({
             as={Select}
             id={valueKey}
             name={valueKey}
+            disabled={disabled}
             backgroundColor='#fff'
             width='90%'
             placeholder='Valitse'

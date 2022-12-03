@@ -1,5 +1,7 @@
 /* eslint-disable max-lines-per-function */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
+import { notificationActions } from '../notificationsSlice';
+import { useDispatch } from 'react-redux';
 import { municipalityOptions } from '../utils/mt-options';
 import type { ReactElement } from 'react';
 import { Form, Formik, Field } from 'formik';
@@ -40,21 +42,20 @@ import {
 } from '../utils/mt-options';
 import { advertDefaults, setUpPrefills } from '../utils/helpers';
 
-import { Advert, PostAdvert } from '../types/Advert';
+import { Advert, ItemArea, PostAdvert } from '../types/Advert';
 import { useAuth } from '../components/AuthProvider';
-import { useGetItemQuery, usePostItemMutation } from '../dbServiceApi';
+import { useGetItemQuery } from '../dbServiceApi';
 import { skipToken } from '@reduxjs/toolkit/dist/query';
 import axios from 'axios';
+import { SelectField } from '../components/form/Select';
 
 const TransferForm: React.FC<{}> = () => {
   const { itemId } = useParams();
-  const { mtAuth, mtLogin } = useAuth();
+  const { mtAuth } = useAuth();
   const { data, error, isLoading } = useGetItemQuery(itemId ?? skipToken);
-  const [postItem, result] = usePostItemMutation();
   const navigate = useNavigate();
-
-  //console.log(data, error, isLoading);
-  console.log(result);
+  const [isPostingItem, setIsPosting] = useState(false);
+  const dispatch = useDispatch();
 
   const cancelAction = () => {
     navigate('/home');
@@ -139,14 +140,16 @@ const TransferForm: React.FC<{}> = () => {
       ['industry']: industryPrefill,
     };
     // TODO: if configurations
+    console.log({ ...advertDefaults, ...data, ...d });
     return { ...advertDefaults, ...data, ...d };
   };
 
   const removeImage = (url: string) => {};
   const extractedOptions = municipalityOptions
     .map((o) => o.municipalities)
-    .flat(1);
-  console.log(extractedOptions);
+    .flat(1)
+    .sort((a, b) => (a.name > b.name ? 1 : -1));
+
   const displayImages = (images: string[]) => {
     return (
       <Flex width='100%' alignContent='center' gap='1'>
@@ -186,50 +189,6 @@ const TransferForm: React.FC<{}> = () => {
     );
   };
 
-  const select = (
-    label: string,
-    id: string,
-    name: string,
-    isRequired: boolean,
-    options: any[],
-    errors?: string,
-    touched?: boolean
-  ) => {
-    return (
-      <FormControl isInvalid={!!errors && touched}>
-        <FormLabel>{label}</FormLabel>
-        <HStack>
-          <Field
-            as={Select}
-            id={id}
-            name={name}
-            backgroundColor='#fff'
-            width='90%'
-            placeholder='Valitse'
-            validate={
-              isRequired
-                ? (value?: string) => {
-                    let error;
-                    if (value?.length === 0) {
-                      error = 'value cannot be empty';
-                    }
-                    return error;
-                  }
-                : ''
-            }
-          >
-            {options.map((op) => (
-              <option key={op.id} value={op.id}>
-                {op.nameFi}
-              </option>
-            ))}
-          </Field>
-          {isRequired && <WarningIcon color='#EE0004' />}
-        </HStack>
-      </FormControl>
-    );
-  };
-
   if (isLoading) {
     return (
       <Center width='100%' p='5'>
@@ -261,8 +220,11 @@ const TransferForm: React.FC<{}> = () => {
             Tarkista ja täytä puuttuvat syötteet
           </Heading>
           <Formik
+            enableReinitialize
             initialValues={setUpValues(data)}
             onSubmit={(values: Advert) => {
+              console.log('ON SUBMIT');
+              console.log(values);
               if (!values.expiryDate) {
                 return;
               }
@@ -288,7 +250,9 @@ const TransferForm: React.FC<{}> = () => {
                       address: values.streetAddress,
                       postalcode: values.zipCode,
                       city: values.area.name,
-                      ...values.area,
+                      cityId: values.area.cityId,
+                      region: values.area.region,
+                      regionId: values.area.regionId,
                     },
                     isWaste: false,
                     description: values.materialDescription,
@@ -302,6 +266,9 @@ const TransferForm: React.FC<{}> = () => {
                 attachments: [],
                 title: values.title,
               };
+              console.log('SENDING DATA');
+              console.log(postData);
+              setIsPosting(true);
               const sendData: PostAdvert = {
                 type: 'offeringMaterial',
                 data: postData,
@@ -313,7 +280,7 @@ const TransferForm: React.FC<{}> = () => {
                   Authorization: `Bearer ${sessionStorage.getItem('mtToken')}`,
                 },
               };
-              // TODO: load icon
+
               axios
                 .post(
                   `${import.meta.env.VITE_CC_BACKEND}v1/advert`,
@@ -323,10 +290,24 @@ const TransferForm: React.FC<{}> = () => {
                 .then((res) => {
                   // TODO: route
                   console.log(res);
+                  navigate('/home');
+                  dispatch(
+                    notificationActions.newNotification({
+                      status: 'success',
+                      message: 'Ilmoituksen siirto onnistui!',
+                    })
+                  );
                 })
                 .catch((err) => {
                   // TODO: display message
                   console.log(err);
+                  setIsPosting(false);
+                  dispatch(
+                    notificationActions.newNotification({
+                      status: 'error',
+                      message: 'Ilmoituksen siirto epäonnistui',
+                    })
+                  );
                 });
             }}
           >
@@ -343,6 +324,7 @@ const TransferForm: React.FC<{}> = () => {
                     label: 'Ilmoituksen otsikko',
                     id: 'title',
                     isRequired: true,
+                    disabled: isPostingItem,
                     touched: touched.title,
                     errors: errors.title,
                     value: values.title,
@@ -361,6 +343,7 @@ const TransferForm: React.FC<{}> = () => {
                         backgroundColor='#fff'
                         width='100%'
                         value={values.industry}
+                        disabled={isPostingItem}
                         validate={(value?: string) => {
                           let error;
                           if (value?.length === 0) {
@@ -385,6 +368,7 @@ const TransferForm: React.FC<{}> = () => {
                     valueKey: 'material',
                     ogValue: data.material,
                     isRequired: true,
+                    disabled: isPostingItem,
                     touched: touched.material,
                     errors: errors.material,
                     options: materialOptions,
@@ -401,6 +385,7 @@ const TransferForm: React.FC<{}> = () => {
                       backgroundColor='#fff'
                       width='100%'
                       resize='none'
+                      disabled={isPostingItem}
                     />
                   </FormControl>
                   {FieldWithOriginalComparison({
@@ -408,6 +393,7 @@ const TransferForm: React.FC<{}> = () => {
                     valueKey: 'amount',
                     ogValue: data.amount,
                     isRequired: true,
+                    disabled: isPostingItem,
                     touched: touched.amount,
                     errors: errors.amount,
                     value: values.amount,
@@ -417,6 +403,7 @@ const TransferForm: React.FC<{}> = () => {
                     valueKey: 'unit',
                     ogValue: data.unit,
                     isRequired: true,
+                    disabled: isPostingItem,
                     touched: touched.unit,
                     errors: errors.unit,
                     options: unitOptions,
@@ -433,6 +420,7 @@ const TransferForm: React.FC<{}> = () => {
                       backgroundColor='#fff'
                       width='100%'
                       resize='none'
+                      disabled={isPostingItem}
                     />
                   </FormControl>
                   <Heading as='h5' size='sm'>
@@ -464,6 +452,7 @@ const TransferForm: React.FC<{}> = () => {
                     <Switch
                       isChecked={values.locationIsPublic}
                       id='locationIsPublic'
+                      disabled={isPostingItem}
                       onChange={(e) => {
                         setFieldValue('locationIsPublic', e.target.checked);
                       }}
@@ -473,45 +462,49 @@ const TransferForm: React.FC<{}> = () => {
                     label: 'Kohteen nimi',
                     id: 'locationName',
                     isRequired: false,
+                    disabled: isPostingItem,
                   })}
                   {FieldWithOriginalComparison({
                     label: 'Katuosoite',
                     valueKey: 'streetAddress',
                     ogValue: data.streetAddress,
                     isRequired: false,
+                    disabled: isPostingItem,
                   })}
                   {FieldWithOriginalComparison({
                     label: 'Postinumero',
                     valueKey: 'zipCode',
                     ogValue: data.zipCode,
                     isRequired: false,
+                    disabled: isPostingItem,
                   })}
-                  {TextInputField({
+                  {SelectField({
                     label: 'Kunta/Alue',
                     id: 'area',
+                    name: 'area',
                     isRequired: true,
-                    touched: touched.area?.name,
+                    disabled: isPostingItem,
+                    value: values.area,
+                    options: extractedOptions,
+                    valueSetter: setFieldValue,
                     errors: errors.area?.name,
-                    value: values.area.name,
+                    touched: touched.area?.name,
                   })}
-                  {false &&
-                    select(
-                      'kaupunki',
-                      'test',
-                      'kaupunki',
-                      false,
-                      extractedOptions
-                    )}
                   {Datepicker({
                     label: 'Ilmoituksen voimassaoloaika',
                     value: values.expiryDate,
                     name: 'expiryDate',
+                    disabled: isPostingItem,
                     valueSetter: setFieldValue,
                   })}
-                  <Heading as='h5' size='sm'>
-                    Liitteet ja kuvat
-                  </Heading>
-                  {displayImages(values.images)}
+                  {false && (
+                    <>
+                      <Heading as='h5' size='sm'>
+                        Liitteet ja kuvat
+                      </Heading>
+                      {displayImages(values.images)}
+                    </>
+                  )}
                   <Heading as='h5' size='sm'>
                     Yhteyshenkilön tiedot
                   </Heading>
@@ -519,6 +512,7 @@ const TransferForm: React.FC<{}> = () => {
                     label: 'Nimi',
                     id: 'contactName',
                     isRequired: true,
+                    disabled: isPostingItem,
                     touched: touched.contactName,
                     errors: errors.contactName,
                   })}
@@ -526,16 +520,19 @@ const TransferForm: React.FC<{}> = () => {
                     label: 'Rooli organisaatiossa',
                     id: 'contactRole',
                     isRequired: false,
+                    disabled: isPostingItem,
                   })}
                   {TextInputField({
                     label: 'Puhelinnumero',
                     id: 'contactPhone',
                     isRequired: false,
+                    disabled: isPostingItem,
                   })}
                   {TextInputField({
                     label: 'Sähköposti',
                     id: 'contactEmail',
                     isRequired: true,
+                    disabled: isPostingItem,
                     touched: touched.contactEmail,
                     errors: errors.contactEmail,
                   })}
@@ -564,6 +561,7 @@ const TransferForm: React.FC<{}> = () => {
                     </Text>
                     <Switch
                       isChecked={values.showOrganizationForRegistered}
+                      disabled={isPostingItem}
                       id='showOrganizationForRegistered'
                       onChange={(e) => {
                         setFieldValue(

@@ -6,6 +6,7 @@ export const TextInputField = ({
   label,
   id,
   isRequired,
+  disabled,
   touched,
   errors,
   value,
@@ -13,6 +14,7 @@ export const TextInputField = ({
   label: string;
   id: string;
   isRequired: boolean;
+  disabled: boolean;
   touched?: boolean;
   errors?: string;
   value?: string;
@@ -28,6 +30,7 @@ export const TextInputField = ({
           backgroundColor='#fff'
           width='100%'
           value={value}
+          disabled={disabled}
           validate={
             isRequired
               ? (value?: string) => {

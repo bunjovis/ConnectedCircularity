@@ -1,4 +1,4 @@
-.date-input, .date-error{
+.date-input, .date-error, .date-input-disabled {
     width: 100%;
     background-color: #fff;
     border: 1px solid #CBD5E0 ;
@@ -14,4 +14,9 @@
     height: 35px;
     border-radius: 5px;
     padding: 5px;
+}
+
+.date-input-disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }

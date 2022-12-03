@@ -63,7 +63,7 @@ const TransferForm: React.FC<{}> = () => {
 
   const saveAsDraft = () => {
     // TODO: type/interface for posting draft values
-    console.log('Save as draft');
+    //console.log('Save as draft');
   };
 
   const renderFormButtons = () => {
@@ -104,7 +104,6 @@ const TransferForm: React.FC<{}> = () => {
           )}
           {!mtAuth && (
             <Button
-              onClick={() => mtLogin()}
               colorScheme='blue'
               borderRadius='0'
               textTransform='uppercase'
@@ -140,7 +139,6 @@ const TransferForm: React.FC<{}> = () => {
       ['industry']: industryPrefill,
     };
     // TODO: if configurations
-    console.log({ ...advertDefaults, ...data, ...d });
     return { ...advertDefaults, ...data, ...d };
   };
 
@@ -223,8 +221,6 @@ const TransferForm: React.FC<{}> = () => {
             enableReinitialize
             initialValues={setUpValues(data)}
             onSubmit={(values: Advert) => {
-              console.log('ON SUBMIT');
-              console.log(values);
               if (!values.expiryDate) {
                 return;
               }
@@ -266,15 +262,11 @@ const TransferForm: React.FC<{}> = () => {
                 attachments: [],
                 title: values.title,
               };
-              console.log('SENDING DATA');
-              console.log(postData);
               setIsPosting(true);
               const sendData: PostAdvert = {
                 type: 'offeringMaterial',
                 data: postData,
               };
-              console.log(sendData);
-              //postItem(sendData);
               const config = {
                 headers: {
                   Authorization: `Bearer ${sessionStorage.getItem('mtToken')}`,
@@ -288,8 +280,6 @@ const TransferForm: React.FC<{}> = () => {
                   config
                 )
                 .then((res) => {
-                  // TODO: route
-                  console.log(res);
                   navigate('/home');
                   dispatch(
                     notificationActions.newNotification({
@@ -299,8 +289,6 @@ const TransferForm: React.FC<{}> = () => {
                   );
                 })
                 .catch((err) => {
-                  // TODO: display message
-                  console.log(err);
                   setIsPosting(false);
                   dispatch(
                     notificationActions.newNotification({

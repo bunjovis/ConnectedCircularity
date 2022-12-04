@@ -52,7 +52,7 @@ const Statistics: React.FC<{}> = () => {
       if (await mtData.status === 200) {
         setMtSuccess(mtData.count.successCount);
         setMtFailure(mtData.count.failureCount);
-        const total:number = parseInt(mtData.count.failureCount) + parseInt(mtData.count.successCount);
+        const total:number = parseInt(mtData.count.successCount);
         setMtCount(total);
         let dailyArray = mtData.count.daily;
         const sortedDaily = dailyArray.sort((a:any, b:any) => a.date < b.date ? 1 : -1).slice(0, 7);
@@ -98,6 +98,7 @@ const Statistics: React.FC<{}> = () => {
         <Center width='42%' bg="#ffffff" height="100%" borderRadius='50' marginLeft="10px" marginRight="14px">
           <VStack width='100%'>
             <Text fontSize='2xl'>Materiaalitori: kaikki</Text>
+            <Text fontSize='2xl'>onnistuneesti</Text>
             <Text fontSize='2xl'>luodut ilmoitukset</Text>
             <Text fontSize='5xl'>{mtCount}</Text>
           </VStack>

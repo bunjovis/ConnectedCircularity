@@ -37,18 +37,19 @@ const BarChart: React.FC<{dailyRequests:Array<any>}> = (countData) => {
   labels.sort((a:any, b:any) => a > b ? 1 : -1);
 
   let countArray:any = []
-  let n = 0;
   let scaleMax = 0;
-  for (let i = 0; i < labels.length; i++) {
-    if (daily.length > 0) {
-      if (labels[i] === daily[n].date) {
-        countArray.push(daily[n].successCount);
-        if (daily[n].successCount > scaleMax) scaleMax = daily[n].successCount;
-        n++;
-        continue;
+  
+  if (daily.length > 0) {
+    for (let i = 0; i < labels.length; i++) {
+      const dateIndex = daily.findIndex((obj) => obj.date === labels[i]);
+      if (dateIndex > -1) {
+        countArray.push(daily[dateIndex].successCount);
+        if (daily[dateIndex].successCount > scaleMax) scaleMax = daily[dateIndex].successCount;
+      }
+      else {
+        countArray.push(0);
       }
     }
-    countArray.push(0);
   }
 
   const options = {
@@ -57,7 +58,7 @@ const BarChart: React.FC<{dailyRequests:Array<any>}> = (countData) => {
     plugins: {
         title: {
             display: true,
-            text: 'Purkukartoituksen uniikit materiaalit',
+            text: 'Purkukartoituksesta haetut uniikit materiaalit',
         },
         legend: {
           display: false
@@ -76,11 +77,10 @@ const BarChart: React.FC<{dailyRequests:Array<any>}> = (countData) => {
     datasets: [
       {
         data: countArray,
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        backgroundColor: 'rgba(5, 174, 0, 0.5)',
       }
     ]
   };
-
   return <Bar height="300px" options={options} data={data}/>;
 }
 

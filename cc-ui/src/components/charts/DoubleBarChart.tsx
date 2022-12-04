@@ -38,22 +38,24 @@ const DoubleBarChart: React.FC<{dailyRequests:Array<any>}> = (countData) => {
 
   let countArraySuccess:any = []
   let countArrayFailure:any = []
-  let n = 0;
   let scaleMax = 0;
 
-  for (let i = 0; i < labels.length; i++) {
-    if (daily.length > 0) {
-      if (labels[i] === daily[n].date) {
-        countArraySuccess.push(daily[n].successCount);
-        countArrayFailure.push(daily[n].failureCount);
-        if (daily[n].successCount > scaleMax) scaleMax = daily[n].successCount;
-        if (daily[n].failureCount > scaleMax) scaleMax = daily[n].failureCount;
-        n++;
-        continue;
+
+  if (daily.length > 0) {
+    for (let i = 0; i < labels.length; i++) {
+      const dateIndex = daily.findIndex((obj) => obj.date === labels[i]);
+      if (dateIndex > -1) {
+        countArraySuccess.push(daily[dateIndex].successCount);
+        countArrayFailure.push(daily[dateIndex].failureCount);
+        if (daily[dateIndex].successCount > scaleMax) scaleMax = daily[dateIndex].successCount;
+        if (daily[dateIndex].failureCount > scaleMax) scaleMax = daily[dateIndex].failureCount;
+
+      }
+      else {
+        countArraySuccess.push(0);
+        countArrayFailure.push(0);
       }
     }
-    countArraySuccess.push(0);
-    countArrayFailure.push(0);
   }
 
   const options = {
@@ -82,7 +84,7 @@ const data = {
     {
       label: 'Onnistunut luonti',
       data: countArraySuccess,
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      backgroundColor: 'rgba(5, 174, 0, 0.5)',
     },
     {
       label: 'Epäonnistunut luonti',

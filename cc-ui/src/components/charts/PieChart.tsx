@@ -26,12 +26,12 @@ const PieChart: React.FC<{success:number, failure:number}> = (countData) => {
         label: '# of Votes',
         data: [success, failure],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)'
+          'rgba(5, 174, 0, 0.5)',
+          'rgba(255, 99, 132, 0.5)'
         ],
         borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)'
+          'rgba(5, 174, 0, 0.5)',
+          'rgba(255, 99, 132, 0.5)'
         ],
         borderWidth: 2,
       },

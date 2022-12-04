@@ -10,7 +10,7 @@ module.exports = {
       'apiConfiguration',
       [
         {
-          id: uuidv4(),
+          id: '70cf0c45-5c0b-4182-98df-7cc565c9f6fe',
           name: 'Purkukartoitus',
           authEndpoint:
             'http://cc-pk-service:5123/v1/login',
@@ -18,7 +18,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: uuidv4(),
+          id: '45b74bba-7b0a-48ff-b2a5-91862f251f6a',
           name: 'Materiaalitori',
           createdAt: new Date(),
           updatedAt: new Date(),

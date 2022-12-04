@@ -119,44 +119,96 @@ module.exports = {
         updatedAt: new Date(),
       },
     ]);
+    
+    
     await queryInterface.bulkInsert('apiStatistic', [
       {
         id: uuidv4(),
-        api: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed',
+        api: '70cf0c45-5c0b-4182-98df-7cc565c9f6fe',
         success: true,
-        statisticType: 'Get Item From MT',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        statisticType: 'unique',
+        createdAt: new Date(2022, 11, 1),
+        updatedAt: new Date(2022, 11, 1),
       },
     ]);
     await queryInterface.bulkInsert('apiStatistic', [
       {
         id: uuidv4(),
-        api: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed',
+        api: '70cf0c45-5c0b-4182-98df-7cc565c9f6fe',
         success: true,
-        statisticType: 'Get Item From MT',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        statisticType: 'unique',
+        createdAt: new Date(2022, 11, 1),
+        updatedAt: new Date(2022, 11, 1),
       },
     ]);
     await queryInterface.bulkInsert('apiStatistic', [
       {
         id: uuidv4(),
-        api: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed',
+        api: '70cf0c45-5c0b-4182-98df-7cc565c9f6fe',
+        success: true,
+        statisticType: 'unique',
+        createdAt: new Date(2022, 11, 2),
+        updatedAt: new Date(2022, 11, 2),
+      },
+    ]);
+    await queryInterface.bulkInsert('apiStatistic', [
+      {
+        id: uuidv4(),
+        api: '70cf0c45-5c0b-4182-98df-7cc565c9f6fe',
+        success: true,
+        statisticType: 'unique',
+        createdAt: new Date(2022, 11, 3),
+        updatedAt: new Date(2022, 11, 3),
+      },
+    ]);
+    await queryInterface.bulkInsert('apiStatistic', [
+      {
+        id: uuidv4(),
+        api: '45b74bba-7b0a-48ff-b2a5-91862f251f6a',
+        success: true,
+        statisticType: 'adverts',
+        createdAt: new Date(2022, 11, 1),
+        updatedAt: new Date(2022, 11, 1),
+      },
+    ]);
+    await queryInterface.bulkInsert('apiStatistic', [
+      {
+        id: uuidv4(),
+        api: '45b74bba-7b0a-48ff-b2a5-91862f251f6a',
         success: false,
-        statisticType: 'Get Item From MT',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        statisticType: 'adverts',
+        createdAt: new Date(2022, 11, 2),
+        updatedAt: new Date(2022, 11, 2),
       },
     ]);
     await queryInterface.bulkInsert('apiStatistic', [
       {
         id: uuidv4(),
-        api: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed',
+        api: '45b74bba-7b0a-48ff-b2a5-91862f251f6a',
+        success: false,
+        statisticType: 'adverts',
+        createdAt: new Date(2022, 11, 2),
+        updatedAt: new Date(2022, 11, 2),
+      },
+    ]);
+    await queryInterface.bulkInsert('apiStatistic', [
+      {
+        id: uuidv4(),
+        api: '45b74bba-7b0a-48ff-b2a5-91862f251f6a',
         success: true,
-        statisticType: 'Get Item From MT',
-        createdAt: new Date(2021, 1, 2),
-        updatedAt: new Date(2021, 1, 2),
+        statisticType: 'adverts',
+        createdAt: new Date(2022, 11, 2),
+        updatedAt: new Date(2022, 11, 2),
+      },
+    ]);
+    await queryInterface.bulkInsert('apiStatistic', [
+      {
+        id: uuidv4(),
+        api: '45b74bba-7b0a-48ff-b2a5-91862f251f6a',
+        success: true,
+        statisticType: 'adverts',
+        createdAt: new Date(2022, 11, 3),
+        updatedAt: new Date(2022, 11, 3),
       },
     ]);
   },

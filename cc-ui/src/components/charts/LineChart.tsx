@@ -59,7 +59,7 @@ const LineChart: React.FC<{count:any, dailyUsers:Array<any>}> = (countData) => {
         plugins: {
             title: {
                 display: true,
-                text: 'Connected Circularityyn luodut käyttäjät',
+                text: 'Connected Circularity käyttäjämäärä',
             },
             legend: {
                 display: false
@@ -78,7 +78,7 @@ const LineChart: React.FC<{count:any, dailyUsers:Array<any>}> = (countData) => {
         datasets: [
         {
             data: countArray,
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            backgroundColor: 'rgba(5, 174, 0, 0.5)',
         }
         ]
     };

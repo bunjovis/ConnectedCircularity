@@ -62,7 +62,7 @@ export const getMTRequests = async() => {
   } catch (err) {
     return { status: 500, count: null };
   }
-}
+};
 
 export const getPKRequests = async() => {
   try {
@@ -84,4 +84,4 @@ export const getPKRequests = async() => {
   } catch (err) {
     return { status: 500, count: null };
   }
-}
+};

@@ -46,7 +46,7 @@ userRouter.post(
   "/v1/refresh/:apiId",
   async (request: Request, response: Response) => {
     try {
-      const refreshTokens = refreshLogin(request.params.apiId, request.body.refreshToken);
+      const refreshTokens = await refreshLogin(request.params.apiId, request.body.refreshToken);
       response.send(refreshTokens);
     }
     catch (error:any) {

@@ -20,7 +20,7 @@ module.exports = {
         allowNull: true,
       },
       authRefresh: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: true,
       },
       createdAt: {

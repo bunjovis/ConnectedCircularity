@@ -14,7 +14,7 @@ mtRouter.post('/advert', async (req: Request, res: Response) => {
     if (token.length === 0) {
       const err: Error = {
         message: 'No valid token available',
-        status: 401
+        status: 401,
       };
       res.json(err);
     } else {
@@ -22,10 +22,11 @@ mtRouter.post('/advert', async (req: Request, res: Response) => {
       res.send(response);
     }
   } catch (err: any) {
+    console.log(err);
     res.status(err.response.status || 500);
     res.json({
       message: err.response.statusText || 'Error',
-      status: err.response.status || 500
+      status: err.response.status || 500,
     });
   }
 });

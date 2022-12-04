@@ -345,7 +345,7 @@ export const municipalityOptions = [
     municipalities: [
       {
         id: 'M_7',
-        nameFi: 'Akaa',
+        name: 'Akaa',
         nameSv: 'Akaa',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -387,7 +387,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_42',
-        nameFi: 'Hämeenkyrö',
+        name: 'Hämeenkyrö',
         nameSv: 'Tavastkyro',
         type: 'Kunta',
         coordinatesPoint: {
@@ -429,7 +429,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_48',
-        nameFi: 'Ikaalinen',
+        name: 'Ikaalinen',
         nameSv: 'Ikalis',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -471,7 +471,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_63',
-        nameFi: 'Juupajoki',
+        name: 'Juupajoki',
         nameSv: 'Juupajoki',
         type: 'Kunta',
         coordinatesPoint: {
@@ -513,7 +513,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_73',
-        nameFi: 'Kangasala',
+        name: 'Kangasala',
         nameSv: 'Kangasala',
         type: 'Kunta',
         coordinatesPoint: {
@@ -555,7 +555,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_93',
-        nameFi: 'Kihniö',
+        name: 'Kihniö',
         nameSv: 'Kihniö',
         type: 'Kunta',
         coordinatesPoint: {
@@ -597,7 +597,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_137',
-        nameFi: 'Lempäälä',
+        name: 'Lempäälä',
         nameSv: 'Lempäälä',
         type: 'Kunta',
         coordinatesPoint: {
@@ -639,7 +639,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_171',
-        nameFi: 'Mänttä-Vilppula',
+        name: 'Mänttä-Vilppula',
         nameSv: 'Mänttä-Vilppula',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -681,7 +681,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_175',
-        nameFi: 'Nokia',
+        name: 'Nokia',
         nameSv: 'Nokia',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -723,7 +723,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_182',
-        nameFi: 'Orivesi',
+        name: 'Orivesi',
         nameSv: 'Orivesi',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -765,7 +765,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_189',
-        nameFi: 'Parkano',
+        name: 'Parkano',
         nameSv: 'Parkano',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -807,7 +807,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_199',
-        nameFi: 'Pirkkala',
+        name: 'Pirkkala',
         nameSv: 'Birkala',
         type: 'Kunta',
         coordinatesPoint: {
@@ -849,7 +849,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_207',
-        nameFi: 'Punkalaidun',
+        name: 'Punkalaidun',
         nameSv: 'Punkalaidun',
         type: 'Kunta',
         coordinatesPoint: {
@@ -891,7 +891,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_215',
-        nameFi: 'Pälkäne',
+        name: 'Pälkäne',
         nameSv: 'Pälkäne',
         type: 'Kunta',
         coordinatesPoint: {
@@ -933,7 +933,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_231',
-        nameFi: 'Ruovesi',
+        name: 'Ruovesi',
         nameSv: 'Ruovesi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -975,7 +975,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_264',
-        nameFi: 'Sastamala',
+        name: 'Sastamala',
         nameSv: 'Sastamala',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -1017,7 +1017,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_270',
-        nameFi: 'Tampere',
+        name: 'Tampere',
         nameSv: 'Tammerfors',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -1059,7 +1059,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_284',
-        nameFi: 'Urjala',
+        name: 'Urjala',
         nameSv: 'Urjala',
         type: 'Kunta',
         coordinatesPoint: {
@@ -1101,7 +1101,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_291',
-        nameFi: 'Valkeakoski',
+        name: 'Valkeakoski',
         nameSv: 'Valkeakoski',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -1143,7 +1143,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_296',
-        nameFi: 'Vesilahti',
+        name: 'Vesilahti',
         nameSv: 'Vesilahti',
         type: 'Kunta',
         coordinatesPoint: {
@@ -1185,7 +1185,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_303',
-        nameFi: 'Virrat',
+        name: 'Virrat',
         nameSv: 'Virdois',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -1227,7 +1227,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_308',
-        nameFi: 'Ylöjärvi',
+        name: 'Ylöjärvi',
         nameSv: 'Ylöjärvi',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -1292,7 +1292,7 @@ export const municipalityOptions = [
     municipalities: [
       {
         id: 'M_1',
-        nameFi: 'Alajärvi',
+        name: 'Alajärvi',
         nameSv: 'Alajärvi',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -1334,7 +1334,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_3',
-        nameFi: 'Alavus',
+        name: 'Alavus',
         nameSv: 'Alavus',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -1376,7 +1376,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_15',
-        nameFi: 'Evijärvi',
+        name: 'Evijärvi',
         nameSv: 'Evijärvi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -1418,7 +1418,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_49',
-        nameFi: 'Ilmajoki',
+        name: 'Ilmajoki',
         nameSv: 'Ilmajoki',
         type: 'Kunta',
         coordinatesPoint: {
@@ -1460,7 +1460,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_53',
-        nameFi: 'Isojoki',
+        name: 'Isojoki',
         nameSv: 'Storå',
         type: 'Kunta',
         coordinatesPoint: {
@@ -1502,7 +1502,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_78',
-        nameFi: 'Karijoki',
+        name: 'Karijoki',
         nameSv: 'Bötom',
         type: 'Kunta',
         coordinatesPoint: {
@@ -1544,7 +1544,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_83',
-        nameFi: 'Kauhajoki',
+        name: 'Kauhajoki',
         nameSv: 'Kauhajoki',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -1586,7 +1586,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_84',
-        nameFi: 'Kauhava',
+        name: 'Kauhava',
         nameSv: 'Kauhava',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -1628,7 +1628,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_115',
-        nameFi: 'Kuortane',
+        name: 'Kuortane',
         nameSv: 'Kuortane',
         type: 'Kunta',
         coordinatesPoint: {
@@ -1670,7 +1670,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_116',
-        nameFi: 'Kurikka',
+        name: 'Kurikka',
         nameSv: 'Kurikka',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -1712,7 +1712,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_130',
-        nameFi: 'Lappajärvi',
+        name: 'Lappajärvi',
         nameSv: 'Lappajärvi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -1754,7 +1754,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_133',
-        nameFi: 'Lapua',
+        name: 'Lapua',
         nameSv: 'Lappo',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -1796,7 +1796,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_243',
-        nameFi: 'Seinäjoki',
+        name: 'Seinäjoki',
         nameSv: 'Seinäjoki',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -1838,7 +1838,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_252',
-        nameFi: 'Soini',
+        name: 'Soini',
         nameSv: 'Soini',
         type: 'Kunta',
         coordinatesPoint: {
@@ -1880,7 +1880,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_273',
-        nameFi: 'Teuva',
+        name: 'Teuva',
         nameSv: 'Östermark',
         type: 'Kunta',
         coordinatesPoint: {
@@ -1922,7 +1922,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_301',
-        nameFi: 'Vimpeli',
+        name: 'Vimpeli',
         nameSv: 'Vimpeli',
         type: 'Kunta',
         coordinatesPoint: {
@@ -1964,7 +1964,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_310',
-        nameFi: 'Ähtäri',
+        name: 'Ähtäri',
         nameSv: 'Etseri',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -2029,7 +2029,7 @@ export const municipalityOptions = [
     municipalities: [
       {
         id: 'M_2',
-        nameFi: 'Alavieska',
+        name: 'Alavieska',
         nameSv: 'Alavieska',
         type: 'Kunta',
         coordinatesPoint: {
@@ -2071,7 +2071,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_20',
-        nameFi: 'Haapajärvi',
+        name: 'Haapajärvi',
         nameSv: 'Haapajärvi',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -2113,7 +2113,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_21',
-        nameFi: 'Haapavesi',
+        name: 'Haapavesi',
         nameSv: 'Haapavesi',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -2155,7 +2155,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_22',
-        nameFi: 'Hailuoto',
+        name: 'Hailuoto',
         nameSv: 'Karlö',
         type: 'Kunta',
         coordinatesPoint: {
@@ -2197,7 +2197,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_45',
-        nameFi: 'Ii',
+        name: 'Ii',
         nameSv: 'Ii',
         type: 'Kunta',
         coordinatesPoint: {
@@ -2239,7 +2239,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_72',
-        nameFi: 'Kalajoki',
+        name: 'Kalajoki',
         nameSv: 'Kalajoki',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -2281,7 +2281,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_90',
-        nameFi: 'Kempele',
+        name: 'Kempele',
         nameSv: 'Kempele',
         type: 'Kunta',
         coordinatesPoint: {
@@ -2323,7 +2323,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_118',
-        nameFi: 'Kuusamo',
+        name: 'Kuusamo',
         nameSv: 'Kuusamo',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -2365,7 +2365,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_122',
-        nameFi: 'Kärsämäki',
+        name: 'Kärsämäki',
         nameSv: 'Kärsämäki',
         type: 'Kunta',
         coordinatesPoint: {
@@ -2407,7 +2407,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_142',
-        nameFi: 'Liminka',
+        name: 'Liminka',
         nameSv: 'Limingo',
         type: 'Kunta',
         coordinatesPoint: {
@@ -2449,7 +2449,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_148',
-        nameFi: 'Lumijoki',
+        name: 'Lumijoki',
         nameSv: 'Lumijoki',
         type: 'Kunta',
         coordinatesPoint: {
@@ -2491,7 +2491,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_158',
-        nameFi: 'Merijärvi',
+        name: 'Merijärvi',
         nameSv: 'Merijärvi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -2533,7 +2533,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_162',
-        nameFi: 'Muhos',
+        name: 'Muhos',
         nameSv: 'Muhos',
         type: 'Kunta',
         coordinatesPoint: {
@@ -2575,7 +2575,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_174',
-        nameFi: 'Nivala',
+        name: 'Nivala',
         nameSv: 'Nivala',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -2617,7 +2617,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_183',
-        nameFi: 'Oulainen',
+        name: 'Oulainen',
         nameSv: 'Oulainen',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -2659,7 +2659,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_184',
-        nameFi: 'Oulu',
+        name: 'Oulu',
         nameSv: 'Uleåborg',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -2701,7 +2701,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_205',
-        nameFi: 'Pudasjärvi',
+        name: 'Pudasjärvi',
         nameSv: 'Pudasjärvi',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -2743,7 +2743,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_211',
-        nameFi: 'Pyhäjoki',
+        name: 'Pyhäjoki',
         nameSv: 'Pyhäjoki',
         type: 'Kunta',
         coordinatesPoint: {
@@ -2785,7 +2785,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_212',
-        nameFi: 'Pyhäjärvi',
+        name: 'Pyhäjärvi',
         nameSv: 'Pyhäjärvi',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -2827,7 +2827,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_213',
-        nameFi: 'Pyhäntä',
+        name: 'Pyhäntä',
         nameSv: 'Pyhäntä',
         type: 'Kunta',
         coordinatesPoint: {
@@ -2869,7 +2869,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_218',
-        nameFi: 'Raahe',
+        name: 'Raahe',
         nameSv: 'Brahestad',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -2911,7 +2911,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_226',
-        nameFi: 'Reisjärvi',
+        name: 'Reisjärvi',
         nameSv: 'Reisjärvi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -2953,7 +2953,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_244',
-        nameFi: 'Sievi',
+        name: 'Sievi',
         nameSv: 'Sievi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -2995,7 +2995,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_246',
-        nameFi: 'Siikajoki',
+        name: 'Siikajoki',
         nameSv: 'Siikajoki',
         type: 'Kunta',
         coordinatesPoint: {
@@ -3037,7 +3037,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_265',
-        nameFi: 'Siikalatva',
+        name: 'Siikalatva',
         nameSv: 'Siikalatva',
         type: 'Kunta',
         coordinatesPoint: {
@@ -3079,7 +3079,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_267',
-        nameFi: 'Taivalkoski',
+        name: 'Taivalkoski',
         nameSv: 'Taivalkoski',
         type: 'Kunta',
         coordinatesPoint: {
@@ -3121,7 +3121,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_282',
-        nameFi: 'Tyrnävä',
+        name: 'Tyrnävä',
         nameSv: 'Tyrnävä',
         type: 'Kunta',
         coordinatesPoint: {
@@ -3163,7 +3163,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_285',
-        nameFi: 'Utajärvi',
+        name: 'Utajärvi',
         nameSv: 'Utajärvi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -3205,7 +3205,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_263',
-        nameFi: 'Vaala',
+        name: 'Vaala',
         nameSv: 'Vaala',
         type: 'Kunta',
         coordinatesPoint: {
@@ -3247,7 +3247,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_307',
-        nameFi: 'Ylivieska',
+        name: 'Ylivieska',
         nameSv: 'Ylivieska',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -3312,7 +3312,7 @@ export const municipalityOptions = [
     municipalities: [
       {
         id: 'M_4',
-        nameFi: 'Asikkala',
+        name: 'Asikkala',
         nameSv: 'Asikkala',
         type: 'Kunta',
         coordinatesPoint: {
@@ -3354,7 +3354,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_29',
-        nameFi: 'Hartola',
+        name: 'Hartola',
         nameSv: 'Hartola',
         type: 'Kunta',
         coordinatesPoint: {
@@ -3396,7 +3396,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_44',
-        nameFi: 'Heinola',
+        name: 'Heinola',
         nameSv: 'Heinola',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -3438,7 +3438,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_36',
-        nameFi: 'Hollola',
+        name: 'Hollola',
         nameSv: 'Hollola',
         type: 'Kunta',
         coordinatesPoint: {
@@ -3480,7 +3480,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_121',
-        nameFi: 'Kärkölä',
+        name: 'Kärkölä',
         nameSv: 'Kärkölä',
         type: 'Kunta',
         coordinatesPoint: {
@@ -3522,7 +3522,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_126',
-        nameFi: 'Lahti',
+        name: 'Lahti',
         nameSv: 'Lahtis',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -3564,7 +3564,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_180',
-        nameFi: 'Orimattila',
+        name: 'Orimattila',
         nameSv: 'Orimattila',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -3606,7 +3606,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_185',
-        nameFi: 'Padasjoki',
+        name: 'Padasjoki',
         nameSv: 'Padasjoki',
         type: 'Kunta',
         coordinatesPoint: {
@@ -3648,7 +3648,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_261',
-        nameFi: 'Sysmä',
+        name: 'Sysmä',
         nameSv: 'Sysmä',
         type: 'Kunta',
         coordinatesPoint: {
@@ -3713,7 +3713,7 @@ export const municipalityOptions = [
     municipalities: [
       {
         id: 'M_5',
-        nameFi: 'Askola',
+        name: 'Askola',
         nameSv: 'Askola',
         type: 'Kunta',
         coordinatesPoint: {
@@ -3755,7 +3755,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_12',
-        nameFi: 'Espoo',
+        name: 'Espoo',
         nameSv: 'Esbo',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -3797,7 +3797,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_27',
-        nameFi: 'Hanko',
+        name: 'Hanko',
         nameSv: 'Hangö',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -3839,7 +3839,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_33',
-        nameFi: 'Helsinki',
+        name: 'Helsinki',
         nameSv: 'Helsingfors',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -3881,7 +3881,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_41',
-        nameFi: 'Hyvinkää',
+        name: 'Hyvinkää',
         nameSv: 'Hyvinge',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -3923,7 +3923,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_52',
-        nameFi: 'Inkoo',
+        name: 'Inkoo',
         nameSv: 'Ingå',
         type: 'Kunta',
         coordinatesPoint: {
@@ -3965,7 +3965,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_68',
-        nameFi: 'Järvenpää',
+        name: 'Järvenpää',
         nameSv: 'Träskända',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -4007,7 +4007,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_79',
-        nameFi: 'Karkkila',
+        name: 'Karkkila',
         nameSv: 'Högfors',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -4049,7 +4049,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_85',
-        nameFi: 'Kauniainen',
+        name: 'Kauniainen',
         nameSv: 'Grankulla',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -4091,7 +4091,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_91',
-        nameFi: 'Kerava',
+        name: 'Kerava',
         nameSv: 'Kervo',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -4133,7 +4133,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_95',
-        nameFi: 'Kirkkonummi',
+        name: 'Kirkkonummi',
         nameSv: 'Kyrkslätt',
         type: 'Kunta',
         coordinatesPoint: {
@@ -4175,7 +4175,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_132',
-        nameFi: 'Lapinjärvi',
+        name: 'Lapinjärvi',
         nameSv: 'Lappträsk',
         type: 'Kunta',
         coordinatesPoint: {
@@ -4217,7 +4217,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_152',
-        nameFi: 'Lohja',
+        name: 'Lohja',
         nameSv: 'Lojo',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -4259,7 +4259,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_146',
-        nameFi: 'Loviisa',
+        name: 'Loviisa',
         nameSv: 'Lovisa',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -4301,7 +4301,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_168',
-        nameFi: 'Myrskylä',
+        name: 'Myrskylä',
         nameSv: 'Mörskom',
         type: 'Kunta',
         coordinatesPoint: {
@@ -4343,7 +4343,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_169',
-        nameFi: 'Mäntsälä',
+        name: 'Mäntsälä',
         nameSv: 'Mäntsälä',
         type: 'Kunta',
         coordinatesPoint: {
@@ -4385,7 +4385,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_178',
-        nameFi: 'Nurmijärvi',
+        name: 'Nurmijärvi',
         nameSv: 'Nurmijärvi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -4427,7 +4427,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_203',
-        nameFi: 'Pornainen',
+        name: 'Pornainen',
         nameSv: 'Borgnäs',
         type: 'Kunta',
         coordinatesPoint: {
@@ -4469,7 +4469,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_217',
-        nameFi: 'Porvoo',
+        name: 'Porvoo',
         nameSv: 'Borgå',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -4511,7 +4511,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_206',
-        nameFi: 'Pukkila',
+        name: 'Pukkila',
         nameSv: 'Pukkila',
         type: 'Kunta',
         coordinatesPoint: {
@@ -4553,7 +4553,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_234',
-        nameFi: 'Raasepori',
+        name: 'Raasepori',
         nameSv: 'Raseborg',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -4595,7 +4595,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_249',
-        nameFi: 'Sipoo',
+        name: 'Sipoo',
         nameSv: 'Sibbo',
         type: 'Kunta',
         coordinatesPoint: {
@@ -4637,7 +4637,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_250',
-        nameFi: 'Siuntio',
+        name: 'Siuntio',
         nameSv: 'Sjundeå',
         type: 'Kunta',
         coordinatesPoint: {
@@ -4679,7 +4679,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_281',
-        nameFi: 'Tuusula',
+        name: 'Tuusula',
         nameSv: 'Tusby',
         type: 'Kunta',
         coordinatesPoint: {
@@ -4721,7 +4721,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_34',
-        nameFi: 'Vantaa',
+        name: 'Vantaa',
         nameSv: 'Vanda',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -4763,7 +4763,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_299',
-        nameFi: 'Vihti',
+        name: 'Vihti',
         nameSv: 'Vichtis',
         type: 'Kunta',
         coordinatesPoint: {
@@ -4828,7 +4828,7 @@ export const municipalityOptions = [
     municipalities: [
       {
         id: 'M_6',
-        nameFi: 'Aura',
+        name: 'Aura',
         nameSv: 'Aura',
         type: 'Kunta',
         coordinatesPoint: {
@@ -4870,7 +4870,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_69',
-        nameFi: 'Kaarina',
+        name: 'Kaarina',
         nameSv: 'S:t Karins',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -4912,7 +4912,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_125',
-        nameFi: 'Kemiönsaari',
+        name: 'Kemiönsaari',
         nameSv: 'Kimitoön',
         type: 'Kunta',
         coordinatesPoint: {
@@ -4954,7 +4954,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_106',
-        nameFi: 'Koski Tl',
+        name: 'Koski Tl',
         nameSv: 'Koski Åbo l',
         type: 'Kunta',
         coordinatesPoint: {
@@ -4996,7 +4996,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_117',
-        nameFi: 'Kustavi',
+        name: 'Kustavi',
         nameSv: 'Gustavs',
         type: 'Kunta',
         coordinatesPoint: {
@@ -5038,7 +5038,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_128',
-        nameFi: 'Laitila',
+        name: 'Laitila',
         nameSv: 'Laitila',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -5080,7 +5080,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_141',
-        nameFi: 'Lieto',
+        name: 'Lieto',
         nameSv: 'Lundo',
         type: 'Kunta',
         coordinatesPoint: {
@@ -5122,7 +5122,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_144',
-        nameFi: 'Loimaa',
+        name: 'Loimaa',
         nameSv: 'Loimaa',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -5164,7 +5164,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_156',
-        nameFi: 'Marttila',
+        name: 'Marttila',
         nameSv: 'Marttila',
         type: 'Kunta',
         coordinatesPoint: {
@@ -5206,7 +5206,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_157',
-        nameFi: 'Masku',
+        name: 'Masku',
         nameSv: 'Masku',
         type: 'Kunta',
         coordinatesPoint: {
@@ -5248,7 +5248,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_167',
-        nameFi: 'Mynämäki',
+        name: 'Mynämäki',
         nameSv: 'Mynämäki',
         type: 'Kunta',
         coordinatesPoint: {
@@ -5290,7 +5290,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_172',
-        nameFi: 'Naantali',
+        name: 'Naantali',
         nameSv: 'Nådendal',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -5332,7 +5332,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_176',
-        nameFi: 'Nousiainen',
+        name: 'Nousiainen',
         nameSv: 'Nousis',
         type: 'Kunta',
         coordinatesPoint: {
@@ -5374,7 +5374,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_181',
-        nameFi: 'Oripää',
+        name: 'Oripää',
         nameSv: 'Oripää',
         type: 'Kunta',
         coordinatesPoint: {
@@ -5416,7 +5416,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_186',
-        nameFi: 'Paimio',
+        name: 'Paimio',
         nameSv: 'Pemar',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -5458,7 +5458,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_153',
-        nameFi: 'Parainen',
+        name: 'Parainen',
         nameSv: 'Pargas',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -5500,7 +5500,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_214',
-        nameFi: 'Pyhäranta',
+        name: 'Pyhäranta',
         nameSv: 'Pyhäranta',
         type: 'Kunta',
         coordinatesPoint: {
@@ -5542,7 +5542,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_216',
-        nameFi: 'Pöytyä',
+        name: 'Pöytyä',
         nameSv: 'Pöytyä',
         type: 'Kunta',
         coordinatesPoint: {
@@ -5584,7 +5584,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_219',
-        nameFi: 'Raisio',
+        name: 'Raisio',
         nameSv: 'Reso',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -5626,7 +5626,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_232',
-        nameFi: 'Rusko',
+        name: 'Rusko',
         nameSv: 'Rusko',
         type: 'Kunta',
         coordinatesPoint: {
@@ -5668,7 +5668,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_237',
-        nameFi: 'Salo',
+        name: 'Salo',
         nameSv: 'Salo',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -5710,7 +5710,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_239',
-        nameFi: 'Sauvo',
+        name: 'Sauvo',
         nameSv: 'Sagu',
         type: 'Kunta',
         coordinatesPoint: {
@@ -5752,7 +5752,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_253',
-        nameFi: 'Somero',
+        name: 'Somero',
         nameSv: 'Somero',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -5794,7 +5794,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_268',
-        nameFi: 'Taivassalo',
+        name: 'Taivassalo',
         nameSv: 'Tövsala',
         type: 'Kunta',
         coordinatesPoint: {
@@ -5836,7 +5836,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_278',
-        nameFi: 'Turku',
+        name: 'Turku',
         nameSv: 'Åbo',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -5878,7 +5878,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_289',
-        nameFi: 'Uusikaupunki',
+        name: 'Uusikaupunki',
         nameSv: 'Nystad',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -5920,7 +5920,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_294',
-        nameFi: 'Vehmaa',
+        name: 'Vehmaa',
         nameSv: 'Vehmaa',
         type: 'Kunta',
         coordinatesPoint: {
@@ -5985,7 +5985,7 @@ export const municipalityOptions = [
     municipalities: [
       {
         id: 'M_8',
-        nameFi: 'Brändö',
+        name: 'Brändö',
         nameSv: 'Brändö',
         type: 'Kunta',
         coordinatesPoint: {
@@ -6027,7 +6027,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_9',
-        nameFi: 'Eckerö',
+        name: 'Eckerö',
         nameSv: 'Eckerö',
         type: 'Kunta',
         coordinatesPoint: {
@@ -6069,7 +6069,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_16',
-        nameFi: 'Finström',
+        name: 'Finström',
         nameSv: 'Finström',
         type: 'Kunta',
         coordinatesPoint: {
@@ -6111,7 +6111,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_18',
-        nameFi: 'Föglö',
+        name: 'Föglö',
         nameSv: 'Föglö',
         type: 'Kunta',
         coordinatesPoint: {
@@ -6153,7 +6153,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_19',
-        nameFi: 'Geta',
+        name: 'Geta',
         nameSv: 'Geta',
         type: 'Kunta',
         coordinatesPoint: {
@@ -6195,7 +6195,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_25',
-        nameFi: 'Hammarland',
+        name: 'Hammarland',
         nameSv: 'Hammarland',
         type: 'Kunta',
         coordinatesPoint: {
@@ -6237,7 +6237,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_59',
-        nameFi: 'Jomala',
+        name: 'Jomala',
         nameSv: 'Jomala',
         type: 'Kunta',
         coordinatesPoint: {
@@ -6279,7 +6279,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_113',
-        nameFi: 'Kumlinge',
+        name: 'Kumlinge',
         nameSv: 'Kumlinge',
         type: 'Kunta',
         coordinatesPoint: {
@@ -6321,7 +6321,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_123',
-        nameFi: 'Kökar',
+        name: 'Kökar',
         nameSv: 'Kökar',
         type: 'Kunta',
         coordinatesPoint: {
@@ -6363,7 +6363,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_136',
-        nameFi: 'Lemland',
+        name: 'Lemland',
         nameSv: 'Lemland',
         type: 'Kunta',
         coordinatesPoint: {
@@ -6405,7 +6405,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_149',
-        nameFi: 'Lumparland',
+        name: 'Lumparland',
         nameSv: 'Lumparland',
         type: 'Kunta',
         coordinatesPoint: {
@@ -6447,7 +6447,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_155',
-        nameFi: 'Maarianhamina',
+        name: 'Maarianhamina',
         nameSv: 'Mariehamn',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -6489,7 +6489,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_238',
-        nameFi: 'Saltvik',
+        name: 'Saltvik',
         nameSv: 'Saltvik',
         type: 'Kunta',
         coordinatesPoint: {
@@ -6531,7 +6531,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_256',
-        nameFi: 'Sottunga',
+        name: 'Sottunga',
         nameSv: 'Sottunga',
         type: 'Kunta',
         coordinatesPoint: {
@@ -6573,7 +6573,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_258',
-        nameFi: 'Sund',
+        name: 'Sund',
         nameSv: 'Sund',
         type: 'Kunta',
         coordinatesPoint: {
@@ -6615,7 +6615,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_304',
-        nameFi: 'Vårdö',
+        name: 'Vårdö',
         nameSv: 'Vårdö',
         type: 'Kunta',
         coordinatesPoint: {
@@ -6680,7 +6680,7 @@ export const municipalityOptions = [
     municipalities: [
       {
         id: 'M_10',
-        nameFi: 'Enonkoski',
+        name: 'Enonkoski',
         nameSv: 'Enonkoski',
         type: 'Kunta',
         coordinatesPoint: {
@@ -6722,7 +6722,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_32',
-        nameFi: 'Heinävesi',
+        name: 'Heinävesi',
         nameSv: 'Heinävesi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -6764,7 +6764,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_35',
-        nameFi: 'Hirvensalmi',
+        name: 'Hirvensalmi',
         nameSv: 'Hirvensalmi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -6806,7 +6806,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_60',
-        nameFi: 'Joroinen',
+        name: 'Joroinen',
         nameSv: 'Jorois',
         type: 'Kunta',
         coordinatesPoint: {
@@ -6848,7 +6848,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_64',
-        nameFi: 'Juva',
+        name: 'Juva',
         nameSv: 'Juva',
         type: 'Kunta',
         coordinatesPoint: {
@@ -6890,7 +6890,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_74',
-        nameFi: 'Kangasniemi',
+        name: 'Kangasniemi',
         nameSv: 'Kangasniemi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -6932,7 +6932,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_161',
-        nameFi: 'Mikkeli',
+        name: 'Mikkeli',
         nameSv: 'S:t Michel',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -6974,7 +6974,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_170',
-        nameFi: 'Mäntyharju',
+        name: 'Mäntyharju',
         nameSv: 'Mäntyharju',
         type: 'Kunta',
         coordinatesPoint: {
@@ -7016,7 +7016,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_192',
-        nameFi: 'Pertunmaa',
+        name: 'Pertunmaa',
         nameSv: 'Pertunmaa',
         type: 'Kunta',
         coordinatesPoint: {
@@ -7058,7 +7058,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_194',
-        nameFi: 'Pieksämäki',
+        name: 'Pieksämäki',
         nameSv: 'Pieksämäki',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -7100,7 +7100,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_209',
-        nameFi: 'Puumala',
+        name: 'Puumala',
         nameSv: 'Puumala',
         type: 'Kunta',
         coordinatesPoint: {
@@ -7142,7 +7142,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_220',
-        nameFi: 'Rantasalmi',
+        name: 'Rantasalmi',
         nameSv: 'Rantasalmi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -7184,7 +7184,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_241',
-        nameFi: 'Savonlinna',
+        name: 'Savonlinna',
         nameSv: 'Nyslott',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -7226,7 +7226,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_257',
-        nameFi: 'Sulkava',
+        name: 'Sulkava',
         nameSv: 'Sulkava',
         type: 'Kunta',
         coordinatesPoint: {
@@ -7291,7 +7291,7 @@ export const municipalityOptions = [
     municipalities: [
       {
         id: 'M_11',
-        nameFi: 'Enontekiö',
+        name: 'Enontekiö',
         nameSv: 'Enontekis',
         type: 'Kunta',
         coordinatesPoint: {
@@ -7333,7 +7333,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_51',
-        nameFi: 'Inari',
+        name: 'Inari',
         nameSv: 'Enare',
         type: 'Kunta',
         coordinatesPoint: {
@@ -7375,7 +7375,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_88',
-        nameFi: 'Kemi',
+        name: 'Kemi',
         nameSv: 'Kemi',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -7417,7 +7417,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_124',
-        nameFi: 'Kemijärvi',
+        name: 'Kemijärvi',
         nameSv: 'Kemijärvi',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -7459,7 +7459,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_89',
-        nameFi: 'Keminmaa',
+        name: 'Keminmaa',
         nameSv: 'Keminmaa',
         type: 'Kunta',
         coordinatesPoint: {
@@ -7501,7 +7501,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_97',
-        nameFi: 'Kittilä',
+        name: 'Kittilä',
         nameSv: 'Kittilä',
         type: 'Kunta',
         coordinatesPoint: {
@@ -7543,7 +7543,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_102',
-        nameFi: 'Kolari',
+        name: 'Kolari',
         nameSv: 'Kolari',
         type: 'Kunta',
         coordinatesPoint: {
@@ -7585,7 +7585,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_164',
-        nameFi: 'Muonio',
+        name: 'Muonio',
         nameSv: 'Muonio',
         type: 'Kunta',
         coordinatesPoint: {
@@ -7627,7 +7627,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_190',
-        nameFi: 'Pelkosenniemi',
+        name: 'Pelkosenniemi',
         nameSv: 'Pelkosennm',
         type: 'Kunta',
         coordinatesPoint: {
@@ -7669,7 +7669,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_279',
-        nameFi: 'Pello',
+        name: 'Pello',
         nameSv: 'Pello',
         type: 'Kunta',
         coordinatesPoint: {
@@ -7711,7 +7711,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_204',
-        nameFi: 'Posio',
+        name: 'Posio',
         nameSv: 'Posio',
         type: 'Kunta',
         coordinatesPoint: {
@@ -7753,7 +7753,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_221',
-        nameFi: 'Ranua',
+        name: 'Ranua',
         nameSv: 'Ranua',
         type: 'Kunta',
         coordinatesPoint: {
@@ -7795,7 +7795,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_229',
-        nameFi: 'Rovaniemi',
+        name: 'Rovaniemi',
         nameSv: 'Rovaniemi',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -7837,7 +7837,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_236',
-        nameFi: 'Salla',
+        name: 'Salla',
         nameSv: 'Salla',
         type: 'Kunta',
         coordinatesPoint: {
@@ -7879,7 +7879,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_242',
-        nameFi: 'Savukoski',
+        name: 'Savukoski',
         nameSv: 'Savukoski',
         type: 'Kunta',
         coordinatesPoint: {
@@ -7921,7 +7921,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_248',
-        nameFi: 'Simo',
+        name: 'Simo',
         nameSv: 'Simo',
         type: 'Kunta',
         coordinatesPoint: {
@@ -7963,7 +7963,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_251',
-        nameFi: 'Sodankylä',
+        name: 'Sodankylä',
         nameSv: 'Sodankylä',
         type: 'Kunta',
         coordinatesPoint: {
@@ -8005,7 +8005,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_272',
-        nameFi: 'Tervola',
+        name: 'Tervola',
         nameSv: 'Tervola',
         type: 'Kunta',
         coordinatesPoint: {
@@ -8047,7 +8047,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_277',
-        nameFi: 'Tornio',
+        name: 'Tornio',
         nameSv: 'Torneå',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -8089,7 +8089,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_286',
-        nameFi: 'Utsjoki',
+        name: 'Utsjoki',
         nameSv: 'Utsjoki',
         type: 'Kunta',
         coordinatesPoint: {
@@ -8131,7 +8131,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_306',
-        nameFi: 'Ylitornio',
+        name: 'Ylitornio',
         nameSv: 'Övertorneå',
         type: 'Kunta',
         coordinatesPoint: {
@@ -8196,7 +8196,7 @@ export const municipalityOptions = [
     municipalities: [
       {
         id: 'M_13',
-        nameFi: 'Eura',
+        name: 'Eura',
         nameSv: 'Eura',
         type: 'Kunta',
         coordinatesPoint: {
@@ -8238,7 +8238,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_14',
-        nameFi: 'Eurajoki',
+        name: 'Eurajoki',
         nameSv: 'Euraåminne',
         type: 'Kunta',
         coordinatesPoint: {
@@ -8280,7 +8280,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_28',
-        nameFi: 'Harjavalta',
+        name: 'Harjavalta',
         nameSv: 'Harjavalta',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -8322,7 +8322,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_37',
-        nameFi: 'Honkajoki',
+        name: 'Honkajoki',
         nameSv: 'Honkajoki',
         type: 'Kunta',
         coordinatesPoint: {
@@ -8364,7 +8364,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_38',
-        nameFi: 'Huittinen',
+        name: 'Huittinen',
         nameSv: 'Huittinen',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -8406,7 +8406,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_66',
-        nameFi: 'Jämijärvi',
+        name: 'Jämijärvi',
         nameSv: 'Jämijärvi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -8448,7 +8448,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_75',
-        nameFi: 'Kankaanpää',
+        name: 'Kankaanpää',
         nameSv: 'Kankaanpää',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -8490,7 +8490,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_81',
-        nameFi: 'Karvia',
+        name: 'Karvia',
         nameSv: 'Karvia',
         type: 'Kunta',
         coordinatesPoint: {
@@ -8532,7 +8532,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_100',
-        nameFi: 'Kokemäki',
+        name: 'Kokemäki',
         nameSv: 'Kumo',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -8574,7 +8574,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_159',
-        nameFi: 'Merikarvia',
+        name: 'Merikarvia',
         nameSv: 'Sastmola',
         type: 'Kunta',
         coordinatesPoint: {
@@ -8616,7 +8616,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_173',
-        nameFi: 'Nakkila',
+        name: 'Nakkila',
         nameSv: 'Nakkila',
         type: 'Kunta',
         coordinatesPoint: {
@@ -8658,7 +8658,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_201',
-        nameFi: 'Pomarkku',
+        name: 'Pomarkku',
         nameSv: 'Påmark',
         type: 'Kunta',
         coordinatesPoint: {
@@ -8700,7 +8700,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_202',
-        nameFi: 'Pori',
+        name: 'Pori',
         nameSv: 'Björneborg',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -8742,7 +8742,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_222',
-        nameFi: 'Rauma',
+        name: 'Rauma',
         nameSv: 'Raumo',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -8784,7 +8784,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_245',
-        nameFi: 'Siikainen',
+        name: 'Siikainen',
         nameSv: 'Siikainen',
         type: 'Kunta',
         coordinatesPoint: {
@@ -8826,7 +8826,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_262',
-        nameFi: 'Säkylä',
+        name: 'Säkylä',
         nameSv: 'Säkylä',
         type: 'Kunta',
         coordinatesPoint: {
@@ -8868,7 +8868,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_283',
-        nameFi: 'Ulvila',
+        name: 'Ulvila',
         nameSv: 'Ulvsby',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -8933,7 +8933,7 @@ export const municipalityOptions = [
     municipalities: [
       {
         id: 'M_17',
-        nameFi: 'Forssa',
+        name: 'Forssa',
         nameSv: 'Forssa',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -8975,7 +8975,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_30',
-        nameFi: 'Hattula',
+        name: 'Hattula',
         nameSv: 'Hattula',
         type: 'Kunta',
         coordinatesPoint: {
@@ -9017,7 +9017,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_31',
-        nameFi: 'Hausjärvi',
+        name: 'Hausjärvi',
         nameSv: 'Hausjärvi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -9059,7 +9059,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_39',
-        nameFi: 'Humppila',
+        name: 'Humppila',
         nameSv: 'Humppila',
         type: 'Kunta',
         coordinatesPoint: {
@@ -9101,7 +9101,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_43',
-        nameFi: 'Hämeenlinna',
+        name: 'Hämeenlinna',
         nameSv: 'Tavastehus',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -9143,7 +9143,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_56',
-        nameFi: 'Janakkala',
+        name: 'Janakkala',
         nameSv: 'Janakkala',
         type: 'Kunta',
         coordinatesPoint: {
@@ -9185,7 +9185,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_58',
-        nameFi: 'Jokioinen',
+        name: 'Jokioinen',
         nameSv: 'Jockis',
         type: 'Kunta',
         coordinatesPoint: {
@@ -9227,7 +9227,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_145',
-        nameFi: 'Loppi',
+        name: 'Loppi',
         nameSv: 'Loppi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -9269,7 +9269,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_227',
-        nameFi: 'Riihimäki',
+        name: 'Riihimäki',
         nameSv: 'Riihimäki',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -9311,7 +9311,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_269',
-        nameFi: 'Tammela',
+        name: 'Tammela',
         nameSv: 'Tammela',
         type: 'Kunta',
         coordinatesPoint: {
@@ -9353,7 +9353,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_309',
-        nameFi: 'Ypäjä',
+        name: 'Ypäjä',
         nameSv: 'Ypäjä',
         type: 'Kunta',
         coordinatesPoint: {
@@ -9418,7 +9418,7 @@ export const municipalityOptions = [
     municipalities: [
       {
         id: 'M_23',
-        nameFi: 'Halsua',
+        name: 'Halsua',
         nameSv: 'Halsua',
         type: 'Kunta',
         coordinatesPoint: {
@@ -9460,7 +9460,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_77',
-        nameFi: 'Kannus',
+        name: 'Kannus',
         nameSv: 'Kannus',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -9502,7 +9502,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_86',
-        nameFi: 'Kaustinen',
+        name: 'Kaustinen',
         nameSv: 'Kaustby',
         type: 'Kunta',
         coordinatesPoint: {
@@ -9544,7 +9544,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_101',
-        nameFi: 'Kokkola',
+        name: 'Kokkola',
         nameSv: 'Karleby',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -9586,7 +9586,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_139',
-        nameFi: 'Lestijärvi',
+        name: 'Lestijärvi',
         nameSv: 'Lestijärvi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -9628,7 +9628,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_191',
-        nameFi: 'Perho',
+        name: 'Perho',
         nameSv: 'Perho',
         type: 'Kunta',
         coordinatesPoint: {
@@ -9670,7 +9670,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_275',
-        nameFi: 'Toholampi',
+        name: 'Toholampi',
         nameSv: 'Toholampi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -9712,7 +9712,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_297',
-        nameFi: 'Veteli',
+        name: 'Veteli',
         nameSv: 'Vetil',
         type: 'Kunta',
         coordinatesPoint: {
@@ -9777,7 +9777,7 @@ export const municipalityOptions = [
     municipalities: [
       {
         id: 'M_24',
-        nameFi: 'Hamina',
+        name: 'Hamina',
         nameSv: 'Fredrikshamn',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -9819,7 +9819,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_47',
-        nameFi: 'Iitti',
+        name: 'Iitti',
         nameSv: 'Iitti',
         type: 'Kunta',
         coordinatesPoint: {
@@ -9861,7 +9861,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_107',
-        nameFi: 'Kotka',
+        name: 'Kotka',
         nameSv: 'Kotka',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -9903,7 +9903,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_108',
-        nameFi: 'Kouvola',
+        name: 'Kouvola',
         nameSv: 'Kouvola',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -9945,7 +9945,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_160',
-        nameFi: 'Miehikkälä',
+        name: 'Miehikkälä',
         nameSv: 'Miehikkälä',
         type: 'Kunta',
         coordinatesPoint: {
@@ -9987,7 +9987,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_210',
-        nameFi: 'Pyhtää',
+        name: 'Pyhtää',
         nameSv: 'Pyttis',
         type: 'Kunta',
         coordinatesPoint: {
@@ -10029,7 +10029,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_302',
-        nameFi: 'Virolahti',
+        name: 'Virolahti',
         nameSv: 'Virolahti',
         type: 'Kunta',
         coordinatesPoint: {
@@ -10094,7 +10094,7 @@ export const municipalityOptions = [
     municipalities: [
       {
         id: 'M_26',
-        nameFi: 'Hankasalmi',
+        name: 'Hankasalmi',
         nameSv: 'Hankasalmi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -10136,7 +10136,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_61',
-        nameFi: 'Joutsa',
+        name: 'Joutsa',
         nameSv: 'Joutsa',
         type: 'Kunta',
         coordinatesPoint: {
@@ -10178,7 +10178,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_65',
-        nameFi: 'Jyväskylä',
+        name: 'Jyväskylä',
         nameSv: 'Jyväskylä',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -10220,7 +10220,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_67',
-        nameFi: 'Jämsä',
+        name: 'Jämsä',
         nameSv: 'Jämsä',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -10262,7 +10262,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_76',
-        nameFi: 'Kannonkoski',
+        name: 'Kannonkoski',
         nameSv: 'Kannonkoski',
         type: 'Kunta',
         coordinatesPoint: {
@@ -10304,7 +10304,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_80',
-        nameFi: 'Karstula',
+        name: 'Karstula',
         nameSv: 'Karstula',
         type: 'Kunta',
         coordinatesPoint: {
@@ -10346,7 +10346,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_92',
-        nameFi: 'Keuruu',
+        name: 'Keuruu',
         nameSv: 'Keuruu',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -10388,7 +10388,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_94',
-        nameFi: 'Kinnula',
+        name: 'Kinnula',
         nameSv: 'Kinnula',
         type: 'Kunta',
         coordinatesPoint: {
@@ -10430,7 +10430,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_99',
-        nameFi: 'Kivijärvi',
+        name: 'Kivijärvi',
         nameSv: 'Kivijärvi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -10472,7 +10472,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_103',
-        nameFi: 'Konnevesi',
+        name: 'Konnevesi',
         nameSv: 'Konnevesi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -10514,7 +10514,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_112',
-        nameFi: 'Kuhmoinen',
+        name: 'Kuhmoinen',
         nameSv: 'Kuhmoinen',
         type: 'Kunta',
         coordinatesPoint: {
@@ -10556,7 +10556,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_120',
-        nameFi: 'Kyyjärvi',
+        name: 'Kyyjärvi',
         nameSv: 'Kyyjärvi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -10598,7 +10598,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_134',
-        nameFi: 'Laukaa',
+        name: 'Laukaa',
         nameSv: 'Laukaa',
         type: 'Kunta',
         coordinatesPoint: {
@@ -10640,7 +10640,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_147',
-        nameFi: 'Luhanka',
+        name: 'Luhanka',
         nameSv: 'Luhanka',
         type: 'Kunta',
         coordinatesPoint: {
@@ -10682,7 +10682,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_163',
-        nameFi: 'Multia',
+        name: 'Multia',
         nameSv: 'Multia',
         type: 'Kunta',
         coordinatesPoint: {
@@ -10724,7 +10724,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_166',
-        nameFi: 'Muurame',
+        name: 'Muurame',
         nameSv: 'Muurame',
         type: 'Kunta',
         coordinatesPoint: {
@@ -10766,7 +10766,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_193',
-        nameFi: 'Petäjävesi',
+        name: 'Petäjävesi',
         nameSv: 'Petäjävesi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -10808,7 +10808,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_198',
-        nameFi: 'Pihtipudas',
+        name: 'Pihtipudas',
         nameSv: 'Pihtipudas',
         type: 'Kunta',
         coordinatesPoint: {
@@ -10850,7 +10850,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_235',
-        nameFi: 'Saarijärvi',
+        name: 'Saarijärvi',
         nameSv: 'Saarijärvi',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -10892,7 +10892,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_276',
-        nameFi: 'Toivakka',
+        name: 'Toivakka',
         nameSv: 'Toivakka',
         type: 'Kunta',
         coordinatesPoint: {
@@ -10934,7 +10934,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_287',
-        nameFi: 'Uurainen',
+        name: 'Uurainen',
         nameSv: 'Uurainen',
         type: 'Kunta',
         coordinatesPoint: {
@@ -10976,7 +10976,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_300',
-        nameFi: 'Viitasaari',
+        name: 'Viitasaari',
         nameSv: 'Viitasaari',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -11018,7 +11018,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_311',
-        nameFi: 'Äänekoski',
+        name: 'Äänekoski',
         nameSv: 'Äänekoski',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -11083,7 +11083,7 @@ export const municipalityOptions = [
     municipalities: [
       {
         id: 'M_40',
-        nameFi: 'Hyrynsalmi',
+        name: 'Hyrynsalmi',
         nameSv: 'Hyrynsalmi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -11125,7 +11125,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_71',
-        nameFi: 'Kajaani',
+        name: 'Kajaani',
         nameSv: 'Kajana',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -11167,7 +11167,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_111',
-        nameFi: 'Kuhmo',
+        name: 'Kuhmo',
         nameSv: 'Kuhmo',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -11209,7 +11209,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_187',
-        nameFi: 'Paltamo',
+        name: 'Paltamo',
         nameSv: 'Paltamo',
         type: 'Kunta',
         coordinatesPoint: {
@@ -11251,7 +11251,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_208',
-        nameFi: 'Puolanka',
+        name: 'Puolanka',
         nameSv: 'Puolanka',
         type: 'Kunta',
         coordinatesPoint: {
@@ -11293,7 +11293,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_228',
-        nameFi: 'Ristijärvi',
+        name: 'Ristijärvi',
         nameSv: 'Ristijärvi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -11335,7 +11335,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_255',
-        nameFi: 'Sotkamo',
+        name: 'Sotkamo',
         nameSv: 'Sotkamo',
         type: 'Kunta',
         coordinatesPoint: {
@@ -11377,7 +11377,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_259',
-        nameFi: 'Suomussalmi',
+        name: 'Suomussalmi',
         nameSv: 'Suomussalmi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -11442,7 +11442,7 @@ export const municipalityOptions = [
     municipalities: [
       {
         id: 'M_46',
-        nameFi: 'Iisalmi',
+        name: 'Iisalmi',
         nameSv: 'Idensalmi',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -11484,7 +11484,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_70',
-        nameFi: 'Kaavi',
+        name: 'Kaavi',
         nameSv: 'Kaavi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -11526,7 +11526,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_87',
-        nameFi: 'Keitele',
+        name: 'Keitele',
         nameSv: 'Keitele',
         type: 'Kunta',
         coordinatesPoint: {
@@ -11568,7 +11568,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_98',
-        nameFi: 'Kiuruvesi',
+        name: 'Kiuruvesi',
         nameSv: 'Kiuruvesi',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -11610,7 +11610,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_114',
-        nameFi: 'Kuopio',
+        name: 'Kuopio',
         nameSv: 'Kuopio',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -11652,7 +11652,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_129',
-        nameFi: 'Lapinlahti',
+        name: 'Lapinlahti',
         nameSv: 'Lapinlahti',
         type: 'Kunta',
         coordinatesPoint: {
@@ -11694,7 +11694,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_138',
-        nameFi: 'Leppävirta',
+        name: 'Leppävirta',
         nameSv: 'Leppävirta',
         type: 'Kunta',
         coordinatesPoint: {
@@ -11736,7 +11736,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_195',
-        nameFi: 'Pielavesi',
+        name: 'Pielavesi',
         nameSv: 'Pielavesi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -11778,7 +11778,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_223',
-        nameFi: 'Rautalampi',
+        name: 'Rautalampi',
         nameSv: 'Rautalampi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -11820,7 +11820,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_224',
-        nameFi: 'Rautavaara',
+        name: 'Rautavaara',
         nameSv: 'Rautavaara',
         type: 'Kunta',
         coordinatesPoint: {
@@ -11862,7 +11862,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_247',
-        nameFi: 'Siilinjärvi',
+        name: 'Siilinjärvi',
         nameSv: 'Siilinjärvi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -11904,7 +11904,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_254',
-        nameFi: 'Sonkajärvi',
+        name: 'Sonkajärvi',
         nameSv: 'Sonkajärvi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -11946,7 +11946,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_260',
-        nameFi: 'Suonenjoki',
+        name: 'Suonenjoki',
         nameSv: 'Suonenjoki',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -11988,7 +11988,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_271',
-        nameFi: 'Tervo',
+        name: 'Tervo',
         nameSv: 'Tervo',
         type: 'Kunta',
         coordinatesPoint: {
@@ -12030,7 +12030,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_280',
-        nameFi: 'Tuusniemi',
+        name: 'Tuusniemi',
         nameSv: 'Tuusniemi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -12072,7 +12072,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_293',
-        nameFi: 'Varkaus',
+        name: 'Varkaus',
         nameSv: 'Varkaus',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -12114,7 +12114,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_295',
-        nameFi: 'Vesanto',
+        name: 'Vesanto',
         nameSv: 'Vesanto',
         type: 'Kunta',
         coordinatesPoint: {
@@ -12156,7 +12156,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_298',
-        nameFi: 'Vieremä',
+        name: 'Vieremä',
         nameSv: 'Vieremä',
         type: 'Kunta',
         coordinatesPoint: {
@@ -12221,7 +12221,7 @@ export const municipalityOptions = [
     municipalities: [
       {
         id: 'M_50',
-        nameFi: 'Ilomantsi',
+        name: 'Ilomantsi',
         nameSv: 'Ilomants',
         type: 'Kunta',
         coordinatesPoint: {
@@ -12263,7 +12263,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_57',
-        nameFi: 'Joensuu',
+        name: 'Joensuu',
         nameSv: 'Joensuu',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -12305,7 +12305,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_62',
-        nameFi: 'Juuka',
+        name: 'Juuka',
         nameSv: 'Juuka',
         type: 'Kunta',
         coordinatesPoint: {
@@ -12347,7 +12347,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_96',
-        nameFi: 'Kitee',
+        name: 'Kitee',
         nameSv: 'Kitee',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -12389,7 +12389,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_104',
-        nameFi: 'Kontiolahti',
+        name: 'Kontiolahti',
         nameSv: 'Kontiolahti',
         type: 'Kunta',
         coordinatesPoint: {
@@ -12431,7 +12431,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_140',
-        nameFi: 'Lieksa',
+        name: 'Lieksa',
         nameSv: 'Lieksa',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -12473,7 +12473,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_143',
-        nameFi: 'Liperi',
+        name: 'Liperi',
         nameSv: 'Liperi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -12515,7 +12515,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_177',
-        nameFi: 'Nurmes',
+        name: 'Nurmes',
         nameSv: 'Nurmes',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -12557,7 +12557,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_119',
-        nameFi: 'Outokumpu',
+        name: 'Outokumpu',
         nameSv: 'Outokumpu',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -12599,7 +12599,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_200',
-        nameFi: 'Polvijärvi',
+        name: 'Polvijärvi',
         nameSv: 'Polvijärvi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -12641,7 +12641,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_233',
-        nameFi: 'Rääkkylä',
+        name: 'Rääkkylä',
         nameSv: 'Rääkkylä',
         type: 'Kunta',
         coordinatesPoint: {
@@ -12683,7 +12683,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_274',
-        nameFi: 'Tohmajärvi',
+        name: 'Tohmajärvi',
         nameSv: 'Tohmajärvi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -12725,7 +12725,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_292',
-        nameFi: 'Valtimo',
+        name: 'Valtimo',
         nameSv: 'Valtimo',
         type: 'Kunta',
         coordinatesPoint: {
@@ -12790,7 +12790,7 @@ export const municipalityOptions = [
     municipalities: [
       {
         id: 'M_55',
-        nameFi: 'Imatra',
+        name: 'Imatra',
         nameSv: 'Imatra',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -12832,7 +12832,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_131',
-        nameFi: 'Lappeenranta',
+        name: 'Lappeenranta',
         nameSv: 'Villmanstrand',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -12874,7 +12874,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_135',
-        nameFi: 'Lemi',
+        name: 'Lemi',
         nameSv: 'Lemi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -12916,7 +12916,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_151',
-        nameFi: 'Luumäki',
+        name: 'Luumäki',
         nameSv: 'Luumäki',
         type: 'Kunta',
         coordinatesPoint: {
@@ -12958,7 +12958,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_188',
-        nameFi: 'Parikkala',
+        name: 'Parikkala',
         nameSv: 'Parikkala',
         type: 'Kunta',
         coordinatesPoint: {
@@ -13000,7 +13000,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_225',
-        nameFi: 'Rautjärvi',
+        name: 'Rautjärvi',
         nameSv: 'Rautjärvi',
         type: 'Kunta',
         coordinatesPoint: {
@@ -13042,7 +13042,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_230',
-        nameFi: 'Ruokolahti',
+        name: 'Ruokolahti',
         nameSv: 'Ruokolahti',
         type: 'Kunta',
         coordinatesPoint: {
@@ -13084,7 +13084,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_240',
-        nameFi: 'Savitaipale',
+        name: 'Savitaipale',
         nameSv: 'Savitaipale',
         type: 'Kunta',
         coordinatesPoint: {
@@ -13126,7 +13126,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_266',
-        nameFi: 'Taipalsaari',
+        name: 'Taipalsaari',
         nameSv: 'Taipalsaari',
         type: 'Kunta',
         coordinatesPoint: {
@@ -13191,7 +13191,7 @@ export const municipalityOptions = [
     municipalities: [
       {
         id: 'M_54',
-        nameFi: 'Isokyrö',
+        name: 'Isokyrö',
         nameSv: 'Storkyro',
         type: 'Kunta',
         coordinatesPoint: {
@@ -13233,7 +13233,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_82',
-        nameFi: 'Kaskinen',
+        name: 'Kaskinen',
         nameSv: 'Kaskö',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -13275,7 +13275,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_105',
-        nameFi: 'Korsnäs',
+        name: 'Korsnäs',
         nameSv: 'Korsnäs',
         type: 'Kunta',
         coordinatesPoint: {
@@ -13317,7 +13317,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_109',
-        nameFi: 'Kristiinankaupunki',
+        name: 'Kristiinankaupunki',
         nameSv: 'Kristinestad',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -13359,7 +13359,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_110',
-        nameFi: 'Kruunupyy',
+        name: 'Kruunupyy',
         nameSv: 'Kronoby',
         type: 'Kunta',
         coordinatesPoint: {
@@ -13401,7 +13401,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_127',
-        nameFi: 'Laihia',
+        name: 'Laihia',
         nameSv: 'Laihela',
         type: 'Kunta',
         coordinatesPoint: {
@@ -13443,7 +13443,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_150',
-        nameFi: 'Luoto',
+        name: 'Luoto',
         nameSv: 'Larsmo',
         type: 'Kunta',
         coordinatesPoint: {
@@ -13485,7 +13485,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_154',
-        nameFi: 'Maalahti',
+        name: 'Maalahti',
         nameSv: 'Malax',
         type: 'Kunta',
         coordinatesPoint: {
@@ -13527,7 +13527,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_165',
-        nameFi: 'Mustasaari',
+        name: 'Mustasaari',
         nameSv: 'Korsholm',
         type: 'Kunta',
         coordinatesPoint: {
@@ -13569,7 +13569,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_179',
-        nameFi: 'Närpiö',
+        name: 'Närpiö',
         nameSv: 'Närpes',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -13611,7 +13611,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_197',
-        nameFi: 'Pedersören kunta',
+        name: 'Pedersören kunta',
         nameSv: 'Pedersöre',
         type: 'Kunta',
         coordinatesPoint: {
@@ -13653,7 +13653,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_196',
-        nameFi: 'Pietarsaari',
+        name: 'Pietarsaari',
         nameSv: 'Jakobstad',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -13695,7 +13695,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_288',
-        nameFi: 'Uusikaarlepyy',
+        name: 'Uusikaarlepyy',
         nameSv: 'Nykarleby',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -13737,7 +13737,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_290',
-        nameFi: 'Vaasa',
+        name: 'Vaasa',
         nameSv: 'Vasa',
         type: 'Kaupunki',
         coordinatesPoint: {
@@ -13779,7 +13779,7 @@ export const municipalityOptions = [
       },
       {
         id: 'M_305',
-        nameFi: 'Vöyri',
+        name: 'Vöyri',
         nameSv: 'Vörå',
         type: 'Kunta',
         coordinatesPoint: {

@@ -144,7 +144,17 @@ const TransferForm: React.FC<{}> = () => {
 
   const removeImage = (url: string) => {};
   const extractedOptions = municipalityOptions
-    .map((o) => o.municipalities)
+    .map((o) =>
+      o.municipalities.map((m) => {
+        return {
+          cityId: m.id,
+          region: m.regionNameFi,
+          regionId: m.regionId,
+          name: m.name,
+          countryCode: 'fi',
+        };
+      })
+    )
     .flat(1)
     .sort((a, b) => (a.name > b.name ? 1 : -1));
 
@@ -224,6 +234,7 @@ const TransferForm: React.FC<{}> = () => {
               if (!values.expiryDate) {
                 return;
               }
+              console.log(values.area);
               const postData = {
                 contact: {
                   name: values.contactName,
@@ -245,10 +256,7 @@ const TransferForm: React.FC<{}> = () => {
                       name: values.locationName,
                       address: values.streetAddress,
                       postalcode: values.zipCode,
-                      city: values.area.name,
-                      cityId: values.area.cityId,
-                      region: values.area.region,
-                      regionId: values.area.regionId,
+                      ...values.area,
                     },
                     isWaste: false,
                     description: values.materialDescription,
@@ -263,6 +271,7 @@ const TransferForm: React.FC<{}> = () => {
                 title: values.title,
               };
               setIsPosting(true);
+              console.log(postData.materials[0].location);
               const sendData: PostAdvert = {
                 type: 'offeringMaterial',
                 data: postData,

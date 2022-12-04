@@ -8,6 +8,7 @@ export const FieldWithOriginalComparison = ({
   label,
   valueKey,
   ogValue,
+  disabled,
   isRequired,
   touched,
   errors,
@@ -16,6 +17,7 @@ export const FieldWithOriginalComparison = ({
   label: string;
   valueKey: string;
   ogValue?: string;
+  disabled: boolean;
   isRequired: boolean;
   touched?: boolean;
   errors?: string;
@@ -32,6 +34,7 @@ export const FieldWithOriginalComparison = ({
             name={valueKey}
             backgroundColor='#fff'
             width='90%'
+            disabled={disabled}
             validate={
               isRequired
                 ? (value?: string) => {

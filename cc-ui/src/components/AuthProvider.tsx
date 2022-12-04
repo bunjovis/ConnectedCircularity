@@ -42,6 +42,7 @@ export const AuthProvider: React.FC<ReactChildrenNode> = ({ children }) => {
         setUserId(getToken.userId);
         setBackendToken(response.data.backendToken);
         navigate('/home');
+        mtLogin();
       }
     } catch (err) {
       console.log(err);

@@ -12,6 +12,7 @@ import ItemStats from './pages/ItemStats';
 import Header from './components/header/Header';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import MTLogin from './components/MTLogin/MTLogin';
+import { Notification } from './components/Notification';
 
 const App: React.FC<{}> = () => {
   const { mtLoading } = useAuth();
@@ -50,6 +51,7 @@ const App: React.FC<{}> = () => {
         />
       </Routes>
       {mtLoading && <MTLogin />}
+      <Notification />
     </Box>
   );
 };

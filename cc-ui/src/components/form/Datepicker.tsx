@@ -12,11 +12,13 @@ export const Datepicker = ({
   value,
   label,
   name,
+  disabled,
   valueSetter,
 }: {
   value?: Date;
   label: string;
   name: string;
+  disabled: boolean;
   valueSetter: (fieldName: string, newValue: Date) => void;
 }) => {
   const [dateError, setDateError] = useState(false);
@@ -24,6 +26,15 @@ export const Datepicker = ({
     const maxDate = new Date();
     maxDate.setFullYear(maxDate.getFullYear() + 2);
     return maxDate;
+  };
+  const getClassName = () => {
+    if (dateError) {
+      return 'date-error';
+    }
+    if (disabled) {
+      return 'date-input-disabled';
+    }
+    return 'date-input';
   };
 
   return (
@@ -37,7 +48,8 @@ export const Datepicker = ({
           minDate={new Date()}
           maxDate={setMaxDate()}
           name='expiryDate'
-          className={dateError ? 'date-error' : 'date-input'}
+          disabled={disabled}
+          className={getClassName()}
           onChange={(date: Date) => {
             valueSetter(name, date);
             setDateError(false);

@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Advert } from './types/Advert';
+import { Advert, PostAdvert } from './types/Advert';
 import { ItemInfo } from './types/ItemInfo';
 
 /** 

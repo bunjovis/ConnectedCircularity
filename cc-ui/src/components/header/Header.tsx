@@ -2,11 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Flex, Spacer, Text } from '@chakra-ui/react';
 import { CheckCircleIcon } from '@chakra-ui/icons';
+import { useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../AuthProvider';
 
 const Header: React.FC<{}> = () => {
   const { user, logout, mtLogin, mtAuth } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <Flex alignItems='center' height='70px' p='3' bg='#fff'>
@@ -18,9 +20,25 @@ const Header: React.FC<{}> = () => {
         width='40px'
         height='40px'
         as='button'
+        onClick={() => navigate(`/`)}
       >
         <Text as='b' textAlign='center' m='auto'>
           CC
+        </Text>
+      </Box>
+      <Box
+        bg='#6C7185'
+        color='#fff'
+        textAlign='center'
+        borderRadius='10'
+        width='80px'
+        height='40px'
+        marginLeft='2px'
+        as='button'
+        onClick={() => navigate(`/statistics`)}
+      >
+        <Text textAlign='center' m='auto'>
+          Tilastot
         </Text>
       </Box>
       <Spacer />

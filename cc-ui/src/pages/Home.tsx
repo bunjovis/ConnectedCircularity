@@ -99,12 +99,13 @@ const Home: React.FC<{}> = () => {
                   bg='#fff'
                   width='100%'
                   borderRadius='2px'
-                  p='2'>
+                  p='2'
+                  >
                   <Heading as='b'>Odottavat</Heading>
 
-                  <Divider width='100%' />
+                  <Divider width='100%'/>
                 
-                  <Select placeholder='Status'>
+                  <Select placeholder='Status' p='2'>
                     //TODO: lisää status vaihtoehdot!!!
                     //TODO: miten statusvaihtoehdot vaikuttaa hakutuloksiin
                     <option value='option1'>option 1</option>
@@ -122,6 +123,7 @@ const Home: React.FC<{}> = () => {
                       p='2'
                       cursor='pointer'
                       key={item.reusableId}
+                      rounded='5'   
                       onClick={() => navigate(`/new_item/${item.reusableId}`)}
                     >
                       <Text as='b'>{item.streetAddress}</Text>
@@ -139,13 +141,32 @@ const Home: React.FC<{}> = () => {
                 p='3'
                 alignItems='start'
                 minHeight='300px'
-                bg='#f5f5f5'
+                bg='#E9E9E9'
               >
-                <Heading as='b'>Käsitellyt</Heading>
-                //TODO: käsitellyt itemit käsiteltyihin
-                <Box>
-
+                <Box
+                  bg='#fff'
+                  width='100%'
+                  borderRadius='2px'
+                  p='2'
+                  >
+                  <Heading as='b'>Käsitellyt</Heading>
+              
                 </Box>
+                <Box
+                      bg='#fff'
+                      width='100%'
+                      border='1px solid black'
+                      borderRadius='2px'
+                      boxShadow='md'
+                      p='2'
+                      cursor='pointer' 
+                      rounded='5'                    
+                    >
+                      <Text as='b'>Ei Materiaalitoriin lähetettyjä materiaaleja</Text>
+                      <Divider width='100%' />
+                      <Text>Lähetä 'Odottava' ilmoitus käsitelläksesi materiaali</Text>
+                    </Box>
+                //TODO: käsitellyt itemit käsiteltyihin
               </VStack>
             </Box>
           </>

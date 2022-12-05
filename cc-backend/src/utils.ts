@@ -223,6 +223,7 @@ export async function refreshLogin(apiId:string, refreshToken:string) {
       }
     }
   );
+  console.log('Token pyydetty pk:sta');
   if (!refreshResponse.data.userId || !refreshResponse.data.accessToken) {
     throw {
       response: {

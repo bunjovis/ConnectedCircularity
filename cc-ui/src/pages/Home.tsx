@@ -20,8 +20,12 @@ import { skipToken } from '@reduxjs/toolkit/dist/query';
 
 const Home: React.FC<{}> = () => {
   const navigate = useNavigate();
-  const { userId } = useAuth();
-
+  const { refreshLogin, userId } = useAuth();  
+  if (sessionStorage.getItem('refreshToken')) {
+    const refToken = sessionStorage.getItem('refreshToken') ?? '';
+    const authUrl = sessionStorage.getItem('authUrl') ?? '';
+    refreshLogin(refToken, authUrl);
+  }
   const { data, error, isLoading, refetch } = useGetUserItemsQuery(
     userId ?? skipToken
   );

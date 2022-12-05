@@ -11,7 +11,8 @@ import {
   Divider,
   Spinner,
   Center,
-  Button
+  Button,
+  Select
 } from '@chakra-ui/react';
 
 import { ItemInfo } from '../types/ItemInfo';
@@ -57,6 +58,7 @@ const Home: React.FC<{}> = () => {
       </Heading>
 
       <HStack align='center' width='100%'>
+        //Catches error if fetching items from Materiaalitori fails
         {error && (
           <Flex
           p='5'
@@ -82,17 +84,33 @@ const Home: React.FC<{}> = () => {
           </Flex>
         )}
 
+        //TODO: status näkymä
         {data && !isLoading && (
           <>
             <Box width='50%' height='100%'>
-              <Text as='b'>Odottavat</Text>
               <VStack
-                border='1px solid black'
-                p='3'
-                alignItems='start'
-                minHeight='300px'
-                bg='#f5f5f5'
-              >
+                  border='1px solid black'
+                  p='3'
+                  alignItems='start'
+                  minHeight='300px'
+                  bg='#E9E9E9'
+                >
+                <Box 
+                  bg='#fff'
+                  width='100%'
+                  borderRadius='2px'
+                  p='2'>
+                  <Heading as='b'>Odottavat</Heading>
+
+                  <Divider width='100%' />
+                
+                  <Select placeholder='Status'>
+                    //TODO: lisää status vaihtoehdot!!!
+                    //TODO: miten statusvaihtoehdot vaikuttaa hakutuloksiin
+                    <option value='option1'>option 1</option>
+                  </Select>
+                </Box> 
+
                 {data.map((item: ItemInfo) => {
                   return (
                     <Box
@@ -100,6 +118,7 @@ const Home: React.FC<{}> = () => {
                       width='100%'
                       border='1px solid black'
                       borderRadius='2px'
+                      boxShadow='md'
                       p='2'
                       cursor='pointer'
                       key={item.reusableId}
@@ -111,17 +130,23 @@ const Home: React.FC<{}> = () => {
                     </Box>
                   );
                 })}
+                
               </VStack>
             </Box>
             <Box width='50%' alignContent='start'>
-              <Text as='b'>Käsitellyt</Text>
               <VStack
                 border='1px solid black'
                 p='3'
                 alignItems='start'
                 minHeight='300px'
                 bg='#f5f5f5'
-              ></VStack>
+              >
+                <Heading as='b'>Käsitellyt</Heading>
+                //TODO: käsitellyt itemit käsiteltyihin
+                <Box>
+
+                </Box>
+              </VStack>
             </Box>
           </>
         )}

@@ -1,6 +1,5 @@
 import { Router, Request, Response } from "express";
 import { postConfigToDB, getTokens, saveUser, getUserIdFromToken } from "../utils";
-import { Error, ItemInfo, Item } from "../types";
 
 const userRouter = Router();
 

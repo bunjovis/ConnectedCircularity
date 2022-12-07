@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { postAdvert, getToken, postMTStatistics } from '../utils';
-import { Error, ItemInfo, Item, AdvertData } from '../types';
+import { AdvertData } from '../types';
 
 const advertRouter = Router();
 
@@ -20,8 +20,6 @@ advertRouter.post(
         });
       } else {
         const postToMT = await postAdvert(token, advert);
-        console.log(postToMT.status);
-        console.log(postToMT.data);
         postMTStatistics(true);
         response.status(postToMT.status);
         response.json(postToMT.data);

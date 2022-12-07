@@ -1,15 +1,6 @@
 import axios from 'axios';
 
-import {
-  Error,
-  ItemInfo,
-  Item,
-  Config,
-  AdvertData,
-  ApiConfig,
-  LoginResponse,
-  UserInfo,
-} from './types';
+import { ItemInfo, Item, Config, AdvertData, ApiConfig, LoginResponse, UserInfo } from './types';
 import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
 
 export async function getItemsPK(token: any, userId: string) {
@@ -33,29 +24,6 @@ export async function getItemsPK(token: any, userId: string) {
     } else {
       console.log('unexpected error: ', error);
       throw error;
-    }
-  }
-}
-
-export async function getItemsDB(userId: string) {
-  try {
-    const { data, status } = await axios.get<Item>(
-      `${process.env.CC_DB_SERVICE_URL}/items/${userId}`,
-      {
-        headers: {
-          Accept: 'application/json',
-        },
-      }
-    );
-    console.log('response status is: ', status);
-    return data;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.log('error message: ', error.message);
-      return error.message;
-    } else {
-      console.log('unexpected error: ', error);
-      return 'An unexpected error occurred';
     }
   }
 }

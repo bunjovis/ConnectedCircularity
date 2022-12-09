@@ -57,7 +57,7 @@ const Home: React.FC<{}> = () => {
         Purkukartoitus materiaalit
       </Heading>
 
-      <HStack align='center' width='100%'>
+      <HStack align='center' width='100%' alignItems='start'>
         //Catches error if fetching items from Materiaalitori fails
         {error && (
           <Flex
@@ -84,7 +84,6 @@ const Home: React.FC<{}> = () => {
           </Flex>
         )}
 
-        //TODO: status näkymä
         {data && !isLoading && (
           <>
             <Box width='50%' height='100%'>
@@ -102,16 +101,9 @@ const Home: React.FC<{}> = () => {
                   p='2'
                   >
                   <Heading as='b'>Odottavat</Heading>
-
-                  <Divider width='100%'/>
-                
-                  <Select placeholder='Status' p='2'>
-                    //TODO: lisää status vaihtoehdot!!!
-                    //TODO: miten statusvaihtoehdot vaikuttaa hakutuloksiin
-                    <option value='option1'>option 1</option>
-                  </Select>
+          
                 </Box> 
-
+                
                 {data.map((item: ItemInfo) => {
                   return (
                     <Box
@@ -119,11 +111,11 @@ const Home: React.FC<{}> = () => {
                       width='100%'
                       border='1px solid black'
                       borderRadius='2px'
+                      rounded='5'   
                       boxShadow='md'
                       p='2'
                       cursor='pointer'
                       key={item.reusableId}
-                      rounded='5'   
                       onClick={() => navigate(`/new_item/${item.reusableId}`)}
                     >
                       <Text as='b'>{item.streetAddress}</Text>

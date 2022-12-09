@@ -16,6 +16,8 @@ itemRouter.get(
   async (request: Request, response: Response, next: NextFunction) => {
     try {
       const wholeToken: any = request.headers.authorization ?? '';
+      if(wholeToken==null || wholeToken.toString().length == 0) response.status(401).json("Not Authorized");
+
       const token = getToken(wholeToken);
       const userId: string = request.params.userId;
       const itemsPK = await getItemsPK(token, userId);

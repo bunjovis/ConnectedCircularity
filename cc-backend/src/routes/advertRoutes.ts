@@ -10,7 +10,7 @@ advertRouter.post(
     try {
       const advert: AdvertData = request.body;
       const wholeToken: any = request.headers.authorization ?? '';
-      if(wholeToken==null || wholeToken.toString().length == 0) response.status(401).json("Not Authorized");
+      if(wholeToken===null || wholeToken.toString().length === 0) response.status(401).json("Not Authorized");
 
       const token = getToken(wholeToken);
       if (token === 'Not a bearer token!') {

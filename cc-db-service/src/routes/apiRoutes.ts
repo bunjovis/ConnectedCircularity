@@ -27,7 +27,7 @@ apiRoutes.get(
   async (_request: Request, response: Response, next: NextFunction) => {
     try {
       const apis = await getApi(_request.params.apiId);
-      if(apis== null) response.status(404).json("No api found ");
+      if(apis=== null) response.status(404).json("No api found ");
       else
       response.status(200).json(apis);
     } catch (err:any) {

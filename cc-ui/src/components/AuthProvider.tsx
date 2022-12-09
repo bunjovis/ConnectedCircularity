@@ -39,10 +39,11 @@ export const AuthProvider: React.FC<ReactChildrenNode> = ({ children }) => {
         sessionStorage.setItem('refreshToken', response.data.refreshToken);
         sessionStorage.setItem('beToken', response.data.backendToken);
         sessionStorage.setItem('authUrl', data.authUrl);
-        
         const getToken = decodeToken(response.data.backendToken) as any;
         setUserId(getToken.userId);
         setBackendToken(response.data.backendToken);
+
+        refreshLogin(sessionStorage.getItem('refreshToken'), sessionStorage.getItem('authUrl'));
         navigate('/home');
         mtLogin();
       }
@@ -70,7 +71,7 @@ export const AuthProvider: React.FC<ReactChildrenNode> = ({ children }) => {
       if (refreshResponse.status === 200) {
         sessionStorage.setItem('spToken', refreshResponse.data.accessToken);
         sessionStorage.setItem('refreshToken', refreshResponse.data.refreshToken);
-        setTimeout(refreshLogin,120000,sessionStorage.getItem('refreshToken'),authUrl);
+        setTimeout(refreshLogin,180000,sessionStorage.getItem('refreshToken'),authUrl);
       }
     } catch (error: any) {
       return error;

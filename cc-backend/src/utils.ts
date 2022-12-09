@@ -223,7 +223,6 @@ export async function refreshLogin(apiId:string, refreshToken:string) {
       }
     }
   );
-  console.log('Token pyydetty pk:sta');
   if (!refreshResponse.data.userId || !refreshResponse.data.accessToken) {
     throw {
       response: {
@@ -242,6 +241,7 @@ export async function refreshLogin(apiId:string, refreshToken:string) {
       expiresIn: '2h'
     }
   );
+  console.log("Uusi token");
   return { accessToken: refreshResponse.data.accessToken, refreshToken: refreshResponse.data.refreshToken, backendToken: token };
 }
 

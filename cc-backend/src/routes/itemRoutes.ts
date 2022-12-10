@@ -1,9 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import {
   getItemsPK,
-  getItemsDB,
   getItemInfo,
-  postConfigToDB,
   getToken,
   postPKStatistics
 } from '../utils';
@@ -19,15 +17,12 @@ itemRouter.get(
       const token = getToken(wholeToken);
       const userId: string = request.params.userId;
       const itemsPK = await getItemsPK(token, userId);
-      //const itemsDB = await getItemsDB(request.params.userId);
       for (let i=0;i<itemsPK.length;i++) {
         const item = itemsPK[i];
         postPKStatistics(item.reusableId, true);
       }
       
       response.json(itemsPK);
-      //response.write(itemsDB);
-      //response.send();
     } catch (error: any) {
       console.log(error);
       if (!error.response) {

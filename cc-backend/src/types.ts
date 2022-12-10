@@ -130,10 +130,12 @@ export interface Config {
 export interface ApiConfig {
   id: string;
   name: string;
-  authEndpoint: string;
+  authEndpoint: string
+  authRefresh: string
 }
 
 export interface LoginResponse {
   accessToken: string;
+  refreshToken: string,
   userId: string;
 }

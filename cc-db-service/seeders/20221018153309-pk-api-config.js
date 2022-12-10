@@ -14,6 +14,8 @@ module.exports = {
           name: 'Purkukartoitus',
           authEndpoint:
             'http://cc-pk-service:5123/v1/login',
+          authRefresh:
+            'http://cc-pk-service:5123/v1/refresh',
           createdAt: new Date(),
           updatedAt: new Date(),
         },

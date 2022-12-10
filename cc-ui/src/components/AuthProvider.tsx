@@ -36,11 +36,14 @@ export const AuthProvider: React.FC<ReactChildrenNode> = ({ children }) => {
       if (response.status === 200) {
         setUser(data.username);
         sessionStorage.setItem('spToken', response.data.accessToken);
+        sessionStorage.setItem('refreshToken', response.data.refreshToken);
         sessionStorage.setItem('beToken', response.data.backendToken);
-
+        sessionStorage.setItem('authUrl', data.authUrl);
         const getToken = decodeToken(response.data.backendToken) as any;
         setUserId(getToken.userId);
         setBackendToken(response.data.backendToken);
+
+        refreshLogin(sessionStorage.getItem('refreshToken'), sessionStorage.getItem('authUrl'));
         navigate('/home');
         mtLogin();
       }
@@ -53,6 +56,27 @@ export const AuthProvider: React.FC<ReactChildrenNode> = ({ children }) => {
       setLoading(false);
     }
   };
+
+  const refreshLogin = async (refToken:string, authUrl:string) => {
+    if (!sessionStorage.getItem('refreshToken')) {
+      return;
+    }
+    try {
+      const refreshResponse = await axios.post(
+        import.meta.env.VITE_CC_BACKEND + 'v1/refresh/' + authUrl, 
+        {
+          refreshToken: refToken
+        }
+        );
+      if (refreshResponse.status === 200) {
+        sessionStorage.setItem('spToken', refreshResponse.data.accessToken);
+        sessionStorage.setItem('refreshToken', refreshResponse.data.refreshToken);
+        setTimeout(refreshLogin,180000,sessionStorage.getItem('refreshToken'),authUrl);
+      }
+    } catch (error: any) {
+      return error;
+    }
+  }  
 
   const mtLogin = () => {
     setMtLoading(true);
@@ -91,6 +115,7 @@ export const AuthProvider: React.FC<ReactChildrenNode> = ({ children }) => {
       error,
       mtAuth,
       login,
+      refreshLogin,
       logout,
       mtLogin,
       mtLoading,

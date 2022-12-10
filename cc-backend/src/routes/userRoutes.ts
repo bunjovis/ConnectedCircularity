@@ -1,5 +1,6 @@
 import { Router, Request, Response } from "express";
-import { postConfigToDB, getTokens, saveUser, getUserIdFromToken } from "../utils";
+import { postConfigToDB, getTokens, saveUser, getUserIdFromToken, refreshLogin } from "../utils";
+
 
 const userRouter = Router();
 
@@ -40,6 +41,34 @@ userRouter.post(
     }
   }
 );
+
+userRouter.post(
+  "/v1/refresh/:apiId",
+  async (request: Request, response: Response) => {
+    try {
+      const refreshTokens = await refreshLogin(request.params.apiId, request.body.refreshToken);
+      response.send(refreshTokens);
+    }
+    catch (error:any) {
+      console.log(error);
+      if (!error.response) {
+        response.status(500);
+        response.json({
+          message: "Error",
+          status: 500
+        });
+      }
+      else {
+        response.status(error.response.status || 500);
+        response.json({
+          message: error.response.statusText || "Error",
+          status: error.response.status || 500
+        });
+      }
+    }
+  
+  });
+
 
 userRouter.post("/v1/user", (request: Request, response: Response) => {
   // For testing

@@ -9,7 +9,7 @@ advertRouter.post(
   async (request: Request, response: Response) => {
     try {
       const advert: AdvertData = request.body;
-      const wholeToken: any = request.headers.authorization ?? '';
+      const wholeToken = request.headers.authorization ?? '';
       const token = getToken(wholeToken);
       if (token === 'Not a bearer token!') {
         console.log('Invalid token');

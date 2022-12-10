@@ -4,7 +4,6 @@ import dotenv from 'dotenv';
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
 import * as OpenApiValidator from 'express-openapi-validator';
-import bodyParser from 'body-parser';
 import router from './routes/mtServiceRoutes';
 import { Error } from './types';
 dotenv.config();
@@ -15,7 +14,6 @@ const PORT = process.env.PORT;
 
 const app = express();
 app.use(express.json());
-// app.use(bodyParser.json())
 app.use(express.urlencoded({extended: true,}));
 app.use(cors());
 app.listen(PORT, () => {

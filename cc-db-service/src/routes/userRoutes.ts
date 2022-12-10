@@ -51,8 +51,8 @@ userRoutes.get(
   '/users/:id',
   async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const wholeToken: any = request.headers.authorization ?? '';
-      if(wholeToken===null || wholeToken.toString().length === 0) response.status(401).json("Not Authorized");
+        const wholeToken: any = request.headers.authorization ?? '';
+        if(wholeToken===null || wholeToken.toString().length === 0) response.status(401).json("Not Authorized");
       
         const token = await getToken(wholeToken);
         const decoded = jwt.verify(token, jwtSecret);

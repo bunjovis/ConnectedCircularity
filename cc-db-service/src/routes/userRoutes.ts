@@ -51,17 +51,17 @@ userRoutes.get(
   '/users/:id',
   async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const wholeToken: any = request.headers.authorization ?? '';
-      if(wholeToken===null || wholeToken.toString().length === 0) response.status(401).json("Not Authorized");
+        const wholeToken: any = request.headers.authorization ?? '';
+        if(wholeToken===null || wholeToken.toString().length === 0) response.status(401).json("Not Authorized");
       
         const token = await getToken(wholeToken);
         const decoded = jwt.verify(token, jwtSecret);
         if (request.params.id === (decoded as BackendToken).userId) {
         const user = await getUserById(request.params.id);
         response.status(200).json(user);
-        }
-        else {
-          const httpError:HttpResponseError = {
+      }
+      else {
+        const httpError:HttpResponseError = {
           message: "Forbidden",
           status: 403,
           error: "Wrong user"

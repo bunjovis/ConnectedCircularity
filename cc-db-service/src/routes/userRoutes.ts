@@ -51,10 +51,12 @@ userRoutes.get(
   '/users/:id',
   async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const wholeToken: any = request.headers.authorization ?? '';
-      const token = await getToken(wholeToken);
-      const decoded = jwt.verify(token, jwtSecret);
-      if (request.params.id === (decoded as BackendToken).userId) {
+        const wholeToken: any = request.headers.authorization ?? '';
+        if(wholeToken===null || wholeToken.toString().length === 0) response.status(401).json("Not Authorized");
+      
+        const token = await getToken(wholeToken);
+        const decoded = jwt.verify(token, jwtSecret);
+        if (request.params.id === (decoded as BackendToken).userId) {
         const user = await getUserById(request.params.id);
         response.status(200).json(user);
       }
@@ -63,10 +65,9 @@ userRoutes.get(
           message: "Forbidden",
           status: 403,
           error: "Wrong user"
-        };
-        next(httpError);
-      }
-      
+          };
+          next(httpError);
+        }   
     } catch (err:any) {
       const httpError:HttpResponseError = {
         message: err.message,
@@ -83,6 +84,8 @@ userRoutes.get(
   async (request: Request, response: Response, next: NextFunction) => {
     try {
       const wholeToken: any = request.headers.authorization ?? '';
+      if(wholeToken===null || wholeToken.toString().length === 0) response.status(401).json("Not Authorized");
+
       const token = await getToken(wholeToken);
       const decoded = jwt.verify(token, jwtSecret);
       if (request.params.id === (decoded as BackendToken).userId) {

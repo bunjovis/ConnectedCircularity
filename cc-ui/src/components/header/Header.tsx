@@ -11,7 +11,7 @@ const Header: React.FC<{}> = () => {
   const navigate = useNavigate();
 
   return (
-    <Flex alignItems='center' height='50px' p='1' bg='#fff'>
+    <Flex alignItems='center' height='70px' p='3' bg='#fff'>
       <Box
         bg='#6C7185'
         color='#fff'

@@ -2,6 +2,10 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Advert, PostAdvert } from './types/Advert';
 import { ItemInfo } from './types/ItemInfo';
 
+/** 
+* fetches users items from service provider by user id. 
+* @returns response - empty if there is an error, otherwise the value is any
+*/
 export const dbServiceApi = createApi({
   reducerPath: 'dbServiceApi',
   baseQuery: fetchBaseQuery({
